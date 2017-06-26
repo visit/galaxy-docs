@@ -5,7 +5,7 @@ Get Started
 
 - Clone this repository, publish it as a new repository (make sure branch is gh-pages).
 - Verify that it gets publish at https://visit.github.io/{your-new-repo}/
-- Start editing pages, documentation is available [here] (https://github.com/lord/slate/wiki/Markdown-Syntax)
+- Start editing pages, documentation is available here: https://github.com/lord/slate/wiki/Markdown-Syntax
 
 Important Setting
 --------------------
