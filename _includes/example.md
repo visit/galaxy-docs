@@ -28,8 +28,8 @@ var r = fetch("https://example.citybreak.com/v1/example",
 ```json
 {
   "Examples": [
-      "Hello World",
-	  "Ewoks are the best"
+	"Hello World",
+	"Ewoks are the best"
   ]
 }
 ```
