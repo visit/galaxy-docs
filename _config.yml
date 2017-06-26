@@ -7,8 +7,6 @@
 
 ## Site settings
 title: Visit Documentation Template
-email: thibault.miclo@visit.com
-description: A template to create a documentation
 baseurl: ""
 
 ## Build settings

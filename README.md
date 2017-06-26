@@ -7,6 +7,11 @@ Get Started
 - Verify that it gets publish at https://visit.github.io/{your-new-repo}/
 - Start editing pages, documentation is available [here] (https://github.com/lord/slate/wiki/Markdown-Syntax)
 
+Important Setting
+--------------------
+
+- Title in _config.yml
+
 Special Thanks
 --------------------
 - [slate-for-jekyll](https://github.com/slogsdon/slate-for-jekyll)
