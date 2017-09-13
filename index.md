@@ -1,5 +1,5 @@
 ---
-title: Visit Documentation Template
+title: Visit Galaxy Api Docs
 
 language_tabs:
   - shell
@@ -11,6 +11,7 @@ toc_footers:
 
 includes:
   - intro
+  - accommodation
   - example
   - errors
 
