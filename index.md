@@ -11,7 +11,7 @@ toc_footers:
 
 includes:
   - intro
-  - accommodation
+  - accomodation
   - example
   - errors
 
