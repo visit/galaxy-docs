@@ -1,20 +1,29 @@
-# Accomodation
+# Accommodation
 
-**Accomodation** operations provide information on **Accomodation** prducts available in a point of sale. No availability information is included here, it is primarily content (images, position, catregories, etc).
-All **GET** operations
+> Accommodation
 
-## Accomodation
+```json
+{
+  "Fix":"fix this"
+}
+```
+
+**Accommodation** operations provide information on **Accommodation** products available in a point of sale. No availability information is included here, it is primarily content (images, position, categories, etc).
+
+All **GET** operations *NB: if using the Visit Test Organisation API Key you can use 17692 as the pointOfSaleId*
+
+## Accommodation
 
 ```shell
 curl -X GET 
   --header 'ApiKey: APIKEY132456789EWOK'
   --header 'Accept: application/json' 
   --header 'Accept-Language: en-US'
-  'https://galaxy.test.citybreak.com/api/accommodation/17692/20/0'
+  'https://galaxy.test.citybreak.com/api/accommodation/{pointOfSaleId}/20/0'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.test.citybreak.com/api/accommodation/17692/20/0",
+var r = fetch("https://galaxy.test.citybreak.com/api/accommodation/{pointOfSaleId}/20/0",
 {
   headers: {
     "ApiKey:" "APIKEY132456789EWOK",
@@ -30,13 +39,13 @@ var r = fetch("https://galaxy.test.citybreak.com/api/accommodation/17692/20/0",
 {
   "Page": 0,
   "PageSize": 20,
-  "TotalResults": 5,
+  "TotalResults": 1,
   "Items": [
     {
       "Id": 1222681,
       "Name": "BookVisit Hotel",
       "Content": {
-      "PriceFrom": 0,
+        "PriceFrom": 0,
         "Images": [
           {
             "Uri": "//images.citybreak.com/image.aspx?ImageId=4136104",
@@ -70,7 +79,7 @@ var r = fetch("https://galaxy.test.citybreak.com/api/accommodation/17692/20/0",
           "Latitude": 57.7039005352791,
           "Longitude": 11.9626625079345
         }
-      }
+      },
       "Children": [
         {
           "Name": "BookVisit Hotel BookVisit",
