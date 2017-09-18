@@ -19,7 +19,11 @@ The Cabin Search has additional functionality - the **GET** calls -
 ## Accomodation
 
 ```shell
-curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' --header 'Accept-Language: en-us' --header 'apiKey: APIKEY132456789EWOK' -d '{
+curl -X POST 
+--header 'Content-Type: application/json' 
+--header 'Accept: application/json' 
+--header 'Accept-Language: en-us' 
+--header 'apiKey: APIKEY132456789EWOK' -d '{
    "PointOfSalesId": {pointOfSalesId},
    "Arrival": "2017-10-14T12:27:58.851Z",
    "Departure": "2017-10-15T12:27:58.851Z",
@@ -305,7 +309,11 @@ Accept-Language | The language culture (e.g en-us)
 ## Get Previous Search
 
 ```shell
-curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' --header 'Accept-Language: en-us' --header 'apiKey: APIKEY132456789EWOK' -d '{
+curl -X POST 
+--header 'Content-Type: application/json' 
+--header 'Accept: application/json' 
+--header 'Accept-Language: en-us' 
+--header 'apiKey: APIKEY132456789EWOK' -d '{
    "PointOfSalesId": {pointOfSalesId},
    "Arrival": "2017-10-14T12:27:58.851Z",
    "Departure": "2017-10-15T12:27:58.851Z",
