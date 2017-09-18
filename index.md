@@ -13,7 +13,7 @@ includes:
   - intro
   - accomodation
   - availability
-  - example
+  - content
   - errors
 
 search: true

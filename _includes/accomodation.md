@@ -99,7 +99,7 @@ var r = fetch("https://galaxy.test.citybreak.com/api/accommodation/{pointOfSaleI
 }
 ```
 
-Get the available languages for the key.
+Get details about Accommodation
 
 ### HTTP Request
 
