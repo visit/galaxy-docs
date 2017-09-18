@@ -10,8 +10,8 @@
 
 **Content** calls provide information about several content types used by your org, Attributes, GeoNodes, Points of Interest and Categories. This can be useful when creating content filters on your site as each of these types are suitable for content filtering on **Availability** searches. As with other calls, these are available in the languages your organisation supports and has translated (for non-system content). You need the relevant **Point of Sale Id** for all these calls.
 
-All **GET** operations *NB: if using the Visit Test Organisation API Key you can use 17692 as the pointOfSaleId*
-
+All **GET** operations 
+<aside class="notice">NB: if using the Visit Test Organisation API Key you can use 17692 as the **{pointOfSalesId}**</aside>
 ## Attributes
 
 ```shell
@@ -94,7 +94,7 @@ Get localised Attribute information.
 
 ### HTTP Request
 
-`GET https://galaxy.test.citybreak.com/api/content/attribute`
+`GET https://galaxy.citybreak.com/api/content/attribute`
 
 ### Query Parameters
 
@@ -164,7 +164,7 @@ Get the GeoNode tree. This is a nested list of client-defined geo-locations that
 
 ### HTTP Request
 
-`GET https://galaxy.test.citybreak.com/api/content/geo`
+`GET https://galaxy.citybreak.com/api/content/geo`
 
 ### Query Parameters
 
@@ -234,7 +234,7 @@ Get the Category tree. This is a nested list of client-defined categories that c
 
 ### HTTP Request
 
-`GET https://galaxy.test.citybreak.com/api/content/category`
+`GET https://galaxy.citybreak.com/api/content/category`
 
 ### Query Parameters
 
@@ -306,7 +306,7 @@ Get a list of Points of Interest. This is a mixed list of system and client-defi
 
 ### HTTP Request
 
-`GET https://galaxy.test.citybreak.com/api/content/poi`
+`GET https://galaxy.citybreak.com/api/content/poi`
 
 ### Query Parameters
 

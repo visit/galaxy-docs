@@ -11,7 +11,8 @@ toc_footers:
 
 includes:
   - intro
-  - accomodation
+  - pointofsales
+  - accommodation
   - availability
   - content
   - errors

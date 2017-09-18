@@ -7,16 +7,17 @@
   "Fix":"fix this"
 }
 ```
-*NB: Cabin search is in development and may not be working*
+<aside class="warning">.NB: Cabin Search and Retrieving Queries calls are in development development and may not be working.</aside>
 **Availability** calls provide information about the availability of accomodation products and (seperately) cabin products. These product types are split due to the nature of Cabin booking, typically set periods like Mon-Thurs, that produce different results for searches. Hotels, etc. return results based on the provided arrival and departure date. Cabins produce a "fuzzier" result, looking for matching periods for the requested dates within a margin of error. Both searches will return products with availability, including content, pricing groups with room information (Placements) and subproduct information (such as breakfasts or tickets to nearby attractions), as well as a Search ID with its Expiry. 
 
 The Search ID can be used to retrieve prior, cached searches in a much shorter amount of time for both Accomodation Search and Cabin Scan if used before its Expiry. The object recalled by the search contains all the unfiltered information retrieved in the first search, so further or different filtering on content, etc. can be done in this call.
 
 The Cabin Search has additional functionality - the **GET** calls - 
 
-**GET** and **POST** operations *NB: if using the Visit Test Organisation API Key you can use 17692 as the* **{pointOfSalesId}**
+**GET** and **POST** operations 
+<aside class="notice">NB: if using the Visit Test Organisation API Key you can use 17692 as the **{pointOfSalesId}**</aside>
 
-## Accomodation
+## Accommodation
 
 ```shell
 curl -X POST 
@@ -293,11 +294,11 @@ var r = fetch("https://galaxy.test.citybreak.com/api/availability/accommodation"
 }
 ```
 
-This is a **POST** request that requires a filter. You can see a bare minimum verison of this search in the examples.
+This is a **POST** request that requires a filter with some mandatory properties, such as arrival and depature dates. The filter can also include content filtering, such as only those hotels associated with a particular CBIS category or that have 24 hr reception. Content possibilities can be found in the <a href="https://visit.github.io/galaxy-docs/#content">Content Section</a> You can see a bare minimum verison of this search in the examples.
 
 ### HTTP Request
 
-`POST https://galaxy.test.citybreak.com/availability/accommodation`
+`POST https://galaxy.citybreak.com/availability/accommodation`
 
 ### Query Parameters
 
@@ -583,11 +584,11 @@ var r = fetch("https://galaxy.test.citybreak.com/api/availability/get",
 }
 ```
 
-This is a **POST** request that requires a filter with a valid (non-expired) SearchID. You can see a bare minimum verison of this search in the examples.
+*NB under active development* This is a **POST** request that requires a filter with a valid (non-expired) SearchId. The filter otherwise behaves the same as it would in the original <a href="https://visit.github.io/galaxy-docs/#Accommodation">Accommodation</a> search. You can see a bare minimum verison of this search in the examples.
 
 ### HTTP Request
 
-`POST https://galaxy.test.citybreak.com/availability/get`
+`POST https://galaxy.citybreak.com/availability/get`
 
 ### Query Parameters
 
