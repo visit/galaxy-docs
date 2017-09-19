@@ -2,11 +2,6 @@
 
 > Availability
 
-```json
-{
-  "Fix":"fix this"
-}
-```
 <aside class="warning">.NB: Cabin Search and Retrieving Queries calls are in development development and may not be working.</aside>
 **Availability** calls provide information about the availability of accomodation products and (seperately) cabin products. These product types are split due to the nature of Cabin booking, typically set periods like Mon-Thurs, that produce different results for searches. Hotels, etc. return results based on the provided arrival and departure date. Cabins produce a "fuzzier" result, looking for matching periods for the requested dates within a margin of error. Both searches will return products with availability, including content, pricing groups with room information (Placements) and subproduct information (such as breakfasts or tickets to nearby attractions), as well as a Search ID with its Expiry. 
 
@@ -337,8 +332,8 @@ var r = fetch("https://galaxy.test.citybreak.com/api/availability/get",
 {
 	method: "POST",
 	headers: {
-	    "ApiKey:" "APIKEY132456789EWOK",
-	    "Accept": "application/json",
+	   "ApiKey:" "APIKEY132456789EWOK",
+	   "Accept": "application/json",
 		 "Accept-Language": "en-US"
 	},
 	body: JSON.Stringify({

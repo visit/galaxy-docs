@@ -2,12 +2,6 @@
 
 > Content
 
-```json
-{
-  "Fix":"fix this"
-}
-```
-
 **Points of Sale** are the distribution channels controlled by an Citybreak Organisation. An API key may give access to multiple Points of Sale, each with it's own rate and currency information and selection of available products. Having a valid Point of Sale Id is important for most other queries in the API
 
 All **GET** operations
