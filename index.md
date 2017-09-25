@@ -15,6 +15,8 @@ includes:
   - accommodation
   - availability
   - content
+  - basket
+  - countrycode
   - errors
 
 search: true
