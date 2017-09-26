@@ -5,6 +5,10 @@
 **Basket** calls are the most complicated in the API workflow as they encapsulate the booking process in typical "shopping basket" object that can have many operations performed on it and which has a limited life span, connected as it is to availability/bookability of products, both internal to Citybreak and from external inventories. It is NOT a reservation but products in a basket will be "held" for 15 mins where this is possible (i.e. where external inventories allow).
 
 <aside class="notice">NB: if using the Visit Test Organisation API Key you can use 17692 as the **{pointOfSalesId}**</aside>
+
+
+
+
 ## Create
 
 ```shell
@@ -48,6 +52,8 @@ pointOfSalesId | The point of sales identifier.
 currency | The currency of the basket
 
 
+
+
 ## Delete
 
 ```shell
@@ -85,6 +91,12 @@ Delete a basket. This will remove all associated information attached to the bas
 Parameter | Description
 --------- | -----------
 basketId | The Id of the basket to delete.
+
+
+
+
+
+
 
 ## Get
 
@@ -285,7 +297,60 @@ Parameter | Description
 --------- | -----------
 basketId | The Id of the basket to get.
 
-## Delete
+
+
+
+
+
+
+
+## Add Booking Item
+
+```shell
+curl -X PUT 
+--header 'Accept: application/json' 
+--header 'apiKey: APIKEY132456789EWOK' 
+'https://galaxy.test.citybreak.com/api/basket/add/accommodation/{basketId}/{searchId}/{bookingKey}'
+```
+
+```javascript
+var r = fetch("https://galaxy.citybreak.com/api/basket/add/accommodation/{basketId}/{searchId}/{bookingKey}",
+{
+  method:"PUT"
+  headers: {
+    "ApiKey:" "APIKEY132456789EWOK",
+    "Accept": "application/json",
+  }  
+});
+```
+
+> Example of response:
+
+```json
+true
+```
+
+Delete a booking item from the basket. In the <a href="https://visit.github.io/galaxy-docs/#basket">Get Basket</a>
+
+### HTTP Request
+
+`PUT https://galaxy.citybreak.com/api/basket/deleteItem`
+
+### Query Parameters
+
+Parameter | Description
+--------- | -----------
+basketId | The Id of the basket.
+searchId | The search Id returned by the <a href="https://visit.github.io/galaxy-docs/#Availability">Availability Response</a>
+bookingKey | The key of the booking item to add to the basket, found in <a href="https://visit.github.io/galaxy-docs/#Availability">Availability Response</a>
+
+
+
+
+
+
+
+## Delete Booking Item
 
 ```shell
 curl -X DELETE 
@@ -323,4 +388,51 @@ Parameter | Description
 --------- | -----------
 basketId | The Id of the basket.
 bookItemId | The Id of the booking item to delete from the basket 
+
+
+
+
+
+
+
+## Toggle Cancellation Insurance
+
+```shell
+curl -X PUT 
+--header 'Accept: application/json' 
+--header 'apiKey: APIKEY132456789EWOK' 
+'https://galaxy.test.citybreak.com/api/basket/cancellation/{basketId}/{cancellationId}/{true|false}'
+```
+
+```javascript
+var r = fetch("https://galaxy.test.citybreak.com/api/basket/cancellation/{basketId}/{cancellationId}/{true|false}",
+{
+  method:"PUT"
+  headers: {
+    "ApiKey:" "APIKEY132456789EWOK",
+    "Accept": "application/json",
+  }  
+});
+```
+
+> Example of response:
+
+```json
+Status code 204
+```
+
+If your basket has a set of cancellation insurances you can use this call to add one (true) or switch it off (false)
+
+### HTTP Request
+
+`PUT https://galaxy.citybreak.com/api//basket/cancellation`
+
+### Query Parameters
+
+Parameter | Description
+--------- | -----------
+basketId | The Id of the basket.
+cancellationId | The Id of the cancellation insurance to toggle
+state | true (added) or false (not added)
+
 
