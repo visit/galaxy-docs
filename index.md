@@ -16,6 +16,7 @@ includes:
   - availability
   - content
   - basket
+  - reservation
   - countrycode
   - errors
 

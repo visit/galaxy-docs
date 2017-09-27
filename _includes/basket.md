@@ -2,7 +2,7 @@
 
 > Basket
 
-**Basket** calls are the most complicated in the API workflow as they encapsulate the booking process in typical "shopping basket" object that can have many operations performed on it and which has a limited life span, connected as it is to availability/bookability of products, both internal to Citybreak and from external inventories. It is NOT a reservation but products in a basket will be "held" for 15 mins where this is possible (i.e. where external inventories allow).
+**Basket** calls are the most complicated in the API workflow as they encapsulate the booking process in typical "shopping basket" object that can have many operations performed on it and which has a limited life span, connected as it is to availability/bookability of products, both internal to Citybreak and from external inventories. It is NOT a reservation but products in a basket are "held" for 15 mins from the time of the <a href="https://visit.github.io/galaxy-docs/#Availability">Availability Search</a> where possible (i.e. where external inventories allow).
 
 <aside class="notice">NB: if using the Visit Test Organisation API Key you can use 17692 as the **{pointOfSalesId}**</aside>
 
@@ -103,7 +103,8 @@ basketId | The Id of the basket to delete.
 ```shell
 curl -X GET 
 --header 'Accept: application/json' 
---header 'apiKey: APIKEY132456789EWOK' 
+--header 'apiKey: APIKEY132456789EWOK'
+--header 'Accept-Language: en-us' 
 'https://galaxy.test.citybreak.com/api/basket/{basketId}'
 ```
 
@@ -114,6 +115,7 @@ var r = fetch("https://galaxy.test.citybreak.com/api/basket/{basketId}",
   headers: {
     "ApiKey:" "APIKEY132456789EWOK",
     "Accept": "application/json",
+    "Accept-Language": "en-US"
   }  
 });
 ```
@@ -206,22 +208,22 @@ var r = fetch("https://galaxy.test.citybreak.com/api/basket/{basketId}",
           ],
           "Guests": [
             {
-              "GuestLinkId": 10,
+              "GuestLinkId": 6,
               "PriceGroupName": "Vuxen",
               "Guest": {
-                "GuestId": 6,
-                "NameFirst": null,
-                "NameLast": null,
-                "Age": -1,
-                "Sex": null,
-                "Salutation": null
+                "GuestId": 1,
+                "NameFirst": "Test",
+                "NameLast": "User",
+                "Age": 35,
+                "Sex": "F",
+                "Salutation": "Ms"
               }
             },
             {
-              "GuestLinkId": 11,
+              "GuestLinkId": 7,
               "PriceGroupName": "Barn 0-11",
               "Guest": {
-                "GuestId": 7,
+                "GuestId": 2,
                 "NameFirst": null,
                 "NameLast": null,
                 "Age": 0,
@@ -330,9 +332,7 @@ var r = fetch("https://galaxy.citybreak.com/api/basket/add/accommodation/{basket
 true
 ```
 
-Delete a booking item from the basket. In the <a href="https://visit.github.io/galaxy-docs/#basket">Get Basket</a>
-
-### HTTP Request
+Add a booking item to the basket, you must first have checked for the <a href="https://visit.github.io/galaxy-docs/#Availability">Availability</a> of a property or properties and obtained the search Id and the bookingKey of the product you wish to add to the basket.
 
 `PUT https://galaxy.citybreak.com/api/basket/deleteItem`
 
@@ -342,7 +342,7 @@ Parameter | Description
 --------- | -----------
 basketId | The Id of the basket.
 searchId | The search Id returned by the <a href="https://visit.github.io/galaxy-docs/#Availability">Availability Response</a>
-bookingKey | The key of the booking item to add to the basket, found in <a href="https://visit.github.io/galaxy-docs/#Availability">Availability Response</a>
+bookingKey | The key of the booking item (product) to add to the basket, found in <a href="https://visit.github.io/galaxy-docs/#Availability">Availability Response</a>
 
 
 
@@ -376,7 +376,7 @@ var r = fetch("https://galaxy.test.citybreak.com/api/basket/deleteItem/{basketId
 true
 ```
 
-Delete a booking item from the basket. In the <a href="https://visit.github.io/galaxy-docs/#basket">Get Basket</a>
+Delete a booking item from the basket. In the <a href="https://visit.github.io/galaxy-docs/#get">Get Basket</a> response you can find the bookItemId (this is different to the booking key and is specific to the basket)
 
 ### HTTP Request
 
@@ -418,7 +418,7 @@ var r = fetch("https://galaxy.test.citybreak.com/api/basket/cancellation/{basket
 > Example of response:
 
 ```json
-Status code 204
+no content
 ```
 
 If your basket has a set of cancellation insurances you can use this call to add one (true) or switch it off (false)
@@ -436,3 +436,341 @@ cancellationId | The Id of the cancellation insurance to toggle
 state | true (added) or false (not added)
 
 
+
+
+
+
+## Update Customer Information
+
+```shell
+curl -X POST 
+--header 'Content-Type: application/json' 
+--header 'apiKey: APIKEY132456789EWOK' -d '{
+   "NameFirst": "Test",
+   "NameLast": "User",
+   "Salutation": "Ms",
+   "CustomerType": "Private",
+   "Culture": "en-US",
+   "Address": { 
+     "StreetAddress1": "Test Road 123",
+     "PostalCode": "41111",
+     "City": "Gothenburg",
+     "CountryCode": "SE"
+   },
+   "Email": "testuser%40visit.com",
+   "PhoneMobile": { 
+     "CountryCode": "46",
+     "AreaCode": "07",
+     "Number": "2222222"
+   }
+ }' 'https://galaxy.test.citybreak.com/api/basket/customer/{basketId}'
+```
+
+```javascript
+var r = fetch("https://galaxy.test.citybreak.com/api/basket/customer/{basketId}",
+{
+  method:"POST"
+  headers: {
+    "ApiKey:" "APIKEY132456789EWOK",
+    "Accept": "application/json",
+  }  
+  body: JSON.Stringify({
+    "NameFirst": "Test",
+    "NameLast": "User",
+    "Salutation": "Ms",
+    "CustomerType": "Private",
+    "Culture": "en-US",
+    "Address": {
+      "StreetAddress1": "Test Road 123",
+      "PostalCode": "41111",
+      "City": "Gothenburg",
+      "CountryCode": "SE"
+    },
+    "Email": "testuser@visit.com",
+    "PhoneMobile": {
+      "CountryCode": "46",
+      "AreaCode": "07",
+      "Number": "2222222"
+    }
+  }
+}
+});
+```
+
+> Example of response:
+
+```json
+no content
+```
+
+To commit a Basket you will need to provide customer information. This is fairly standard: name, address, email. phone, etc. for the person conducting the booking (not necessarily the Guests)
+
+### HTTP Request
+
+`GET https://galaxy.citybreak.com/api/basket/customer`
+
+### Query Parameters
+
+Parameter | Description
+--------- | -----------
+basketId | The Id of the basket.
+
+
+
+
+
+
+## Get Customer Information
+
+```shell
+curl -X GET 
+--header 'Accept: application/json' 
+--header 'apiKey: APIKEY132456789EWOK'
+--header 'Accept-Language: en-US' 
+'https://galaxy.testcitybreak.com/api/basket/customer/{basketId}'
+```
+
+```javascript
+var r = fetch("https://galaxy.test.citybreak.com/api/basket/customer/{basketId}",
+{
+  headers: {
+    "ApiKey:" "APIKEY132456789EWOK",
+    "Accept": "application/json",
+    "Accept-Language": "en-US"
+  }  
+});
+```
+
+> Example of response:
+
+```json
+{
+  "NameFirst": "Test",
+  "NameLast": "User",
+  "Salutation": null,
+  "CustomerNumber": null,
+  "CustomerType": 1,
+  "Culture": "en-US",
+  "CivicRegistrationNumber": null,
+  "Company": null,
+  "CompanyDepartment": null,
+  "Address": {
+    "StreetAddress1": "Test Road 123",
+    "StreetAddress2": null,
+    "StreetAddress3": null,
+    "PostalCode": "41111",
+    "City": "Gothenburg",
+    "CountryCode": "SE",
+    "State": null
+  },
+  "Email": "testuser@visit.com",
+  "PhoneHome": {
+    "CountryCode": null,
+    "AreaCode": null,
+    "Number": null
+  },
+  "PhoneWork": {
+    "CountryCode": null,
+    "AreaCode": null,
+    "Number": null
+  },
+  "PhoneMobile": {
+    "CountryCode": "46",
+    "AreaCode": "07",
+    "Number": "2222222"
+  }
+}
+```
+
+Get currencies available for a given Point of Sale. Availability searches will require a currency for a valid search.
+
+### HTTP Request
+
+`GET https://galaxy.test.citybreak.com/api/basket/customer`
+
+### Query Parameters
+
+Parameter | Description
+--------- | -----------
+basketId | The Id of the basket.
+
+
+
+
+
+
+
+
+
+
+## Commit Basket
+
+```shell
+curl -X POST 
+--header 'Accept: application/json' 
+--header 'apiKey: APIKEY132456789EWOK' 
+'https://galaxy.test.citybreak.com/api/basket/commit/{basketId}'
+```
+
+```javascript
+var r = fetch("https://galaxy.test.citybreak.com/api/basket/commit/{basketId}",
+{
+  method:"POST"
+  headers: {
+    "ApiKey:" "APIKEY132456789EWOK",
+    "Accept": "application/json",
+  }  
+});
+```
+
+> Example of response:
+
+```json
+int32
+```
+
+This is the method used to start a commit job for a basket. You only need to provide the Basket Id for this call. As there may be many products from different internal and external providers this is essentailly an async operation. Once you have commited the basket you can query <a href="https://visit.github.io/galaxy-docs/#commit-status">Commit Status</a> to get the status of the job and the **ReservationID** and **BookingCode** if it is completed. Before you may commit a basket, there is some information you must provide first. Add at least one <a href="https://visit.github.io/galaxy-docs/#add-booking-item">Booking Item</a> and provide <a href="https://visit.github.io/galaxy-docs/#update-customer-information">Customer Information</a>.
+
+The return value is a job number with which you can check the status of commit
+
+### HTTP Request
+
+`GET https://galaxy.citybreak.com/api/basket/commit`
+
+### Query Parameters
+
+Parameter | Description
+--------- | -----------
+basketId | The Id of the basket.
+
+
+
+
+
+
+## Commit Status
+
+```shell
+curl -X GET 
+--header 'Accept: application/json' 
+--header 'apiKey: APIKEY132456789EWOK' 
+'https://galaxy.test.citybreak.com/api/basket/commit/status/{commitJobId}'
+```
+
+```javascript
+var r = fetch("https://galaxy.test.citybreak.com/api/basket/commit/status/{commitJobId}",
+{
+  headers: {
+    "ApiKey:" "APIKEY132456789EWOK",
+    "Accept": "application/json"
+  }  
+});
+```
+
+> Example of response:
+
+```json
+{
+  "Status": "CompletedOk",
+  "Subtasks": [
+    {
+      "Task": "StartingCommit",
+      "Status": "CompletedOk",
+      "ExtraInfo": null
+    },
+    {
+      "Task": "CreatingConfirmations",
+      "Status": "CompletedOk",
+      "ExtraInfo": null
+    },
+    {
+      "Task": "CreditCardAction",
+      "Status": "CompletedOk",
+      "ExtraInfo": null
+    },
+    {
+      "Task": "CreatingInvoices",
+      "Status": "NotStarted",
+      "ExtraInfo": null
+    },
+    {
+      "Task": "CreatingStatistics",
+      "Status": "NotStarted",
+      "ExtraInfo": null
+    },
+    {
+      "Task": "FinishingTransaction",
+      "Status": "CompletedOk",
+      "ExtraInfo": null
+    }
+  ],
+  "ResvversionId": 1234567,
+  "BookingCode": "EWOK12"
+}
+```
+
+Gets the *Reservation Id* and **Booking Code**, important for <a href="https://visit.github.io/galaxy-docs/#reservation">Reservation</a> calls, and the status of a commit job. Get the commit job id when you make the <a href="https://visit.github.io/galaxy-docs/#commit-basket">Commit</a>.
+
+
+### HTTP Request
+
+`GET https://galaxy.citybreak.com/api/basket/commit/status`
+
+### Query Parameters
+
+Parameter | Description
+--------- | -----------
+commitJobId | The Id of the commit job returned from <a href="https://visit.github.io/galaxy-docs/#commit-basket">Commit Basket</a> 
+
+
+
+
+
+
+
+## Add Guest
+
+```shell
+curl -X POST 
+--header 'Accept: application/json' 
+--header 'apiKey: APIKEY132456789EWOK' 
+'https://galaxy.test.citybreak.com/api/basket/guests/add/{basketId}'
+```
+
+```javascript
+var r = fetch("https://galaxy.test.citybreak.com/api/basket/guests/add/{basketId}",
+{
+  method:"POST"
+  headers: {
+    "ApiKey:" "APIKEY132456789EWOK",
+    "Accept": "application/json",
+  }  
+  body: JSON.Stringify([
+    {
+      "GuestId": 1,
+      "NameFirst": "Test",
+      "NameLast": "User",
+      "Age": 35,
+      "Sex": "F",
+      "Salutation": "Ms"
+    }
+  ]
+);
+```
+
+> Example of response: no content
+
+
+
+Returns Response Code 204 if successful. Add a guest to a Booking Item, this is not the same as Customer Information. The Guest ID in the filter must match one in the <a href="https://visit.github.io/galaxy-docs/#get-basket">Basket</a> or be 0 to create a new guest
+
+
+### HTTP Request
+
+`GET https://galaxy.test.citybreak.com/api/basket/guests/add`
+
+### Query Parameters
+
+Parameter | Description
+--------- | -----------
+basketId | The Id of the basket.
