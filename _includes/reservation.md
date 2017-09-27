@@ -270,17 +270,17 @@ BookingCode | The code representing the reservation returned from <a href="https
 
 
 
-## Commit Basket
+## Cancel Reservation
 
 ```shell
 curl -X POST 
 --header 'Accept: application/json' 
 --header 'apiKey: APIKEY132456789EWOK' 
-'https://galaxy.test.citybreak.com/api/basket/commit/{basketId}'
+'https://galaxy.test.citybreak.com/api/reservation/cancel/{bookingCode}'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/api/reservation/cancel/{bookingCode}}",
+var r = fetch("https://galaxy.test.citybreak.com/api/reservation/cancel/{bookingCode}",
 {
   method:"POST"
   headers: {
@@ -309,7 +309,7 @@ BookingCode | The code representing the reservation returned from <a href="https
 
 
 
-## Get Latest Reservation Version
+## Get Cancel Information
 
 ```shell
 curl -X GET 
