@@ -332,7 +332,7 @@ var r = fetch("https://galaxy.test.citybreak.com/api/reservation/cancel/info/{bo
 
 ```json
 {
-  "BookingCode": "EXOK12",
+  "BookingCode": "EWOK12",
   "NoProducts": 1,
   "ReservationVersionId": 1234567,
   "LastCancellationDate": "9999-12-31T23:59:59.9999999"

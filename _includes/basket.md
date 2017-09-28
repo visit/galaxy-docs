@@ -9,7 +9,7 @@
 
 
 
-## Create
+## Create Basket
 
 ```shell
 curl -X POST 
@@ -54,7 +54,7 @@ currency | The currency of the basket
 
 
 
-## Delete
+## Delete Basket
 
 ```shell
 curl -X DELETE 
@@ -98,7 +98,7 @@ basketId | The Id of the basket to delete.
 
 
 
-## Get
+## Get Basket
 
 ```shell
 curl -X GET 
@@ -316,7 +316,7 @@ curl -X PUT
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/api/basket/add/accommodation/{basketId}/{searchId}/{bookingKey}",
+var r = fetch("https://galaxy.test.citybreak.com/api/basket/add/accommodation/{basketId}/{searchId}/{bookingKey}",
 {
   method:"PUT"
   headers: {
@@ -334,7 +334,7 @@ true
 
 Add a booking item to the basket, you must first have checked for the <a href="https://visit.github.io/galaxy-docs/#Availability">Availability</a> of a property or properties and obtained the search Id and the bookingKey of the product you wish to add to the basket.
 
-`PUT https://galaxy.citybreak.com/api/basket/deleteItem`
+`PUT https://galaxy.citybreak.com/api/basket/add/accommodation`
 
 ### Query Parameters
 
@@ -635,7 +635,7 @@ The return value is a job number with which you can check the status of commit
 
 ### HTTP Request
 
-`GET https://galaxy.citybreak.com/api/basket/commit`
+`POST https://galaxy.citybreak.com/api/basket/commit`
 
 ### Query Parameters
 
@@ -709,7 +709,7 @@ var r = fetch("https://galaxy.test.citybreak.com/api/basket/commit/status/{commi
 }
 ```
 
-Gets the *Reservation Id* and **Booking Code**, important for <a href="https://visit.github.io/galaxy-docs/#reservation">Reservation</a> calls, and the status of a commit job. Get the commit job id when you make the <a href="https://visit.github.io/galaxy-docs/#commit-basket">Commit</a>.
+Gets the **ResvversionId** (reservation version id) and **BookingCode**, important for <a href="https://visit.github.io/galaxy-docs/#reservation">Reservation</a> calls, and the status of a commit job. Get the commit job id when you make the <a href="https://visit.github.io/galaxy-docs/#commit-basket">Commit</a>.
 
 
 ### HTTP Request

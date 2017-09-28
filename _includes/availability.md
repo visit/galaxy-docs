@@ -325,7 +325,7 @@ curl -X POST
      {
        "Adults": 1,
        "ChildrenAges": [
-         0
+         1
        ] 
      }
    ]
@@ -352,7 +352,7 @@ var r = fetch("https://galaxy.test.citybreak.com/api/availability/get",
 	     {
 	       "Adults": 1,
 	       "ChildrenAges": [
-	         0
+	         1
 	       ] 
 	     }
 	   ]
@@ -474,7 +474,7 @@ var r = fetch("https://galaxy.test.citybreak.com/api/availability/get",
               "PersonConfiguration": {
                 "Adults": 1,
                 "ChildrenAges": [
-                  0
+                  1
                 ]
               },
               "PricePeriods": [
@@ -553,7 +553,7 @@ var r = fetch("https://galaxy.test.citybreak.com/api/availability/get",
               "PersonConfiguration": {
                 "Adults": 1,
                 "ChildrenAges": [
-                  0
+                  1
                 ]
               },
               "PricePeriods": [
