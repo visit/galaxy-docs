@@ -10,7 +10,6 @@ Search availability
 Create basket
 Add booking item
 Add customer info
-Add Guest info
 Commit Basket
 Get Status
 Review reservation
@@ -67,7 +66,7 @@ The first step is to obtain a valid <a href="https://visit.github.io/galaxy-docs
 
 ### HTTP Request
 
-`GET https://galaxy.citybreak.com/api/pointofsales`
+`GET https://galaxy.test.citybreak.com/api/pointofsales`
 
 
 
@@ -106,7 +105,7 @@ Once we have a Point of Sale we need to choose a <a href="https://visit.github.i
 
 ### HTTP Request
 
-`GET https://galaxy.citybreak.com/api/pointofsales/currencies/1234570`
+`GET https://galaxy.test.citybreak.com/api/pointofsales/currencies/1234570`
 
 
 
@@ -145,7 +144,7 @@ For all booking operations you will need a <a href="https://visit.github.io/gala
 
 ### HTTP Request
 
-`GET https://galaxy.citybreak.com/api/content/attribute/1234570/SEK`
+`GET https://galaxy.test.citybreak.com/api/content/attribute/1234570/SEK`
 
 
 
@@ -440,12 +439,12 @@ Also required is the **SearchId** that represents your search. The object repres
 
 For this example we will use the double room at Edelbrock Hotell 3 with a handy Garden Gnome included:
 
-"BookingKey" = 19-A
-"SearchId" = 899fe054-3bb4-4ff8-b577-ba716b0b3317
+"BookingKey" = **19-A**
+"SearchId" = **899fe054-3bb4-4ff8-b577-ba716b0b3317**
 
 ### HTTP Request
 
-`POST https://galaxy.citybreak.com/availability/accommodation`
+`POST https://galaxy.test.citybreak.com/availability/accommodation`
 
 
 
@@ -541,15 +540,266 @@ var r = fetch("https://galaxy.test.citybreak.com/api/basket/customer/87654321",
 });
 ```
 
-> Example of response:
+> Example of response: no content
 
-```json
-no content
-```
-
-To commit a Basket we will need to <a href="https://visit.github.io/galaxy-docs/#add-booking-item">provide customer information</a> using our **BasketId**: 87654321. In the example, we have created Ms. Test User and will POST her data which will attach it to the basket. You will only receive a status code of 204 to indicate success. The basket now has the bare minimum required to commit it but we'll add one more thing first.
+To commit a Basket we will need to <a href="https://visit.github.io/galaxy-docs/#update-customer-information">provide Customer Information</a> using our **BasketId**: 87654321. In the example, we have created Ms. Test User and will POST her data which will attach it to the basket. You will only receive a status code of 204 to indicate success. The basket now has the bare minimum required to commit it.
 
 ### HTTP Request
 
-`GET https://galaxy.citybreak.com/api/basket/customer/87654321"`
+`GET https://galaxy.test.citybreak.com/api/basket/customer/87654321"`
 
+
+
+
+
+## Commit Basket
+
+
+```shell
+curl -X POST 
+--header 'Accept: application/json' 
+--header 'apiKey: APIKEY132456789EWOK' 
+'https://galaxy.test.citybreak.com/api/basket/commit/87654321'
+```
+
+```javascript
+var r = fetch("https://galaxy.test.citybreak.com/api/basket/commit/87654321",
+{
+  method:"POST"
+  headers: {
+    "ApiKey:" "APIKEY132456789EWOK",
+    "Accept": "application/json",
+  }  
+});
+```
+
+> Example of response: an integer representing the CommitJobId
+
+```json
+98761234
+```
+
+Once you have all the information and the bookings you would like to attach to your basket, you can <a href="https://visit.github.io/galaxy-docs/#commit-basket">Commit</a> it. This will start the process of finalising bookings and generating the necessary financial information. You only need to provide the Basket Id for this call. The whole commit process is a two step one, assuming you want confrimation of the job and the final reservation number. 
+First, in this call, we will use a POST call and the **BasketId**: 87654321 to trigger the Basket commit job. What you get in return is the **CommitJobId**, you can use it with <a href="https://visit.github.io/galaxy-docs/#commit-status">Commit Status</a> to get the status of the job. Our CommitJobId is **98761234**.
+
+
+
+### HTTP Request
+
+`POST https://galaxy.test.citybreak.com/api/basket/commit/87654321`
+
+
+
+
+
+
+
+## Get Commit Job Status
+
+```shell
+curl -X GET 
+--header 'Accept: application/json' 
+--header 'apiKey: APIKEY132456789EWOK' 
+'https://galaxy.test.citybreak.com/api/basket/commit/status/98761234'
+```
+
+```javascript
+var r = fetch("https://galaxy.test.citybreak.com/api/basket/commit/status/98761234",
+{
+  headers: {
+    "ApiKey:" "APIKEY132456789EWOK",
+    "Accept": "application/json"
+  }  
+});
+```
+
+> Example of response:
+
+```json
+{
+  "Status": "CompletedOk",
+  "Subtasks": [
+    {
+      "Task": "StartingCommit",
+      "Status": "CompletedOk",
+      "ExtraInfo": null
+    },
+    {
+      "Task": "CreatingConfirmations",
+      "Status": "CompletedOk",
+      "ExtraInfo": null
+    },
+    {
+      "Task": "CreditCardAction",
+      "Status": "CompletedOk",
+      "ExtraInfo": null
+    },
+    {
+      "Task": "CreatingInvoices",
+      "Status": "NotStarted",
+      "ExtraInfo": null
+    },
+    {
+      "Task": "CreatingStatistics",
+      "Status": "NotStarted",
+      "ExtraInfo": null
+    },
+    {
+      "Task": "FinishingTransaction",
+      "Status": "CompletedOk",
+      "ExtraInfo": null
+    }
+  ],
+  "ResvVersionId": 12349876,
+  "BookingCode": "EWOK12"
+}
+```
+
+Once the basket has been <a href="https://visit.github.io/galaxy-docs/#commit-basket">Committed</a>, in order to get information about the booking you will need to use the **CommitJobId**: 98761234 to query the <a href="https://visit.github.io/galaxy-docs/#commit-status">Commit Status</a> of the job. As you can see in the example return, there are a number of different tasks that run as a part of a commit job. Some of these may need to be completed before you can move ahead with your booking, others are ok to have running in the background while you carry on. For e.g. you would want CreatingConfirmations to be finished before confirming to a user that their booking has been successful but you can probably move on to the next step if invoices are still being created.
+The other important information returned by the status is the ResvVersionId (reservation version id), for us: **12349876** and the BookingCode, for us: **EWOK12**, which are used to obtain information about the <a href="https://visit.github.io/galaxy-docs/#reservation">Reservation</a>
+
+### HTTP Request
+
+`GET https://galaxy.test.citybreak.com/api/basket/commit/status/98761234`
+
+
+
+
+
+## Review A Reservation
+
+
+```shell
+curl -X GET 
+--header 'Accept: application/json' 
+--header 'apiKey: APIKEY132456789EWOK' 
+'https://galaxy.test.citybreak.com/api/reservation/latest/EWOK12'
+```
+
+```javascript
+var r = fetch("https://galaxy.test.citybreak.com/api/reservation/latest/EWOK12",
+{
+  headers: {
+    "ApiKey:" "APIKEY132456789EWOK",
+    "Accept": "application/json"
+  }  
+});
+```
+
+> Example of response:
+
+```json
+{
+  "BookingCode": "EWOK12",
+  "Version": 1,
+  "BookingDate": "2017-09-27T13:12:54.1938577Z",
+  "AutoCancellation": "9999-12-31T23:59:59.9999999",
+  "Fees": [],
+  "BookingUser": {
+    "Id": 113685,
+    "NameFirst": "Galaxy",
+    "NameLast": "Api user",
+    "Email": null
+  },
+  "CancellationMessage": null,
+  "Customer": {
+    "NameFirst": "Test",
+    "NameLast": "User",
+    "Salutation": Ms,
+    "CustomerNumber": null,
+    "CustomerType": 0,
+    "Culture": null,
+    "CivicRegistrationNumber": null,
+    "Company": null,
+    "CompanyDepartment": null,
+    "Address": {
+      "StreetAddress1": "Test Road 123",
+      "StreetAddress2": null,
+      "StreetAddress3": null,
+      "PostalCode": "41111",
+      "City": "Gothenburg",
+      "CountryCode": "SE",
+      "State": null
+    },
+    "Email": null,
+    "PhoneHome": {
+      "CountryCode": null,
+      "AreaCode": null,
+      "Number": null
+    },
+    "PhoneWork": {
+      "CountryCode": null,
+      "AreaCode": null,
+      "Number": null
+    },
+    "PhoneMobile": {
+      "CountryCode": "46",
+      "AreaCode": "07",
+      "Number": "2222222"
+    }
+  },
+  "ProductGroups": [
+    {
+      "Products": [
+        {
+          "Id": 3,
+          "Name": "Dubbelrum ÖSD",
+          "Price": 350
+        }
+      ],
+      "Id": 153663,
+      "Name": "Edelbrock Hotell"
+    }
+  ]
+}
+```
+
+There are two ways to return information about a reservation, either by <a href="https://visit.github.io/galaxy-docs/#get-reservation-version">the Version</a> of the Reservation, using the **BookingCode** and **ResVersionId** or by the latest version as we have done here where we just require our **BookingCode**: EWOK12. It displays limited information about the booked products, the customer and some meta information about the booking itself. The user should retain a reference to the **BookingCode** so that they are able to reference their reservation
+
+
+### HTTP Request
+
+`GET https://galaxy.citybreak.com/api/reservation/latest/EWOK12`
+
+
+
+
+
+
+## Cancel A Reservation
+
+
+```shell
+curl -X GET 
+--header 'Accept: application/json' 
+--header 'apiKey: APIKEY132456789EWOK' 
+'https://galaxy.test.citybreak.com/api/reservation/cancel/info/EWOK12'
+```
+
+```javascript
+var r = fetch("https://galaxy.test.citybreak.com/api/reservation/cancel/info/EWOK12",
+{
+  headers: {
+    "ApiKey:" "APIKEY132456789EWOK",
+    "Accept": "application/json"
+  }  
+});
+```
+
+> Example of response:
+
+```json
+{
+  "BookingCode": "EWOK12",
+  "NoProducts": 1,
+  "ReservationVersionId": 12349876,
+  "LastCancellationDate": "9999-12-31T23:59:59.9999999"
+}
+```
+
+Finally, lets cancel our reservation. <a href="https://visit.github.io/galaxy-docs/#cancel-reservationn">Cancelling</a> policies can vary for products and so it is worth noting here that the only guaranteed cancellation that of the reservation. There might be part or full payments due depending on policies, cancellation insurance and other factors, that can differ product to product. To cancel, we once again just require our **BookingCode**: EWOK12 and with a GET query we will close out our reservation and end the example workflow. 
+
+
+### HTTP Request
+
+`GET https://galaxy.citybreak.com/api/reservation/cancel/info/EWOK12`
