@@ -891,8 +891,10 @@ var r = fetch("https://galaxy.test.citybreak.com/api/availability/cabin/scan",
       "Price": 0
     }
   ],
-  "SearchContext": { // Copy of what was sent to the method.
-        // ...
+  "SearchContext": { 
+        /* Copy of what was sent to the method.
+        ...
+        */
     },
     "PageSize": 10,
     "Page": 0,
@@ -921,7 +923,7 @@ This method is used to get a different page of the result.
 
 ```json
 {
-  "Page": 1, // The second page
+  "Page": 1, /* The second page */
   "PageSize": 10,
   "Sort": {
     "Order": "Desc",
