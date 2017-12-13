@@ -12,11 +12,11 @@
 curl -X GET 
 --header 'Accept: application/json' 
 --header 'apiKey: APIKEY132456789EWOK' 
-'https://galaxy.test.citybreak.com/api/reservation/{bookingCode}'
+'https://galaxy.test.citybreak.com/v2/api/reservation/{bookingCode}'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.test.citybreak.com/api/reservation/{bookingCode}",
+var r = fetch("https://galaxy.test.citybreak.com/v2/api/reservation/{bookingCode}",
 {
   headers: {
     "ApiKey:" "APIKEY132456789EWOK",
@@ -49,7 +49,7 @@ Gets all the versions of a booking that have been created with a Booking Code
 
 ### HTTP Request
 
-`GET https://galaxy.citybreak.com/api/reservation`
+`GET https://galaxy.citybreak.com/v2/api/reservation`
 
 ### Query Parameters
 
@@ -67,11 +67,11 @@ BookingCode | The code representing the reservation returned from <a href="https
 curl -X GET 
 --header 'Accept: application/json' 
 --header 'apiKey: APIKEY132456789EWOK' 
-'https://galaxy.test.citybreak.com/api/reservation/version/{reservationVersionId}}'
+'https://galaxy.test.citybreak.com/v2/api/reservation/version/{reservationVersionId}}'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.test.citybreak.com/api/reservation/version/{reservationVersionId}",
+var r = fetch("https://galaxy.test.citybreak.com/v2/api/reservation/version/{reservationVersionId}",
 {
   headers: {
     "ApiKey:" "APIKEY132456789EWOK",
@@ -153,7 +153,7 @@ Gets all the information about a booking by version
 
 ### HTTP Request
 
-`GET https://galaxy.citybreak.com/api/reservation/version`
+`GET https://galaxy.citybreak.com/v2/api/reservation/version`
 
 ### Query Parameters
 
@@ -171,11 +171,11 @@ reservationVersionId | The Id for the specific verion of the Reservation
 curl -X GET 
 --header 'Accept: application/json' 
 --header 'apiKey: APIKEY132456789EWOK' 
-'https://galaxy.test.citybreak.com/api/reservation/latest/{bookingCode}'
+'https://galaxy.test.citybreak.com/v2/api/reservation/latest/{bookingCode}'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.test.citybreak.com/api/reservation/latest/{bookingCode}",
+var r = fetch("https://galaxy.test.citybreak.com/v2/api/reservation/latest/{bookingCode}",
 {
   headers: {
     "ApiKey:" "APIKEY132456789EWOK",
@@ -257,7 +257,7 @@ Gets all the information about a booking by version
 
 ### HTTP Request
 
-`GET https://galaxy.citybreak.com/api/reservation/latest`
+`GET https://galaxy.citybreak.com/v2/api/reservation/latest`
 
 ### Query Parameters
 
@@ -276,11 +276,11 @@ BookingCode | The code representing the reservation returned from <a href="https
 curl -X POST 
 --header 'Accept: application/json' 
 --header 'apiKey: APIKEY132456789EWOK' 
-'https://galaxy.test.citybreak.com/api/reservation/cancel/{bookingCode}'
+'https://galaxy.test.citybreak.com/v2/api/reservation/cancel/{bookingCode}'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.test.citybreak.com/api/reservation/cancel/{bookingCode}",
+var r = fetch("https://galaxy.test.citybreak.com/v2/api/reservation/cancel/{bookingCode}",
 {
   method:"POST"
   headers: {
@@ -296,7 +296,7 @@ This will cancel a reservation. Similarly to commiting a Basket, it reurns an in
 
 ### HTTP Request
 
-`POST https://galaxy.citybreak.com/api/basket/commit`
+`POST https://galaxy.citybreak.com/v2/api/basket/commit`
 
 ### Query Parameters
 
@@ -315,11 +315,11 @@ BookingCode | The code representing the reservation returned from <a href="https
 curl -X GET 
 --header 'Accept: application/json' 
 --header 'apiKey: APIKEY132456789EWOK' 
-'https://galaxy.test.citybreak.com/api/reservation/cancel/info/{bookingCode}'
+'https://galaxy.test.citybreak.com/v2/api/reservation/cancel/info/{bookingCode}'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.test.citybreak.com/api/reservation/cancel/info/{bookingCode}",
+var r = fetch("https://galaxy.test.citybreak.com/v2/api/reservation/cancel/info/{bookingCode}",
 {
   headers: {
     "ApiKey:" "APIKEY132456789EWOK",
@@ -344,7 +344,7 @@ After a concellation, get the cancellation info of the booking based on the book
 
 ### HTTP Request
 
-`GET https://galaxy.citybreak.com/api/reservation/cancel/info`
+`GET https://galaxy.citybreak.com/v2/api/reservation/cancel/info`
 
 ### Query Parameters
 

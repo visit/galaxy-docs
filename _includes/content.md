@@ -13,11 +13,11 @@ curl -X GET
 --header 'apiKey: APIKEY132456789EWOK'  
 --header 'Accept: application/json' 
 --header 'Accept-Language: en-us' 
-'https://galaxy.test.citybreak.com/api/content/attribute/{pointOfSaleId}'
+'https://galaxy.test.citybreak.com/v2/api/content/attribute/{pointOfSaleId}'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.test.citybreak.com/api/content/attribute/{pointOfSaleId}",
+var r = fetch("https://galaxy.test.citybreak.com/v2/api/content/attribute/{pointOfSaleId}",
 {
   headers: {
     "ApiKey:" "APIKEY132456789EWOK",
@@ -88,7 +88,7 @@ Get localised Attribute information.
 
 ### HTTP Request
 
-`GET https://galaxy.citybreak.com/api/content/attribute`
+`GET https://galaxy.citybreak.com/v2/api/content/attribute`
 
 ### Query Parameters
 
@@ -103,11 +103,11 @@ curl -X GET
 --header 'apiKey: APIKEY132456789EWOK'  
 --header 'Accept: application/json' 
 --header 'Accept-Language: en-us' 
-'https://galaxy.test.citybreak.com/api/content/geo/{pointOfSaleId}'
+'https://galaxy.test.citybreak.com/v2/api/content/geo/{pointOfSaleId}'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.test.citybreak.com/api/content/geo/{pointOfSaleId}",
+var r = fetch("https://galaxy.test.citybreak.com/v2/api/content/geo/{pointOfSaleId}",
 {
   headers: {
     "ApiKey:" "APIKEY132456789EWOK",
@@ -158,7 +158,7 @@ Get the GeoNode tree. This is a nested list of client-defined geo-locations that
 
 ### HTTP Request
 
-`GET https://galaxy.citybreak.com/api/content/geo`
+`GET https://galaxy.citybreak.com/v2/api/content/geo`
 
 ### Query Parameters
 
@@ -173,11 +173,11 @@ curl -X GET
 --header 'apiKey: APIKEY132456789EWOK'  
 --header 'Accept: application/json' 
 --header 'Accept-Language: en-us' 
-'https://galaxy.test.citybreak.com/api/content/category/{pointOfSaleId}'
+'https://galaxy.test.citybreak.com/v2/api/content/category/{pointOfSaleId}'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.test.citybreak.com/api/content/category/{pointOfSaleId}",
+var r = fetch("https://galaxy.test.citybreak.com/v2/api/content/category/{pointOfSaleId}",
 {
   headers: {
     "ApiKey:" "APIKEY132456789EWOK",
@@ -228,7 +228,7 @@ Get the Category tree. This is a nested list of client-defined categories that c
 
 ### HTTP Request
 
-`GET https://galaxy.citybreak.com/api/content/category`
+`GET https://galaxy.citybreak.com/v2/api/content/category`
 
 ### Query Parameters
 
@@ -243,11 +243,11 @@ curl -X GET
 --header 'apiKey: APIKEY132456789EWOK'  
 --header 'Accept: application/json' 
 --header 'Accept-Language: en-us' 
-'https://galaxy.test.citybreak.com/api/content/poi/{pointOfSaleId}'
+'https://galaxy.test.citybreak.com/v2/api/content/poi/{pointOfSaleId}'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.test.citybreak.com/api/content/poi/{pointOfSaleId}",
+var r = fetch("https://galaxy.test.citybreak.com/v2/api/content/poi/{pointOfSaleId}",
 {
   headers: {
     "ApiKey:" "APIKEY132456789EWOK",
@@ -300,7 +300,7 @@ Get a list of Points of Interest. This is a mixed list of system and client-defi
 
 ### HTTP Request
 
-`GET https://galaxy.citybreak.com/api/content/poi`
+`GET https://galaxy.citybreak.com/v2/api/content/poi`
 
 ### Query Parameters
 

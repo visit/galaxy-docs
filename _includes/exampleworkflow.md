@@ -21,12 +21,12 @@ Cancel Reservation
 curl -X GET 
 --header 'Accept: application/json' 
 --header 'apiKey: APIKEY132456789EWOK' 
-'https://galaxy.test.citybreak.com/api/pointofsales'
+'https://galaxy.test.citybreak.com/v2/api/pointofsales'
 
 ```
 
 ```javascript
-var r = fetch("https://galaxy.test.citybreak.com/api/pointofsales",
+var r = fetch("https://galaxy.test.citybreak.com/v2/api/pointofsales",
 {
   headers: {
     "ApiKey:" "APIKEY132456789EWOK",
@@ -66,7 +66,7 @@ The first step is to obtain a valid <a href="https://visit.github.io/galaxy-docs
 
 ### HTTP Request
 
-`GET https://galaxy.test.citybreak.com/api/pointofsales`
+`GET https://galaxy.test.citybreak.com/v2/api/pointofsales`
 
 
 
@@ -76,11 +76,11 @@ The first step is to obtain a valid <a href="https://visit.github.io/galaxy-docs
 curl -X GET 
 --header 'Accept: application/json' 
 --header 'apiKey: APIKEY132456789EWOK' 
-'https://galaxy.test.citybreak.com/api/pointofsales/currencies/1234570'
+'https://galaxy.test.citybreak.com/v2/api/pointofsales/currencies/1234570'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.test.citybreak.com/api/pointofsales/currencies/1234570",
+var r = fetch("https://galaxy.test.citybreak.com/v2/api/pointofsales/currencies/1234570",
 {
   headers: {
     "ApiKey:" "APIKEY132456789EWOK",
@@ -105,7 +105,7 @@ Once we have a Point of Sale we need to choose a <a href="https://visit.github.i
 
 ### HTTP Request
 
-`GET https://galaxy.test.citybreak.com/api/pointofsales/currencies/1234570`
+`GET https://galaxy.test.citybreak.com/v2/api/pointofsales/currencies/1234570`
 
 
 
@@ -117,11 +117,11 @@ Once we have a Point of Sale we need to choose a <a href="https://visit.github.i
 curl -X POST 
 --header 'Accept: application/json' 
 --header 'apiKey: APIKEY132456789EWOK' 
-'https://galaxy.test.citybreak.com/api/basket/create/1234570/SEK'
+'https://galaxy.test.citybreak.com/v2/api/basket/create/1234570/SEK'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.test.citybreak.com/api/basket/create/1234570/SEK",
+var r = fetch("https://galaxy.test.citybreak.com/v2/api/basket/create/1234570/SEK",
 {
   method:"POST"
   headers: {
@@ -144,7 +144,7 @@ For all booking operations you will need a <a href="https://visit.github.io/gala
 
 ### HTTP Request
 
-`GET https://galaxy.test.citybreak.com/api/content/attribute/1234570/SEK`
+`GET https://galaxy.test.citybreak.com/v2/api/content/attribute/1234570/SEK`
 
 
 
@@ -172,11 +172,11 @@ curl -X POST
        ] 
      }
    ]
- }' 'https://galaxy.test.citybreak.com/api/availability/accommodation'
+ }' 'https://galaxy.test.citybreak.com/v2/api/availability/accommodation'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.test.citybreak.com/api/availability/accommodation",
+var r = fetch("https://galaxy.test.citybreak.com/v2/api/availability/accommodation",
 {
 	method: "POST",
 	headers: {
@@ -444,7 +444,7 @@ For this example we will use the double room at Edelbrock Hotell 3 with a handy 
 
 ### HTTP Request
 
-`POST https://galaxy.test.citybreak.com/availability/accommodation`
+`POST https://galaxy.test.citybreak.com/v2/api/availability/accommodation`
 
 
 
@@ -455,11 +455,11 @@ For this example we will use the double room at Edelbrock Hotell 3 with a handy 
 curl -X PUT 
 --header 'Accept: application/json' 
 --header 'apiKey: APIKEY132456789EWOK' 
-'https://galaxy.test.citybreak.com/api/basket/add/accommodation/87654321/899fe054-3bb4-4ff8-b577-ba716b0b3317/19-A'
+'https://galaxy.test.citybreak.com/v2/api/basket/add/accommodation/87654321/899fe054-3bb4-4ff8-b577-ba716b0b3317/19-A'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.test.citybreak.com/api/basket/add/accommodation/87654321/899fe054-3bb4-4ff8-b577-ba716b0b3317/19-A",
+var r = fetch("https://galaxy.test.citybreak.com/v2/api/basket/add/accommodation/87654321/899fe054-3bb4-4ff8-b577-ba716b0b3317/19-A",
 {
   method:"PUT"
   headers: {
@@ -477,7 +477,7 @@ true
 
 Taking the **BasketId**: 87654321 of the basket we created earlier, the **SearchId**: 899fe054-3bb4-4ff8-b577-ba716b0b3317 from the availability search and the **BookingCode**: 19-A of the product we selected, we can now <a href="https://visit.github.io/galaxy-docs/#add-booking-item">add a product to our Basket</a>.
 
-`PUT https://galaxy.test.citybreak.com/api/basket/add/accommodation/87654321/899fe054-3bb4-4ff8-b577-ba716b0b3317/19-A"`
+`PUT https://galaxy.test.citybreak.com/v2/api/basket/add/accommodation/87654321/899fe054-3bb4-4ff8-b577-ba716b0b3317/19-A"`
 
 
 
@@ -506,11 +506,11 @@ curl -X POST
      "AreaCode": "07",
      "Number": "2222222"
    }
- }' 'https://galaxy.test.citybreak.com/api/basket/customer/87654321'
+ }' 'https://galaxy.test.citybreak.com/v2/api/basket/customer/87654321'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.test.citybreak.com/api/basket/customer/87654321",
+var r = fetch("https://galaxy.test.citybreak.com/v2/api/basket/customer/87654321",
 {
   method:"POST"
   headers: {
@@ -546,7 +546,7 @@ To commit a Basket we will need to <a href="https://visit.github.io/galaxy-docs/
 
 ### HTTP Request
 
-`GET https://galaxy.test.citybreak.com/api/basket/customer/87654321"`
+`GET https://galaxy.test.citybreak.com/v2/api/basket/customer/87654321"`
 
 
 
@@ -559,11 +559,11 @@ To commit a Basket we will need to <a href="https://visit.github.io/galaxy-docs/
 curl -X POST 
 --header 'Accept: application/json' 
 --header 'apiKey: APIKEY132456789EWOK' 
-'https://galaxy.test.citybreak.com/api/basket/commit/87654321'
+'https://galaxy.test.citybreak.com/v2/api/basket/commit/87654321'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.test.citybreak.com/api/basket/commit/87654321",
+var r = fetch("https://galaxy.test.citybreak.com/v2/api/basket/commit/87654321",
 {
   method:"POST"
   headers: {
@@ -586,7 +586,7 @@ First, in this call, we will use a POST call and the **BasketId**: 87654321 to t
 
 ### HTTP Request
 
-`POST https://galaxy.test.citybreak.com/api/basket/commit/87654321`
+`POST https://galaxy.test.citybreak.com/v2/api/basket/commit/87654321`
 
 
 
@@ -600,11 +600,11 @@ First, in this call, we will use a POST call and the **BasketId**: 87654321 to t
 curl -X GET 
 --header 'Accept: application/json' 
 --header 'apiKey: APIKEY132456789EWOK' 
-'https://galaxy.test.citybreak.com/api/basket/commit/status/98761234'
+'https://galaxy.test.citybreak.com/v2/api/basket/commit/status/98761234'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.test.citybreak.com/api/basket/commit/status/98761234",
+var r = fetch("https://galaxy.test.citybreak.com/v2/api/basket/commit/status/98761234",
 {
   headers: {
     "ApiKey:" "APIKEY132456789EWOK",
@@ -660,7 +660,7 @@ The other important information returned by the status is the ResvVersionId (res
 
 ### HTTP Request
 
-`GET https://galaxy.test.citybreak.com/api/basket/commit/status/98761234`
+`GET https://galaxy.test.citybreak.com/v2/api/basket/commit/status/98761234`
 
 
 
@@ -673,11 +673,11 @@ The other important information returned by the status is the ResvVersionId (res
 curl -X GET 
 --header 'Accept: application/json' 
 --header 'apiKey: APIKEY132456789EWOK' 
-'https://galaxy.test.citybreak.com/api/reservation/latest/EWOK12'
+'https://galaxy.test.citybreak.com/v2/api/reservation/latest/EWOK12'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.test.citybreak.com/api/reservation/latest/EWOK12",
+var r = fetch("https://galaxy.test.citybreak.com/v2/api/reservation/latest/EWOK12",
 {
   headers: {
     "ApiKey:" "APIKEY132456789EWOK",
@@ -759,7 +759,7 @@ There are two ways to return information about a reservation, either by <a href=
 
 ### HTTP Request
 
-`GET https://galaxy.citybreak.com/api/reservation/latest/EWOK12`
+`GET https://galaxy.citybreak.com/v2/api/reservation/latest/EWOK12`
 
 
 
@@ -773,11 +773,11 @@ There are two ways to return information about a reservation, either by <a href=
 curl -X GET 
 --header 'Accept: application/json' 
 --header 'apiKey: APIKEY132456789EWOK' 
-'https://galaxy.test.citybreak.com/api/reservation/cancel/info/EWOK12'
+'https://galaxy.test.citybreak.com/v2/api/reservation/cancel/info/EWOK12'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.test.citybreak.com/api/reservation/cancel/info/EWOK12",
+var r = fetch("https://galaxy.test.citybreak.com/v2/api/reservation/cancel/info/EWOK12",
 {
   headers: {
     "ApiKey:" "APIKEY132456789EWOK",
@@ -802,4 +802,4 @@ Finally, lets cancel our reservation. <a href="https://visit.github.io/galaxy-do
 
 ### HTTP Request
 
-`GET https://galaxy.citybreak.com/api/reservation/cancel/info/EWOK12`
+`GET https://galaxy.citybreak.com/v2/api/reservation/cancel/info/EWOK12`

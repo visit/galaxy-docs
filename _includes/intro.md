@@ -6,7 +6,7 @@ The API gives you access to some of the citybreak functionaility, enabling you t
 
 This documentation is too long? You can check out the Swagger UI <a href="https://galaxy.test.citybreak.com">https://galaxy.test.citybreak.com</a>. It targets test data and you can request a test API key for internal products that you can make bookings and do availability searches for. Give it a try and come back later.
 
-The live Galaxy API is accessible at https://galaxy.citybreak.com/api
+The live Galaxy API is accessible at https://galaxy.citybreak.com/v2/api
 
 All example documentation uses the test environment endpoint.
 
