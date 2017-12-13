@@ -704,7 +704,8 @@ Friday|0x10
 Saturday|0x20
 Sunday|0x40
 
-###### Examples
+> Examples
+
 |Mask|Meaning|
 |-----|------|
 0x7F|Any day, this is the default if 0 is submitted.
