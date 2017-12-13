@@ -24,3 +24,6 @@ doc/
 .idea/
 .vscode/
 _site/
+*.sqlite
+/.vs/config/applicationhost.config
+/.vs/ProjectSettings.json
