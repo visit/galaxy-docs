@@ -705,12 +705,12 @@ Saturday|0x20
 Sunday|0x40
 
 > Examples
-
-|Mask|Meaning|
-|-----|------|
-0x7F|Any day, this is the default if 0 is submitted.
-0x18|Thursday or Friday.
-0xF|Monday, Tuesday, Wednesday, Thursday or Friday.
+>
+> |Mask|Meaning|
+> |-----|------|
+> 0x7F|Any day, this is the default if 0 is submitted.
+> 0x18|Thursday or Friday.
+> 0xF|Monday, Tuesday, Wednesday, Thursday or Friday.
 
 ##### Sort definition
 The sort definition is used to order the paged results you get. 
@@ -720,12 +720,16 @@ The sort definition is used to order the paged results you get.
 Asc|Ascending - The item with the lowest field value first. Suggested when sorting by Price.
 Desc|Descending - The item the highest field value first. Suggested when sorting by Score.
 
-|Field|Meaning|
-|------|------|
-Name|Sort by the name of the Cabin
-Price|Sort by example price
-Random|Sort by a random order.
-Score|Sort by the relevance of the example stay.
+> Valid sort fields
+> 
+> |Field|Meaning|
+> |------|------|
+> Name|Sort by the name of the Cabin
+> Price|Sort by example price
+> Random|Sort by a random order.
+> Score|Sort by the relevance of the example stay.
+>
+> *Note that the field names are case sensitive.*
 
 Sugested sort order is by `Score`/`Descending`. 
 That will give you the most relevant items first. 
