@@ -27,3 +27,4 @@ _site/
 *.sqlite
 /.vs/config/applicationhost.config
 /.vs/ProjectSettings.json
+*.suo

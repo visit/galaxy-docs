@@ -2,7 +2,7 @@
 
 > Availability
 
-<aside class="warning">.NB: Cabin Search and Retrieving Queries calls are in development development and may not be working.</aside>
+
 **Availability** calls provide information about the availability of accomodation products and (seperately) cabin products. These product types are split due to the nature of Cabin booking, typically set periods like Mon-Thurs, that produce different results for searches. Hotels, etc. return results based on the provided arrival and departure date. Cabins produce a "fuzzier" result, looking for matching periods for the requested dates within a margin of error. Both searches will return products with availability, including content, pricing groups with room information (Placements) and subproduct information (such as breakfasts or tickets to nearby attractions), as well as a Search ID with its Expiry. 
 
 The **Search Id** can be used to retrieve prior, cached searches in a much shorter amount of time for both Accomodation Search and Cabin Scan if used before its Expiry. The object recalled by the search contains all the unfiltered information retrieved in the first search, so further or different filtering on content, etc. can be done in this call.
@@ -704,13 +704,13 @@ Friday|0x10
 Saturday|0x20
 Sunday|0x40
 
-> Examples
+> Mask examples
 >
-> |Mask|Meaning|
-> |-----|------|
-> 0x7F|Any day, this is the default if 0 is submitted.
-> 0x18|Thursday or Friday.
-> 0xF|Monday, Tuesday, Wednesday, Thursday or Friday.
+> ```
+> 0x7F Any day, this is the default if 0 is submitted.
+> 0x18 Thursday or Friday.
+> 0x0F Monday, Tuesday, Wednesday, Thursday or Friday.
+> ```
 
 ##### Sort definition
 The sort definition is used to order the paged results you get. 
@@ -721,14 +721,12 @@ Asc|Ascending - The item with the lowest field value first. Suggested when sorti
 Desc|Descending - The item the highest field value first. Suggested when sorting by Score.
 
 > Valid sort fields
-> 
-> |Field|Meaning|
-> |------|------|
-> Name|Sort by the name of the Cabin
-> Price|Sort by example price
-> Random|Sort by a random order.
-> Score|Sort by the relevance of the example stay.
->
+> ```
+> Name   Sort by the name of the Cabin
+> Price  Sort by example price
+> Random Sort by a random order.
+> Score  Sort by the relevance of the example stay.
+> ```
 > *Note that the field names are case sensitive.*
 
 Sugested sort order is by `Score`/`Descending`. 
