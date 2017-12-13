@@ -717,11 +717,11 @@ Sunday|0x40
 
 > Mask examples
 >
-> ```
-> 0x7F Any day, this is the default if 0 is submitted.
-> 0x18 Thursday or Friday.
-> 0x0F Monday, Tuesday, Wednesday, Thursday or Friday.
-> ```
+> <dl>
+> <dt>0x7F</dt> <dd>Any day, this is the default if 0 is submitted.</dd>
+> <dt>0x18</dt> <dd>Thursday or Friday.</dd>
+> <dt>0x0F</dt> <dd>Monday, Tuesday, Wednesday, Thursday or Friday.</dd>
+> </dl>
 
 ##### Sort definition
 The sort definition is used to order the paged results you get. 
