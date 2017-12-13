@@ -640,6 +640,17 @@ Included subproducts can differ between the items for instance.
 Once you have a bookable alternative you can add it to the basket by calling
 *PUT api/basket/add/cabin/\{basketId\}/\{searchId\}/\{bookKey\}*
 
+### Suggested implementation
+Do a scan and sort over `Score` `Descending`. Navigate using the *Get* to find
+a result on a page that you would like more detailed information on. 
+Keep the search id and go to a page which presents that item in a good way.
+Create an arrival calendar by calling *getarrivaldates*. Upon selecting 
+an arrival date, populate the departure dates.
+When selecting a departure date, call *bookablealternatives* and get the details
+and present them with a book button next to them.
+Default all calender items with the example dates from the scan.
+If you would like to show the next period, you will need to call scan once again
+and get the new `ResultId`.
 
 ### Scan 
 Use this method first to get a `ResultId` to be able to proceed with all other 
