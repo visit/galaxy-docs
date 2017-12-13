@@ -732,12 +732,14 @@ Asc|Ascending - The item with the lowest field value first. Suggested when sorti
 Desc|Descending - The item the highest field value first. Suggested when sorting by Score.
 
 > Valid sort fields
-> ```
-> Name   Sort by the name of the Cabin
-> Price  Sort by example price
-> Random Sort by a random order.
-> Score  Sort by the relevance of the example stay.
-> ```
+> 
+> <dl>
+> <dt> Name</dt> <dd>  Sort by the name of the Cabin</dd>
+> <dt> Price </dt> <dd> Sort by example price</dd>
+> <dt> Random </dt> <dd> Sort by a random order.</dd>
+> <dt> Score </dt> <dd>Sort by the relevance of the example stay.</dd>
+> </dl>
+>
 > *Note that the field names are case sensitive.*
 
 Sugested sort order is by `Score`/`Descending`. 
