@@ -28,3 +28,4 @@ _site/
 /.vs/config/applicationhost.config
 /.vs/ProjectSettings.json
 *.suo
+/.vs

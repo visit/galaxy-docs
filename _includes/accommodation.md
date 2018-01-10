@@ -37,7 +37,7 @@ var r = fetch("https://galaxy.test.citybreak.com/v2/api/accommodation/{pointOfSa
   "TotalResults": 1,
   "Items": [
     {
-      "Id": 1222681,
+      "Id": "cbis:1222681",
       "Name": "BookVisit Hotel",
       "Content": {
         "PriceFrom": 0,
@@ -77,6 +77,7 @@ var r = fetch("https://galaxy.test.citybreak.com/v2/api/accommodation/{pointOfSa
       },
       "Children": [
         {
+          "Id": "pt:355468",
           "Name": "BookVisit Hotel BookVisit",
           "Content": {
             "PriceFrom": null,
@@ -133,7 +134,7 @@ var r = fetch("https://galaxy.test.citybreak.com/v2/api/accommodation/view/{poin
 
 ```json
 {
-  "Id": 1222681,
+  "Id": "cbis:1222681",
   "Name": "BookVisit Hotel",
   "Content": {
     "PriceFrom": 0,
@@ -173,6 +174,7 @@ var r = fetch("https://galaxy.test.citybreak.com/v2/api/accommodation/view/{poin
   },
   "Children": [
     {
+      "Id": "pt:542664"
       "Name": "BookVisit Hotel BookVisit",
       "Content": {
         "PriceFrom": null,

@@ -95,7 +95,7 @@ var r = fetch("https://galaxy.test.citybreak.com/v2/api/availability/accommodati
   },
   "Accommodations": [
     {
-      "Id": 1136433,
+      "Id": "cbis:1136433",
       "Name": "Edelbrock Hotell 3",
       "Content": {
         "PriceFrom": 0,
@@ -388,7 +388,7 @@ var r = fetch("https://galaxy.test.citybreak.com/v2/api/availability/get",
   },
   "Accommodations": [
     {
-      "Id": 1136433,
+      "Id": "cbis:1136433",
       "Name": "Edelbrock Hotell 3",
       "Content": {
         "PriceFrom": 0,
@@ -833,7 +833,7 @@ var r = fetch("https://galaxy.test.citybreak.com/v2/api/availability/cabin/scan"
   "TotalResults": 15,
   "Result": [
     {
-      "Id": "154623",
+      "Id": "cbis:154623",
       "BookingKey": "253-C",
       "Name": "My cabin",
       "Content": {
