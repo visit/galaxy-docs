@@ -805,7 +805,10 @@ There may however be optional products that needs extra attention.
 
 `GET https://galaxy.test.citybreak.com/v2/api/api/basket/optional/{basketId}/{mainProductId}`
 
-> JS example
+```shell
+    See javascript example.
+```
+
 ```javascript
 var r = fetch("https://galaxy.test.citybreak.com/v2/api/api/basket/optional/{basketId}/{mainProductId}",
 {
@@ -1000,7 +1003,8 @@ If `NeedsToSpecifyQuantity` is set to `false` you can set quantity to either
 If `NeedsToSpecifyPricegroups` is set to `true` you need to configure 
 each price group item with the specified quantity.
 
-Let's take a look at the templateArgument section:
+> Let's take a look at the templateArgument section:
+
 ```json
             "TemplateArguments": {
                 "Price": null,
@@ -1044,7 +1048,8 @@ person associated with the item, the price will be the same.
 translation of the price group. If set to `false` you will have to bring your
 own translation when presenting in to the user.
 
-In order to use that configuration you can simply omit some parts:
+> In order to use that configuration you can simply omit some parts:
+
 ```json
             {
                 "MainProductId": 1,
@@ -1065,6 +1070,11 @@ not configured. When configured, the default value would be to remove it.
 
 ### Set optional product
 > Set optional products arguments
+
+```shell
+See javascript example.
+```
+
 ```javascript
 var r = fetch("https://galaxy.test.citybreak.com/v2/api/basket/guests/add/{basketId}",
 {
