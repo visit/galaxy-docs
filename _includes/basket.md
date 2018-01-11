@@ -1236,7 +1236,7 @@ var r = fetch("https://galaxy.test.citybreak.com/v2/api/basket/cancellation/{bas
 
 The state is either `true` or `false`. 
 
-<aside class="warning">
+<aside class="notice">
 If `CanBeChanged` is false, nothing will happen.
 </aside>
 
