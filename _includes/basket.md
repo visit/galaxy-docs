@@ -1238,7 +1238,7 @@ The state is either `true` or `false`.
 
 <aside class="warning">
 If `CanBeChanged` is false, nothing will happen.
-<aside>
+</aside>
 
 The basket price will reflect the new total. 
 The insurance is usually based on the types of products that are included in the 
