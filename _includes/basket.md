@@ -1235,7 +1235,10 @@ var r = fetch("https://galaxy.test.citybreak.com/v2/api/basket/cancellation/{bas
 ```
 
 The state is either `true` or `false`. 
+
+<aside class="warning">
 If `CanBeChanged` is false, nothing will happen.
+<aside>
 
 The basket price will reflect the new total. 
 The insurance is usually based on the types of products that are included in the 
