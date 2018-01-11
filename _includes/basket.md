@@ -15,6 +15,7 @@
 curl -X POST 
 --header 'Accept: application/json' 
 --header 'apiKey: APIKEY132456789EWOK' 
+--header 'Accept-Language: en-us' 
 'https://galaxy.test.citybreak.com/v2/api/basket/create/{pointofSalesId}/{currency}'
 ```
 
@@ -25,6 +26,7 @@ var r = fetch("https://galaxy.test.citybreak.com/v2/api/basket/create/{PointofSa
   headers: {
     "ApiKey:" "APIKEY132456789EWOK",
     "Accept": "application/json",
+    "Accept-Language": "en-US"
   }  
 });
 ```
@@ -42,7 +44,7 @@ Create a new basket object, you'll need to preserve this ID in order to process 
 
 ### HTTP Request
 
-`GET https://galaxy.citybreak.com/v2/api/content/attribute`
+`POST https://galaxy.test.citybreak.com/v2/api/basket/create/{pointofSalesId}/{currency}`
 
 ### Query Parameters
 
@@ -60,6 +62,7 @@ currency | The currency of the basket
 curl -X DELETE 
 --header 'Accept: application/json' 
 --header 'apiKey: APIKEY132456789EWOK' 
+--header 'Accept-Language: en-us' 
 'https://galaxy.test.citybreak.com/v2/api/basket/delete/{basketId}'
 ```
 
@@ -70,6 +73,7 @@ var r = fetch("https://galaxy.test.citybreak.com/v2/api/basket/delete/{basketId}
   headers: {
     "ApiKey:" "APIKEY132456789EWOK",
     "Accept": "application/json",
+    "Accept-Language": "en-US"
   }  
 });
 ```
@@ -84,7 +88,7 @@ Delete a basket. This will remove all associated information attached to the bas
 
 ### HTTP Request
 
-`DELETE https://galaxy.citybreak.com/v2/api/basket/delete`
+`DELETE https://galaxy.citybreak.com/v2/api/basket/delete/{basketId}`
 
 ### Query Parameters
 
@@ -182,7 +186,7 @@ var r = fetch("https://galaxy.test.citybreak.com/v2/api/basket/{basketId}",
       "Products": [
         {
           "BookItemId": 8,
-          "MandatoryAddons": [
+          "Addons": [
             {
               "Id": 9,
               "NoUnits": 1,
@@ -291,7 +295,7 @@ Get a basket. This will fetch a Basket along with all associated information att
 
 ### HTTP Request
 
-`Get https://galaxy.citybreak.com/v2/api/basket`
+`GET https://galaxy.citybreak.com/v2/api/basket`
 
 ### Query Parameters
 
@@ -312,6 +316,7 @@ basketId | The Id of the basket to get.
 curl -X PUT 
 --header 'Accept: application/json' 
 --header 'apiKey: APIKEY132456789EWOK' 
+--header 'Accept-Language: en-us' 
 'https://galaxy.test.citybreak.com/v2/api/basket/add/accommodation/{basketId}/{searchId}/{bookingKey}'
 ```
 
@@ -322,6 +327,7 @@ var r = fetch("https://galaxy.test.citybreak.com/v2/api/basket/add/accommodation
   headers: {
     "ApiKey:" "APIKEY132456789EWOK",
     "Accept": "application/json",
+    "Accept-Language": "en-US"
   }  
 });
 ```
@@ -356,6 +362,7 @@ bookingKey | The key of the booking item (product) to add to the basket, found i
 curl -X DELETE 
 --header 'Accept: application/json' 
 --header 'apiKey: APIKEY132456789EWOK' 
+--header 'Accept-Language: en-us' 
 'https://galaxy.test.citybreak.com/v2/api/basket/deleteItem/{basketId}/{bookItemId}'
 ```
 
@@ -366,6 +373,7 @@ var r = fetch("https://galaxy.test.citybreak.com/v2/api/basket/deleteItem/{baske
   headers: {
     "ApiKey:" "APIKEY132456789EWOK",
     "Accept": "application/json",
+    "Accept-Language": "en-US"
   }  
 });
 ```
@@ -401,6 +409,7 @@ bookItemId | The Id of the booking item to delete from the basket
 curl -X PUT 
 --header 'Accept: application/json' 
 --header 'apiKey: APIKEY132456789EWOK' 
+--header 'Accept-Language: en-us' 
 'https://galaxy.test.citybreak.com/v2/api/basket/cancellation/{basketId}/{cancellationId}/{true|false}'
 ```
 
@@ -411,6 +420,7 @@ var r = fetch("https://galaxy.test.citybreak.com/v2/api/basket/cancellation/{bas
   headers: {
     "ApiKey:" "APIKEY132456789EWOK",
     "Accept": "application/json",
+    "Accept-Language": "en-US"
   }  
 });
 ```
@@ -425,7 +435,7 @@ If your basket has a set of cancellation insurances you can use this call to add
 
 ### HTTP Request
 
-`PUT https://galaxy.citybreak.com/v2/api//basket/cancellation`
+`PUT https://galaxy.citybreak.com/v2/api/basket/cancellation`
 
 ### Query Parameters
 
@@ -445,7 +455,8 @@ state | true (added) or false (not added)
 ```shell
 curl -X POST 
 --header 'Content-Type: application/json' 
---header 'apiKey: APIKEY132456789EWOK' -d '{
+--header 'apiKey: APIKEY132456789EWOK'
+--header 'Accept-Language: en-us' -d '{
    "NameFirst": "Test",
    "NameLast": "User",
    "Salutation": "Ms",
@@ -473,6 +484,7 @@ var r = fetch("https://galaxy.test.citybreak.com/v2/api/basket/customer/{basketI
   headers: {
     "ApiKey:" "APIKEY132456789EWOK",
     "Accept": "application/json",
+    "Accept-Language": "en-US"
   }  
   body: JSON.Stringify({
     "NameFirst": "Test",
@@ -609,6 +621,7 @@ basketId | The Id of the basket.
 curl -X POST 
 --header 'Accept: application/json' 
 --header 'apiKey: APIKEY132456789EWOK' 
+--header 'Accept-Language: en-US' 
 'https://galaxy.test.citybreak.com/v2/api/basket/commit/{basketId}'
 ```
 
@@ -619,7 +632,8 @@ var r = fetch("https://galaxy.test.citybreak.com/v2/api/basket/commit/{basketId}
   headers: {
     "ApiKey:" "APIKEY132456789EWOK",
     "Accept": "application/json",
-  }  
+    "Accept-Language": "en-US"
+}  
 });
 ```
 
@@ -654,6 +668,8 @@ basketId | The Id of the basket.
 curl -X GET 
 --header 'Accept: application/json' 
 --header 'apiKey: APIKEY132456789EWOK' 
+--header 'Accept-Language: en-US'
+
 'https://galaxy.test.citybreak.com/v2/api/basket/commit/status/{commitJobId}'
 ```
 
@@ -663,6 +679,7 @@ var r = fetch("https://galaxy.test.citybreak.com/v2/api/basket/commit/status/{co
   headers: {
     "ApiKey:" "APIKEY132456789EWOK",
     "Accept": "application/json"
+    "Accept-Language": "en-US"
   }  
 });
 ```
@@ -734,6 +751,7 @@ commitJobId | The Id of the commit job returned from <a href="https://visit.gith
 curl -X POST 
 --header 'Accept: application/json' 
 --header 'apiKey: APIKEY132456789EWOK' 
+--header 'Accept-Language: en-us' 
 'https://galaxy.test.citybreak.com/v2/api/basket/guests/add/{basketId}'
 ```
 
@@ -744,6 +762,7 @@ var r = fetch("https://galaxy.test.citybreak.com/v2/api/basket/guests/add/{baske
   headers: {
     "ApiKey:" "APIKEY132456789EWOK",
     "Accept": "application/json",
+    "Accept-Language": "en-US"
   }  
   body: JSON.Stringify([
     {
@@ -774,3 +793,424 @@ Returns Response Code 204 if successful. Add a guest to a Booking Item, this is 
 Parameter | Description
 --------- | -----------
 basketId | The Id of the basket.
+
+
+## Optional products
+
+Once a product is added to the basket, all mandatory included sub products
+are also included. 
+There may however be optional products that needs extra attention.
+
+### HTTP Request
+
+`GET https://galaxy.test.citybreak.com/v2/api/api/basket/optional/{basketId}/{mainProductId}`
+
+> JS example
+```javascript
+var r = fetch("https://galaxy.test.citybreak.com/v2/api/api/basket/optional/{basketId}/{mainProductId}",
+{
+  method:"GET"
+  headers: {
+    "ApiKey:" "APIKEY132456789EWOK",
+    "Accept": "application/json",
+    "Accept-Language": "en-US"
+  }
+);
+```
+
+> It could return something like:
+
+```json
+{
+    "Product": {
+        "BookItemId": 1,
+        "ContentId": "pt:444365",
+        "Arrival": "2018-04-01T00:00:00",
+        "Departure": "2018-04-08T00:00:00",
+        "Name": "KRYSTALLEN LEILIGHET A603",
+        "Subproducts": [
+            {
+                "Id": 2,
+                "NoUnits": 1,
+                "IsExtraBed": false,
+                "ProductType": 12,
+                "Name": "Sluttvask",
+                "IsMandatory": false,
+                "Price": { 
+                    "Price": 1900,
+                    "VatAmount": 228,
+                    "Currency": "NOK"
+                }
+            }
+        ],
+        "Price": {
+            "Price": 21450,
+            "VatAmount": 2574,
+            "Currency": "NOK"
+        }
+    },
+    "OptionalProducts": [
+        {
+            "NeedsToSpecifyPricegroups": false,
+            "NeedsToSpecifyQuantity": true,
+            "Name": "Sengetøy og håndklær",
+            "ProducttypeId": 445409,
+            "BookedProducts": [
+                {
+                    "Id": 6,
+                    "NoUnits": 1,
+                    "IsExtraBed": false,
+                    "ProductType": 12,
+                    "Name": "Sengetøy og håndklær",
+                    "IsMandatory": false,
+                    "Price": {
+                        "Price": 175,
+                        "VatAmount": 43.75,
+                        "Currency": "NOK"
+                    }
+                }
+            ],
+            "AmountType": 2,
+            "TemplateArguments": {
+                "Price": null,
+                "MainProductId": 1,
+                "OptionalProducttypeId": 445409,
+                "Config": [
+                    {
+                        "PricegroupName": "Unit",
+                        "IsLocalized": false,
+                        "Price": {
+                            "Price": 175,
+                            "VatAmount": 0,
+                            "Currency": "NOK"
+                        },
+                        "PricegroupId": -1,
+                        "Quantity": 0
+                    }
+                ]
+            }
+        },
+        {
+            "NeedsToSpecifyPricegroups": false,
+            "NeedsToSpecifyQuantity": true,
+            "Name": "Vedsekk (sjekk at enheten har ildsted)",
+            "ProducttypeId": 456793,
+            "BookedProducts": [
+                {
+                    "Id": 5,
+                    "NoUnits": 1,
+                    "IsExtraBed": false,
+                    "ProductType": 12,
+                    "Name": "Vedsekk (sjekk at enheten har ildsted)",
+                    "IsMandatory": false,
+                    "Price": {
+                        "Price": 150,
+                        "VatAmount": 37.5,
+                        "Currency": "NOK"
+                    }
+                }
+            ],
+            "AmountType": 2,
+            "TemplateArguments": {
+                "Price": null,
+                "MainProductId": 1,
+                "OptionalProducttypeId": 456793,
+                "Config": [
+                    {
+                        "PricegroupName": "Unit",
+                        "IsLocalized": false,
+                        "Price": {
+                            "Price": 150,
+                            "VatAmount": 0,
+                            "Currency": "NOK"
+                        },
+                        "PricegroupId": -1,
+                        "Quantity": 0
+                    }
+                ]
+            }
+        },
+        {
+            "NeedsToSpecifyPricegroups": false,
+            "NeedsToSpecifyQuantity": true,
+            "Name": "Barneseng",
+            "ProducttypeId": 456758,
+            "BookedProducts": [],
+            "AmountType": 2,
+            "TemplateArguments": {
+                "Price": null,
+                "MainProductId": 1,
+                "OptionalProducttypeId": 456758,
+                "Config": [
+                    {
+                        "PricegroupName": "Unit",
+                        "IsLocalized": false,
+                        "Price": {
+                            "Price": 175,
+                            "VatAmount": 0,
+                            "Currency": "NOK"
+                        },
+                        "PricegroupId": -1,
+                        "Quantity": 1
+                    }
+                ]
+            }
+        },
+        {
+            "NeedsToSpecifyPricegroups": false,
+            "NeedsToSpecifyQuantity": true,
+            "Name": "Barnestol",
+            "ProducttypeId": 456740,
+            "BookedProducts": [],
+            "AmountType": 2,
+            "TemplateArguments": {
+                "Price": null,
+                "MainProductId": 1,
+                "OptionalProducttypeId": 456740,
+                "Config": [
+                    {
+                        "PricegroupName": "Unit",
+                        "IsLocalized": false,
+                        "Price": {
+                            "Price": 175,
+                            "VatAmount": 0,
+                            "Currency": "NOK"
+                        },
+                        "PricegroupId": -1,
+                        "Quantity": 1
+                    }
+                ]
+            }
+        }
+    ]
+}
+```
+
+You will get back a structure that describes the available sub products for the specific product.
+Get the basket and use 
+`basket.Groups[n].Products[p].BookItemId`
+as the mainProductId.
+
+If `NeedsToSpecifyQuantity` is set to `true` you can set it to any value between
+0 and 50 depending on the number of units you require.
+
+If `NeedsToSpecifyQuantity` is set to `false` you can set quantity to either 
+0 or 1 depending on if you would like to include the product or not.
+
+If `NeedsToSpecifyPricegroups` is set to `true` you need to configure 
+each price group item with the specified quantity.
+
+Let's take a look at the templateArgument section:
+```json
+            "TemplateArguments": {
+                "Price": null,
+                "MainProductId": 1,
+                "OptionalProducttypeId": 456740,
+                "Config": [
+                    {
+                        "PricegroupName": "Unit",
+                        "IsLocalized": false,
+                        "Price": {
+                            "Price": 175,
+                            "VatAmount": 0,
+                            "Currency": "NOK"
+                        },
+                        "PricegroupId": -1,
+                        "Quantity": 1
+                    }
+                ]
+            }
+```
+It's there to help you decide how to configurate the product. Cross reference this
+with the datatype the post takes, you can see that they are identical on some parts.
+The price on the outer section is there to tell that the price is valid for 
+the entire configuration.
+The price in the config section is there to tell the price if it depends on the 
+number of units for the specific price group.
+
+Basically, if the sub product is inlcuded as one per guest, that configuration
+must be submitted for each guest, also the price is known at that time and presented
+on the outer section.
+
+In this case the `NeedsToSpecifyQuantity` is set and you will have to configure how
+many items you would like. The price is then presented in the config item so you 
+can tell the price depending on the number of units selected.
+
+The `PricegroupId` set to minus one represents that the price is not dependent 
+on pricegroup but on the type Unit, meaning that regardless of the age of the 
+person associated with the item, the price will be the same.
+
+`IsLocalized` tells the consumer if the price group is generated using the
+translation of the price group. If set to `false` you will have to bring your
+own translation when presenting in to the user.
+
+In order to use that configuration you can simply omit some parts:
+```json
+            {
+                "MainProductId": 1,
+                "OptionalProducttypeId": 456740,
+                "Config": [
+                    {
+                        "PricegroupId": -1,
+                        "Quantity": 1
+                    }
+                ]
+            }
+```
+
+There is a valid configuration object that could be used with the SetOptionalProducts method.
+
+The default values (Quantity) will be set to a positive value if the subproduct is 
+not configured. When configured, the default value would be to remove it.
+
+### Set optional product
+> Set optional products arguments
+```javascript
+var r = fetch("https://galaxy.test.citybreak.com/v2/api/basket/guests/add/{basketId}",
+{
+  method:"POST"
+  headers: {
+    "ApiKey:" "APIKEY132456789EWOK",
+    "Accept": "application/json",
+    "Accept-Language": "en-US"
+  }  
+  body: JSON.Stringify([
+	{
+        "MainProductId": 1,
+        "OptionalProducttypeId": 456793,
+        "Config": [
+            {
+                "PricegroupId": -1,
+                "Quantity": 3
+            }
+        ]
+    },
+    {
+        "MainProductId": 1,
+        "OptionalProducttypeId": 445409,
+        "Config": [
+            {
+                "PricegroupId": -1,
+                "Quantity": 1
+            }
+        ]
+    }
+]
+);
+```
+
+This will configure the first product to be three and the second to be one. 
+The other two will be removed if configured. 
+
+Keep in mind that you must at all times configure the sub products that you 
+would like. For instance if you add one optional sub product and later you would
+like to configure one more, you must submit the configuration for the existing one
+in order to keep it. Otherwise it will be removed.
+
+So omitting sub product configurations, means that they should be removed if 
+configured.
+
+
+## Supplier messages
+
+It is possible to send a note to the supplier while acting on the basket.
+
+### Get supplier messages
+
+> Getting supplier messages
+```javascript
+var r = fetch("https://galaxy.test.citybreak.com/v2/api/basket/suppliermessage/{basketId}",
+{
+  headers: {
+    "ApiKey:" "APIKEY132456789EWOK",
+    "Accept": "application/json"
+    "Accept-Language": "en-US"
+  }  
+});
+```
+
+That will result in a list of available suppliers and the configured messages.
+
+> Response of getting supplier messages
+```json
+[
+    {
+        "SupplierName": "HafjellKvitfjell Booking AS - Hytter",
+        "SupplierId": 54705,
+        "Message": null
+    }
+]
+```
+
+### Set supplier messages
+
+Update the messages by posting to the same url
+
+> Update supplier messages
+```javascript
+var r = fetch("https://galaxy.test.citybreak.com/v2/api/basket/suppliermessage/{basketId}",
+{
+  method:"POST"
+  headers: {
+    "ApiKey:" "APIKEY132456789EWOK",
+    "Accept": "application/json",
+    "Accept-Language": "en-US"
+  }  
+  body: JSON.Stringify([
+  {
+    "SupplierId": 54705,
+    "Message": "Will arrive late."
+  }
+]
+);
+```
+
+The example will set the message to the supplier. You can update one or more messages
+to the suppliers with a single post.
+
+## Cancellation insurance
+
+If an cancellation insurance is available, you can find a reference in the basket to it.
+
+> Cancellation insurance in the basket
+```json
+    /* parts of the basket */
+    "CancellationInsurrances": [
+        {
+            "Name": "Avbestillingsforsikring ",
+            "Description": "",
+            "Id": 97,
+            "CurrentCost": 500,
+            "Currency": "NOK",
+            "Selected": false,
+            "PreSelect": false,
+            "CanBeChanged": true,
+            "Introduction": "",
+            "CancellationInsuranceProducts": []
+        }
+    ]    
+```
+
+You can configure the cancellation insurance by calling 
+
+http://localhost:32950/v2/api/basket/cancellation/49989888/97/false
+> Update Cancellation Insurance status
+```javascript
+var r = fetch("https://galaxy.test.citybreak.com/v2/api/basket/cancellation/{basketId}/{insuranceId}/{state}",
+{
+  method:"PUT"
+  headers: {
+    "ApiKey:" "APIKEY132456789EWOK",
+    "Accept": "application/json",
+    "Accept-Language": "en-US"
+  }  
+);
+```
+
+The state is either `true` or `false`. 
+If `CanBeChanged` is false, nothing will happen.
+
+The basket price will reflect the new total. 
+The insurance is usually based on the types of products that are included in the 
+basket right now. It could be fixed per booking, fixed per product or a percentage
+of the product cost. Hence the `CurrentCost`.
