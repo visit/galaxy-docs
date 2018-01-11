@@ -1128,6 +1128,11 @@ It is possible to send a note to the supplier while acting on the basket.
 ### Get supplier messages
 
 > Getting supplier messages
+
+```shell
+See javascript section.
+```
+
 ```javascript
 var r = fetch("https://galaxy.test.citybreak.com/v2/api/basket/suppliermessage/{basketId}",
 {
@@ -1142,6 +1147,7 @@ var r = fetch("https://galaxy.test.citybreak.com/v2/api/basket/suppliermessage/{
 That will result in a list of available suppliers and the configured messages.
 
 > Response of getting supplier messages
+
 ```json
 [
     {
@@ -1157,6 +1163,11 @@ That will result in a list of available suppliers and the configured messages.
 Update the messages by posting to the same url
 
 > Update supplier messages
+
+```shell
+See javascript section.
+```
+
 ```javascript
 var r = fetch("https://galaxy.test.citybreak.com/v2/api/basket/suppliermessage/{basketId}",
 {
@@ -1183,6 +1194,7 @@ to the suppliers with a single post.
 If an cancellation insurance is available, you can find a reference in the basket to it.
 
 > Cancellation insurance in the basket
+
 ```json
     /* parts of the basket */
     "CancellationInsurrances": [
@@ -1205,6 +1217,11 @@ You can configure the cancellation insurance by calling
 
 http://localhost:32950/v2/api/basket/cancellation/49989888/97/false
 > Update Cancellation Insurance status
+
+```shell
+See javascript section.
+```
+
 ```javascript
 var r = fetch("https://galaxy.test.citybreak.com/v2/api/basket/cancellation/{basketId}/{insuranceId}/{state}",
 {
