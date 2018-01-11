@@ -88,7 +88,7 @@ Delete a basket. This will remove all associated information attached to the bas
 
 ### HTTP Request
 
-`DELETE https://galaxy.citybreak.com/v2/api/basket/delete/{basketId}`
+`DELETE https://galaxy.test.citybreak.com/v2/api/basket/delete/{basketId}`
 
 ### Query Parameters
 
@@ -295,7 +295,7 @@ Get a basket. This will fetch a Basket along with all associated information att
 
 ### HTTP Request
 
-`GET https://galaxy.citybreak.com/v2/api/basket`
+`GET https://galaxy.test.citybreak.com/v2/api/basket`
 
 ### Query Parameters
 
@@ -340,7 +340,7 @@ true
 
 Add a booking item to the basket, you must first have checked for the <a href="https://visit.github.io/galaxy-docs/#Availability">Availability</a> of a property or properties and obtained the search Id and the bookingKey of the product you wish to add to the basket.
 
-`PUT https://galaxy.citybreak.com/v2/api/basket/add/accommodation`
+`PUT https://galaxy.test.citybreak.com/v2/api/basket/add/accommodation`
 
 ### Query Parameters
 
@@ -388,7 +388,7 @@ Delete a booking item from the basket. In the <a href="https://visit.github.io/g
 
 ### HTTP Request
 
-`DELETE https://galaxy.citybreak.com/v2/api/basket/deleteItem`
+`DELETE https://galaxy.test.citybreak.com/v2/api/basket/deleteItem`
 
 ### Query Parameters
 
@@ -435,7 +435,7 @@ If your basket has a set of cancellation insurances you can use this call to add
 
 ### HTTP Request
 
-`PUT https://galaxy.citybreak.com/v2/api/basket/cancellation`
+`PUT https://galaxy.test.citybreak.com/v2/api/basket/cancellation`
 
 ### Query Parameters
 
@@ -519,7 +519,7 @@ To commit a Basket you will need to provide customer information. This is fairly
 
 ### HTTP Request
 
-`GET https://galaxy.citybreak.com/v2/api/basket/customer`
+`GET https://galaxy.test.citybreak.com/v2/api/basket/customer`
 
 ### Query Parameters
 
@@ -649,7 +649,7 @@ The return value is a job number with which you can check the status of commit
 
 ### HTTP Request
 
-`POST https://galaxy.citybreak.com/v2/api/basket/commit`
+`POST https://galaxy.test.citybreak.com/v2/api/basket/commit`
 
 ### Query Parameters
 
@@ -731,7 +731,7 @@ Gets the **ResvversionId** (reservation version id) and **BookingCode**, importa
 
 ### HTTP Request
 
-`GET https://galaxy.citybreak.com/v2/api/basket/commit/status`
+`GET https://galaxy.test.citybreak.com/v2/api/basket/commit/status`
 
 ### Query Parameters
 
@@ -1215,7 +1215,7 @@ If an cancellation insurance is available, you can find a reference in the baske
 
 You can configure the cancellation insurance by calling 
 
-http://localhost:32950/v2/api/basket/cancellation/49989888/97/false
+https://galaxy.test.citybreak.com/v2/api/basket/cancellation/49989888/97/false
 > Update Cancellation Insurance status
 
 ```shell
