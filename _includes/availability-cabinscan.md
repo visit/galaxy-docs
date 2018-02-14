@@ -15,18 +15,20 @@ First you call the Scan method to get perform a search. You will get a partial l
 back describing the first set of results. The `SearchId` will be used in all other methods
 to refer back to the original search you made. 
 The scan operation will examine dates around the stay (-10 days before arrival and +10 
-days after the selected departure).
+days after the selected departure), and give you bookkeys to pass to the next mehtods.
 
 ### Page through the result
 By using the Get method you will be able to page through the result.
 
 ### Get arrival dates in search span
 Once you get a result you like and would like to investigate further you can get more
-details of the possible stays with that result by calling *arrivaldates*. That will give 
-you all valid arrival dates available in scan sector that was used. 
+details of the possible stays with that result by calling *arrivaldates* with a `bookKey` obtained
+with the *scan* method. That will give you all valid arrival dates available in scan sector that was 
+used.
 
 ### Get departure dates 
-By calling the *depaturedates*, given an arrival date you will get all valid departures
+By calling the *depaturedates* with a `bookKey` obtained
+with the *scan* method, given an arrival date you will get all valid departures
 from that date.
 
 ### List bookable alternatives
@@ -42,7 +44,7 @@ Once you have a bookable alternative you can add it to the basket by calling
 
 
 ## Scan 
-Use this method first to get a `ResultId` to be able to proceed with all other 
+Use this method first to get a `BookKey` to be able to proceed with all other 
 operations. 
 
 ### Search parameters
