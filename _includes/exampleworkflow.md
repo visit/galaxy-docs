@@ -579,9 +579,13 @@ var r = fetch("https://galaxy.test.citybreak.com/v2/api/basket/commit/87654321",
 98761234
 ```
 
-Once you have all the information and the bookings you would like to attach to your basket, you can <a href="https://visit.github.io/galaxy-docs/#commit-basket">Commit</a> it. This will start the process of finalising bookings and generating the necessary financial information. You only need to provide the Basket Id for this call. The whole commit process is a two step one, assuming you want confrimation of the job and the final reservation number. 
-First, in this call, we will use a POST call and the **BasketId**: 87654321 to trigger the Basket commit job. What you get in return is the **CommitJobId**, you can use it with <a href="https://visit.github.io/galaxy-docs/#commit-status">Commit Status</a> to get the status of the job. Our CommitJobId is **98761234**.
-
+Once you have all the information in the basket, you can <a href="https://visit.github.io/galaxy-docs/#commit-basket">Commit</a> it. 
+This will start the process of finalising bookings and generating the necessary financial information. 
+You only need to provide the Basket Id for this call. 
+The whole commit process is a two step one. 
+First, in this call, we will use a POST call and the **BasketId**: 87654321 to trigger the Basket commit job. 
+What you get in return is the **CommitJobId**, you should use it with <a href="https://visit.github.io/galaxy-docs/#commit-status">Commit Status</a> to get the status of the job. 
+Our CommitJobId is **98761234**.
 
 
 ### HTTP Request
@@ -655,7 +659,13 @@ var r = fetch("https://galaxy.test.citybreak.com/v2/api/basket/commit/status/987
 }
 ```
 
-Once the basket has been <a href="https://visit.github.io/galaxy-docs/#commit-basket">Committed</a>, in order to get information about the booking you will need to use the **CommitJobId**: 98761234 to query the <a href="https://visit.github.io/galaxy-docs/#commit-status">Commit Status</a> of the job. As you can see in the example return, there are a number of different tasks that run as a part of a commit job. Some of these may need to be completed before you can move ahead with your booking, others are ok to have running in the background while you carry on. For e.g. you would want CreatingConfirmations to be finished before confirming to a user that their booking has been successful but you can probably move on to the next step if invoices are still being created.
+Once the basket has been ordered to be <a href="https://visit.github.io/galaxy-docs/#commit-basket">Committed</a>, 
+in order to get information about the booking you will need to use the **CommitJobId**: 98761234 to query the <a href="https://visit.github.io/galaxy-docs/#commit-status">Commit Status</a> of the job. 
+As you can see in the example return, there are a number of different tasks that run as a part of a commit job. 
+All of these are running in the back ground. Continue polling /basket/commit/status/{id} until you get either CompletedOk ok Failed as status. 
+Both of them are final statuses. If you get Ok your reservation is confirmed and you have the booking code in the result. 
+If you get Fail you will be provided with some detailes what went wrong. Like if you failed to confirm the reservation in a sub system or you havent provided enough information.
+
 The other important information returned by the status is the ResvVersionId (reservation version id), for us: **12349876** and the BookingCode, for us: **EWOK12**, which are used to obtain information about the <a href="https://visit.github.io/galaxy-docs/#reservation">Reservation</a>
 
 ### HTTP Request
