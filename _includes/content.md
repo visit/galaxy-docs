@@ -307,3 +307,44 @@ Get a list of Points of Interest. This is a mixed list of system and client-defi
 Parameter | Description
 --------- | -----------
 pointOfSalesId | The point of sales identifier.
+
+## Languages
+
+```shell
+curl -X GET
+--header 'apiKey: APIKEY132456789EWOK'  
+--header 'Accept: application/json' 
+'https://galaxy.test.citybreak.com/v2/api/content/language/{pointOfSaleId}'
+```
+
+```javascript
+var r = fetch("https://galaxy.test.citybreak.com/v2/api/content/language/{pointOfSaleId}",
+{
+  headers: {
+    "ApiKey:" "APIKEY132456789EWOK",
+    "Accept": "application/json"
+  }  
+});
+```
+
+> Example of response:
+
+```json
+[
+  "en-us",
+  "sv-se",
+  "fr-fr"
+]
+```
+
+Get a list of languages available for a given point of sales.
+
+### HTTP Request
+
+`GET https://galaxy.citybreak.com/v2/api/content/language`
+
+### Query Parameters
+
+Parameter | Description
+--------- | -----------
+pointOfSalesId | The point of sales identifier.
