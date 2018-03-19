@@ -1,18 +1,6 @@
-# Visit Documentation Template
+# Visit Distribution API
 
 Get Started
 --------------------
 
-- Clone this repository, publish it as a new repository (make sure branch is gh-pages).
-- Verify that it gets publish at https://visit.github.io/galaxy-docs/
-- Start editing pages, documentation is available here: https://github.com/lord/slate/wiki/Markdown-Syntax
-
-Important Setting
---------------------
-
-- Title in _config.yml
-
-Special Thanks
---------------------
-- [slate-for-jekyll](https://github.com/slogsdon/slate-for-jekyll)
-- [slate](https://github.com/lord/slate)
+- Get your APIKEY from Citybreak support: help@visit.com
