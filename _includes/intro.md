@@ -16,11 +16,11 @@ All example documentation uses the test environment endpoint.
   
 A point of sales is concept widely used in the Citybreak system, implementation will guide you about which one you should use.
 The following settings can be configured per point of sales:
-*Suppliers
-*Business Model
-*Fees
-*Commissions
-*Payment regulation
-*Payment options
+* Suppliers
+* Business Model
+* Fees
+* Commissions
+* Payment regulation
+* Payment options
 
-If you wish different combination of those settings for different purposes, you most likely would like to use more than 1 point of sales. Talk to our implementation team <a href='https://help.citybreak.com/'>help.citybreak.com</a> they know all there is to know on the subject. 
+If you wish different combination of those settings for different purposes, you most likely would like to use more than 1 point of sales. Talk to our implementation team <a href='https://help.citybreak.com/'>help.citybreak.com</a>, they know all there is to know on the subject. 
