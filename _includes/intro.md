@@ -11,3 +11,16 @@ The live Galaxy API is accessible at https://galaxy.citybreak.com/v2/api
 All example documentation uses the test environment endpoint.
 
 <aside class="notice">One of the first queries you should try is the Point of Sale query as you will need a valid Point of Sale Id for most of the others<aside>
+  
+# Point of Sales
+  
+A point of sales is concept widely used in the Citybreak system, implementation will guide you about which one you should use.
+The following settings can be configured per point of sales:
+*Suppliers
+*Business Model
+*Fees
+*Commissions
+*Payment regulation
+*Payment options
+
+If you wish different combination of those settings for different purposes, you most likely would like to use more than 1 point of sales. Talk to our implementation team <a href='https://help.citybreak.com/'>help.citybreak.com</a> they know all there is to know on the subject. 
