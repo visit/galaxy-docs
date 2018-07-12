@@ -27,7 +27,6 @@ curl -X POST
    "Departure": "2017-10-15T12:27:58.851Z",
    "Currency": "SEK",
    "PageSize": 20,
-   "Page": 0,
    "PersonConfigurations": [
      {
        "Adults": 1,
@@ -54,7 +53,6 @@ var r = fetch("https://galaxy.test.citybreak.com/v2/api/availability/accommodati
 	   "Departure": "2017-10-15T12:27:58.851Z",
 	   "Currency": "SEK",
 	   "PageSize": 20,
-	   "Page": 0,
 	   "PersonConfigurations": [
 	     {
 	       "Adults": 1,
@@ -320,7 +318,7 @@ curl -X POST
    "Departure": "2017-10-15T12:27:58.851Z",
    "Currency": "SEK",
    "PageSize": 20,
-   "Page": 0,
+   "Page": 1,
    "PersonConfigurations": [
      {
        "Adults": 1,
@@ -347,7 +345,7 @@ var r = fetch("https://galaxy.test.citybreak.com/v2/api/availability/get",
 	   "Departure": "2017-10-15T12:27:58.851Z",
 	   "Currency": "SEK",
 	   "PageSize": 20,
-	   "Page": 0,
+	   "Page": 1,
 	   "PersonConfigurations": [
 	     {
 	       "Adults": 1,
@@ -370,7 +368,7 @@ var r = fetch("https://galaxy.test.citybreak.com/v2/api/availability/get",
     "Departure": "2017-10-15T00:00:00Z",
     "Currency": "SEK",
     "PageSize": 20,
-    "Page": 0,
+    "Page": 1,
     "Sort": {
       "Order": 0,
       "Field": "Price"
@@ -768,7 +766,6 @@ curl -X POST --header 'Content-Type: application/json' --header 'Accept: applica
   "PointOfSalesId": 0,
   "Currency": "SEK",
   "PageSize": 10,
-  "Page": 0, // zero indexed
   "Stay": {
     "ArrivalDaysMask": 0x7F, 
     "DepartureDayMask": 0x7F,
@@ -803,7 +800,6 @@ var r = fetch("https://galaxy.test.citybreak.com/v2/api/availability/cabin/scan"
   "PointOfSalesId": 0,
   "Currency": "SEK",
   "PageSize": 10,
-  "Page": 0, // zero indexed
   "Stay": {
     "ArrivalDaysMask": 0x7F, 
     "DepartureDayMask": 0x7F,
