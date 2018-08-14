@@ -144,7 +144,7 @@ For all booking operations you will need a <a href="https://visit.github.io/gala
 
 ### HTTP Request
 
-`GET https://galaxy.test.citybreak.com/v2/api/content/attribute/1234570/SEK`
+`POST https://galaxy.test.citybreak.com/v2/api/basket/create/1234570/SEK`
 
 
 
