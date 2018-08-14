@@ -2,7 +2,7 @@
 
 > Basket
 
-**Basket** calls are the most complicated in the API workflow as they encapsulate the booking process in typical "shopping basket" object that can have many operations performed on it and which has a limited life span, connected as it is to availability/bookability of products, both internal to Citybreak and from external inventories. It is NOT a reservation but products in a basket are "held" for 15 mins from the time of the <a href="https://visit.github.io/galaxy-docs/#Availability">Availability Search</a> where possible (i.e. where external inventories allow).
+**Basket** calls are the most complicated in the API workflow as they encapsulate the booking process in typical "shopping basket" object that can have many operations performed on it and which has a limited life span, connected as it is to availability/bookability of products, both internal to Citybreak and from external inventories. It is NOT a reservation but products in a basket are "held" for 60 mins from the time of the <a href="https://visit.github.io/galaxy-docs/#Availability">Availability Search</a> where possible (i.e. where external inventories allow).
 
 <aside class="notice">NB: if using the Visit Test Organisation API Key you can use 17692 as the **{pointOfSalesId}**</aside>
 
