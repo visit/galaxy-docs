@@ -875,7 +875,6 @@ var r = fetch("https://galaxy.test.citybreak.com/v2/api/api/basket/optional/{bas
             ],
             "AmountType": "Unlimited",
             "TemplateArguments": {
-                "Price": null,
                 "MainProductId": 1,
                 "OptionalProducttypeId": 445409,
                 "Config": [
@@ -915,7 +914,6 @@ var r = fetch("https://galaxy.test.citybreak.com/v2/api/api/basket/optional/{bas
             ],
             "AmountType": "Unlimited",
             "TemplateArguments": {
-                "Price": null,
                 "MainProductId": 1,
                 "OptionalProducttypeId": 456793,
                 "Config": [
@@ -941,7 +939,6 @@ var r = fetch("https://galaxy.test.citybreak.com/v2/api/api/basket/optional/{bas
             "BookedProducts": [],
             "AmountType": "Unlimited",
             "TemplateArguments": {
-                "Price": null,
                 "MainProductId": 1,
                 "OptionalProducttypeId": 456758,
                 "Config": [
@@ -967,7 +964,6 @@ var r = fetch("https://galaxy.test.citybreak.com/v2/api/api/basket/optional/{bas
             "BookedProducts": [],
             "AmountType": "Unlimited",
             "TemplateArguments": {
-                "Price": null,
                 "MainProductId": 1,
                 "OptionalProducttypeId": 456740,
                 "Config": [
@@ -1007,7 +1003,6 @@ each price group item with the specified quantity.
 
 ```json
             "TemplateArguments": {
-                "Price": null,
                 "MainProductId": 1,
                 "OptionalProducttypeId": 456740,
                 "Config": [
