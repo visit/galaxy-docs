@@ -873,7 +873,7 @@ var r = fetch("https://galaxy.test.citybreak.com/v2/api/api/basket/optional/{bas
                     }
                 }
             ],
-            "AmountType": 2,
+            "AmountType": "Unlimited",
             "TemplateArguments": {
                 "Price": null,
                 "MainProductId": 1,
@@ -913,7 +913,7 @@ var r = fetch("https://galaxy.test.citybreak.com/v2/api/api/basket/optional/{bas
                     }
                 }
             ],
-            "AmountType": 2,
+            "AmountType": "Unlimited",
             "TemplateArguments": {
                 "Price": null,
                 "MainProductId": 1,
@@ -939,7 +939,7 @@ var r = fetch("https://galaxy.test.citybreak.com/v2/api/api/basket/optional/{bas
             "Name": "Barneseng",
             "ProducttypeId": 456758,
             "BookedProducts": [],
-            "AmountType": 2,
+            "AmountType": "Unlimited",
             "TemplateArguments": {
                 "Price": null,
                 "MainProductId": 1,
@@ -965,7 +965,7 @@ var r = fetch("https://galaxy.test.citybreak.com/v2/api/api/basket/optional/{bas
             "Name": "Barnestol",
             "ProducttypeId": 456740,
             "BookedProducts": [],
-            "AmountType": 2,
+            "AmountType": "Unlimited",
             "TemplateArguments": {
                 "Price": null,
                 "MainProductId": 1,
