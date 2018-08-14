@@ -803,14 +803,14 @@ There may however be optional products that needs extra attention.
 
 ### HTTP Request
 
-`GET https://galaxy.test.citybreak.com/v2/api/api/basket/optional/{basketId}/{mainProductId}`
+`GET https://galaxy.test.citybreak.com/v2/api/api/basket/optional/{basketId}/{bookItemId}`
 
 ```shell
     See javascript example.
 ```
 
 ```javascript
-var r = fetch("https://galaxy.test.citybreak.com/v2/api/api/basket/optional/{basketId}/{mainProductId}",
+var r = fetch("https://galaxy.test.citybreak.com/v2/api/api/basket/optional/{basketId}/{bookItemId}",
 {
   method:"GET"
   headers: {
