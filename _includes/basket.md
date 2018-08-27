@@ -519,7 +519,7 @@ To commit a Basket you will need to provide customer information. This is fairly
 
 ### HTTP Request
 
-`GET https://galaxy.test.citybreak.com/v2/api/basket/customer`
+`POST https://galaxy.test.citybreak.com/v2/api/basket/customer`
 
 ### Query Parameters
 
