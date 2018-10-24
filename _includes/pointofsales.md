@@ -12,12 +12,12 @@ All **GET** operations
 curl -X GET 
 --header 'Accept: application/json' 
 --header 'apiKey: APIKEY132456789EWOK' 
-'https://galaxy.test.citybreak.com/v2/api/pointofsales'
+'https://galaxy.citybreak.com/v3/api/pointofsales'
 
 ```
 
 ```javascript
-var r = fetch("https://galaxy.test.citybreak.com/v2/api/pointofsales",
+var r = fetch("https://galaxy.citybreak.com/v3/api/pointofsales",
 {
   headers: {
     "ApiKey:" "APIKEY132456789EWOK",
@@ -54,7 +54,7 @@ Get the points of sale available to the current API Key.
 
 ### HTTP Request
 
-`GET https://galaxy.citybreak.com/v2/api/pointofsales`
+`GET https://galaxy.citybreak.com/v3/api/pointofsales`
 
 ## Currencies
 
@@ -62,11 +62,11 @@ Get the points of sale available to the current API Key.
 curl -X GET 
 --header 'Accept: application/json' 
 --header 'apiKey: APIKEY132456789EWOK' 
-'https://galaxy.test.citybreak.com/v2/api/pointofsales/currencies/{pointOfSaleId}'
+'https://galaxy.citybreak.com/v3/api/pointofsales/currencies/{pointOfSaleId}'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.test.citybreak.com/v2/api/pointofsales/currencies/{pointOfSaleId}",
+var r = fetch("https://galaxy.citybreak.com/v3/api/pointofsales/currencies/{pointOfSaleId}",
 {
   headers: {
     "ApiKey:" "APIKEY132456789EWOK",
@@ -91,7 +91,7 @@ Get currencies available for a given Point of Sale. Availability searches will r
 
 ### HTTP Request
 
-`GET https://galaxy.citybreak.com/v2/api/pointofsales/currencies`
+`GET https://galaxy.citybreak.com/v3/api/pointofsales/currencies`
 
 ### Query Parameters
 

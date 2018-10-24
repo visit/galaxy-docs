@@ -20,6 +20,7 @@ includes:
   - reservation
   - countrycode
   - errors
+  - breakingchanges
 
 search: true
 ---

@@ -173,11 +173,11 @@ curl -X POST --header 'Content-Type: application/json' --header 'Accept: applica
     "Order": "Asc",
     "Field": "Score"
   }
-} }' 'https://galaxy.test.citybreak.com/v2/api/availability/cabin/scan'
+} }' 'https://galaxy.citybreak.com/v3/api/availability/cabin/scan'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.test.citybreak.com/v2/api/availability/cabin/scan",
+var r = fetch("https://galaxy.citybreak.com/v3/api/availability/cabin/scan",
 {
 	method: "POST",
 	headers: {
@@ -319,7 +319,7 @@ This is **POST** request that requires a filter. You can see a bare minimum veri
 
 ### HTTP Request
 
-`POST https://galaxy.test.citybreak.com/v2/api/availability/cabin/scan`
+`POST https://galaxy.citybreak.com/v3/api/availability/cabin/scan`
 
 ### Query Parameters
 

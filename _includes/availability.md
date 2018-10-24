@@ -35,11 +35,11 @@ curl -X POST
        ] 
      }
    ]
- }' 'https://galaxy.test.citybreak.com/v2/api/availability/accommodation'
+ }' 'https://galaxy.citybreak.com/v3/api/availability/accommodation'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.test.citybreak.com/v2/api/availability/accommodation",
+var r = fetch("https://galaxy.citybreak.com/v3/api/availability/accommodation",
 {
 	method: "POST",
 	headers: {
@@ -327,11 +327,11 @@ curl -X POST
        ] 
      }
    ]
- }' 'https://galaxy.test.citybreak.com/v2/api/availability/get'
+ }' 'https://galaxy.citybreak.com/v3/api/availability/get'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.test.citybreak.com/v2/api/availability/get",
+var r = fetch("https://galaxy.citybreak.com/v3/api/availability/get",
 {
 	method: "POST",
 	headers: {
@@ -784,11 +784,11 @@ curl -X POST --header 'Content-Type: application/json' --header 'Accept: applica
     "Order": "Asc",
     "Field": "Score"
   }
-} }' 'https://galaxy.test.citybreak.com/v2/api/availability/cabin/scan'
+} }' 'https://galaxy.citybreak.com/v3/api/availability/cabin/scan'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.test.citybreak.com/v2/api/availability/cabin/scan",
+var r = fetch("https://galaxy.citybreak.com/v3/api/availability/cabin/scan",
 {
 	method: "POST",
 	headers: {
