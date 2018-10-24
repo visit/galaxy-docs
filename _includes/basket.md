@@ -88,9 +88,9 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/basket/create",
     "Accept-Language": "en-US"
   },
   body: JSON.Stringify({
-	"PointOfSalesId": 1234570,
-	"Currency": "SEK",
-	"Online3Session": {
+  "PointOfSalesId": 1234570,
+  "Currency": "SEK",
+  "Online3Session": {
     "Id": "abcdefg12345678,
     "OnlineId": 123456789
 	}
