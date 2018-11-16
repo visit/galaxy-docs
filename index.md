@@ -14,7 +14,8 @@ includes:
   - exampleworkflow
   - pointofsales
   - accommodation
-  - availability
+  - availability-accommodation
+  - fuzzy-accommodation
   - content
   - basket
   - reservation

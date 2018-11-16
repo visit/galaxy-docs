@@ -10,7 +10,7 @@ The live Galaxy API endpoint is accessible at <a href="https://galaxy.citybreak.
 
 All example documentation uses the test environment endpoint.
 
-<aside class="notice">One of the first queries you should try is the Point of Sale query as you will need a valid Point of Sale Id for most of the others<aside>
+<aside class="notice">One of the first queries you should try is the Point of Sale query as you will need a valid Point of Sale Id for most of the others</aside>
   
 # Point of Sales
   
