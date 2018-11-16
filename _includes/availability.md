@@ -862,7 +862,7 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/availability/cabin/scan",
           {
             "Id": 100038,
             "Name": "Elevator",
-            "Value": "False"
+            "Value": "true"
           }
         ],
         "Categories": [
