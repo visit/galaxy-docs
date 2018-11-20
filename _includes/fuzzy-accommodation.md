@@ -13,7 +13,7 @@ to refer back to the original search you made.  The scan operation will examine 
 By using the Get method you will be able to page through the result.
 
 ### Get arrival dates in search span
-Once you get a result you like and would like to investigate further you can get more details of the possible stays with that result by calling *arrivaldates* with a `bookKey` obtained with the *scan* method. That will give you all valid arrival dates available in scan sector that was  used.
+Once you get a result you like and would like to investigate further you can get more details of the possible stays with that result by calling *arrivaldates* with a `bookKey` obtained with the *scan* or get methods. That will give you all valid arrival dates available in scan sector that was  used.
 
 ### Get departure dates 
 By calling the **departuredates** with a `bookKey` obtained with the **scan** method, given an arrival date you will get all valid departures from that date.
@@ -31,32 +31,35 @@ Once you have a bookable alternative you can add it to the basket by calling *PU
 curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' --header 'Accept-Language: en-us' --header 'apiKey: APIKEY132456789EWOK' -d '{
 {
   "PointOfSalesId": 0,
-  "Currency": "SEK",
-  "PageSize": 10,
-  "Page": 0, // zero indexed
+  "Currency": "EUR",
+  "PageSize": 20,
   "Stay": {
     "ArrivalDaysMask": 0x7F, 
     "DepartureDayMask": 0x7F,
-    "MinStayLength": 7,
-    "MaxStayLength": 7,
-    "Arrival": "2018-04-01",
-    "Departure": "2018-04-08"
+    "MinStayLength": 3,
+    "MaxStayLength": 5,
+    "Arrival": "2018-12-04",
+    "Departure": "2018-12-08"
   },
   "PersonConfiguration": {
     "Adults": 2,
     "ChildrenAges": [
-      3
     ]
   },
+  "OutputFilter":{
+    "Attributes":[
+      99
+    ]
+  }
   "Sort": {
     "Order": "Asc",
     "Field": "Score"
   }
-} }' 'https://galaxy.citybreak.com/v3/api/availability/cabin/scan'
+} }' 'http://galaxy.citybreak.com/v3/api/availability/accommodation/fuzzy/scan'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v3/api/availability/cabin/scan",
+var r = fetch("http://galaxy.citybreak.com/v3/api/availability/accommodation/fuzzy/scan",
 {
 	method: "POST",
 	headers: {
@@ -67,20 +70,18 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/availability/cabin/scan",
 	body: JSON.Stringify({
   "PointOfSalesId": 0,
   "Currency": "SEK",
-  "PageSize": 10,
-  "Page": 0, // zero indexed
+  "PageSize": 20,
   "Stay": {
     "ArrivalDaysMask": 0x7F, 
     "DepartureDayMask": 0x7F,
-    "MinStayLength": 7,
-    "MaxStayLength": 7,
-    "Arrival": "2018-04-01",
-    "Departure": "2018-04-08"
+    "MinStayLength": 3,
+    "MaxStayLength": 5,
+    "Arrival": "2018-12-04",
+    "Departure": "2018-12-08"
   },
   "PersonConfiguration": {
     "Adults": 2,
     "ChildrenAges": [
-      3
     ]
   },
   "Sort": {
@@ -94,18 +95,17 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/availability/cabin/scan",
 
 ```json
 {
-  "SearchId": "12313212313",
-  "TotalResults": 15,
-  "Result": [
+  "SearchId": "1234abcd-a1b2-1234-a10f-abcd1234abcd",
+  "TotalResults": 2,
+  "Accommodations": [
     {
-      "Id": "154623",
-      "BookingKey": "253-C",
-      "Name": "My cabin",
+      "Id": "cbis:12345",
+      "Name": "First hotel",
       "Content": {
         "PriceFrom": 0,
         "Images": [
           {
-            "Uri": "//images.citybreak.com/image.aspx?ImageId=4014876",
+            "Uri": "//images.citybreak.com/image.aspx?ImageId=123456",
             "IsMain": true,
             "Name": null,
             "Copyright": null,
@@ -115,83 +115,159 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/availability/cabin/scan",
         "Information": [
           {
             "Id": 99,
-            "Name": "Name",
-            "Value": "My Cabin"
-          },
-          {
-            "Id": 101,
-            "Name": "Introduction",
-            "Value": "A really nice cabin"
-          },
-          {
-            "Id": 102,
-            "Name": "Description",
-            "Value": "A cabin located in the centre of all slopes."
-          },
-          {
-            "Id": 100038,
-            "Name": "Elevator",
-            "Value": "False"
+            "Name": "Namn",
+            "Value": "First hotel"
           }
         ],
-        "Categories": [
-          {
-            "Id": 0,
-            "Path": "string"
-          }
-        ],
-        "Geos": [
-          {
-            "Id": 0,
-            "Path": "string"
-          }
-        ],
-        "Pois": [
-          {
-            "Id": 0,
-            "Name": "string",
-            "Position": {
-              "Latitude": 0,
-              "Longitude": 0
-            }
-          }
-        ],
+        "Categories": null,
+        "Geos": null,
+        "Pois": null,
         "Position": {
-          "Latitude": 0,
-          "Longitude": 0
+          "Latitude": 60.12345,
+          "Longitude": 18.00000
         }
       },
-      "Score": 0,
-      "ExampleArrival": "2017-12-13T06:13:08.820Z",
-      "ExampleDeparture": "2017-12-13T06:13:08.820Z",
-      "Extrabeds": 0,
-      "MaxPopluationForAnyItem": 0,
-      "MaxPopulation": 0,
-      "OriginalPrice": 0,
-      "Price": 0
+      "Products": [
+        {
+          "Id": "pt:12345",
+          "BookingKey": "2-C",
+          "Name": "Standard Dubbelrum",
+          "Content": {
+            "PriceFrom": 0,
+            "Images": [],
+            "Information": [
+              {
+                "Id": 101,
+                "Name": "Introduction",
+                "Value": null
+              },
+              {
+                "Id": 102,
+                "Name": "Description",
+                "Value": null
+              }
+            ],
+            "Categories": null,
+            "Geos": null,
+            "Pois": null,
+            "Position": null
+          },
+          "Score": 100,
+          "ExampleArrival": "2018-12-04T00:00:00+01:00",
+          "ExampleDeparture": "2018-12-08T00:00:00+01:00",
+          "Extrabeds": 1,
+          "MaxPopluationForAnyItem": 3,
+          "MaxPopulation": 2,
+          "OriginalPrice": 300,
+          "Price": 300
+        },
+        {
+          "Id": "pt:23456",
+          "BookingKey": "2-C",
+          "Name": "Trippelrum",
+          "Content": {
+            "PriceFrom": 0,
+            "Images": [],
+            "Information": [
+              {
+                "Id": 101,
+                "Name": "Introduction",
+                "Value": null
+              },
+              {
+                "Id": 102,
+                "Name": "Description",
+                "Value": null
+              }
+            ],
+            "Categories": null,
+            "Geos": null,
+            "Pois": null,
+            "Position": null
+          },
+          "Score": 65,
+          "ExampleArrival": "2018-12-04T00:00:00+01:00",
+          "ExampleDeparture": "2018-12-07T00:00:00+01:00",
+          "Extrabeds": 0,
+          "MaxPopluationForAnyItem": 3,
+          "MaxPopulation": 3,
+          "OriginalPrice": 250,
+          "Price": 250
+        },
+        {
+          "Id": "pt:34567",
+          "BookingKey": "2-C",
+          "Name": "Superior Dubbelrum",
+          "Content": {
+            "PriceFrom": 0,
+            "Images": [],
+            "Information": [
+              {
+                "Id": 101,
+                "Name": "Introduction",
+                "Value": null
+              },
+              {
+                "Id": 102,
+                "Name": "Description",
+                "Value": null
+              }
+            ],
+            "Categories": null,
+            "Geos": null,
+            "Pois": null,
+            "Position": null
+          },
+          "Score": 65,
+          "ExampleArrival": "2018-12-04T00:00:00+01:00",
+          "ExampleDeparture": "2018-12-07T00:00:00+01:00",
+          "Extrabeds": 1,
+          "MaxPopluationForAnyItem": 3,
+          "MaxPopulation": 2,
+          "OriginalPrice": 280,
+          "Price": 280
+        }
+      ]
     }
   ],
-  "SearchContext": { // Copy of what was sent to the method.
-        // ...
+  "SearchContext": {
+    "Arrival": "2018-12-04T00:00:00+01:00",
+    "Departure": "2018-12-08T00:00:00+01:00",
+    "OutputFilter": {
+      "Attributes": [
+        99
+      ],
+      "Categories": false,
+      "Geos": false,
+      "Pois": false,
+      "Position": false
     },
-    "PageSize": 10,
+    "ContentFilter": {
+      "Geos": [],
+      "Categories": [],
+      "Pois": [],
+      "Search": null,
+      "Position": null,
+      "Information": null,
+      "Ids": []
+    },
+    "PageSize": 20,
     "Page": 0,
     "PersonConfiguration": {
-      "Adults": 2,
-      "ChildrenAges": [
-        3
-      ]
+      "Adults": 1,
+      "ChildrenAges": []
     },
-    "Currency": "SEK",
-    "ArrivalDayMask": 0x7f,
-    "DepartureDayMask": 0x7f,
-    "MinStayLength": 7,
-    "MaxStayLength": 7,
+    "Currency": "EUR",
+    "ArrivalDayMask": 127,
+    "DepartureDayMask": 127,
+    "MinStayLength": 3,
+    "MaxStayLength": 5,
     "Sort": {
-      "Order": "Asc",
+      "Order": "Desc",
       "Field": "Score"
     }
-  }
+  },
+  "ExpirationDate": "2018-11-20T12:00:00.1000000+01:00"
 }
 ```
 
@@ -245,17 +321,17 @@ So there is certainly no need to use the 1-7 days span to be able to do so later
 
 
 #### Day mask
-A bit mask describing which days that are valid for arriving at or depart at. 
+A bit mask represented in hexadecimal describing which days that are valid for arriving at or depart at. 
 
-|Day|Bit|
-|-----|-----|
-Monday|0x01
-Tuesday|0x02
-Wednesday|0x04
-Thursday|0x08
-Friday|0x10
-Saturday|0x20
-Sunday|0x40
+|Hex|Day|Bin
+|-----|-----|-----|
+0x01|Monday|(0000001)
+0x02|Tuesday|(0000010)
+0x04|Wednesday|(0000100)
+0x08|Thursday|(0001000)
+0x10|Friday|(0010000)
+0x20|Saturday|(0100000)
+0x40|Sunday|(1000000)
 
 ##### Examples
 |Mask|Meaning|
@@ -302,7 +378,7 @@ This is **POST** request that requires a filter. You can see a bare minimum veri
 
 ### HTTP Request
 
-`POST https://galaxy.citybreak.com/v3/api/availability/cabin/scan`
+`POST https://galaxy.citybreak.com/v3/api/availability/accommodation/fuzzy/scan`
 
 ### Query Parameters
 
@@ -314,7 +390,7 @@ Accept-Language | The language culture (e.g en-us)
 
 ## Get
 This method is used to get a different page of the result.
-> POST /api/availability/cabin/get
+> POST https://galaxy.citybreak.com/v3/api/availability/accommodation/fuzzy/get
 ```json
 {
   "Page": 1, // The second page
