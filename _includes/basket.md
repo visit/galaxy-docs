@@ -434,11 +434,11 @@ curl -X PUT
 --header 'Accept: application/json' 
 --header 'apiKey: APIKEY132456789EWOK' 
 --header 'Accept-Language: en-us' 
-'https://galaxy.citybreak.com/v3/api/basket/add/accommodation/{basketId}/{searchId}/{bookingKey}'
+'https://galaxy.citybreak.com/v3/api/basket/add/accommodation/{basketId}/{searchId}/{bookKey}'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v3/api/basket/add/accommodation/{basketId}/{searchId}/{bookingKey}",
+var r = fetch("https://galaxy.citybreak.com/v3/api/basket/add/accommodation/{basketId}/{searchId}/{bookKey}",
 {
   method:"PUT"
   headers: {
@@ -465,10 +465,48 @@ Parameter | Description
 --------- | -----------
 basketId | The Id of the basket.
 searchId | The search Id returned by the <a href="https://visit.github.io/galaxy-docs/#Availability">Availability Response</a>
-bookingKey | The key of the booking item (product) to add to the basket, found in <a href="https://visit.github.io/galaxy-docs/#Availability">Availability Response</a>
+bookKey | The key of the booking item (product) to add to the basket, found in <a href="https://visit.github.io/galaxy-docs/#Availability">Availability Response</a>
 
 
+## Add Fuzzy Booking Item
 
+```shell
+curl -X PUT 
+--header 'Accept: application/json' 
+--header 'apiKey: APIKEY132456789EWOK' 
+--header 'Accept-Language: en-us' 
+'https://galaxy.citybreak.com/v3/api/basket/add/accommodation/fuzzy/{basketId}/{searchId}/{bookKey}'
+```
+
+```javascript
+var r = fetch("https://galaxy.citybreak.com/v3/api/basket/add/accommodation/fuzzy/{basketId}/{searchId}/{bookKey}",
+{
+  method:"PUT"
+  headers: {
+    "ApiKey:" "APIKEY132456789EWOK",
+    "Accept": "application/json",
+    "Accept-Language": "en-US"
+  }  
+});
+```
+
+> Example of response:
+
+```json
+true
+```
+
+Add a booking item to the basket, you must first have checked for the <a href="https://visit.github.io/galaxy-docs/#FuzzyAccommodation">Availability</a> of a property or properties and obtained the search Id and the bookingKey of the product you wish to add to the basket.
+
+`PUT https://galaxy.citybreak.com/v3/api/basket/add/accommodation/fuzzy/`
+
+### Query Parameters
+
+Parameter | Description
+--------- | -----------
+basketId | The Id of the basket.
+searchId | The search Id returned by the <a href="https://visit.github.io/galaxy-docs/#Availability">Availability Response</a>
+bookKey | The key of the booking item (product) to add to the basket, found in <a href="https://visit.github.io/galaxy-docs/#FuzzyAccommodation">Availability Response</a>
 
 
 
@@ -1137,14 +1175,14 @@ each price group item with the specified quantity.
                 ]
             }
 ```
-It's there to help you decide how to configurate the product. Cross reference this
+It's there to help you decide how to configure the product. Cross reference this
 with the datatype the post takes, you can see that they are identical on some parts.
 The price on the outer section is there to tell that the price is valid for 
 the entire configuration.
 The price in the config section is there to tell the price if it depends on the 
 number of units for the specific price group.
 
-Basically, if the sub product is inlcuded as one per guest, that configuration
+Basically, if the sub product is included as one per guest, that configuration
 must be submitted for each guest, also the price is known at that time and presented
 on the outer section.
 

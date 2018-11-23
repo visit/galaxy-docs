@@ -7,7 +7,7 @@ The fuzzy accommodation search will look for available accommodation options in 
 
 ### Call Scan
 First you call the Scan method to get perform a search. You will get a partial listing back describing the first set of results. The `SearchId` will be used in all other methods
-to refer back to the original search you made.  The scan operation will examine dates around the stay (-10 days before arrival and +10  days after the selected departure), and give you bookkeys to pass to the next mehtods.
+to refer back to the original search you made.  The scan operation will examine dates around the stay (-10 days before arrival and +10  days after the selected departure), and give you bookkeys to pass to the next methods.
 
 ### Page through the result
 By using the Get method you will be able to page through the result.
@@ -29,7 +29,6 @@ Once you have a bookable alternative you can add it to the basket by calling *PU
 
 ```shell
 curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' --header 'Accept-Language: en-us' --header 'apiKey: APIKEY132456789EWOK' -d '{
-{
   "PointOfSalesId": 0,
   "Currency": "EUR",
   "PageSize": 20,
@@ -54,8 +53,8 @@ curl -X POST --header 'Content-Type: application/json' --header 'Accept: applica
   "Sort": {
     "Order": "Asc",
     "Field": "Score"
-  }
-} }' 'http://galaxy.citybreak.com/v3/api/availability/accommodation/fuzzy/scan'
+    } 
+}' 'http://galaxy.citybreak.com/v3/api/availability/accommodation/fuzzy/scan'
 ```
 
 ```javascript
@@ -68,25 +67,26 @@ var r = fetch("http://galaxy.citybreak.com/v3/api/availability/accommodation/fuz
 		 "Accept-Language": "en-US"
 	},
 	body: JSON.Stringify({
-  "PointOfSalesId": 0,
-  "Currency": "SEK",
-  "PageSize": 20,
-  "Stay": {
-    "ArrivalDaysMask": 0x7F, 
-    "DepartureDayMask": 0x7F,
-    "MinStayLength": 3,
-    "MaxStayLength": 5,
-    "Arrival": "2018-12-04",
-    "Departure": "2018-12-08"
-  },
-  "PersonConfiguration": {
-    "Adults": 2,
-    "ChildrenAges": [
-    ]
-  },
-  "Sort": {
-    "Order": "Asc",
-    "Field": "Score"
+    "PointOfSalesId": 0,
+    "Currency": "SEK",
+    "PageSize": 20,
+    "Stay": {
+      "ArrivalDaysMask": 0x7F, 
+      "DepartureDayMask": 0x7F,
+      "MinStayLength": 3,
+      "MaxStayLength": 5,
+      "Arrival": "2018-12-04",
+      "Departure": "2018-12-08"
+    },
+    "PersonConfiguration": {
+      "Adults": 2,
+      "ChildrenAges": [
+      ]
+    },
+    "Sort": {
+      "Order": "Asc",
+      "Field": "Score"
+    }
   })  
 });
 ```
@@ -292,32 +292,28 @@ Stay.Arrival|The suggested arrival date.
 Stay.Departure|The suggested departure date.
 
 ### Using the Stay object
-The `arrival` and `departure` makes up a sweet spot span where you would like to arrive.
-The search is performed with the focus on that area. 
-However you can get results that partially matches that span. 
-The `Score` property will tell how good of a match a specific result was. 
-It will also give you the best price for the specified stay that the item used to 
+The `arrival` and `departure` makes up a sweet spot span where you would like to arrive. The search is performed with the focus on that area. However you can get results that partially matches that span.
+
+The `Score` property will tell how good of a match a specific result was. It will also give you the best price for the specified stay that the item used to 
 calculate the score. 
 The example properties on that object will tell which ones it was.
 
 Use the `arrival`/`departure` day mask to create queries to match like short week, 
 weekends and such.
-For instance, use 0x18 to create results arriving on Thurday or Friday and use departure
+For instance, use 0x18 to create results arriving on Thursday or Friday and use departure
 mask 0x61 to specify acceptable departures on Saturday, Sunday or Monday. 
 That could be your weekend day filter.
 
 Use the `MinStayLength`/`MaxStayLength` stay to specify an acceptable length of you stay. 
 7/7 will give you exactly seven days of stay.
-2-3 will restrict the stay to 2 or 3 days. 
+2/3 will restrict the stay to 2 or 3 days. 
 That could be used in conjunction with the week days filter.
-1/7 will give you results where you could stay anywhere between 1 or 7 days. 
-Usually not a very good definition.
+1/7 will give you results where you could stay anywhere between 1 or 7 days - likely to be an expensive and possibly not helpful query
 
 Keep in mind that this is only used to give you relevant stay dates as the result.
 You can use the get arrival dates and departure dates when you examine a specified 
-result to create a bookable result that does not neccisarily matches your 
+result to create a bookable result that does not necessarily matches your 
 original constraints. 
-So there is certainly no need to use the 1-7 days span to be able to do so later on.
 
 
 #### Day mask
@@ -355,15 +351,15 @@ Price|Sort by example price
 Random|Sort by a random order.
 Score|Sort by the relevance of the example stay.
 
-Sugested sort order is by `Score`/`Descending`. 
+Suggested sort order is by `Score`/`Descending`. 
 That will give you the most relevant items first. 
-Please note that price may give some unintended side effects when using
-`MaxStayLength`/`MinStayLength` and `ArrivalDayMask`/`DepartureDayMask` filter. 
-The items may not compare well to each other sice one item may have produced 
+<aside class="notice">Please note that price may give some unintended side effects when using
+`MaxStayLength`/`MinStayLength` and `ArrivalDayMask`/`DepartureDayMask` filter.
+The items may not compare well to each other since one item may have produced 
 a result that is shorter than another (hence a different price) or 
-using `ArrivalDayMask`/`DepartureDayMask`.
+using `ArrivalDayMask`/`DepartureDayMask`.</aside>
 The price may differ heavily if you are in a high season week and low season week. 
-Ordering by `Price` is therefor not neccisarily a good sorting for listing 
+Ordering by `Price` is therefore not necessarily a good sorting for listing 
 relevant results. 
 
 ### ContentFilter
@@ -374,7 +370,7 @@ results that only matches that filter. See Availability search for specification
 The output filter describes which content that should be included with the item.
 See the availability search for specifications.
 
-This is **POST** request that requires a filter. You can see a bare minimum verison of this search in the examples.
+This is **POST** request that requires a filter. You can see a bare minimum version of this search in the examples.
 
 ### HTTP Request
 
@@ -389,95 +385,376 @@ Accept-Language | The language culture (e.g en-us)
 
 
 ## Get
-This method is used to get a different page of the result.
-> POST https://galaxy.citybreak.com/v3/api/availability/accommodation/fuzzy/get
-```json
+```shell
+curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' --header 'Accept-Language: en-us' --header 'apiKey: APIKEY132456789EWOK' -d '{
+    "Page": 1, // Zero indexed so this is the second page
+    "PageSize": 10,
+    "Sort": {
+      "Order": "Desc",
+      "Field": "Score"
+    },
+    "SearchId": "1234abcd-a1b2-1234-a10f-abcd1234abcd",
+    "ContentOutputFilter": {
+      "Attributes": [
+          99
+      ],
+      "Categories": false,
+      "Geos": false,
+      "Pois": false,
+      "Position": false
+    }
+}' 'https://galaxy.citybreak.com/v3/api/availability/accommodation/fuzzy/get'
+```
+```javascript
+var r = fetch("https://galaxy.citybreak.com/v3/api/availability/accommodation/fuzzy/get",
 {
-  "Page": 1, // The second page
+	method: "POST",
+	headers: {
+	    "ApiKey:" "APIKEY132456789EWOK",
+	    "Accept": "application/json",
+		  "Accept-Language": "en-US"
+	},
+	body: JSON.Stringify({
+  "Page": 1, // Zero indexed so this is the second page
   "PageSize": 10,
   "Sort": {
     "Order": "Desc",
     "Field": "Score"
   },
-  "SearchId": "123123132",
+  "SearchId": "1234abcd-a1b2-1234-a10f-abcd1234abcd",
   "ContentOutputFilter": {
     "Attributes": [
-        99, 101, 102
+        99
     ],
-    "Categories": true,
-    "Geos": true,
-    "Pois": true,
-    "Position": true
+    "Categories": false,
+    "Geos": false,
+    "Pois": false,
+    "Position": false
   }
-}
+  })  
+});
 ```
 
+This method is used to get a different page of the scan result as represented by the searchId you find in the initial scan. Each searchId has an expiry but this is not a guarantee of availability on results from previous pages.
+
+### HTTP Request
+
+`POST https://galaxy.citybreak.com/v3/api/availability/accommodation/fuzzy/get`
+
+### Query Parameters
+
+Parameter | Description
+--------- | -----------
+filter | the POST filter
+Accept-Language | The language culture (e.g en-us)
+
 ## Arrival dates
-Get a set of valid arrival dates for a specified item.
-> GET api/availability/cabin/arrivaldates
+```shell
+curl -X GET --header 'Accept: text/plain' --header 'apiKey:  APIKEY132456789EWOK' 
+'https://galaxy.citybreak.com/v3/api/availability/accommodation/fuzzy/arrivaldates?searchId=1234abcd-a1b2-1234-a10f-abcd1234abcd&bookKey=2-C&firstArrival=2018-12-03&lastArrival=2018-12-05&personConfig.adults=2'
 
-Parameters are:
-* searchId - From the `result`
-* bookKey - From the `result.Result[n].BookKey`
-* firstArrival - First acceptable date for the result. 
-* lastArrival - Last acceptable date for the result.
-* personConfig - Typically the same used in *Scan*
+```
 
-It returns a list of dates that are valid for arrival.
+```javascript
+var r = fetch("https://galaxy.citybreak.com/v3/api/availability/accommodation/fuzzy/arrivaldates?searchId=1234abcd-a1b2-1234-a10f-abcd1234abcd&bookKey=2-C&firstArrival=2018-12-03&lastArrival=2018-12-05&personConfig.adults=2",
+{
+  headers: {
+    "ApiKey:" "APIKEY132456789EWOK",
+    "Accept": "application/json",
+	 "Accept-Language": "en-US"
+  }  
+});
+```
+
+> Example of response:
+
+```json
+[
+    "2018-12-03T00:00:00+01:00",
+    "2018-12-04T00:00:00+01:00"
+]
+```
+Get a set of valid arrival dates for a specified item based on your scan.
+
+### HTTP Request
+
+`POST https://galaxy.citybreak.com/v3/api/availability/accommodation/fuzzy/arrivaldates`
+
+
+### Query Parameters
+
+Parameter | Description
+--------- | -----------
+searchId  | From the `result`
+bookKey | From the `result.Result[n].BookKey`
+firstArrival | First acceptable date for the result.
+lastArrival | Last acceptable date for the result.
+personConfig.adults | Number of adults (usually be same as scan)
+personConfig.childrenAges | Ages of children  (usually be same as scan)
 
 ## Departure dates
-Get a set of valid departure dates for the specficed item given the arrival date.
-> GET api/availability/cabin/departuredates
 
-Parameters are:
-* searchId - From the `result`
-* bookKey - From the `result.Result[n].BookKey`
-* arrival - The specified arrival date from which you would like valid departure dates.
-* personConfig - Typically the same used in *Scan*
+```shell
+curl -X GET --header 'Accept: application/json' --header 'apiKey:  APIKEY132456789EWOK' 
+'https://galaxy.citybreak.com/v3/api/availability/accommodation/fuzzy/departuredates?searchId=1234abcd-a1b2-1234-a10f-abcd1234abcd&bookKey=2-C&arrival=2018-12-03&personConfig.adults=2'
 
-It returns a set of dates that are valid for departure given the arrival date.
+```
 
-## Get bookable alternatives
-> GET api/availability/cabin/bookablealternatives
+```javascript
+var r = fetch("https://galaxy.citybreak.com/v3/api/availability/accommodation/fuzzy/departuredates?searchId=1234abcd-a1b2-1234-a10f-abcd1234abcd&bookKey=2-C&arrival=2018-12-03&personConfig.adults=2",
+{
+  headers: {
+    "ApiKey:" "APIKEY132456789EWOK",
+    "Accept": "application/json",
+	 "Accept-Language": "en-US"
+  }  
+});
+```
+> Example of response:
 
-Parameters are:
-* searchId - From the `result`
-* bookKey - From the `result.Result[n].BookKey`
-* arrival - The specified arrival date.
-* departure - The specifeid departure date.
-* personConfig - Typically the same used in *Scan*
+```json
+[
+  "2018-12-04T00:00:00+01:00",
+  "2018-12-05T00:00:00+01:00",
+  "2018-12-06T00:00:00+01:00",
+  "2018-12-07T00:00:00+01:00",
+  "2018-12-08T00:00:00+01:00",
+  "2018-12-09T00:00:00+01:00",
+  "2018-12-10T00:00:00+01:00",
+  "2018-12-11T00:00:00+01:00",
+  "2018-12-12T00:00:00+01:00",
+  "2018-12-13T00:00:00+01:00",
+  "2018-12-14T00:00:00+01:00",
+  "2018-12-15T00:00:00+01:00",
+  "2018-12-16T00:00:00+01:00",
+  "2018-12-17T00:00:00+01:00"
+]
+```
+Get a set of valid departure dates for the specified item given the arrival date.
+### HTTP Request
 
-It returns a list of valid alternatives to book:
+`POST https://galaxy.citybreak.com/v3/api/availability/accommodation/fuzzy/departuredates`
+
+### Query Parameters
+
+Parameter | Description
+--------- | -----------
+searchId  | From the `result`
+bookKey | From the `result.Result[n].BookKey`
+arrival | The specified arrival date from which you would like valid departure dates.
+personConfig.adults | Number of adults (usually be same as scan)
+personConfig.childrenAges | Ages of children  (usually be same as scan)
+
+
+## Detailed Departure Info
+
+```shell
+curl -X GET --header 'Accept: application/json' --header 'apiKey:  APIKEY132456789EWOK' 
+'https://galaxy.citybreak.com/v3/api/availability/accommodation/fuzzy/alldepartures?searchId=1234abcd-a1b2-1234-a10f-abcd1234abcd&bookKey=2-C&arrival=2018-12-03&personConfig.adults=2'
+
+```
+
+```javascript
+var r = fetch("https://galaxy.citybreak.com/v3/api/availability/accommodation/fuzzy/alldepartures?searchId=1234abcd-a1b2-1234-a10f-abcd1234abcd&bookKey=2-C&arrival=2018-12-03&personConfig.adults=2",
+{
+  headers: {
+    "ApiKey:" "APIKEY132456789EWOK",
+    "Accept": "application/json",
+	 "Accept-Language": "en-US"
+  }  
+});
+```
+> Example of response:
 
 ```json
 [
   {
-    "BookId": 0,
-    "DiscountInformation": {
-      "Name": "string",
-      "Description": "string"
-    },
-    "Arrival": "2018-04-03",
-    "Departure": "2018-04-10",
+    "Arrival": "2018-12-03T00:00:00+01:00",
+    "Stay": "1.00:00:00",
+    "Price": 60,
+    "OriginalPrice": null
+  },
+  {
+    "Arrival": "2018-12-03T00:00:00+01:00",
+    "Stay": "2.00:00:00",
+    "Price": 120,
+    "OriginalPrice": null
+  },
+  {
+    "Arrival": "2018-12-03T00:00:00+01:00",
+    "Stay": "3.00:00:00",
+    "Price": 180,
+    "OriginalPrice": null
+  },
+  {
+    "Arrival": "2018-12-03T00:00:00+01:00",
+    "Stay": "4.00:00:00",
+    "Price": 240,
+    "OriginalPrice": null
+  },
+  {
+    "Arrival": "2018-12-03T00:00:00+01:00",
+    "Stay": "5.00:00:00",
+    "Price": 500,
+    "OriginalPrice": null
+  },
+  {
+    "Arrival": "2018-12-03T00:00:00+01:00",
+    "Stay": "6.00:00:00",
+    "Price": 600,
+    "OriginalPrice": null
+  },
+  {
+    "Arrival": "2018-12-03T00:00:00+01:00",
+    "Stay": "7.00:00:00",
+    "Price": 700,
+    "OriginalPrice": null
+  },
+  {
+    "Arrival": "2018-12-03T00:00:00+01:00",
+    "Stay": "8.00:00:00",
+    "Price": 800,
+    "OriginalPrice": null
+  },
+  {
+    "Arrival": "2018-12-03T00:00:00+01:00",
+    "Stay": "9.00:00:00",
+    "Price": 900,
+    "OriginalPrice": null
+  },
+  {
+    "Arrival": "2018-12-03T00:00:00+01:00",
+    "Stay": "10.00:00:00",
+    "Price": 1000,
+    "OriginalPrice": null
+  },
+  {
+    "Arrival": "2018-12-03T00:00:00+01:00",
+    "Stay": "11.00:00:00",
+    "Price": 1100,
+    "OriginalPrice": null
+  },
+  {
+    "Arrival": "2018-12-03T00:00:00+01:00",
+    "Stay": "12.00:00:00",
+    "Price": 1200,
+    "OriginalPrice": null
+  },
+  {
+    "Arrival": "2018-12-03T00:00:00+01:00",
+    "Stay": "13.00:00:00",
+    "Price": 1300,
+    "OriginalPrice": null
+  },
+  {
+    "Arrival": "2018-12-03T00:00:00+01:00",
+    "Stay": "14.00:00:00",
+    "Price": 1400,
+    "OriginalPrice": null
+  }
+]
+```
+Similar to the departure dates query, this call will return a more detailed list of departure information, with stay time from your requested arrival date and the lowest price of the placement.
+
+### HTTP Request
+
+`POST https://galaxy.citybreak.com/v3/api/availability/accommodation/fuzzy/alldepartures`
+
+### Query Parameters
+
+Parameter | Description
+--------- | -----------
+searchId  | From the `result`
+bookKey | From the `result.Result[n].BookKey`
+arrival | The specified arrival date from which you would like valid departure dates.
+personConfig.adults | Number of adults (usually be same as scan)
+personConfig.childrenAges | Ages of children  (usually be same as scan)
+
+## Get bookable alternatives
+
+```shell
+curl -X GET --header 'Accept: application/json' --header 'apiKey:  APIKEY132456789EWOK' 
+'https://galaxy.citybreak.com/v3/api/availability/accommodation/fuzzy/bookablealternatives?searchId=1234abcd-a1b2-1234-a10f-abcd1234abcd&bookKey=2-C&arrival=2018-12-03&personConfig.adults=2'
+
+```
+
+```javascript
+var r = fetch("https://galaxy.citybreak.com/v3/api/availability/accommodation/fuzzy/bookablealternatives?searchId=1234abcd-a1b2-1234-a10f-abcd1234abcd&bookKey=2-C&arrival=2018-12-03&personConfig.adults=2",
+{
+  headers: {
+    "ApiKey:" "APIKEY132456789EWOK",
+    "Accept": "application/json",
+	 "Accept-Language": "en-US"
+  }  
+});
+```
+
+> Example of response:
+
+```json
+[
+  {
+    "BookId": 3,
+    "DiscountInformation": null,
+    "Arrival": "2018-12-04T00:00:00+01:00",
+    "Departure": "2018-12-07T00:00:00+01:00",
     "Subproducts": [
       {
-        "Name": "string",
-        "Currency": "string",
-        "Description": "string",
+        "Name": "Frukost",
+        "Currency": "EUR",
+        "Description": null,
         "IncludedInPrice": true,
         "PayOnSite": false,
         "Price": 0
       }
     ],
-    "OriginalPrice": 0,
-    "Price": 0,
+    "OriginalPrice": null,
+    "Price": 180,
     "RateInformation": {
-      "Name": "string",
-      "CancellationLatest": "2017-12-13",
-      "Terms": "string"
+      "Name": null,
+      "CancellationLatest": null,
+      "Terms": null
+    }
+  },
+  {
+    "BookId": 4,
+    "DiscountInformation": null,
+    "Arrival": "2018-12-04T00:00:00+01:00",
+    "Departure": "2018-12-07T00:00:00+01:00",
+    "Subproducts": [
+      {
+        "Name": "Frukost",
+        "Currency": "EUR",
+        "Description": null,
+        "IncludedInPrice": true,
+        "PayOnSite": false,
+        "Price": 0
+      }
+    ],
+    "OriginalPrice": null,
+    "Price": 300,
+    "RateInformation": {
+      "Name": null,
+      "CancellationLatest": "2018-06-10T02:00:00+02:00",
+      "Terms": null
     }
   }
 ]
 ```
 
-Use the `BookId` when referring to this specific result when adding it to the basket.
+This call returns a list of valid alternatives to book. Use the `BookId` (different to the `bookKey`) when referring to this specific result when adding it to the <a href="https://visit.github.io/galaxy-docs/#fuzzybasket">fuzzy search basket</a>.
+
+### HTTP Request
+
+`POST https://galaxy.citybreak.com/v3/api/availability/accommodation/fuzzy/bookablealternatives`
+
+### Query Parameters
+
+Parameter | Description
+--------- | -----------
+searchId  | From the `result`
+bookKey | From the `result.Result[n].BookKey`
+arrival | The specified arrival date
+departure | The specified departure date
+personConfig.adults | Number of adults (usually be same as scan)
+personConfig.childrenAges | Ages of children  (usually be same as scan)
