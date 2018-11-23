@@ -475,11 +475,11 @@ curl -X PUT
 --header 'Accept: application/json' 
 --header 'apiKey: APIKEY132456789EWOK' 
 --header 'Accept-Language: en-us' 
-'https://galaxy.citybreak.com/v3/api/basket/add/accommodation/fuzzy/{basketId}/{searchId}/{bookKey}'
+'https://galaxy.citybreak.com/v3/api/basket/add/accommodation/fuzzy/{basketId}/{searchId}/{bookId}'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v3/api/basket/add/accommodation/fuzzy/{basketId}/{searchId}/{bookKey}",
+var r = fetch("https://galaxy.citybreak.com/v3/api/basket/add/accommodation/fuzzy/{basketId}/{searchId}/{bookId}",
 {
   method:"PUT"
   headers: {
@@ -496,7 +496,7 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/basket/add/accommodation/fuzz
 true
 ```
 
-Add a booking item to the basket, you must first have checked for the <a href="https://visit.github.io/galaxy-docs/#FuzzyAccommodation">Availability</a> of a property or properties and obtained the search Id and the bookingKey of the product you wish to add to the basket.
+Specifically for the Fuzzy search a booking item to the basket, you must first have checked for the <a href="https://visit.github.io/galaxy-docs/#FuzzyAccommodation">Fuzzy Availability</a> of a property or properties and obtained the search Id and the `bookId` of the product you wish to add to the basket. NOTE: the bookId is obtained from the `BookableAlternatives` and is a separate entity from the `bookKey` used in the regular basket operation
 
 `PUT https://galaxy.citybreak.com/v3/api/basket/add/accommodation/fuzzy/`
 
@@ -506,7 +506,7 @@ Parameter | Description
 --------- | -----------
 basketId | The Id of the basket.
 searchId | The search Id returned by the <a href="https://visit.github.io/galaxy-docs/#Availability">Availability Response</a>
-bookKey | The key of the booking item (product) to add to the basket, found in <a href="https://visit.github.io/galaxy-docs/#FuzzyAccommodation">Availability Response</a>
+bookId | The Id of the booking item (product) to add to the basket, found in <a href="https://visit.github.io/galaxy-docs/#FuzzyAccommodation">the Fuzzy Availability Response</a>
 
 
 
