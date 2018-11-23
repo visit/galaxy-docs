@@ -303,6 +303,32 @@ Parameter | Description
 filter | the POST filter
 Accept-Language | The language culture (e.g en-us)
 
+```json
+{
+  "PointOfSalesId": 0, //int - Mandatory 
+  "Arrival": "2018-11-23T15:23:15.087Z", //DateTime - Mandatory, conforms to ISO 8601
+  "Departure": "2018-11-23T15:23:15.088Z", //DateTime - Mandatory, conforms to ISO 8601
+  "Currency": "string", //string - Mandatory e.g SEK or EUR
+  "PageSize": 0, //int Mandatory
+  "Sort": { //string - Optional
+    "Order": "Asc", //string - Mandatory if parent included
+    "Field": "string" //string - Mandatory if parent included
+  },
+  "PersonConfigurations": [ //List of configurations for guest numbers. Cannot be empty, must represent at least one guest
+    {
+      "Adults": 0, //int - represents number of adults
+      "ChildrenAges": [ //List of ints - each int represents the age of a child guest
+        0
+      ]
+    }
+  ],
+  "ContentFilter": { // Optional - See the ContentFilter section
+  },
+  "OutputFilter": { // Optional -  See the OutputFilter section
+  }
+}
+```
+
 ## Get Previous Search
 
 ```shell
@@ -570,6 +596,11 @@ Parameter | Description
 --------- | -----------
 filter | the POST filter
 Accept-Language | The language culture (e.g en-us)
+
+```json
+{
+
+}
 
 ## Calendar Search
 
