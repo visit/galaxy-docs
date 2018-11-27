@@ -19,8 +19,9 @@ curl -X POST
 --header 'Content-Type: application/json' 
 --header 'Accept: application/json' 
 --header 'Accept-Language: en-us' 
---header 'apiKey: APIKEY132456789EWOK' -d '{
-   "PointOfSalesId": {pointOfSalesId},
+--header 'apiKey: APIKEY132456789EWOK' 
+-d '{
+   "PointOfSalesId": 0,
    "Arrival": "2017-10-14",
    "Departure": "2017-10-15",
    "Currency": "SEK",
@@ -46,7 +47,7 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/availability/accommodation",
 		 "Accept-Language": "en-US"
 	},
 	body: JSON.Stringify({
-	   "PointOfSalesId": {pointOfSalesId},
+	   "PointOfSalesId": 0,
 	   "Arrival": "2017-10-14",
 	   "Departure": "2017-10-15",
 	   "Currency": "SEK",
@@ -68,7 +69,7 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/availability/accommodation",
 ```json
 {
   "AccommodationSearch": {
-    "PointOfSalesId": {pointOfSaleId},
+    "PointOfSalesId": 0,
     "Arrival": "2017-10-14T00:00:00Z",
     "Departure": "2017-10-15T00:00:00Z",
     "Currency": "SEK",
@@ -310,9 +311,9 @@ Accept-Language | The language culture (e.g en-us)
   "Departure": "2018-11-23T15:23:15.088Z", //DateTime - Mandatory, conforms to ISO 8601
   "Currency": "string", //string - Mandatory e.g SEK or EUR
   "PageSize": 0, //int Mandatory
-  "Sort": { //string - Optional
+  "Sort": { // Optional - defaults to Price Ascending
     "Order": "Asc", //string - Mandatory if parent included
-    "Field": "string" //string - Mandatory if parent included
+    "Field": "string" //string - Mandatory if parent included - Price, Name, Random
   },
   "PersonConfigurations": [ //List of configurations for guest numbers. Cannot be empty, must represent at least one guest
     {
@@ -336,7 +337,8 @@ curl -X POST
 --header 'Content-Type: application/json' 
 --header 'Accept: application/json' 
 --header 'Accept-Language: en-us' 
---header 'apiKey: APIKEY132456789EWOK' -d '{
+--header 'apiKey: APIKEY132456789EWOK' 
+-d '{
   "Page": 1,
   "PageSize": 20,
   "SearchId": "aaaa1234-4321-1a2b-asdf-123456asdfgh"
@@ -365,7 +367,7 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/availability/accommodation/ge
 ```json
 {
   "AccommodationSearch": {
-    "PointOfSalesId": {pointOfSaleId},
+    "PointOfSalesId": 0,
     "Arrival": "2017-10-14T00:00:00Z",
     "Departure": "2017-10-15T00:00:00Z",
     "Currency": "SEK",
@@ -599,8 +601,17 @@ Accept-Language | The language culture (e.g en-us)
 
 ```json
 {
-
+  "Page":1, //int mandatory - the pager is 0-indexed so 1 is the second page
+  "PageSize": 0, //int Mandatory
+  "Sort": { // Optional
+    "Order": "Asc", //string - Mandatory if parent included
+    "Field": "string" //string - Mandatory if parent included - Price, Name, Random
+  },
+  "SearchId":"string", //string - Mandatory - the search Id of a still valid accommodation availability search
+  "OutputFilter": { // Optional -  See the OutputFilter section
+  }
 }
+```
 
 ## Calendar Search
 
@@ -609,8 +620,9 @@ curl -X POST
 --header 'Content-Type: application/json' 
 --header 'Accept: application/json' 
 --header 'Accept-Language: en-us' 
---header 'apiKey: APIKEY132456789EWOK' -d '{
-  "PointOfSalesId": {pointOfSaleId},
+--header 'apiKey: APIKEY132456789EWOK' 
+-d '{
+  "PointOfSalesId": 0,
   "Start": "2018-11-09",
   "End": "2018-11-13",
   "Currency": "SEK"
@@ -627,7 +639,7 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/availability/accommodation/ca
 		 "Accept-Language": "en-US"
 	},
 	body: JSON.Stringify({
-    "PointOfSalesId": {pointOfSaleId},
+    "PointOfSalesId": 0,
     "Start": "2018-11-09",
     "End": "2018-11-13",
     "Currency": "SEK"
@@ -707,7 +719,7 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/availability/accommodation/ca
     },
   ],
   "CalendarContext": {
-    "PointOfSalesId": {pointOfSalesId},
+    "PointOfSalesId": 0,
     "Start": "2018-11-09T00:00:00",
     "End": "2018-11-13T00:00:00",
     "Currency": "SEK",
@@ -731,3 +743,14 @@ Parameter | Description
 --------- | -----------
 filter | the POST filter
 Accept-Language | The language culture (e.g en-us)
+
+```json
+{
+  "PointOfSalesId": 0, //int - Mandatory 
+  "Start": "2018-11-23", //DateTime - Mandatory, conforms to ISO 8601
+  "End": "2018-11-23", //DateTime - Mandatory, conforms to ISO 8601
+  "Currency": "string", //string - Mandatory e.g SEK or EUR
+  "ContentFilter": { // Optional - See the ContentFilter section
+  },
+}
+```

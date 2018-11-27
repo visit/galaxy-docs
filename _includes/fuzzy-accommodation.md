@@ -28,7 +28,12 @@ Once you have a bookable alternative you can add it to the basket by calling *PU
 ## Scan 
 
 ```shell
-curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' --header 'Accept-Language: en-us' --header 'apiKey: APIKEY132456789EWOK' -d '{
+curl -X POST 
+--header 'Content-Type: application/json' 
+--header 'Accept: application/json' 
+--header 'Accept-Language: en-us' 
+--header 'apiKey: APIKEY132456789EWOK' 
+-d '{
   "PointOfSalesId": 0,
   "Currency": "EUR",
   "PageSize": 20,
@@ -71,8 +76,8 @@ var r = fetch("http://galaxy.citybreak.com/v3/api/availability/accommodation/fuz
     "Currency": "SEK",
     "PageSize": 20,
     "Stay": {
-      "ArrivalDaysMask": 0x7F, 
-      "DepartureDayMask": 0x7F,
+      "ArrivalDaysMask": 0x7F,
+      "DepartureDayMask": 0x7F, 
       "MinStayLength": 3,
       "MaxStayLength": 5,
       "Arrival": "2018-12-04",
@@ -317,7 +322,7 @@ original constraints.
 
 
 #### Day mask
-A bit mask represented in hexadecimal describing which days that are valid for arriving at or depart at. 
+A bit mask describing which days that are valid for arriving at or depart at. The field is an integer but can also be represented in hex. 
 
 |Hex|Day|Bin
 |-----|-----|-----|
@@ -383,10 +388,47 @@ Parameter | Description
 filter | the POST filter
 Accept-Language | The language culture (e.g en-us)
 
+```json
+{
+  "PointOfSalesId": 0, //int - Mandatory 
+  "Currency": "string", //string - Mandatory e.g SEK or EUR
+  "PageSize": 0, //int Mandatory
+  "Stay": { // Mandatory
+    "ArrivalDaysMask": 0, //int - Optional - use only rightmost seven bits, defaults to 127 (all days)
+    "DepartureDayMask": 0, //int - Optional - use only rightmost seven bits, defaults to 127 (all days)
+    "MinStayLength": 0, // int - Mandatory
+    "MaxStayLength": 0, // int - Mandatory
+    "Arrival": "2018-11-23T15:23:15.087Z", //DateTime - Mandatory, conforms to ISO 8601
+    "Departure": "2018-11-23T15:23:15.088Z", //DateTime - Mandatory, conforms to ISO 8601
+  },
+  "PersonConfigurations": [ //List of configurations for guest numbers. Cannot be empty, must represent at least one guest
+    {
+      "Adults": 0, //int - represents number of adults
+      "ChildrenAges": [ //List of ints - each int represents the age of a child guest
+        0
+      ]
+    }
+  ],
+  "ContentFilter": { // Optional - See the ContentFilter section
+  },
+  "OutputFilter": { // Optional -  See the OutputFilter section
+  },
+  "Sort": { // Optional - default sort is price ascending
+    "Order": "Asc", //string - Mandatory if parent included
+    "Field": "string" //string - Mandatory if parent included - Price, Name, Score, Random
+  }
+}
+```
+
 
 ## Get
 ```shell
-curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' --header 'Accept-Language: en-us' --header 'apiKey: APIKEY132456789EWOK' -d '{
+curl -X POST 
+--header 'Content-Type: application/json' 
+--header 'Accept: application/json' 
+--header 'Accept-Language: en-us' 
+--header 'apiKey: APIKEY132456789EWOK' 
+-d '{
     "Page": 1, // Zero indexed so this is the second page
     "PageSize": 10,
     "Sort": {
@@ -448,9 +490,25 @@ Parameter | Description
 filter | the POST filter
 Accept-Language | The language culture (e.g en-us)
 
+```json
+{
+  "Page":1, //int mandatory - the pager is 0-indexed so 1 is the second page
+  "PageSize": 0, //int Mandatory
+  "Sort": { // Optional
+    "Order": "Asc", //string - Mandatory if parent included
+    "Field": "string" //string - Mandatory if parent included - Price, Name, Random
+  },
+  "SearchId":"string", //string - Mandatory - the search Id of a still valid accommodation availability search
+  "OutputFilter": { // Optional -  See the OutputFilter section
+  }
+}
+```
+
 ## Arrival dates
 ```shell
-curl -X GET --header 'Accept: text/plain' --header 'apiKey:  APIKEY132456789EWOK' 
+curl -X GET 
+--header 'Accept: text/plain' 
+--header 'apiKey:  APIKEY132456789EWOK' 
 'https://galaxy.citybreak.com/v3/api/availability/accommodation/fuzzy/arrivaldates?searchId=1234abcd-a1b2-1234-a10f-abcd1234abcd&bookKey=2-C&firstArrival=2018-12-03&lastArrival=2018-12-05&personConfig.adults=2'
 
 ```
@@ -478,7 +536,7 @@ Get a set of valid arrival dates for a specified item based on your scan.
 
 ### HTTP Request
 
-`POST https://galaxy.citybreak.com/v3/api/availability/accommodation/fuzzy/arrivaldates`
+`GET https://galaxy.citybreak.com/v3/api/availability/accommodation/fuzzy/arrivaldates`
 
 
 ### Query Parameters
@@ -495,7 +553,9 @@ personConfig.childrenAges | Ages of children  (usually be same as scan)
 ## Departure dates
 
 ```shell
-curl -X GET --header 'Accept: application/json' --header 'apiKey:  APIKEY132456789EWOK' 
+curl -X GET 
+--header 'Accept: application/json' 
+--header 'apiKey:  APIKEY132456789EWOK' 
 'https://galaxy.citybreak.com/v3/api/availability/accommodation/fuzzy/departuredates?searchId=1234abcd-a1b2-1234-a10f-abcd1234abcd&bookKey=2-C&arrival=2018-12-03&personConfig.adults=2'
 
 ```
@@ -533,7 +593,7 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/availability/accommodation/fu
 Get a set of valid departure dates for the specified item given the arrival date.
 ### HTTP Request
 
-`POST https://galaxy.citybreak.com/v3/api/availability/accommodation/fuzzy/departuredates`
+`GET https://galaxy.citybreak.com/v3/api/availability/accommodation/fuzzy/departuredates`
 
 ### Query Parameters
 
@@ -549,7 +609,9 @@ personConfig.childrenAges | Ages of children  (usually be same as scan)
 ## Detailed Departure Info
 
 ```shell
-curl -X GET --header 'Accept: application/json' --header 'apiKey:  APIKEY132456789EWOK' 
+curl -X GET 
+--header 'Accept: application/json' 
+--header 'apiKey:  APIKEY132456789EWOK' 
 'https://galaxy.citybreak.com/v3/api/availability/accommodation/fuzzy/alldepartures?searchId=1234abcd-a1b2-1234-a10f-abcd1234abcd&bookKey=2-C&arrival=2018-12-03&personConfig.adults=2'
 
 ```
@@ -658,7 +720,7 @@ Similar to the departure dates query, this call will return a more detailed list
 
 ### HTTP Request
 
-`POST https://galaxy.citybreak.com/v3/api/availability/accommodation/fuzzy/alldepartures`
+`GET https://galaxy.citybreak.com/v3/api/availability/accommodation/fuzzy/alldepartures`
 
 ### Query Parameters
 
@@ -746,7 +808,7 @@ This call returns a list of valid alternatives to book. Use the `BookId` (differ
 
 ### HTTP Request
 
-`POST https://galaxy.citybreak.com/v3/api/availability/accommodation/fuzzy/bookablealternatives`
+`GET https://galaxy.citybreak.com/v3/api/availability/accommodation/fuzzy/bookablealternatives`
 
 ### Query Parameters
 
