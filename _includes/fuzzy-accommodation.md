@@ -388,7 +388,8 @@ Parameter | Description
 filter | the POST filter
 Accept-Language | The language culture (e.g en-us)
 
-```json
+<div class="center-column"></div>
+```
 {
   "PointOfSalesId": 0, //int - Mandatory 
   "Currency": "string", //string - Mandatory e.g SEK or EUR
@@ -490,7 +491,8 @@ Parameter | Description
 filter | the POST filter
 Accept-Language | The language culture (e.g en-us)
 
-```json
+<div class="center-column"></div>
+```
 {
   "Page":1, //int mandatory - the pager is 0-indexed so 1 is the second page
   "PageSize": 0, //int Mandatory

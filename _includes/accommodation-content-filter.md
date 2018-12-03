@@ -1,17 +1,5 @@
 # Accommodation Content Filter
 
-```json
-{
-  "Geos": [],
-  "Categories": [],
-  "Pois": [],
-  "Search": "",
-  "Position": {},
-  "Information": {},
-  "Ids": [],
-}
-```
-
 Content filters used in Accommodation availability queries. All individual filters are optional, i.e. you can filter just on `Categories` and `Search`
 
 ## Categories, Geonodes, Pois
@@ -97,6 +85,20 @@ Parameter | Type | Description
 Categories | int[] | List of categories Ids.
 Geos | int[] | List of geonodes Ids.
 Pois | int[] | List of pois Ids.
+
+<code class="center-column">
+```
+{
+  "Geos": [],
+  "Categories": [],
+  "Pois": [],
+  "Search": "",
+  "Position": {},
+  "Information": {},
+  "Ids": [],
+}
+```
+</code>
 
 ## Search in Name
 

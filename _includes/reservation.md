@@ -159,7 +159,7 @@ Gets all the information about a booking by version
 
 Parameter | Description
 --------- | -----------
-reservationVersionId | The Id for the specific verion of the Reservation
+reservationVersionId | The Id for the specific version of the Reservation
 
 
 
@@ -292,7 +292,7 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/reservation/cancel/{bookingCo
 
 > Example of response: int32
 
-This will cancel a reservation. Similarly to commiting a Basket, it reurns an integer. Use this value in <a href="https://visit.github.io/galaxy-docs/#commit-status">Commit Status</a> to see the status of your cancel job
+This will cancel a reservation. Similarly to committing a Basket, it returns an integer. Use this value in <a href="https://visit.github.io/galaxy-docs/#commit-status">Commit Status</a> to see the status of your cancel job
 
 ### HTTP Request
 
@@ -339,7 +339,7 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/reservation/cancel/info/{book
 }
 ```
 
-After a concellation, get the cancellation info of the booking based on the booking code.
+After a cancellation, get the cancellation info of the booking based on the booking code.
 
 
 ### HTTP Request

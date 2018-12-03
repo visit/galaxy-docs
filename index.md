@@ -8,7 +8,7 @@ language_tabs:
 toc_footers:
   - <a href='https://help.citybreak.com/'>Citybreak Support</a> 
   - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
-  - <a href='https://visit.github.io/galaxy-docs-v2'>Version 2 Documentation (stable)</a>
+  - <a href='https://visit.github.io/galaxy-docs-v2'>Galaxy V2 Documentation (stable)</a>
 
 includes:
   - intro
@@ -17,6 +17,8 @@ includes:
   - accommodation
   - availability-accommodation
   - fuzzy-accommodation
+  - accommodation-content-filter
+  - output-filter
   - content
   - basket
   - reservation

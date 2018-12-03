@@ -1,4 +1,4 @@
-# Accommodation Content Filter
+# Output Filter
 
 ```shell
 curl -X POST 
@@ -208,11 +208,10 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/availability/accommodation",
   "TotalResults": 1
 }
 ```
-```
 
 Output filters used in Availability queries. All the properties in the filter relate to content. Each property is optional but Attributes is an inclusive filter, if no attributes to filter on are provided all attributes are sent, while the boolean properties such as Categories default to false (which will return null for that content property)
 
-```json
+<code class ="center-column">
 {
   "OutputFilter": { // Optional
     "Attributes": [ // List of ints - Optional, defaults to showing all attributes if not included
@@ -224,7 +223,7 @@ Output filters used in Availability queries. All the properties in the filter re
     "Position": true // bool - Optional, defaults to false if not included
   }
 }
-```
+</code>
 
 ### Parameters
 

@@ -1,7 +1,5 @@
 # Country Code
 
-> Country Code
-
 **Country Code** calls provide information about available country codes for your API key. There are two calls, one to provide all available country codes and one HEAD call to check if a specified country code is supported.
 
 **GET** and **HEAD** operations 

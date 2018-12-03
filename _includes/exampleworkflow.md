@@ -2,7 +2,7 @@
 
 > Example Workflow
 
-This section will provide a very basic example workflow for booking a hotel room for one adult and one child that encompasses creating a basket, searching for availability, adding items and customer information, commiting then checking the reservation and, finally,  cancelling it. For each step, see to the right of the page for ptototype calls using cURL or simple Javascript calls as well as example responses. Each of these calls (not counting the API keys and specific parameters that you will need to plug in) are the minimum requirements for a successful response.
+This section will provide a very basic example workflow for booking a hotel room for one adult and one child that encompasses creating a basket, searching for availability, adding items and customer information, committing then checking the reservation and, finally,  cancelling it. For each step, see to the right of the page for prototype calls using cURL or simple Javascript calls as well as example responses. Each of these calls (not counting the API keys and specific parameters that you will need to plug in) are the minimum requirements for a successful response.
 
 Choose a Point of Sale
 Choose a currency

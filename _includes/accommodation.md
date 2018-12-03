@@ -1,7 +1,5 @@
 # Accommodation
 
-> Accommodation
-
 **Accommodation** operations provide information on **Accommodation** products available in a point of sale. No availability information is included here, it is primarily content (images, position, categories, etc).
 
 All **GET** operations 
