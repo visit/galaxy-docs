@@ -92,20 +92,20 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/availability/accommodation",
   },
   "Accommodations": [
     {
-      "Id": "cbis:1136433",
-      "Name": "Edelbrock Hotell 3",
+      "Id": "cbis:12345",
+      "Name": "BookVisit Hotel",
       "Content": {
         "PriceFrom": 0,
         "Images": [
           {
-            "Uri": "//images.citybreak.com/image.aspx?ImageId=4014876",
+            "Uri": "//images.citybreak.com/image.aspx?ImageId=10101010",
             "IsMain": true,
             "Name": null,
             "Copyright": null,
             "Description": null
           },
           {
-            "Uri": "//images.citybreak.com/image.aspx?ImageId=4014877",
+            "Uri": "//images.citybreak.com/image.aspx?ImageId=1010101010",
             "IsMain": false,
             "Name": null,
             "Copyright": null,
@@ -116,17 +116,17 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/availability/accommodation",
           {
             "Id": 99,
             "Name": "Name",
-            "Value": "Edelbrock Hotell 3"
+            "Value": "BookVisit Hotel"
           },
           {
             "Id": 101,
             "Name": "Introduction",
-            "Value": "Edelbrock Hotell"
+            "Value": "Leading e-commerce platform for the DMO and individual hotels in the Nordics."
           },
           {
             "Id": 102,
             "Name": "Description",
-            "Value": "Edelbrock Hotell!"
+            "Value": "The absolute Leading e-commerce platform for the DMO and individual hotels in the Nordics!"
           },
           {
             "Id": 100038,
@@ -155,7 +155,7 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/availability/accommodation",
           },
           "Placements": [
             {
-              "Name": "Dubbelrum med xbädd ÖSD",
+              "Name": "Dubbelrum med extra säng",
               "Content": {
                 "PriceFrom": null,
                 "Images": [],
@@ -163,7 +163,7 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/availability/accommodation",
                   {
                     "Id": 99,
                     "Name": "Name",
-                    "Value": "Dubbelrum med xbädd ÖSD"
+                    "Value": "Dubbelrum med extra säng"
                   }
                 ],
                 "Categories": null,
@@ -209,7 +209,7 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/availability/accommodation",
           },
           "Placements": [
             {
-              "Name": "Dubbelrum ÖSD",
+              "Name": "Dubbelrum",
               "Content": {
                 "PriceFrom": null,
                 "Images": [],
@@ -217,7 +217,7 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/availability/accommodation",
                   {
                     "Id": 99,
                     "Name": "Name",
-                    "Value": "Dubbelrum ÖSD"
+                    "Value": "Dubbelrum"
                   }
                 ],
                 "Categories": null,
@@ -390,20 +390,20 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/availability/accommodation/ge
   },
   "Accommodations": [
     {
-      "Id": "cbis:1136433",
-      "Name": "Edelbrock Hotell 3",
+      "Id": "cbis:12345",
+      "Name": "BookVisit Hotel",
       "Content": {
         "PriceFrom": 0,
         "Images": [
           {
-            "Uri": "//images.citybreak.com/image.aspx?ImageId=4014876",
+            "Uri": "//images.citybreak.com/image.aspx?ImageId=10101010",
             "IsMain": true,
             "Name": null,
             "Copyright": null,
             "Description": null
           },
           {
-            "Uri": "//images.citybreak.com/image.aspx?ImageId=4014877",
+            "Uri": "//images.citybreak.com/image.aspx?ImageId=10101010",
             "IsMain": false,
             "Name": null,
             "Copyright": null,
@@ -414,17 +414,17 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/availability/accommodation/ge
           {
             "Id": 99,
             "Name": "Name",
-            "Value": "Edelbrock Hotell 3"
+            "Value": "BookVisit Hotel"
           },
           {
             "Id": 101,
             "Name": "Introduction",
-            "Value": "Edelbrock Hotell"
+            "Value": "Leading e-commerce platform for the DMO and individual hotels in the Nordics."
           },
           {
             "Id": 102,
             "Name": "Description",
-            "Value": "Edelbrock Hotell!"
+            "Value": "The absolute Leading e-commerce platform for the DMO and individual hotels in the Nordics!"
           },
           {
             "Id": 100038,
@@ -453,7 +453,7 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/availability/accommodation/ge
           },
           "Placements": [
             {
-              "Name": "Dubbelrum med xbädd ÖSD",
+              "Name": "Dubbelrum med extra säng",
               "Content": {
                 "PriceFrom": null,
                 "Images": [],
@@ -461,7 +461,7 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/availability/accommodation/ge
                   {
                     "Id": 99,
                     "Name": "Name",
-                    "Value": "Dubbelrum med xbädd ÖSD"
+                    "Value": "Dubbelrum med extra säng"
                   }
                 ],
                 "Categories": null,
@@ -507,7 +507,7 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/availability/accommodation/ge
           },
           "Placements": [
             {
-              "Name": "Dubbelrum ÖSD",
+              "Name": "Dubbelrum",
               "Content": {
                 "PriceFrom": null,
                 "Images": [],
@@ -515,7 +515,7 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/availability/accommodation/ge
                   {
                     "Id": 99,
                     "Name": "Name",
-                    "Value": "Dubbelrum ÖSD"
+                    "Value": "Dubbelrum"
                   }
                 ],
                 "Categories": null,
@@ -657,7 +657,7 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/availability/accommodation/ca
       "IsAvailable": true,
       "Groups": [
         {
-          "Id": "ptg:1234567",
+          "Id": "ptg:987654",
           "Name": "Visit Hotell",
           "Products": [
             {

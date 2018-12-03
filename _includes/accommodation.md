@@ -37,7 +37,7 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/accommodation/{pointOfSaleId}
   "TotalResults": 1,
   "Items": [
     {
-      "Id": "cbis:1222681",
+      "Id": "cbis:12345",
       "Name": "BookVisit Hotel",
       "Content": {
         "PriceFrom": 0,
@@ -134,7 +134,7 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/accommodation/view/{pointOfSa
 
 ```json
 {
-  "Id": "cbis:1222681",
+  "Id": "cbis:12345",
   "Name": "BookVisit Hotel",
   "Content": {
     "PriceFrom": 0,

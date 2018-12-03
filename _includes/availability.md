@@ -70,7 +70,7 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/availability/accommodation",
 ```json
 {
   "AccommodationSearch": {
-    "PointOfSalesId": {pointOfSaleId},
+    "PointOfSalesId": 0,
     "Arrival": "2017-10-14T00:00:00Z",
     "Departure": "2017-10-15T00:00:00Z",
     "Currency": "SEK",

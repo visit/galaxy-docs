@@ -201,40 +201,40 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/basket/{basketId}",
   "Groups": [
     {
       "Id": 1136433,
-      "Name": "Edelbrock Hotell 3",
+      "Name": "BookVisit Hotel",
       "Content": {
         "PriceFrom": 0,
         "Images": [
           {
-            "Uri": "//images.citybreak.com/image.aspx?ImageId=4014876",
+            "Uri": "//images.citybreak.com/image.aspx?ImageId=101010101010",
             "IsMain": true,
             "Name": null,
             "Copyright": null,
             "Description": null
           },
           {
-            "Uri": "//images.citybreak.com/image.aspx?ImageId=4014877",
+            "Uri": "//images.citybreak.com/image.aspx?ImageId=1010101010",
             "IsMain": false,
             "Name": null,
             "Copyright": null,
             "Description": null
           }
         ],
-         "Information": [
+        "Information": [
           {
             "Id": 99,
             "Name": "Name",
-            "Value": "Edelbrock Hotell 3"
+            "Value": "BookVisit Hotel"
           },
           {
             "Id": 101,
             "Name": "Introduction",
-            "Value": "Edelbrock Hotell"
+            "Value": "Leading e-commerce platform for the DMO and individual hotels in the Nordics."
           },
           {
             "Id": 102,
             "Name": "Description",
-            "Value": "Edelbrock Hotell!"
+            "Value": "The absolute Leading e-commerce platform for the DMO and individual hotels in the Nordics!"
           },
           {
             "Id": 100038,
@@ -323,7 +323,7 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/basket/{basketId}",
               {
                 "Id": 99,
                 "Name": "Name",
-                "Value": "Dubbelrum ÖSD"
+                "Value": "Dubbelrum"
               }
             ],
             "Categories": null,
@@ -331,7 +331,7 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/basket/{basketId}",
             "Pois": null,
             "Position": null
           },
-          "Name": "Dubbelrum ÖSD",
+          "Name": "Dubbelrum",
           "IsDeletable": true,
           "Price": {
             "Price": 350,

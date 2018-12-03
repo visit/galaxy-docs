@@ -238,19 +238,19 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/availability/accommodation",
   "Accommodations": [
     {
       "Id": 1136433,
-      "Name": "Edelbrock Hotell 3",
+      "Name": "BookVisit Hotel",
       "Content": {
         "PriceFrom": 0,
         "Images": [
           {
-            "Uri": "//images.citybreak.com/image.aspx?ImageId=4014876",
+            "Uri": "//images.citybreak.com/image.aspx?ImageId=1010101010",
             "IsMain": true,
             "Name": null,
             "Copyright": null,
             "Description": null
           },
           {
-            "Uri": "//images.citybreak.com/image.aspx?ImageId=4014877",
+            "Uri": "//images.citybreak.com/image.aspx?ImageId=1010101010",
             "IsMain": false,
             "Name": null,
             "Copyright": null,
@@ -261,17 +261,17 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/availability/accommodation",
           {
             "Id": 99,
             "Name": "Name",
-            "Value": "Edelbrock Hotell 3"
+            "Value": "BookVisit Hotel"
           },
           {
             "Id": 101,
             "Name": "Introduction",
-            "Value": "Edelbrock Hotell"
+            "Value": "Leading e-commerce platform for the DMO and individual hotels in the Nordics."
           },
           {
             "Id": 102,
             "Name": "Description",
-            "Value": "Edelbrock Hotell!"
+            "Value": "The absolute Leading e-commerce platform for the DMO and individual hotels in the Nordics!"
           },
           {
             "Id": 100038,
@@ -300,7 +300,7 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/availability/accommodation",
           },
           "Placements": [
             {
-              "Name": "Dubbelrum med xbädd ÖSD",
+              "Name": "Dubbelrum med extra säng",
               "Content": {
                 "PriceFrom": null,
                 "Images": [],
@@ -308,7 +308,7 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/availability/accommodation",
                   {
                     "Id": 99,
                     "Name": "Name",
-                    "Value": "Dubbelrum med xbädd ÖSD"
+                    "Value": "Dubbelrum med extra säng"
                   }
                 ],
                 "Categories": null,
@@ -354,7 +354,7 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/availability/accommodation",
           },
           "Placements": [
             {
-              "Name": "Dubbelrum ÖSD",
+              "Name": "Dubbelrum",
               "Content": {
                 "PriceFrom": null,
                 "Images": [],
@@ -362,7 +362,7 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/availability/accommodation",
                   {
                     "Id": 99,
                     "Name": "Name",
-                    "Value": "Dubbelrum ÖSD"
+                    "Value": "Dubbelrum"
                   }
                 ],
                 "Categories": null,
@@ -437,13 +437,13 @@ At a minimum, an <a href="https://visit.github.io/galaxy-docs/#accommodation-15"
 
 The information above is one of the most complex and probably the most important parts of the Galaxy API. It returns a list of "Accommodations", which in this case for Citybreak are Hotel Properties (or Bed & Breakfasts, Apartments, etc), within which is a list of "Placements" which are Hotel Rooms (or Beds or Apartments, etc. depending on the property. These may also come with compulsory Add-ons (also known as sub-products) like breakfast included or champagne on arrival. 
 
-Each Accomodation object will also have content information about the property, that can also be found in an <a href="https://visit.github.io/galaxy-docs/#accommodation">Accommodation Search</a>, and how many room types (Placements) are available. 
+Each Accommodation object will also have content information about the property, that can also be found in an <a href="https://visit.github.io/galaxy-docs/#accommodation">Accommodation Search</a>, and how many room types (Placements) are available. 
 
 The placement objects represent the products that will actually be booked. As such they have a lot of the important information a customer might want to see, they contain a "Price" that represents total spend as well as a "PricePeriods" list that breaks the cost dow for example. Other useful information might be included in the content info or the room configuration/occupancy allowances, etc. The most important information for the booking process however is the **BookingKey**. There is one per "Placement" and is used to <a href="https://visit.github.io/galaxy-docs/#add-booking-item">add a product to a Basket</a>.
 
-Also required is the **SearchId** that represents your search. The object represented by this unique id will hold references to all the products that were returned in the Accomodation Search. Also keep note of the **ExpirationDate** of the search as the reference will be invalid after this timestamp is passed.
+Also required is the **SearchId** that represents your search. The object represented by this unique id will hold references to all the products that were returned in the Accommodation Search. Also keep note of the **ExpirationDate** of the search as the reference will be invalid after this timestamp is passed.
 
-For this example we will use the double room at Edelbrock Hotell 3 with a handy Garden Gnome included:
+For this example we will use the double room at BookVisit Hotel with a handy Garden Gnome included:
 
 "BookingKey" = **19-A**
 "SearchId" = **899fe054-3bb4-4ff8-b577-ba716b0b3317**
@@ -759,12 +759,12 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/reservation/latest/EWOK12",
       "Products": [
         {
           "Id": 3,
-          "Name": "Dubbelrum ÖSD",
+          "Name": "Dubbelrum",
           "Price": 350
         }
       ],
       "Id": 153663,
-      "Name": "Edelbrock Hotell"
+      "Name": "BookVisit Hotel"
     }
   ]
 }

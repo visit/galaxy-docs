@@ -264,7 +264,7 @@ curl -X POST
    ],
    ContentFilter{
       "ProductIds": [
-        "cbis:123456", "ptg:987654"
+        "cbis:12345", "ptg:987654"
       ]
    }
  }' 'https://galaxy.citybreak.com/v3/api/availability/accommodation'
@@ -295,7 +295,7 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/availability/accommodation",
 	   ],
     "ContentFilter"{
       "ProductIds": [
-        "cbis:123456", "ptg:987654"
+        "cbis:12345", "ptg:987654"
       ]
     }
 	})  
@@ -380,33 +380,43 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/availability/accommodation",
 	       ] 
 	     }
 	   ],
-    "ContentFilter"{
-      "Information": {
-        "Operator": "AND",
-        "Queries": [
-          {
-          "Id": 0,
-          "Type": "Value",
-          "Value": "string",
-          "SubQuery": {
-            "Operator": "OR",
-            "Queries": [
-              {
-                "Id": 100059,
-                "Type": "Value",
-                "Value": "true"
-              },
-            "SubQuery": {}
+"ContentFilter":{
+  "Information": {
+    "Operator": "AND",
+    "Queries": [
+      {
+        "Id": 110,
+        "Type": "Has",
+        "Value": null
+      },
+      {
+        "Id": 100651,
+        "Type": "Value",
+        "Value": "false",
+        "SubQuery":{
+          "Operator": "AND",
+          "Queries": [
+            {
+              "Id": 100666,
+              "Type": "Value",
+              "Value": "false"
+            },
+            {
+              "Id": 100670,
+              "Type": "Value",
+              "Value": "true"
             }
-          }
-        ]
+          ]
+        }
       }
-    }
+    ]
+  }
+}
 	})  
 });
 ```
 
-Filter products by the content of the Information they carry, by having an attribute or not having.
+Filter products by the content of the Information they carry. You can filter on the existence of an attribute or on its content. Subqueries are a bit tricky but essentially allow you to mix AND and OR operators. For example the sample query asks for products where the following boolean logic is met `Has attribute 110 **OR** Attribute 100651 is false **OR** (100666 is false **AND** 100666 is true)`
 
 ### Operator
 

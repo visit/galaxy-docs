@@ -137,12 +137,12 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/reservation/version/{reservat
       "Products": [
         {
           "Id": 3,
-          "Name": "Dubbelrum ÖSD",
+          "Name": "Dubbelrum",
           "Price": 350
         }
       ],
       "Id": 153663,
-      "Name": "Edelbrock Hotell"
+      "Name": "BookVisit Hotel"
     }
   ]
 }
@@ -241,12 +241,12 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/reservation/latest/{bookingCo
       "Products": [
         {
           "Id": 3,
-          "Name": "Dubbelrum ÖSD",
+          "Name": "Dubbelrum",
           "Price": 350
         }
       ],
       "Id": 153663,
-      "Name": "Edelbrock Hotell"
+      "Name": "BookVisit Hotel"
     }
   ]
 }
