@@ -304,15 +304,17 @@ Accept-Language | The language culture (e.g en-us)
 <code class="center-column">
 {
   "PointOfSalesId": 0, //int - Mandatory 
-  "Arrival": "2018-11-23T15:23:15.087Z", //DateTime - Mandatory, conforms to ISO 8601
-  "Departure": "2018-11-23T15:23:15.088Z", //DateTime - Mandatory, conforms to ISO 8601
+  "Arrival": "2018-11-23T15:23:15.087Z", //DateTime - Mandatory
+  "Departure": "2018-11-23T15:23:15.088Z", //DateTime - Mandatory
   "Currency": "string", //string - Mandatory e.g SEK or EUR
   "PageSize": 0, //int Mandatory
   "Sort": { // Optional - defaults to Price Ascending
     "Order": "Asc", //string - Mandatory if parent included
     "Field": "string" //string - Mandatory if parent included - Price, Name, Random
   },
-  "PersonConfigurations": [ //List of configurations for guest numbers. Cannot be empty, must represent at least one guest
+  //List of configurations for guest numbers. Each item represents a "room". 
+  //Cannot be empty, must represent at least one guest
+  "PersonConfigurations": [ 
     {
       "Adults": 0, //int - represents number of adults
       "ChildrenAges": [ //List of ints - each int represents the age of a child guest
@@ -604,7 +606,8 @@ Accept-Language | The language culture (e.g en-us)
     "Order": "Asc", //string - Mandatory if parent included
     "Field": "string" //string - Mandatory if parent included - Price, Name, Random
   },
-  "SearchId":"string", //string - Mandatory - the search Id of a still valid accommodation availability search
+  //string - Mandatory - the search Id of a still valid accommodation availability search
+  "SearchId":"string", 
   "OutputFilter": { // Optional -  See <a href="https://visit.github.io/galaxy-docs/#output-filter">OutputFilter</a>
   }
 }

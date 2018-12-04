@@ -402,7 +402,9 @@ Accept-Language | The language culture (e.g en-us)
     "Arrival": "2018-11-23T15:23:15.087Z", //DateTime - Mandatory, conforms to ISO 8601
     "Departure": "2018-11-23T15:23:15.088Z", //DateTime - Mandatory, conforms to ISO 8601
   },
-  "PersonConfigurations": [ //List of configurations for guest numbers. Cannot be empty, must represent at least one guest
+  //List of configurations for guest numbers. Each item represents a "room". 
+  //Cannot be empty, must represent at least one guest
+  "PersonConfigurations": [
     {
       "Adults": 0, //int - represents number of adults
       "ChildrenAges": [ //List of ints - each int represents the age of a child guest

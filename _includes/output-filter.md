@@ -214,7 +214,8 @@ Output filters used in Availability queries. All the properties in the filter re
 <code class ="center-column">
 {
   "OutputFilter": { // Optional
-    "Attributes": [ // List of ints - Optional, defaults to showing all attributes if not included
+    // List of ints - Optional, defaults to showing all attributes if not included
+    "Attributes": [ 
       0
     ],
     "Categories": true, // bool - Optional, defaults to false if not included
