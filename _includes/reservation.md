@@ -1,8 +1,6 @@
 # Reservation
 
-> Reservation
-
-**Reservation** calls provide information on, and the ability to cancel, bookings that have been commited. The **Booking Code** is a universal reference for a reservation while the **ReservationVersionId** will show you the different versions of the booking if things have been changed
+**Reservation** calls provide information on, and the ability to cancel, bookings that have been commited. The `BookingCode` is a universal reference for a reservation while the `ReservationVersionId` will show you the different versions of the booking if things have been changed
 
 **GET** and **POST** operations 
 

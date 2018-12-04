@@ -87,7 +87,6 @@ Geos | int[] | List of geonodes Ids.
 Pois | int[] | List of pois Ids.
 
 <code class="center-column">
-```
 {
   "Geos": [],
   "Categories": [],
@@ -97,7 +96,6 @@ Pois | int[] | List of pois Ids.
   "Information": {},
   "Ids": [],
 }
-```
 </code>
 
 ## Search in Name

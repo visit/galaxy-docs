@@ -1,9 +1,9 @@
 # Content
 
-**Content** calls provide information about several content types used by your org, Attributes, GeoNodes, Points of Interest and Categories. This can be useful when creating content filters on your site as each of these types are suitable for content filtering on **Availability** searches. As with other calls, these are available in the languages your organisation supports and has translated (for non-system content). You need the relevant **Point of Sale Id** for all these calls.
+**Content** calls provide information about several content types used by your org, Attributes, GeoNodes, Points of Interest and Categories. This can be useful when creating content filters on your site as each of these types are suitable for content filtering on **Availability** searches. As with other calls, these are available in the languages your organisation supports and has translated (for non-system content). You need the relevant `pointOfSalesId` for all these calls.
 
 All **GET** operations 
-<aside class="notice">NB: if using the Visit Test Organisation API Key you can use 17692 as the **{pointOfSalesId}**</aside>
+<aside class="notice">NB: if using the Visit Test Organisation API Key you can use 17692 as the `pointOfSalesId`</aside>
 
 ## Attributes
 

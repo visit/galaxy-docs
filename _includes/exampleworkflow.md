@@ -1,7 +1,5 @@
 # Example Workflow
 
-> Example Workflow
-
 This section will provide a very basic example workflow for booking a hotel room for one adult and one child that encompasses creating a basket, searching for availability, adding items and customer information, committing then checking the reservation and, finally,  cancelling it. For each step, see to the right of the page for prototype calls using cURL or simple Javascript calls as well as example responses. Each of these calls (not counting the API keys and specific parameters that you will need to plug in) are the minimum requirements for a successful response.
 
 Choose a Point of Sale
@@ -36,7 +34,7 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/pointofsales",
 });
 ```
 
-> Response:
+> Example of response:
 
 ```json
 [
@@ -62,7 +60,7 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/pointofsales",
   }
 ]
 ```
-The first step is to obtain a valid <a href="https://visit.github.io/galaxy-docs/#point-of-sales">Point of Sale</a> Identifier. This is needed for many of the following operations and defines the products available for search as well as many of the settings important for creating a booking, such as rate codes availability periods, etc. We will go with the "Test salespoint Distribution API" Point of Sale - **1234570**
+The first step is to obtain a valid <a href="https://visit.github.io/galaxy-docs/#point-of-sale">Point of Sale</a> Identifier. This is needed for many of the following operations and defines the products available for search as well as many of the settings important for creating a booking, such as rate codes availability periods, etc. We will go with the "Test salespoint Distribution API" Point of Sale - **1234570**
 
 ### HTTP Request
 
@@ -146,7 +144,7 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/basket/create",
 }
 ```
 
-For all booking operations you will need a <a href="https://visit.github.io/galaxy-docs/#create-basket">Shopping Basket</a>. This entity will be the reference for all information related to a booking, right up until the time the customer decides to commit to the booking and has provided all the necessary information. It is therefore very important to hold a reference to the BasketId, in this case - **87654321**
+For all booking operations you will need a <a href="https://visit.github.io/galaxy-docs/#create-basket">Shopping Basket</a>. This entity will be the reference for all information related to a booking, right up until the time the customer decides to commit to the booking and has provided all the necessary information. It is therefore very important to hold a reference to the `BasketId`, in this case - **87654321**
 
 ### HTTP Request
 
@@ -186,26 +184,26 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/availability/accommodation",
 {
 	method: "POST",
 	headers: {
-	    "ApiKey:" "APIKEY132456789EWOK",
-	    "Accept": "application/json",
-		 "Accept-Language": "en-US"
+    "ApiKey:" "APIKEY132456789EWOK",
+    "Accept": "application/json",
+    "Accept-Language": "en-US"
 	},
 	body: JSON.Stringify({
-	   "PointOfSalesId": 1234570,
-	   "Arrival": "2017-10-14T12:27:58.851Z",
-	   "Departure": "2017-10-15T12:27:58.851Z",
-	   "Currency": "SEK",
-	   "PageSize": 20,
-	   "Page": 0,
-	   "PersonConfigurations": [
-	     {
-	       "Adults": 1,
-	       "ChildrenAges": [
-	         1
-	       ] 
-	     }
-	   ]
-	})  
+    "PointOfSalesId": 1234570,
+    "Arrival": "2017-10-14T12:27:58.851Z",
+    "Departure": "2017-10-15T12:27:58.851Z",
+    "Currency": "SEK",
+    "PageSize": 20,
+    "Page": 0,
+    "PersonConfigurations": [
+      {
+        "Adults": 1,
+        "ChildrenAges": [
+          1
+        ]
+      }
+	  ]
+	})
 });
 ```
 
@@ -433,20 +431,20 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/availability/accommodation",
 }
 ```
 
-At a minimum, an <a href="https://visit.github.io/galaxy-docs/#accommodation-15">Availability Search</a> requires the **PointOfSalesId** we obtained earlier (1234570) and the **Currency** ("SEK") as well as the **Arrival** and **Departure** dates we want to search for, the **PersonConfigurations** (i.e. the number of guests both Adult and Child), and the "PageSize" of the result you want. If there are 50 results and you want to have 20 products at a time, you can check the total number products in the first response at **Page** 0 and repeat the request incrementing the **Page** as necessary. 
+At a minimum, an <a href="https://visit.github.io/galaxy-docs/#availability---accommodation">Availability Search</a> requires the `PointOfSalesId` we obtained earlier (1234570) and the `Currency` ("SEK") as well as the `Arrival` and `Departure` dates we want to search for, the `PersonConfigurations` (i.e. the number of guests both Adult and Child), and the "PageSize" of the result you want. If there are 50 results and you want to have 20 products at a time, you can check the total number products in the first response at `Page` 0 and repeat the request incrementing the `Page` as necessary. 
 
 The information above is one of the most complex and probably the most important parts of the Galaxy API. It returns a list of "Accommodations", which in this case for Citybreak are Hotel Properties (or Bed & Breakfasts, Apartments, etc), within which is a list of "Placements" which are Hotel Rooms (or Beds or Apartments, etc. depending on the property. These may also come with compulsory Add-ons (also known as sub-products) like breakfast included or champagne on arrival. 
 
 Each Accommodation object will also have content information about the property, that can also be found in an <a href="https://visit.github.io/galaxy-docs/#accommodation">Accommodation Search</a>, and how many room types (Placements) are available. 
 
-The placement objects represent the products that will actually be booked. As such they have a lot of the important information a customer might want to see, they contain a "Price" that represents total spend as well as a "PricePeriods" list that breaks the cost dow for example. Other useful information might be included in the content info or the room configuration/occupancy allowances, etc. The most important information for the booking process however is the **BookingKey**. There is one per "Placement" and is used to <a href="https://visit.github.io/galaxy-docs/#add-booking-item">add a product to a Basket</a>.
+The placement objects represent the products that will actually be booked. As such they have a lot of the important information a customer might want to see, they contain a "Price" that represents total spend as well as a "PricePeriods" list that breaks the cost dow for example. Other useful information might be included in the content info or the room configuration/occupancy allowances, etc. The most important information for the booking process however is the `BookingKey`. There is one per `Placement` and is used to <a href="https://visit.github.io/galaxy-docs/#add-booking-item">add a product to a Basket</a>.
 
-Also required is the **SearchId** that represents your search. The object represented by this unique id will hold references to all the products that were returned in the Accommodation Search. Also keep note of the **ExpirationDate** of the search as the reference will be invalid after this timestamp is passed.
+Also required is the `SearchId` that represents your search. The object represented by this unique id will hold references to all the products that were returned in the Accommodation Search. Also keep note of the `ExpirationDate` of the search as the reference will be invalid after this timestamp is passed.
 
 For this example we will use the double room at BookVisit Hotel with a handy Garden Gnome included:
 
-"BookingKey" = **19-A**
-"SearchId" = **899fe054-3bb4-4ff8-b577-ba716b0b3317**
+`BookingKey` = **19-A**
+`SearchId` = **899fe054-3bb4-4ff8-b577-ba716b0b3317**
 
 ### HTTP Request
 
@@ -481,7 +479,7 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/basket/add/accommodation/8765
 true
 ```
 
-Taking the **BasketId**: 87654321 of the basket we created earlier, the **SearchId**: 899fe054-3bb4-4ff8-b577-ba716b0b3317 from the availability search and the **BookingCode**: 19-A of the product we selected, we can now <a href="https://visit.github.io/galaxy-docs/#add-booking-item">add a product to our Basket</a>.
+Taking the `BasketId`: 87654321 of the basket we created earlier, the `SearchId`: 899fe054-3bb4-4ff8-b577-ba716b0b3317 from the availability search and the `BookingCode`: 19-A of the product we selected, we can now <a href="https://visit.github.io/galaxy-docs/#add-booking-item">add a product to our Basket</a>.
 
 `PUT https://galaxy.citybreak.com/v3/api/basket/add/accommodation/87654321/899fe054-3bb4-4ff8-b577-ba716b0b3317/19-A"`
 
@@ -548,7 +546,7 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/basket/customer/87654321",
 
 > Example of response: no content
 
-To commit a Basket we will need to <a href="https://visit.github.io/galaxy-docs/#update-customer-information">provide Customer Information</a> using our **BasketId**: 87654321. In the example, we have created Ms. Test User and will POST her data which will attach it to the basket. You will only receive a status code of 204 to indicate success. The basket now has the bare minimum required to commit it.
+To commit a Basket we will need to <a href="https://visit.github.io/galaxy-docs/#update-customer-information">provide Customer Information</a> using our `BasketId`: 87654321. In the example, we have created Ms. Test User and will POST her data which will attach it to the basket. You will only receive a status code of 204 to indicate success. The basket now has the bare minimum required to commit it.
 
 ### HTTP Request
 
@@ -585,13 +583,13 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/basket/commit/87654321",
 98761234
 ```
 
-Once you have all the information in the basket, you can <a href="https://visit.github.io/galaxy-docs/#commit-basket">Commit</a> it. 
+Once you have all the information in the basket, you can <a href="https://visit.github.io/galaxy-docs/#commit-basket56">Commit</a> it. 
 This will start the process of finalising bookings and generating the necessary financial information. 
 You only need to provide the Basket Id for this call. 
 The whole commit process is a two step one. 
-First, in this call, we will use a POST call and the **BasketId**: 87654321 to trigger the Basket commit job. 
-What you get in return is the **CommitJobId**, you should use it with <a href="https://visit.github.io/galaxy-docs/#commit-status">Commit Status</a> to get the status of the job. 
-Our CommitJobId is **98761234**.
+First, in this call, we will use a POST call and the `BasketId`: 87654321 to trigger the Basket commit job. 
+What you get in return is the `CommitJobId`, you should use it with <a href="https://visit.github.io/galaxy-docs/#commit-status">Commit Status</a> to get the status of the job. 
+Our `CommitJobId` is **98761234**.
 
 
 ### HTTP Request
@@ -665,8 +663,8 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/basket/commit/status/98761234
 }
 ```
 
-Once the basket has been ordered to be <a href="https://visit.github.io/galaxy-docs/#commit-basket">Committed</a>, 
-in order to get information about the booking you will need to use the **CommitJobId**: 98761234 to query the <a href="https://visit.github.io/galaxy-docs/#commit-status">Commit Status</a> of the job. 
+Once the basket has been ordered to be <a href="https://visit.github.io/galaxy-docs/#commit-basket56">Committed</a>, 
+in order to get information about the booking you will need to use the `CommitJobId`: 98761234 to query the <a href="https://visit.github.io/galaxy-docs/#commit-status">Commit Status</a> of the job. 
 As you can see in the example return, there are a number of different tasks that run as a part of a commit job. 
 All of these are running in the back ground. Continue polling /basket/commit/status/{id} until you get either CompletedOk ok Failed as status. 
 Both of them are final statuses. If you get Ok your reservation is confirmed and you have the booking code in the result. 
@@ -770,7 +768,7 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/reservation/latest/EWOK12",
 }
 ```
 
-There are two ways to return information about a reservation, either by <a href="https://visit.github.io/galaxy-docs/#get-reservation-version">the Version</a> of the Reservation, using the **BookingCode** and **ResVersionId** or by the latest version as we have done here where we just require our **BookingCode**: EWOK12. It displays limited information about the booked products, the customer and some meta information about the booking itself. The user should retain a reference to the **BookingCode** so that they are able to reference their reservation
+There are two ways to return information about a reservation, either by <a href="https://visit.github.io/galaxy-docs/#get-reservation-version">the Version</a> of the Reservation, using the `BookingCode` and `ResVersionId` or by the latest version as we have done here where we just require our `BookingCode`: EWOK12. It displays limited information about the booked products, the customer and some meta information about the booking itself. The user should retain a reference to the `BookingCode` so that they are able to reference their reservation
 
 
 ### HTTP Request
@@ -813,7 +811,7 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/reservation/cancel/info/EWOK1
 }
 ```
 
-Finally, lets cancel our reservation. <a href="https://visit.github.io/galaxy-docs/#cancel-reservationn">Cancelling</a> policies can vary for products and so it is worth noting here that the only guaranteed cancellation that of the reservation. There might be part or full payments due depending on policies, cancellation insurance and other factors, that can differ product to product. To cancel, we once again just require our **BookingCode**: EWOK12 and with a GET query we will close out our reservation and end the example workflow. 
+Finally, lets cancel our reservation. <a href="https://visit.github.io/galaxy-docs/#cancel-reservationn">Cancelling</a> policies can vary for products and so it is worth noting here that the only guaranteed cancellation that of the reservation. There might be part or full payments due depending on policies, cancellation insurance and other factors, that can differ product to product. To cancel, we once again just require our `BookingCode`: EWOK12 and with a GET query we will close out our reservation and end the example workflow. 
 
 
 ### HTTP Request

@@ -16,7 +16,7 @@ By using the Get method you will be able to page through the result.
 Once you get a result you like and would like to investigate further you can get more details of the possible stays with that result by calling *arrivaldates* with a `bookKey` obtained with the *scan* or get methods. That will give you all valid arrival dates available in scan sector that was  used.
 
 ### Get departure dates 
-By calling the **departuredates** with a `bookKey` obtained with the **scan** method, given an arrival date you will get all valid departures from that date.
+By calling the `departuredates` with a `bookKey` obtained with the <a href="https://visit.github.io/galaxy-docs/#scan">scan</a> method, given an arrival date you will get all valid departures from that date.
 
 ### List bookable alternatives
 By calling *bookablealternatives* you will get back actual bookable items between a specified arrival and departure. You will get a list of items back. Since an accommodation product may be sold under certain conditions, you may get more than one back. Each describing a price and the conditions under it will be sold. Included subproducts can differ between the items for instance.
@@ -806,7 +806,7 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/availability/accommodation/fu
 ]
 ```
 
-This call returns a list of valid alternatives to book. Use the `BookId` (different to the `bookKey`) when referring to this specific result when adding it to the <a href="https://visit.github.io/galaxy-docs/#fuzzybasket">fuzzy search basket</a>.
+This call returns a list of valid alternatives to book. Use the `BookId` (different to the `bookKey`) when referring to this specific result when adding it to the <a href="https://visit.github.io/galaxy-docs/#add-fuzzy-booking-item">fuzzy search basket</a>.
 
 ### HTTP Request
 
