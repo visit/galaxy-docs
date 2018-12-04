@@ -22,7 +22,7 @@ By calling the `departuredates` with a `bookKey` obtained with the <a href="http
 By calling *bookablealternatives* you will get back actual bookable items between a specified arrival and departure. You will get a list of items back. Since an accommodation product may be sold under certain conditions, you may get more than one back. Each describing a price and the conditions under it will be sold. Included subproducts can differ between the items for instance.
 
 ### Add to basket
-Once you have a bookable alternative you can add it to the basket by calling *PUT api/basket/add/cabin/\{basketId\}/\{searchId\}/\{bookKey\}*
+Once you have a bookable alternative you can add it to the <a href="https://visit.github.io/galaxy-docs/#add-fuzzy-booking-item">basket</a> by calling *PUT api/basket/add/cabin/\{basketId\}/\{searchId\}/\{bookKey\}* 
 
 
 ## Scan 
@@ -321,7 +321,7 @@ result to create a bookable result that does not necessarily matches your
 original constraints. 
 
 
-#### Day mask
+### Day mask
 A bit mask describing which days that are valid for arriving at or depart at. The field is an integer but can also be represented in hex. 
 
 |Hex|Day|Bin
@@ -334,14 +334,15 @@ A bit mask describing which days that are valid for arriving at or depart at. Th
 0x20|Saturday|(0100000)
 0x40|Sunday|(1000000)
 
-##### Examples
+### Examples
+
 |Mask|Meaning|
-|-----|------|
+|-----|-----|
 0x7F|Any day, this is the default if 0 is submitted.
 0x18|Thursday or Friday.
 0xF|Monday, Tuesday, Wednesday, Thursday or Friday.
 
-#### Sort definition
+### Sort definition
 The sort definition is used to order the paged results you get. 
 
 |Order|Meaning|
@@ -388,8 +389,7 @@ Parameter | Description
 filter | the POST filter
 Accept-Language | The language culture (e.g en-us)
 
-<div class="center-column"></div>
-```
+<code class="ceter-column">
 {
   "PointOfSalesId": 0, //int - Mandatory 
   "Currency": "string", //string - Mandatory e.g SEK or EUR
@@ -421,7 +421,7 @@ Accept-Language | The language culture (e.g en-us)
     "Field": "string" //string - Mandatory if parent included - Price, Name, Score, Random
   }
 }
-```
+</code>
 
 
 ## Get
