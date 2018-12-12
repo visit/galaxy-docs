@@ -450,7 +450,10 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/basket/add/accommodation/{bas
 > Example of response:
 
 ```json
-true
+{
+  "Success": true,
+  "BookItemIds": [1,2]
+}
 ```
 
 Add a booking item to the basket, you must first have checked for the <a href="https://visit.github.io/galaxy-docs/#availability---accommodation">Availability</a> of a property or properties and obtained the search Id and the bookingKey of the product you wish to add to the basket.
@@ -491,7 +494,10 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/basket/add/accommodation/fuzz
 > Example of response:
 
 ```json
-true
+{
+  "Success": true,
+  "BookItemIds": [1,2]
+}
 ```
 
 Specifically for the Fuzzy search a booking item to the basket, you must first have checked for the <a href="https://visit.github.io/galaxy-docs/#fuzzy-accommodation-search">Fuzzy Availability</a> of a property or properties and obtained the search Id and the `bookId` of the product you wish to add to the basket. NOTE: the bookId is obtained from the `BookableAlternatives` and is a separate entity from the `bookKey` used in the regular basket operation
