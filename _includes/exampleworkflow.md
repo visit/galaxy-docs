@@ -437,7 +437,7 @@ The information above is one of the most complex and probably the most important
 
 Each Accommodation object will also have content information about the property, that can also be found in an <a href="https://visit.github.io/galaxy-docs/#accommodation">Accommodation Search</a>, and how many room types (Placements) are available. 
 
-The placement objects represent the products that will actually be booked. As such they have a lot of the important information a customer might want to see, they contain a "Price" that represents total spend as well as a "PricePeriods" list that breaks the cost dow for example. Other useful information might be included in the content info or the room configuration/occupancy allowances, etc. The most important information for the booking process however is the `BookingKey`. There is one per `Placement` and is used to <a href="https://visit.github.io/galaxy-docs/#add-booking-item">add a product to a Basket</a>.
+The placement objects represent the products that will actually be booked. As such they have a lot of the important information a customer might want to see, they contain a "Price" that represents total spend as well as a "PricePeriods" list that breaks the cost dow for example. Other useful information might be included in the content info or the room configuration/occupancy allowances, etc. The most important information for the booking process however is the `BookingKey`. There is one per `Placement` and is used to <a href="https://visit.github.io/galaxy-docs/#add-accommodation-booking-item">add a product to a Basket</a>.
 
 Also required is the `SearchId` that represents your search. The object represented by this unique id will hold references to all the products that were returned in the Accommodation Search. Also keep note of the `ExpirationDate` of the search as the reference will be invalid after this timestamp is passed.
 
@@ -479,7 +479,7 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/basket/add/accommodation/8765
 true
 ```
 
-Taking the `BasketId`: 87654321 of the basket we created earlier, the `SearchId`: 899fe054-3bb4-4ff8-b577-ba716b0b3317 from the availability search and the `BookingCode`: 19-A of the product we selected, we can now <a href="https://visit.github.io/galaxy-docs/#add-booking-item">add a product to our Basket</a>.
+Taking the `BasketId`: 87654321 of the basket we created earlier, the `SearchId`: 899fe054-3bb4-4ff8-b577-ba716b0b3317 from the availability search and the `BookingCode`: 19-A of the product we selected, we can now <a href="https://visit.github.io/galaxy-docs/#add-accommodation-booking-item">add a product to our Basket</a>.
 
 `PUT https://galaxy.citybreak.com/v3/api/basket/add/accommodation/87654321/899fe054-3bb4-4ff8-b577-ba716b0b3317/19-A"`
 

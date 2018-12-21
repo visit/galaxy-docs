@@ -1,4 +1,4 @@
-# Visit Distribution API
+# Visit Galaxy API
 
 Get Started
 --------------------

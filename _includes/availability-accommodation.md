@@ -287,7 +287,7 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/availability/accommodation",
 
 This is a **POST** request that requires a filter with some mandatory properties, such as arrival and departure dates. 
 The filter can also include content filtering, such as only including those hotels associated with a particular CBIS category or that have 24 hr reception.
-Content filtering possibilities can be found in the <a href="https://visit.github.io/galaxy-docs/#accommodation-content-filter">Content Section</a> You can see a bare minimum verison of this search in the examples.
+Content filtering possibilities can be found in the <a href="https://visit.github.io/galaxy-docs/#content-filter">Content Section</a> You can see a bare minimum version of this search in the examples.
 The Most important return values in this response are the `SearchId` and the `BookingKey` used in the <a href="https://visit.github.io/galaxy-docs/#basket">Basket</a>, also pay attention to the `ExpirationDate` of the `SearchId`
 
 ### HTTP Request
@@ -322,7 +322,7 @@ Accept-Language | The language culture (e.g en-us)
       ]
     }
   ],
-  "ContentFilter": { // Optional - See <a href="https://visit.github.io/galaxy-docs/#accommodation-content-filter">ContentFilter</a>
+  "ContentFilter": { // Optional - See <a href="https://visit.github.io/galaxy-docs/#content-filter">ContentFilter</a>
   },
   "OutputFilter": { // Optional -  See <a href="https://visit.github.io/galaxy-docs/#output-filter">OutputFilter</a>
   }
@@ -585,7 +585,7 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/availability/accommodation/ge
 }
 ```
 
-This is a **POST** request that requires a filter with a valid (non-expired) SearchId. The filter otherwise has athe same constraints as in the original <a href="https://visit.github.io/galaxy-docs/#accommodation20">Accommodation availability</a> search. You can see a bare minimum version of this search in the examples.
+This is a **POST** request that requires a filter with a valid (non-expired) SearchId. The filter otherwise has the same constraints as in the original <a href="https://visit.github.io/galaxy-docs/#accommodation20">Accommodation availability</a> search. You can see a bare minimum version of this search in the examples.
 
 ### HTTP Request
 
@@ -730,7 +730,7 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/availability/accommodation/ca
 
 This is a **POST** request that requires a filter with some mandatory properties, such as the start and end dates of the calendar, the pointOfSalesId and the currency. 
 As in other availability queries, the filter can also include a content filter, such as only those hotels associated with a particular CBIS category or that have 24 hr reception. 
-Content possibilities can be found in the <a href="https://visit.github.io/galaxy-docs/#accommodation-content-filter">Content Section</a> You can see a bare minimum version of this search in the examples.
+Content possibilities can be found in the <a href="https://visit.github.io/galaxy-docs/#content-filter">Content Section</a> You can see a bare minimum version of this search in the examples.
 The return of this call is a set of days with an IsAvailable boolean value indicating any availability at all and (if there is availability) an entity called Groups which shows accommodation options available on that day with the nested sub-products (think hotels with sub-products being hotel rooms) in the search period and the possible lengths of stay. This is useful for, say, quickly displaying days on which you can begin a stay and, once clicked, the minimum and maximum number of days you may stay within the search period.
  
 ### HTTP Request
@@ -750,7 +750,7 @@ Accept-Language | The language culture (e.g en-us)
   "Start": "2018-11-23", //DateTime - Mandatory, conforms to ISO 8601
   "End": "2018-11-23", //DateTime - Mandatory, conforms to ISO 8601
   "Currency": "string", //string - Mandatory e.g SEK or EUR
-  "ContentFilter": { // Optional - See <a href="https://visit.github.io/galaxy-docs/#accommodation-content-filter">ContentFilter</a>
+  "ContentFilter": { // Optional - See <a href="https://visit.github.io/galaxy-docs/#content-filter">ContentFilter</a>
   },
 }
 </code>

@@ -425,7 +425,7 @@ online3GuideId | The online 3 guide identifier
 
 
 
-## Add Booking Item
+## Add Accommodation Booking Item
 
 ```shell
 curl -X PUT 
@@ -469,7 +469,7 @@ searchId | The search Id returned by the <a href="https://visit.github.io/galaxy
 bookKey | The key of the booking item (product) to add to the basket, found in <a href="https://visit.github.io/galaxy-docs/#availability---accommodation">Availability Response</a>
 
 
-## Add Fuzzy Booking Item
+## Add Fuzzy Accommodation Booking Item
 
 ```shell
 curl -X PUT 
@@ -512,6 +512,49 @@ basketId | The Id of the basket.
 searchId | The search Id returned by the <a href="https://visit.github.io/galaxy-docs/#fuzzy-accommodation-search">Availability Response</a>
 bookId | The Id of the booking item (product) to add to the basket, found in <a href="https://visit.github.io/galaxy-docs/#fuzzy-accommodation-search">the Fuzzy Availability Response</a>
 
+
+## Add Activity Booking Item
+
+```shell
+curl -X PUT 
+--header 'Accept: application/json' 
+--header 'apiKey: APIKEY132456789EWOK' 
+--header 'Accept-Language: en-us' 
+'https://galaxy.citybreak.com/v3/api/basket/add/activity/{basketId}/{searchId}/{bookKey}'
+```
+
+```javascript
+var r = fetch("https://galaxy.citybreak.com/v3/api/basket/add/activity/{basketId}/{searchId}/{bookKey}",
+{
+  method:"PUT"
+  headers: {
+    "ApiKey:" "APIKEY132456789EWOK",
+    "Accept": "application/json",
+    "Accept-Language": "en-US"
+  }  
+});
+```
+
+> Example of response:
+
+```json
+{
+  "Success": true,
+  "BookItemIds": [1,2]
+}
+```
+
+Add a booking item to the basket, you must first have checked for the <a href="https://visit.github.io/galaxy-docs/#availability---activity">Availability</a> of an activity and obtained the search Id and the bookingKey of the product you wish to add to the basket.
+
+`PUT https://galaxy.citybreak.com/v3/api/basket/add/activity`
+
+### Query Parameters
+
+Parameter | Description
+--------- | -----------
+basketId | The Id of the basket.
+searchId | The search Id returned by the <a href="https://visit.github.io/galaxy-docs/#availability---activity">Availability Response</a>
+bookKey | The key of the booking item (product) to add to the basket, found in <a href="https://visit.github.io/galaxy-docs/#availability---activity">Availability Response</a>
 
 
 
@@ -793,7 +836,7 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/basket/commit/{basketId}",
 int32
 ```
 
-This is the method used to start a commit job for a basket. You only need to provide the Basket Id for this call. As there may be many products from different internal and external providers this is essentially a two step async operation. Once you have commited the basket you can query <a href="https://visit.github.io/galaxy-docs/#commit-status">Commit Status</a> to get the status of the job and the `ReservationID` and `BookingCode` if it is completed. Before you may commit a basket, there is some information you must provide first. Add at least one <a href="https://visit.github.io/galaxy-docs/#add-booking-item">Booking Item</a> and provide <a href="https://visit.github.io/galaxy-docs/#update-customer-information">Customer Information</a>.
+This is the method used to start a commit job for a basket. You only need to provide the Basket Id for this call. As there may be many products from different internal and external providers this is essentially a two step async operation. Once you have commited the basket you can query <a href="https://visit.github.io/galaxy-docs/#commit-status">Commit Status</a> to get the status of the job and the `ReservationID` and `BookingCode` if it is completed. Before you may commit a basket, there is some information you must provide first. Add at least one <a href="https://visit.github.io/galaxy-docs/#add-accommodation-booking-item">Booking Item</a> and provide <a href="https://visit.github.io/galaxy-docs/#update-customer-information">Customer Information</a>.
 
 The return value is a job number with which you can check the status of commit
 

@@ -1,6 +1,6 @@
-# Accommodation Content Filter
+# Content Filter
 
-Content filters used in Accommodation availability queries. All individual filters are optional, i.e. you can filter just on `Categories` and `Search`
+Content filters used in availability queries. All individual filters are optional, i.e. you can filter just on `Categories` and `Search`
 
 <code class="center-column">
 {

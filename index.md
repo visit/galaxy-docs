@@ -17,7 +17,8 @@ includes:
   - accommodation
   - availability-accommodation
   - fuzzy-accommodation
-  - accommodation-content-filter
+  - availability-activity
+  - content-filter
   - output-filter
   - content
   - basket
