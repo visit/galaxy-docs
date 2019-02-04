@@ -519,19 +519,36 @@ bookId | The Id of the booking item (product) to add to the basket, found in <a 
 curl -X PUT 
 --header 'Accept: application/json' 
 --header 'apiKey: APIKEY132456789EWOK' 
---header 'Accept-Language: en-us' 
-'https://galaxy.citybreak.com/v3/api/basket/add/activity/{basketId}/{searchId}/{bookKey}'
+--header 'Accept-Language: en-us' -d '[
+  {
+    "BookKey": "1-T",
+    "Amount" 2
+  }, {
+    "BookKey": "2-T",
+    "Amount": 1
+  }
+]' 'https://galaxy.citybreak.com/v3/api/basket/add/activity/{basketId}/{searchId}'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v3/api/basket/add/activity/{basketId}/{searchId}/{bookKey}",
+var r = fetch("https://galaxy.citybreak.com/v3/api/basket/add/activity/{basketId}/{searchId}",
 {
   method:"PUT"
   headers: {
     "ApiKey:" "APIKEY132456789EWOK",
     "Accept": "application/json",
     "Accept-Language": "en-US"
-  }  
+  },
+  body: JSON.Stringify(
+    [
+      {
+        "BookKey": "1-T",
+        "Amount": 1
+      }, {
+        "BookKey": "2-T",
+        "Amount": 2
+      }
+    ])
 });
 ```
 
@@ -548,13 +565,14 @@ Add a booking item to the basket, you must first have checked for the <a href="h
 
 `PUT https://galaxy.citybreak.com/v3/api/basket/add/activity`
 
-### Query Parameters
+### Parameters
 
 Parameter | Description
 --------- | -----------
 basketId | The Id of the basket.
 searchId | The search Id returned by the <a href="https://visit.github.io/galaxy-docs/#availability---activity">Availability Response</a>
-bookKey | The key of the booking item (product) to add to the basket, found in <a href="https://visit.github.io/galaxy-docs/#availability---activity">Availability Response</a>
+BookKey | The key of the booking item to add to the basket, found in <a href="https://visit.github.io/galaxy-docs/#availability---activity">Availability Response</a>
+Amount | The amount to book for this item
 
 
 
