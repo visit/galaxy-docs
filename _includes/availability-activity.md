@@ -19,8 +19,8 @@ curl -X POST
 --header 'apiKey: APIKEY132456789EWOK' 
 -d '{
    "PointOfSalesId": 0,
-   "Date": "2018-12-30",
-   "Currency": "DKK",
+   "Date": "2019-02-18",
+   "Currency": "NOK",
    "PageSize": 20
  }' 'https://galaxy.citybreak.com/v3/api/availability/activity'
 ```
@@ -36,8 +36,8 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/availability/activity",
 	},
 	body: JSON.Stringify({
 	   "PointOfSalesId": 0,
-	   "Date": "2018-12-30",
-	   "Currency": "DKK",
+	   "Date": "2019-02-18",
+	   "Currency": "NOK",
 	   "PageSize": 20
 	})  
 });
@@ -50,7 +50,7 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/availability/activity",
   "ActivitySearch": {
     "PointOfSalesId": 0,
     "Date": "2018-12-30T00:00:00",
-    "Currency": "DKK",
+    "Currency": "NOK",
     "PageSize": 20,
     "Page": 0,
     "Sort": {
@@ -62,115 +62,146 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/availability/activity",
   },
   "ActivityGroups": [
     {
-      "Id": "cbis:1712391",
-      "Name": "Citypass valid 24 H",
+      "Id": "cbis:1488188",
+      "Name": "SkiPass Hafjell - Winter TO",
       "Content": {
-        "PriceFrom": 150,
-        "Images": [
-          {
-            "Uri": "//images.citybreak.com/image.aspx?ImageId=5856402",
-            "IsMain": true,
-            "Name": null,
-            "Copyright": null,
-            "Description": null
-          }
-        ],
+        "PriceFrom": 0,
+        "Images": [],
         "Information": [
-          {
-            "Id": 910,
-            "Name": "UrlName",
-            "Value": "C24_1712391"
-          },
           {
             "Id": 99,
             "Name": "Name",
-            "Value": "Citypass valid 24 H"
-          },
-          {
-            "Id": 101,
-            "Name": "Introduction",
-            "Value": "<p>Book</p>"
-          },
-          {
-            "Id": 102,
-            "Name": "Description",
-            "Value": "-"
+            "Value": "SkiPass Hafjell - Winter TO"
           }
         ],
         "Categories": null,
-        "Geos": [
-          {
-            "Id": 80708,
-            "Path": "Denmark"
-          }
-        ],
-        "Pois": [],
-        "Position": null
+        "Geos": null,
+        "Pois": null,
+        "Position": {
+          "Latitude": 61.2350455,
+          "Longitude": 10.448359
+        }
       },
       "Activities": [
         {
-          "Id": "cbis:1712392",
-          "Prices": [
-            {
-              "PriceGroupCode": "PRGR-0",
-              "PriceGroupName": "Adult",
-              "Age": null,
-              "Price": 150,
-              "OriginalPrice": 0,
-              "Currency": "DKK"
-            }
-          ],
-          "BookingKey": "T-5",
-          "Name": "CITYPASS 24H",
-          "Start": "2018-12-30T00:00:00",
-          "Duration": "00:00:00",
+          "Id": "cbis:1501474",
+          "Name": "SkiPass TO - Hafjell (refill you Axess keycard)",
           "Content": {
-            "PriceFrom": 150,
-            "Images": [
-              {
-                "Uri": "//images.citybreak.com/image.aspx?ImageId=5856403",
-                "IsMain": true,
-                "Name": null,
-                "Copyright": null,
-                "Description": null
-              }
-            ],
+            "PriceFrom": 0,
+            "Images": [],
             "Information": [
-              {
-                "Id": 910,
-                "Name": "UrlName",
-                "Value": "CITYP24_1712392"
-              },
               {
                 "Id": 99,
                 "Name": "Name",
-                "Value": "CITYPASS 24H"
-              },
-              {
-                "Id": 101,
-                "Name": "Introduction",
-                "Value": "CITYPASS 24H"
-              },
-              {
-                "Id": 102,
-                "Name": "Description",
-                "Value": "-"
+                "Value": "SkiPass TO - Hafjell (refill you Axess keycard)"
               }
             ],
             "Categories": null,
-            "Geos": [
-              {
-                "Id": 80708,
-                "Path": "Denmark"
-              }
-            ],
-            "Pois": [],
-            "Position": null
+            "Geos": null,
+            "Pois": null,
+            "Position": {
+              "Latitude": 61.2350455,
+              "Longitude": 10.448359
+            }
           },
-          "IncludedAddons": [],
-          "AvailableCapacity": 9999,
-          "BookingConditions": null,
-          "DiscountInformation": null
+          "Occasions": [
+            {
+              "Start": "2019-02-18T00:00:00",
+              "Duration": "4.00:00:00",
+              "Quotes": [
+                {
+                  "BookKey": "468-T",
+                  "AvailableCapacity": 0,
+                  "Price": {
+                    "PriceGroupCode": "ADT",
+                    "PriceGroupName": "Adult",
+                    "Age": null,
+                    "Price": 1600,
+                    "OriginalPrice": 0,
+                    "Currency": "NOK"
+                  },
+                  "BookingConditions": {
+                    "Name": null,
+                    "Terms": null
+                  },
+                  "DiscountInformation": {
+                    "Name": null,
+                    "Description": null
+                  },
+                  "IncludedAddons": []
+                }
+                {
+                  "BookKey": "490-T",
+                  "AvailableCapacity": 0,
+                  "Price": {
+                    "PriceGroupCode": "CHD",
+                    "PriceGroupName": "Youth 7-15",
+                    "Age": null,
+                    "Price": 1280,
+                    "OriginalPrice": 0,
+                    "Currency": "NOK"
+                  },
+                  "BookingConditions": {
+                    "Name": null,
+                    "Terms": null
+                  },
+                  "DiscountInformation": {
+                    "Name": null,
+                    "Description": null
+                  },
+                  "IncludedAddons": []
+                }
+              ]
+            },
+            {
+              "Start": "2019-02-18T00:00:00",
+              "Duration": "5.00:00:00",
+              "Quotes": [
+                {
+                  "BookKey": "495-T",
+                  "AvailableCapacity": 0,
+                  "Price": {
+                    "PriceGroupCode": "ADT",
+                    "PriceGroupName": "Adult",
+                    "Age": null,
+                    "Price": 1850,
+                    "OriginalPrice": 0,
+                    "Currency": "NOK"
+                  },
+                  "BookingConditions": {
+                    "Name": null,
+                    "Terms": null
+                  },
+                  "DiscountInformation": {
+                    "Name": null,
+                    "Description": null
+                  },
+                  "IncludedAddons": []
+                },
+                {
+                  "BookKey": "507-T",
+                  "AvailableCapacity": 0,
+                  "Price": {
+                    "PriceGroupCode": "CHD",
+                    "PriceGroupName": "Youth 7-15",
+                    "Age": null,
+                    "Price": 1475,
+                    "OriginalPrice": 0,
+                    "Currency": "NOK"
+                  },
+                  "BookingConditions": {
+                    "Name": null,
+                    "Terms": null
+                  },
+                  "DiscountInformation": {
+                    "Name": null,
+                    "Description": null
+                  },
+                  "IncludedAddons": []
+                }
+              ]
+            }
+          ]
         }
       ],
       "TotalResults": 1
@@ -185,7 +216,7 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/availability/activity",
 This is a **POST** request that requires a filter with some mandatory properties, such as date. 
 The filter can also include content filtering, such as only including those activities associated with a particular CBIS category or with certain attributes.
 Content filtering possibilities can be found in the <a href="https://visit.github.io/galaxy-docs/#content-filter">Content Section</a> You can see a bare minimum version of this search in the examples.
-The Most important return values in this response are the `SearchId` and the `BookKey` used in the <a href="https://visit.github.io/galaxy-docs/#basket">Basket</a>, also pay attention to the `ExpirationDate` of the `SearchId`
+The Most important return values in this response are the `SearchId` and the `BookKey` used in the <a href="https://visit.github.io/galaxy-docs/#basket">Basket</a>, also pay attention to the `ExpirationDate` of the `SearchId`. IMPORTANT: Paging is 0-indexed.
 
 ### HTTP Request
 
@@ -203,7 +234,7 @@ Accept-Language | The language culture (e.g en-us)
   "PointOfSalesId": 0, //int - Mandatory 
   "Date": "2018-12-30", //DateTime - Mandatory
   "Currency": "string", //string - Mandatory e.g SEK or EUR
-  "PageSize": 0, //int Mandatory
+  "PageSize": 0, //int Mandatory, 0-Indexed
   "Sort": { // Optional - defaults to Price Ascending
     "Order": "Asc", //string - Mandatory if parent included
     "Field": "string" //string - Mandatory if parent included - Price, Name, Random
@@ -253,8 +284,8 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/availability/activity/get",
 {
   "ActivitySearch": {
     "PointOfSalesId": 0,
-    "Date": "2018-12-30T00:00:00",
-    "Currency": "DKK",
+    "Date": "2019-02-18T00:00:00",
+    "Currency": "NOK",
     "PageSize": 20,
     "Page": 0,
     "Sort": {
@@ -266,115 +297,146 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/availability/activity/get",
   },
   "ActivityGroups": [
     {
-      "Id": "cbis:1712391",
-      "Name": "Citypass valid 24 H",
+      "Id": "cbis:1488188",
+      "Name": "SkiPass Hafjell - Winter TO",
       "Content": {
-        "PriceFrom": 150,
-        "Images": [
-          {
-            "Uri": "//images.citybreak.com/image.aspx?ImageId=5856402",
-            "IsMain": true,
-            "Name": null,
-            "Copyright": null,
-            "Description": null
-          }
-        ],
+        "PriceFrom": 0,
+        "Images": [],
         "Information": [
-          {
-            "Id": 910,
-            "Name": "UrlName",
-            "Value": "C24_1712391"
-          },
           {
             "Id": 99,
             "Name": "Name",
-            "Value": "Citypass valid 24 H"
-          },
-          {
-            "Id": 101,
-            "Name": "Introduction",
-            "Value": "<p>Book</p>"
-          },
-          {
-            "Id": 102,
-            "Name": "Description",
-            "Value": "-"
+            "Value": "SkiPass Hafjell - Winter TO"
           }
         ],
         "Categories": null,
-        "Geos": [
-          {
-            "Id": 80708,
-            "Path": "Denmark"
-          }
-        ],
-        "Pois": [],
-        "Position": null
+        "Geos": null,
+        "Pois": null,
+        "Position": {
+          "Latitude": 61.2350455,
+          "Longitude": 10.448359
+        }
       },
       "Activities": [
         {
-          "Id": "cbis:1712392",
-          "Prices": [
-            {
-              "PriceGroupCode": "PRGR-0",
-              "PriceGroupName": "Adult",
-              "Age": null,
-              "Price": 150,
-              "OriginalPrice": 0,
-              "Currency": "DKK"
-            }
-          ],
-          "BookingKey": "T-5",
-          "Name": "CITYPASS 24H",
-          "Start": "2018-12-30T00:00:00",
-          "Duration": "00:00:00",
+          "Id": "cbis:1501474",
+          "Name": "SkiPass TO - Hafjell (refill you Axess keycard)",
           "Content": {
-            "PriceFrom": 150,
-            "Images": [
-              {
-                "Uri": "//images.citybreak.com/image.aspx?ImageId=5856403",
-                "IsMain": true,
-                "Name": null,
-                "Copyright": null,
-                "Description": null
-              }
-            ],
+            "PriceFrom": 0,
+            "Images": [],
             "Information": [
-              {
-                "Id": 910,
-                "Name": "UrlName",
-                "Value": "CITYP24_1712392"
-              },
               {
                 "Id": 99,
                 "Name": "Name",
-                "Value": "CITYPASS 24H"
-              },
-              {
-                "Id": 101,
-                "Name": "Introduction",
-                "Value": "CITYPASS 24H"
-              },
-              {
-                "Id": 102,
-                "Name": "Description",
-                "Value": "-"
+                "Value": "SkiPass TO - Hafjell (refill you Axess keycard)"
               }
             ],
             "Categories": null,
-            "Geos": [
-              {
-                "Id": 80708,
-                "Path": "Denmark"
-              }
-            ],
-            "Pois": [],
-            "Position": null
+            "Geos": null,
+            "Pois": null,
+            "Position": {
+              "Latitude": 61.2350455,
+              "Longitude": 10.448359
+            }
           },
-          "IncludedAddons": [],
-          "AvailableCapacity": 9999,
-          "BookingConditions": null,
-          "DiscountInformation": null
+          "Occasions": [
+            {
+              "Start": "2019-02-18T00:00:00",
+              "Duration": "4.00:00:00",
+              "Quotes": [
+                {
+                  "BookKey": "468-T",
+                  "AvailableCapacity": 0,
+                  "Price": {
+                    "PriceGroupCode": "ADT",
+                    "PriceGroupName": "Adult",
+                    "Age": null,
+                    "Price": 1600,
+                    "OriginalPrice": 0,
+                    "Currency": "NOK"
+                  },
+                  "BookingConditions": {
+                    "Name": null,
+                    "Terms": null
+                  },
+                  "DiscountInformation": {
+                    "Name": null,
+                    "Description": null
+                  },
+                  "IncludedAddons": []
+                }
+                {
+                  "BookKey": "490-T",
+                  "AvailableCapacity": 0,
+                  "Price": {
+                    "PriceGroupCode": "CHD",
+                    "PriceGroupName": "Youth 7-15",
+                    "Age": null,
+                    "Price": 1280,
+                    "OriginalPrice": 0,
+                    "Currency": "NOK"
+                  },
+                  "BookingConditions": {
+                    "Name": null,
+                    "Terms": null
+                  },
+                  "DiscountInformation": {
+                    "Name": null,
+                    "Description": null
+                  },
+                  "IncludedAddons": []
+                }
+              ]
+            },
+            {
+              "Start": "2019-02-18T00:00:00",
+              "Duration": "5.00:00:00",
+              "Quotes": [
+                {
+                  "BookKey": "495-T",
+                  "AvailableCapacity": 0,
+                  "Price": {
+                    "PriceGroupCode": "ADT",
+                    "PriceGroupName": "Adult",
+                    "Age": null,
+                    "Price": 1850,
+                    "OriginalPrice": 0,
+                    "Currency": "NOK"
+                  },
+                  "BookingConditions": {
+                    "Name": null,
+                    "Terms": null
+                  },
+                  "DiscountInformation": {
+                    "Name": null,
+                    "Description": null
+                  },
+                  "IncludedAddons": []
+                },
+                {
+                  "BookKey": "507-T",
+                  "AvailableCapacity": 0,
+                  "Price": {
+                    "PriceGroupCode": "CHD",
+                    "PriceGroupName": "Youth 7-15",
+                    "Age": null,
+                    "Price": 1475,
+                    "OriginalPrice": 0,
+                    "Currency": "NOK"
+                  },
+                  "BookingConditions": {
+                    "Name": null,
+                    "Terms": null
+                  },
+                  "DiscountInformation": {
+                    "Name": null,
+                    "Description": null
+                  },
+                  "IncludedAddons": []
+                }
+              ]
+            }
+          ]
         }
       ],
       "TotalResults": 1
@@ -386,7 +448,7 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/availability/activity/get",
 }
 ```
 
-This is a **POST** request that requires a filter with a valid (non-expired) SearchId. The filter otherwise has the same constraints as in the original <a href="https://visit.github.io/galaxy-docs/#activity">Activity availability</a> search. You can see a bare minimum version of this search in the examples.
+This is a **POST** request that requires a filter with a valid (non-expired) SearchId. The filter otherwise has the same constraints as in the original <a href="https://visit.github.io/galaxy-docs/#activity">Activity availability</a> search. You can see a bare minimum version of this search in the examples. IMPORTANT: Paging is 0-indexed.
 
 ### HTTP Request
 
