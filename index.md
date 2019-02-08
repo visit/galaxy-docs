@@ -15,6 +15,7 @@ includes:
   - exampleworkflow
   - pointofsales
   - accommodation
+  - activity
   - availability-accommodation
   - fuzzy-accommodation
   - availability-activity

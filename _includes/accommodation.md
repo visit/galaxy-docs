@@ -97,7 +97,7 @@ Get details about Accommodation
 
 ### HTTP Request
 
-`GET https://galaxy.citybreak.com/v3/api/accommodation`
+`GET https://galaxy.citybreak.com/v3/api/accommodation/view/{pointOfSalesId}/{productId}`
 
 ### Query Parameters
 
@@ -114,7 +114,7 @@ curl -X GET
 --header 'Accept: application/json' 
 --header 'Accept-Language: en-us' 
 --header 'apiKey: APIKEY132456789EWOK' 
-'https://galaxy.citybreak.com/v3/api/accommodation/view/{pointOfSaleId}/{productId}'
+'https://galaxy.citybreak.com/v3/api/accommodation/{pointOfSalesId}/{pageSize}/{page}'
 ```
 
 ```javascript
@@ -192,7 +192,7 @@ Get details and content about a specific Citybreak product, the requests require
 
 ### HTTP Request
 
-`GET https://galaxy.citybreak.com/v3/api/accommodation/view/`
+`GET https://galaxy.citybreak.com/v3/api/accommodation/view/{pointOfSalesId}/{productId}`
 
 ### Query Parameters
 
