@@ -37,8 +37,8 @@ curl -X POST
      }
    ],
    ContentFilter{
-       "Categories": [
-		123, 124
+    "Categories": [
+		  123, 124
 	  ],
 	  "Geos": [
 	  	123, 124
@@ -263,7 +263,7 @@ curl -X POST
      }
    ],
    ContentFilter{
-      "ProductIds": [
+      "Ids": [
         "cbis:12345", "ptg:987654"
       ]
    }
@@ -294,7 +294,7 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/availability/accommodation",
 	     }
 	   ],
     "ContentFilter"{
-      "ProductIds": [
+      "Ids": [
         "cbis:12345", "ptg:987654"
       ]
     }
@@ -308,7 +308,7 @@ Only return the products matching the ids supplied in `Ids`. These can be cbis p
 
 Parameter | Type | Description
 --------- | ---- | -----------
-ProductIds | string[] | The productIds.
+Ids | string[] | The product Ids.
 
 ## Information
 

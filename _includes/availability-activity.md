@@ -4,7 +4,7 @@
 
 The `SearchId` can be used to retrieve prior, cached searches in a much shorter amount of time for Activity Search if used before its Expiry. The object recalled by the search contains all the unfiltered information retrieved in the first search, so further or different filtering on content, etc. can be done in this call.
 
-The `SearchId` and the `BookKey` of each activity product are used in the basket operations to add the product found to the <a href="https://visit.github.io/galaxy-docs/#basket">Basket</a> 
+The `SearchId` and the `BookKey` of each activity quote are used in the basket operations to add the product found to the <a href="https://visit.github.io/galaxy-docs/#add-activity-booking-item">Basket</a> 
 
 
 **GET** and **POST** operations 
@@ -49,7 +49,7 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/availability/activity",
 {
   "ActivitySearch": {
     "PointOfSalesId": 0,
-    "Date": "2018-12-30T00:00:00",
+    "Date": "2019-02-18T00:00:00",
     "Currency": "NOK",
     "PageSize": 20,
     "Page": 0,
@@ -58,34 +58,48 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/availability/activity",
       "Field": "Price"
     },
     "ContentFilter": null,
-    "OutputFilter": null
+    "OutputFilter":{
+      "Attributes":[99],
+      "Categories": false,
+      "Geos": false,
+      "Pois": false,
+      "Position": false
+    }
+}
   },
   "ActivityGroups": [
     {
-      "Id": "cbis:1488188",
-      "Name": "SkiPass Hafjell - Winter TO",
+      "Id": "cbis:12345",
+      "Name": "Ski Lessons at Lake Tahoe",
       "Content": {
         "PriceFrom": 0,
-        "Images": [],
+        "Images": [                            
+          {
+            "Uri": "//images.citybreak.com/image.aspx?ImageId=123",
+            "IsMain": true,
+            "Name": null,
+            "Copyright": null,
+            "Description": null
+          }
+        ],
         "Information": [
           {
             "Id": 99,
             "Name": "Name",
-            "Value": "SkiPass Hafjell - Winter TO"
+            "Value": "Ski Lessons at Lake Tahoe"
           }
         ],
         "Categories": null,
         "Geos": null,
         "Pois": null,
-        "Position": {
-          "Latitude": 61.2350455,
-          "Longitude": 10.448359
-        }
+        "Position": null
       },
       "Activities": [
         {
           "Id": "cbis:1501474",
-          "Name": "SkiPass TO - Hafjell (refill you Axess keycard)",
+          "Name": "Ski Lessons for Beginners",
+          "MaximumItemsBookable": null,
+          "MinimumItemsBookable": 1,
           "Content": {
             "PriceFrom": 0,
             "Images": [],
@@ -93,31 +107,28 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/availability/activity",
               {
                 "Id": 99,
                 "Name": "Name",
-                "Value": "SkiPass TO - Hafjell (refill you Axess keycard)"
+                "Value": "Ski Lessons for Beginners"
               }
             ],
             "Categories": null,
             "Geos": null,
             "Pois": null,
-            "Position": {
-              "Latitude": 61.2350455,
-              "Longitude": 10.448359
-            }
+            "Position": null
           },
           "Occasions": [
             {
-              "Start": "2019-02-18T00:00:00",
-              "Duration": "4.00:00:00",
+              "Start": "2019-02-18T09:00:00",
+              "Duration": "03:00:00",
               "Quotes": [
                 {
-                  "BookKey": "468-T",
-                  "AvailableCapacity": 0,
+                  "BookKey": "123-T",
+                  "AvailableCapacity": 4,
                   "Price": {
                     "PriceGroupCode": "ADT",
                     "PriceGroupName": "Adult",
                     "Age": null,
-                    "Price": 1600,
-                    "OriginalPrice": 0,
+                    "Price": 1000,
+                    "OriginalPrice": 1000,
                     "Currency": "NOK"
                   },
                   "BookingConditions": {
@@ -131,41 +142,14 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/availability/activity",
                   "IncludedAddons": []
                 }
                 {
-                  "BookKey": "490-T",
-                  "AvailableCapacity": 0,
+                  "BookKey": "124-T",
+                  "AvailableCapacity": 3,
                   "Price": {
                     "PriceGroupCode": "CHD",
                     "PriceGroupName": "Youth 7-15",
                     "Age": null,
-                    "Price": 1280,
-                    "OriginalPrice": 0,
-                    "Currency": "NOK"
-                  },
-                  "BookingConditions": {
-                    "Name": null,
-                    "Terms": null
-                  },
-                  "DiscountInformation": {
-                    "Name": null,
-                    "Description": null
-                  },
-                  "IncludedAddons": []
-                }
-              ]
-            },
-            {
-              "Start": "2019-02-18T00:00:00",
-              "Duration": "5.00:00:00",
-              "Quotes": [
-                {
-                  "BookKey": "495-T",
-                  "AvailableCapacity": 0,
-                  "Price": {
-                    "PriceGroupCode": "ADT",
-                    "PriceGroupName": "Adult",
-                    "Age": null,
-                    "Price": 1850,
-                    "OriginalPrice": 0,
+                    "Price": 500,
+                    "OriginalPrice": 500,
                     "Currency": "NOK"
                   },
                   "BookingConditions": {
@@ -179,14 +163,114 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/availability/activity",
                   "IncludedAddons": []
                 },
                 {
-                  "BookKey": "507-T",
-                  "AvailableCapacity": 0,
+                  "BookKey": "125-T",
+                  "AvailableCapacity": 3,
                   "Price": {
-                    "PriceGroupCode": "CHD",
+                    "PriceGroupCode": "CHD-DIS",
                     "PriceGroupName": "Youth 7-15",
                     "Age": null,
-                    "Price": 1475,
+                    "Price": 410,
                     "OriginalPrice": 0,
+                    "Currency": "NOK"
+                  },
+                  "BookingConditions": {
+                    "Name": null,
+                    "Terms": null
+                  },
+                  "DiscountInformation": {
+                    "Name": "Sportlovet2019",
+                    "Description": "Rabatt för Sportlovet"
+                  },
+                  "IncludedAddons": [
+                    {
+                      "Name": "Sportlovet 2019 Hatt",
+                      "Content": {
+                          "PriceFrom": 0,
+                          "Images": [],
+                          "Information": [
+                              {
+                                  "Id": 99,
+                                  "Name": "Name",
+                                  "Value": "Sportlovet 2019 Hatt"
+                              }
+                          ],
+                          "Categories": null,
+                          "Geos": null,
+                          "Pois": null,
+                          "Position": null
+                      },
+                      "Price": 10,
+                      "Amount": 1,
+                      "Currency": "NOK",
+                      "PriceIncluded": true
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "Start": "2019-02-18T14:00:00",
+              "Duration": "03:00:00",
+              "Quotes": [
+                {
+                  "BookKey": "126-T",
+                  "AvailableCapacity": 7,
+                  "Price": {
+                    "PriceGroupCode": "ADT",
+                    "PriceGroupName": "Adult",
+                    "Age": null,
+                    "Price": 1000,
+                    "OriginalPrice": 1000,
+                    "Currency": "NOK"
+                  },
+                  "BookingConditions": {
+                    "Name": null,
+                    "Terms": null
+                  },
+                  "DiscountInformation": {
+                    "Name": null,
+                    "Description": null
+                  },
+                  "IncludedAddons": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "Id": "cbis:1501474",
+          "Name": "Advanced Ski Lessons",
+          "MaximumItemsBookable": null,
+          "MinimumItemsBookable": 1,
+          "Content": {
+            "PriceFrom": 0,
+            "Images": [],
+            "Information": [
+              {
+                "Id": 99,
+                "Name": "Name",
+                "Value": "Advanced Ski Lessons"
+              }
+            ],
+            "Categories": null,
+            "Geos": null,
+            "Pois": null,
+            "Position": null
+          },
+          "Occasions": [
+            {
+              "Start": "2019-02-18T09:00:00",
+              "Duration": "04:00:00",
+              "Quotes": [
+                {
+                  "BookKey": "127-T",
+                  "AvailableCapacity": 4,
+                  "Price": {
+                    "PriceGroupCode": "ADT",
+                    "PriceGroupName": "Adult",
+                    "Age": null,
+                    "Price": 1100,
+                    "OriginalPrice": 1100,
                     "Currency": "NOK"
                   },
                   "BookingConditions": {
@@ -204,19 +288,22 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/availability/activity",
           ]
         }
       ],
-      "TotalResults": 1
+      "TotalResults": 2
     }
   ],
-  "SearchId": "2608ec73-7b58-4dc0-8f67-4d0428d5051f",
-  "ExpirationDate": "2018-12-21T15:15:46.2172447+01:00",
-  "TotalResults": 1
+  "SearchId": "2121as12-1a2s-1s2a-2a1s-12as21sa12as",
+  "ExpirationDate": "2019-01-29T15:15:46.2172447+01:00",
+  "TotalResults": 2
 }
 ```
 
-This is a **POST** request that requires a filter with some mandatory properties, such as date. 
+This is a **POST** request that requires a filter with some mandatory properties, such as date.
 The filter can also include content filtering, such as only including those activities associated with a particular CBIS category or with certain attributes.
 Content filtering possibilities can be found in the <a href="https://visit.github.io/galaxy-docs/#content-filter">Content Section</a> You can see a bare minimum version of this search in the examples.
-The Most important return values in this response are the `SearchId` and the `BookKey` used in the <a href="https://visit.github.io/galaxy-docs/#basket">Basket</a>, also pay attention to the `ExpirationDate` of the `SearchId`. IMPORTANT: Paging is 0-indexed.
+The return structure is a list of Activity Groups (such as ski lessons) which contain activities (e.g one for each skill level). Each activity contains Occasions, each of which defines a possible start date, time and duration for the Activity (e.g. morning lessons, afternoon lessons). Finally each occasion has a list of quotes, which are the bookable objects, in each of these you will find all the information related to price groups, prices and other pertinent information and the `BookKey` (e.g. one price for adults, another for children).
+The most important return values in the response are the `SearchId` and the `BookKey` found in each `Quote` object, they are used in the <a href="https://visit.github.io/galaxy-docs/#add-activity-booking-item">Basket</a>, also pay attention to the `ExpirationDate` of the `SearchId`.
+It is also worth paying attention to the Minimum and Maximum Items to Book. These are often values set by external systems and if your basket item is outside these parameters it may fail to commit. A `null` value means unrestricted. Booking Conditions and Discount Information relate can contain specific supplier information or Campaign information respectively.
+IMPORTANT: Paging is 0-indexed.
 
 ### HTTP Request
 
@@ -255,9 +342,9 @@ curl -X POST
 --header 'Accept-Language: en-us' 
 --header 'apiKey: APIKEY132456789EWOK' 
 -d '{
-  "Page": 1,
+  "Page": 0,
   "PageSize": 20,
-  "SearchId": "aaaa1234-4321-1a2b-asdf-123456asdfgh"
+  "SearchId": "2121as12-1a2s-1s2a-2a1s-12as21sa12as"
 }' 'https://galaxy.citybreak.com/v3/api/availability/activity/get'
 ```
 
@@ -271,7 +358,7 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/availability/activity/get",
 		 "Accept-Language": "en-US"
 	},
 	body: JSON.Stringify({
-    "Page": 1,
+    "Page": 0,
     "PageSize": 20,
     "SearchId": "aaaa1234-4321-1a2b-asdf-123456asdfgh"
   })  
@@ -297,30 +384,37 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/availability/activity/get",
   },
   "ActivityGroups": [
     {
-      "Id": "cbis:1488188",
-      "Name": "SkiPass Hafjell - Winter TO",
+      "Id": "cbis:12345",
+      "Name": "Off Piste Ski Lessons",
       "Content": {
         "PriceFrom": 0,
-        "Images": [],
+        "Images": [                            
+          {
+            "Uri": "//images.citybreak.com/image.aspx?ImageId=123",
+            "IsMain": true,
+            "Name": null,
+            "Copyright": null,
+            "Description": null
+          }
+        ],
         "Information": [
           {
             "Id": 99,
             "Name": "Name",
-            "Value": "SkiPass Hafjell - Winter TO"
+            "Value": "Off Piste Ski Lessons"
           }
         ],
         "Categories": null,
         "Geos": null,
         "Pois": null,
-        "Position": {
-          "Latitude": 61.2350455,
-          "Longitude": 10.448359
-        }
+        "Position": null
       },
       "Activities": [
         {
           "Id": "cbis:1501474",
-          "Name": "SkiPass TO - Hafjell (refill you Axess keycard)",
+          "Name": "Advanced Off Piste Ski Lessons",
+          "MaximumItemsBookable": null,
+          "MinimumItemsBookable": 2,
           "Content": {
             "PriceFrom": 0,
             "Images": [],
@@ -328,99 +422,27 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/availability/activity/get",
               {
                 "Id": 99,
                 "Name": "Name",
-                "Value": "SkiPass TO - Hafjell (refill you Axess keycard)"
+                "Value": "Advanced Off Piste Ski Lessons"
               }
             ],
             "Categories": null,
             "Geos": null,
             "Pois": null,
-            "Position": {
-              "Latitude": 61.2350455,
-              "Longitude": 10.448359
-            }
+            "Position": null
           },
           "Occasions": [
             {
-              "Start": "2019-02-18T00:00:00",
-              "Duration": "4.00:00:00",
+              "Start": "2019-02-18T09:00:00",
+              "Duration": "08:00:00",
               "Quotes": [
                 {
-                  "BookKey": "468-T",
-                  "AvailableCapacity": 0,
+                  "BookKey": "127-T",
+                  "AvailableCapacity": 4,
                   "Price": {
                     "PriceGroupCode": "ADT",
                     "PriceGroupName": "Adult",
                     "Age": null,
-                    "Price": 1600,
-                    "OriginalPrice": 0,
-                    "Currency": "NOK"
-                  },
-                  "BookingConditions": {
-                    "Name": null,
-                    "Terms": null
-                  },
-                  "DiscountInformation": {
-                    "Name": null,
-                    "Description": null
-                  },
-                  "IncludedAddons": []
-                }
-                {
-                  "BookKey": "490-T",
-                  "AvailableCapacity": 0,
-                  "Price": {
-                    "PriceGroupCode": "CHD",
-                    "PriceGroupName": "Youth 7-15",
-                    "Age": null,
-                    "Price": 1280,
-                    "OriginalPrice": 0,
-                    "Currency": "NOK"
-                  },
-                  "BookingConditions": {
-                    "Name": null,
-                    "Terms": null
-                  },
-                  "DiscountInformation": {
-                    "Name": null,
-                    "Description": null
-                  },
-                  "IncludedAddons": []
-                }
-              ]
-            },
-            {
-              "Start": "2019-02-18T00:00:00",
-              "Duration": "5.00:00:00",
-              "Quotes": [
-                {
-                  "BookKey": "495-T",
-                  "AvailableCapacity": 0,
-                  "Price": {
-                    "PriceGroupCode": "ADT",
-                    "PriceGroupName": "Adult",
-                    "Age": null,
-                    "Price": 1850,
-                    "OriginalPrice": 0,
-                    "Currency": "NOK"
-                  },
-                  "BookingConditions": {
-                    "Name": null,
-                    "Terms": null
-                  },
-                  "DiscountInformation": {
-                    "Name": null,
-                    "Description": null
-                  },
-                  "IncludedAddons": []
-                },
-                {
-                  "BookKey": "507-T",
-                  "AvailableCapacity": 0,
-                  "Price": {
-                    "PriceGroupCode": "CHD",
-                    "PriceGroupName": "Youth 7-15",
-                    "Age": null,
-                    "Price": 1475,
+                    "Price": 2100,
                     "OriginalPrice": 0,
                     "Currency": "NOK"
                   },
@@ -442,13 +464,13 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/availability/activity/get",
       "TotalResults": 1
     }
   ],
-  "SearchId": "2608ec73-7b58-4dc0-8f67-4d0428d5051f",
-  "ExpirationDate": "2018-12-21T15:15:46.2172447+01:00",
-  "TotalResults": 1
+  "SearchId": "2121as12-1a2s-1s2a-2a1s-12as21sa12as",
+  "ExpirationDate": "2019-01-29T15:15:46.2172447+01:00",
+  "TotalResults": 2
 }
 ```
 
-This is a **POST** request that requires a filter with a valid (non-expired) SearchId. The filter otherwise has the same constraints as in the original <a href="https://visit.github.io/galaxy-docs/#activity">Activity availability</a> search. You can see a bare minimum version of this search in the examples. IMPORTANT: Paging is 0-indexed.
+This is a **POST** request that requires a filter with a valid (non-expired) `SearchId`. The filter otherwise has the same constraints as in the original <a href="https://visit.github.io/galaxy-docs/#availability---activity">Activity availability</a> search. You can see a bare minimum version of this search in the examples. IMPORTANT: Paging is 0-indexed.
 
 ### HTTP Request
 
@@ -503,7 +525,7 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/availability/activity/calenda
 	},
 	body: JSON.Stringify({
     "PointOfSalesId": 0,
-    "Start": "2018-12-14",
+    "Start": "2018-12-13",
     "End": "2018-12-16",
     "Currency": "DKK"
   })  
@@ -519,60 +541,30 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/availability/activity/calenda
       "Date": "2018-12-14T00:00:00",
       "IsAvailable": true,
       "Activities": [
-        {
-          "Id": "pt:519594",
-          "Availability": 9999,
-          "Price": 150,
-          "StartDate": "2018-12-14T00:00:00",
-          "EndDate": null
-        },
-        {
-          "Id": "pt:519759",
-          "Availability": 9999,
-          "Price": 300,
-          "StartDate": "2018-12-14T00:00:00",
-          "EndDate": null
-        }
+        "cbis:1234",
+        "cbis:1235"
       ]
+    },
+    {
+      "Date": "2018-12-14T00:00:00",
+      "IsAvailable": false,
+      "Activities": null
     },
     {
       "Date": "2018-12-15T00:00:00",
       "IsAvailable": true,
       "Activities": [
-        {
-          "Id": "pt:519594",
-          "Availability": 9999,
-          "Price": 150,
-          "StartDate": "2018-12-15T00:00:00",
-          "EndDate": null
-        },
-        {
-          "Id": "pt:519759",
-          "Availability": 9999,
-          "Price": 300,
-          "StartDate": "2018-12-15T00:00:00",
-          "EndDate": null
-        }
+        "cbis:1234",
+        "cbis:1235"
+        "cbis:1236"
       ]
     },
     {
       "Date": "2018-12-16T00:00:00",
       "IsAvailable": true,
       "Activities": [
-        {
-          "Id": "pt:519594",
-          "Availability": 9999,
-          "Price": 150,
-          "StartDate": "2018-12-16T00:00:00",
-          "EndDate": null
-        },
-        {
-          "Id": "pt:519759",
-          "Availability": 9999,
-          "Price": 300,
-          "StartDate": "2018-12-16T00:00:00",
-          "EndDate": null
-        }
+        "cbis:1234",
+        "cbis:1236"
       ]
     }
   ],
@@ -581,19 +573,26 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/availability/activity/calenda
     "Start": "2018-12-14T00:00:00",
     "End": "2018-12-16T00:00:00",
     "Currency": "DKK",
-    "ContentFilter": null
+    "ContentFilter": {
+      "Ids":[
+          "cbis:1234",
+          "cbis:1235"
+          "cbis:1236"
+        ]
+    }
   }
 }
 ```
 
 This is a **POST** request that requires a filter with some mandatory properties, such as the start and end dates of the calendar, the pointOfSalesId and the currency. 
 As in other availability queries, the filter can also include a content filter, such as only those activities associated with a particular CBIS category or with certain attributes. 
+This is especially handy if you want a very quick look at availability for a specific product or products over a range of days.
 Content possibilities can be found in the <a href="https://visit.github.io/galaxy-docs/#content-filter">Content Section</a> You can see a bare minimum version of this search in the examples.
-The return of this call is a set of days with an IsAvailable boolean value indicating any availability at all and (if there is availability) an entity called Activities which shows activity options available on that day. This is useful for, say, quickly displaying days on which you can find available activities.
+The return of this call is a set of dates with an IsAvailable boolean value indicating any availability at all and (if there is availability) an entity called Activities which is a set of the cbis IDs of the activities (as opposed to activity groups) available on that day. This is useful for, say, quickly displaying days on which you can find available activities. You can use the <a href="https://visit.github.io/galaxy-docs/#activity">Activity content</a> call with if you also wish to populate a specific activity with content (check the relations field if you want the content of the encapsulating group)
  
 ### HTTP Request
 
-`POST https://galaxy.citybreak.com/v3/api/availability/activity/calendar`
+`POST https://galaxy.citybreak.com/v3/api/availability/activity/calendar/byday`
 
 ### Query Parameters
 
@@ -612,3 +611,242 @@ Accept-Language | The language culture (e.g en-us)
   },
 }
 </code>
+
+## Calendar Search By Product
+
+```shell
+curl -X POST 
+--header 'Content-Type: application/json' 
+--header 'Accept: application/json' 
+--header 'Accept-Language: en-us' 
+--header 'apiKey: APIKEY132456789EWOK' 
+-d '{
+  "PointOfSalesId": 0,
+  "Start": "2019-02-16",
+  "End": "2019-02-19",
+  "Currency": "EUR",
+  "ContentFilter": {
+    "Ids": [
+      "cbis:12345",
+      "cbis:12346"
+    ]
+  },
+  "OutputFilter":{
+    "Attributes":[99],
+    "Categories": false,
+    "Geos": false,
+    "Pois": false,
+    "Position": false
+  }
+}' 'https://galaxy.citybreak.com/v3/api/availability/activity/calendar/byproduct'
+```
+
+```javascript
+var r = fetch("https://galaxy.citybreak.com/v3/api/availability/activity/calendar/byproduct",
+{
+	method: "POST",
+	headers: {
+	   "ApiKey:" "APIKEY132456789EWOK",
+	   "Accept": "application/json",
+		 "Accept-Language": "en-US"
+	},
+	body: JSON.Stringify({
+    "PointOfSalesId": 0,
+    "Start": "2019-02-16",
+    "End": "2019-02-19",
+    "Currency": "EUR",
+    "ContentFilter": {
+      "Ids": [
+      "cbis:12345",
+      "cbis:12346"
+      ]
+    },
+    "OutputFilter":{
+      "Attributes":[99],
+      "Categories": false,
+      "Geos": false,
+      "Pois": false,
+      "Position": false
+    }
+  })  
+});
+```
+
+> Example of response:
+
+```json
+{
+  "CalendarContentContext": {
+      "PointOfSalesId": 18280,
+      "Start": "2019-02-16T00:00:00",
+      "End": "2019-02-19T00:00:00",
+      "Currency": "EUR",
+      "ContentFilter": null,
+      "OutputFilter": {
+        "Attributes": [
+          99
+        ],
+        "Categories": false,
+        "Geos": false,
+        "Pois": false,
+        "Position": false
+      }
+  },
+  "ActivityGroups": [
+    {
+      "Id": "cbis:123245",
+      "Name": "Rappeling Down the Ice Wall in Pyhä-Luosto",
+      "Content": {
+        "PriceFrom": 0,
+        "Images": [
+          {
+            "Uri": "//images.citybreak.com/image.aspx?ImageId=1235",
+            "IsMain": true,
+            "Name": null,
+            "Copyright": null,
+            "Description": null
+          },
+          {
+            "Uri": "//images.citybreak.com/image.aspx?ImageId=1235",
+            "IsMain": false,
+            "Name": null,
+            "Copyright": null,
+            "Description": null
+          }
+        ],
+        "Information": [
+          {
+            "Id": 99,
+            "Name": "Name",
+            "Value": "Rappeling Down the Ice Wall in Pyhä-Luosto"
+          }
+        ],
+        "Categories": null,
+        "Geos": null,
+        "Pois": null,
+        "Position": null
+      },
+      "Activities": [
+        {
+          "Id": "cbis:12347",
+          "Name": "Rappeling Down the Ice Wall in Pyhä-Luosto",
+          "Content": {
+            "PriceFrom": null,
+            "Images": [],
+              "Information": [
+                {
+                  "Id": 99,
+                  "Name": "Name",
+                  "Value": "Rappeling Down the Ice Wall in Pyhä-Luosto"
+                }
+              ],
+              "Categories": null,
+              "Geos": null,
+              "Pois": null,
+              "Position": null
+          },
+          "AvailableDates": [
+            "2019-02-16T00:00:00Z",
+            "2019-02-18T00:00:00Z",
+            "2019-02-19T00:00:00Z"
+          ]
+        }
+      ],
+      "TotalResults": 1
+    },
+    {
+      "Id": "cbis:123246",
+      "Name": "Climbing up the Ice Wall in Pyhä-Luosto",
+      "Content": {
+        "PriceFrom": 0,
+        "Images": [
+          {
+            "Uri": "//images.citybreak.com/image.aspx?ImageId=1234",
+            "IsMain": true,
+            "Name": null,
+            "Copyright": null,
+            "Description": null
+          },
+          {
+            "Uri": "//images.citybreak.com/image.aspx?ImageId=1234",
+            "IsMain": false,
+            "Name": null,
+            "Copyright": null,
+            "Description": null
+          }
+        ],
+        "Information": [
+          {
+            "Id": 99,
+            "Name": "Name",
+            "Value": "Climbing up the Ice Wall in Pyhä-Luosto"
+          }
+        ],
+        "Categories": null,
+        "Geos": null,
+        "Pois": null,
+        "Position": null
+      },
+      "Activities": [
+        {
+          "Id": "cbis:12348",
+          "Name": "Climbing up the Ice Wall in Pyhä-Luosto",
+          "Content": {
+            "PriceFrom": null,
+            "Images": [],
+              "Information": [
+                {
+                  "Id": 99,
+                  "Name": "Name",
+                  "Value": "Climbing up the Ice Wall in Pyhä-Luosto"
+                }
+              ],
+              "Categories": null,
+              "Geos": null,
+              "Pois": null,
+              "Position": null
+          },
+          "AvailableDates": [
+            "2019-02-17T00:00:00Z",
+            "2019-02-18T00:00:00Z",
+            "2019-02-19T00:00:00Z"
+          ]
+        }
+      ],
+      "TotalResults": 1
+    },
+  ],
+  "TotalResults": 2
+}
+```
+
+This is a **POST** request that requires a filter with some mandatory properties, such as the start and end dates of the calendar, the pointOfSalesId and the currency. 
+As in other availability queries, the filter can also include a content filter, such as only those activities associated with a particular CBIS category or with certain attributes. 
+As there is no paging for the calendar content search it is sensible to request the bare minimum both in terms of products searched and content returned.
+Content possibilities can be found in the <a href="https://visit.github.io/galaxy-docs/#content-filter">Content Section</a> You can see a bare minimum version of this search in the examples.
+The return of this call the activity groups and activities that have availabilities within the time range you are looking for, instead of occasions and quotes you simply get a list of days the product is available.
+ 
+### HTTP Request
+
+`POST https://galaxy.citybreak.com/v3/api/availability/activity/calendar/byproduct`
+
+### Query Parameters
+
+Parameter | Description
+--------- | -----------
+filter | the POST filter
+Accept-Language | The language culture (e.g en-us)
+
+<code class="center-column">
+{
+  "PointOfSalesId": 0, //int - Mandatory 
+  "Start": "2018-12-14", //DateTime - Mandatory, conforms to ISO 8601
+  "End": "2018-12-16", //DateTime - Mandatory, conforms to ISO 8601
+  "Currency": "string", //string - Mandatory e.g SEK or EUR
+  "ContentFilter": { // Optional - See <a href="https://visit.github.io/galaxy-docs/#content-filter">ContentFilter</a>
+  },
+  "OutputFilter": { // Optional -  See <a href="https://visit.github.io/galaxy-docs/#output-filter">OutputFilter</a>
+  }
+}
+</code>
+

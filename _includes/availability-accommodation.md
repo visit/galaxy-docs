@@ -4,7 +4,7 @@
 
 The `SearchId` can be used to retrieve prior, cached searches in a much shorter amount of time for both Accommodation Search and Cabin Scan if used before its Expiry. The object recalled by the search contains all the unfiltered information retrieved in the first search, so further or different filtering on content, etc. can be done in this call.
 
-The `SearchId` and the `BookingKey` of each room product are used in the basket operations to add the product found to the <a href="https://visit.github.io/galaxy-docs/#basket">Basket</a> 
+The `SearchId` and the `BookingKey` of each room product are used in the basket operations to add the product found to the <a href="https://visit.github.io/galaxy-docs/#add-accommodation-booking-item">Basket</a> 
 
 
 **GET** and **POST** operations 
@@ -288,7 +288,7 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/availability/accommodation",
 This is a **POST** request that requires a filter with some mandatory properties, such as arrival and departure dates. 
 The filter can also include content filtering, such as only including those hotels associated with a particular CBIS category or that have 24 hr reception.
 Content filtering possibilities can be found in the <a href="https://visit.github.io/galaxy-docs/#content-filter">Content Section</a> You can see a bare minimum version of this search in the examples.
-The Most important return values in this response are the `SearchId` and the `BookingKey` used in the <a href="https://visit.github.io/galaxy-docs/#basket">Basket</a>, also pay attention to the `ExpirationDate` of the `SearchId`
+The Most important return values in this response are the `SearchId` and the `BookingKey` used in the <a href="https://visit.github.io/galaxy-docs/#add-accommodation-booking-item">Basket</a>, also pay attention to the `ExpirationDate` of the `SearchId`
 
 ### HTTP Request
 
@@ -585,7 +585,7 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/availability/accommodation/ge
 }
 ```
 
-This is a **POST** request that requires a filter with a valid (non-expired) SearchId. The filter otherwise has the same constraints as in the original <a href="https://visit.github.io/galaxy-docs/#accommodation20">Accommodation availability</a> search. You can see a bare minimum version of this search in the examples.
+This is a **POST** request that requires a filter with a valid (non-expired) SearchId. The filter otherwise has the same constraints as in the original <a href="https://visit.github.io/galaxy-docs/#availability---accommodation">Accommodation availability</a> search. You can see a bare minimum version of this search in the examples.
 
 ### HTTP Request
 

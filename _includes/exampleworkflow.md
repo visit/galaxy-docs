@@ -556,7 +556,7 @@ To commit a Basket we will need to <a href="https://visit.github.io/galaxy-docs/
 
 
 
-## Commit Basket
+## Commit A Basket
 
 
 ```shell
@@ -583,7 +583,7 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/basket/commit/87654321",
 98761234
 ```
 
-Once you have all the information in the basket, you can <a href="https://visit.github.io/galaxy-docs/#commit-basket56">Commit</a> it. 
+Once you have all the information in the basket, you can <a href="https://visit.github.io/galaxy-docs/#commit-basket">Commit</a> it. 
 This will start the process of finalising bookings and generating the necessary financial information. 
 You only need to provide the Basket Id for this call. 
 The whole commit process is a two step one. 
@@ -602,7 +602,7 @@ Our `CommitJobId` is **98761234**.
 
 
 
-## Get Commit Job Status
+## Get The Commit Job Status
 
 ```shell
 curl -X GET 
@@ -663,7 +663,7 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/basket/commit/status/98761234
 }
 ```
 
-Once the basket has been ordered to be <a href="https://visit.github.io/galaxy-docs/#commit-basket56">Committed</a>, 
+Once the basket has been ordered to be <a href="https://visit.github.io/galaxy-docs/#commit-basket">Committed</a>, 
 in order to get information about the booking you will need to use the `CommitJobId`: 98761234 to query the <a href="https://visit.github.io/galaxy-docs/#commit-status">Commit Status</a> of the job. 
 As you can see in the example return, there are a number of different tasks that run as a part of a commit job. 
 All of these are running in the back ground. Continue polling /basket/commit/status/{id} until you get either CompletedOk ok Failed as status. 
@@ -716,6 +716,7 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/reservation/latest/EWOK12",
     "Email": null
   },
   "CancellationMessage": null,
+  "LastCancellation": "2017-10-27T15:48:06.009Z",
   "Customer": {
     "NameFirst": "Test",
     "NameLast": "User",
@@ -811,7 +812,7 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/reservation/cancel/info/EWOK1
 }
 ```
 
-Finally, lets cancel our reservation. <a href="https://visit.github.io/galaxy-docs/#cancel-reservationn">Cancelling</a> policies can vary for products and so it is worth noting here that the only guaranteed cancellation that of the reservation. There might be part or full payments due depending on policies, cancellation insurance and other factors, that can differ product to product. To cancel, we once again just require our `BookingCode`: EWOK12 and with a GET query we will close out our reservation and end the example workflow. 
+Finally, lets cancel our reservation. <a href="https://visit.github.io/galaxy-docs/#cancel-reservation">Cancelling</a> policies can vary for products and so it is worth noting here that the only guaranteed cancellation that of the reservation. There might be part or full payments due depending on policies, cancellation insurance and other factors, that can differ product to product. To cancel, we once again just require our `BookingCode`: EWOK12 and with a GET query we will close out our reservation and end the example workflow. 
 
 
 ### HTTP Request

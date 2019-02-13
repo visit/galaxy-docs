@@ -1,6 +1,6 @@
 # Basket
 
-**Basket** calls are the most complicated in the API workflow as they encapsulate the booking process in typical "shopping basket" object that can have many operations performed on it and which has a limited life span, connected as it is to availability/bookability of products, both internal to Citybreak and from external inventories. It is NOT a reservation but products in a basket are "held" for 60 mins from the time of the <a href="https://visit.github.io/galaxy-docs/#availability---accommodation">Availability Search</a> where possible (i.e. where external inventories allow).
+**Basket** calls are the most complicated in the API workflow as they encapsulate the booking process in typical "shopping basket" object that can have many operations performed on it and which has a limited life span, connected as it is to availability/bookability of products, both internal to Citybreak and from external inventories. It is NOT a reservation but products in a basket are "held" for 60 mins from the time of the <a href="https://visit.github.io/galaxy-docs/#availability---accommodation">Accommodation</a> or <a href="https://visit.github.io/galaxy-docs/#availability---activity">Activity</a> Availability Search where possible (i.e. where external inventories allow).
 
 <aside class="notice">NB: if using the Visit Test Organisation API Key you can use 17692 as the `pointOfSalesId`</aside>
 
@@ -456,7 +456,7 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/basket/add/accommodation/{bas
 }
 ```
 
-Add a booking item to the basket, you must first have checked for the <a href="https://visit.github.io/galaxy-docs/#availability---accommodation">Availability</a> of a property or properties and obtained the search Id and the bookingKey of the product you wish to add to the basket.
+Add a booking item to the basket, you must first have checked for the <a href="https://visit.github.io/galaxy-docs/#availability---accommodation">Accommodation Availability</a> of a property or properties (or <a href="https://visit.github.io/galaxy-docs/#availability---activity">Activity/s</a>) and obtained the search Id and the bookingKey of the product you wish to add to the basket.
 
 `PUT https://galaxy.citybreak.com/v3/api/basket/add/accommodation`
 
@@ -465,8 +465,8 @@ Add a booking item to the basket, you must first have checked for the <a href="h
 Parameter | Description
 --------- | -----------
 basketId | The Id of the basket.
-searchId | The search Id returned by the <a href="https://visit.github.io/galaxy-docs/#availability---accommodation">Availability Response</a>
-bookKey | The key of the booking item (product) to add to the basket, found in <a href="https://visit.github.io/galaxy-docs/#availability---accommodation">Availability Response</a>
+searchId | The search Id returned by the <a href="https://visit.github.io/galaxy-docs/#availability---accommodation">Accommodation</a> or <a href="https://visit.github.io/galaxy-docs/#availability---activity">Activity</a> Availability Response
+bookKey | The key of the booking item (product) to add to the basket, found in the <a href="https://visit.github.io/galaxy-docs/#availability---accommodation">Accommodation</a> or <a href="https://visit.github.io/galaxy-docs/#availability---activity">Activity</a> Availability Search
 
 
 ## Add Fuzzy Accommodation Booking Item
@@ -500,7 +500,7 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/basket/add/accommodation/fuzz
 }
 ```
 
-Specifically for the Fuzzy search a booking item to the basket, you must first have checked for the <a href="https://visit.github.io/galaxy-docs/#fuzzy-accommodation-search">Fuzzy Availability</a> of a property or properties and obtained the search Id and the `bookId` of the product you wish to add to the basket. NOTE: the bookId is obtained from the `BookableAlternatives` and is a separate entity from the `bookKey` used in the regular basket operation
+Specifically for the Fuzzy search, to add a booking item to the basket you must first have checked for the <a href="https://visit.github.io/galaxy-docs/#fuzzy-accommodation-search">Fuzzy Availability</a> of a property or properties and obtained the search Id and the `bookId` of the product you wish to add to the basket. NOTE: the bookId is obtained from the `BookableAlternatives` and is a separate entity from the `bookKey` used in the regular basket operation
 
 `PUT https://galaxy.citybreak.com/v3/api/basket/add/accommodation/fuzzy/`
 
@@ -854,7 +854,7 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/basket/commit/{basketId}",
 int32
 ```
 
-This is the method used to start a commit job for a basket. You only need to provide the Basket Id for this call. As there may be many products from different internal and external providers this is essentially a two step async operation. Once you have commited the basket you can query <a href="https://visit.github.io/galaxy-docs/#commit-status">Commit Status</a> to get the status of the job and the `ReservationID` and `BookingCode` if it is completed. Before you may commit a basket, there is some information you must provide first. Add at least one <a href="https://visit.github.io/galaxy-docs/#add-accommodation-booking-item">Booking Item</a> and provide <a href="https://visit.github.io/galaxy-docs/#update-customer-information">Customer Information</a>.
+This is the method used to start a commit job for a basket. You only need to provide the Basket Id for this call. As there may be many products from different internal and external providers this is essentially a two step async operation. Once you have commited the basket you can query <a href="https://visit.github.io/galaxy-docs/#commit-status">Commit Status</a> to get the status of the job and the `ReservationID` and `BookingCode` if it is completed. Before you may commit a basket, there is some information you must provide first. Add at least one Booking Item (<a href="https://visit.github.io/galaxy-docs/#add-accommodation-booking-item">Accommodation</a>, <a href="https://visit.github.io/galaxy-docs/#add-fuzzy-accommodation-booking-item">Fuzzy Accommodation</a> or <a href="https://visit.github.io/galaxy-docs/#add-activity-booking-item">Activity</a>) and provide <a href="https://visit.github.io/galaxy-docs/#update-customer-information">Customer Information</a>.
 
 The return value is a job number with which you can check the status of commit
 
@@ -937,7 +937,7 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/basket/commit/status/{commitJ
 }
 ```
 
-Gets the `ResvversionId` (reservation version id) and `BookingCode`, important for <a href="https://visit.github.io/galaxy-docs/#reservation">Reservation</a> calls, and the status of a commit job. Get the commit job id when you make the <a href="https://visit.github.io/galaxy-docs/#commit-basket56">Commit</a>.
+Gets the `ResvversionId` (reservation version id) and `BookingCode`, important for <a href="https://visit.github.io/galaxy-docs/#reservation">Reservation</a> calls, and the status of a commit job. Get the commit job id when you make the <a href="https://visit.github.io/galaxy-docs/#commit-basket">Commit</a>.
 
 
 ### HTTP Request
@@ -948,7 +948,7 @@ Gets the `ResvversionId` (reservation version id) and `BookingCode`, important f
 
 Parameter | Description
 --------- | -----------
-commitJobId | The Id of the commit job returned from <a href="https://visit.github.io/galaxy-docs/#commit-basket56">Commit Basket</a> 
+commitJobId | The Id of the commit job returned from <a href="https://visit.github.io/galaxy-docs/#commit-basket">Commit Basket</a> 
 
 
 

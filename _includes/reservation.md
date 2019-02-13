@@ -94,6 +94,7 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/reservation/version/{reservat
     "Email": null
   },
   "CancellationMessage": null,
+  "LastCancellation": "2017-10-05T15:48:05.997Z",
   "Customer": {
     "NameFirst": "Test",
     "NameLast": "User",
@@ -198,6 +199,7 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/reservation/latest/{bookingCo
     "Email": null
   },
   "CancellationMessage": null,
+  "LastCancellation": "2017-10-05T15:48:05.997Z",
   "Customer": {
     "NameFirst": "Test",
     "NameLast": "User",
@@ -337,7 +339,7 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/reservation/cancel/info/{book
 }
 ```
 
-After a cancellation, get the cancellation info of the booking based on the booking code.
+[DEPRECATED] After a cancellation, get the cancellation info of the booking based on the booking code.
 
 
 ### HTTP Request
