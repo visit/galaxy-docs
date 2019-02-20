@@ -997,18 +997,18 @@ Parameter | Description
 basketId | The Id of the basket.
 
 
-## Optional products
+## Addons products
 
 ```shell
 curl -X GET 
 --header 'Accept: application/json' 
 --header 'apiKey: APIKEY132456789EWOK' 
 --header 'Accept-Language: en-us' 
-'https://galaxy.citybreak.com/v3/api/api/basket/optional/{basketId}/{bookItemId}'
+'https://galaxy.citybreak.com/v3/api/api/basket/addon/{basketId}/{bookItemId}'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v3/api/api/basket/optional/{basketId}/{bookItemId}",
+var r = fetch("https://galaxy.citybreak.com/v3/api/api/basket/addon/{basketId}/{bookItemId}",
 {
   method:"GET"
   headers: {
@@ -1023,173 +1023,38 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/api/basket/optional/{basketId
 
 ```json
 {
-    "Product": {
-        "BookItemId": 1,
-        "ContentId": "pt:444365",
-        "Arrival": "2018-04-01T00:00:00",
-        "Departure": "2018-04-08T00:00:00",
-        "Name": "KRYSTALLEN LEILIGHET A603",
-        "Subproducts": [
-            {
-                "Id": 2,
-                "NoUnits": 1,
-                "IsExtraBed": false,
-                "ProductType": 12,
-                "Name": "Sluttvask",
-                "IsMandatory": false,
-                "Price": { 
-                    "Price": 1900,
-                    "VatAmount": 228,
-                    "Currency": "NOK"
-                }
-            }
-        ],
-        "Price": {
-            "Price": 21450,
-            "VatAmount": 2574,
-            "Currency": "NOK"
-        }
-    },
-    "OptionalProducts": [
+    "BookItemId": 1,
+    "ProductName": "My activity name",
+    "AvailableAddons": [
         {
             "NeedsToSpecifyPricegroups": false,
             "NeedsToSpecifyQuantity": true,
-            "Name": "Sengetøy og håndklær",
-            "ProducttypeId": 445409,
-            "BookedProducts": [
-                {
-                    "Id": 6,
-                    "NoUnits": 1,
-                    "IsExtraBed": false,
-                    "ProductType": 12,
-                    "Name": "Sengetøy og håndklær",
-                    "IsMandatory": false,
-                    "Price": {
-                        "Price": 175,
-                        "VatAmount": 43.75,
-                        "Currency": "NOK"
-                    }
-                }
-            ],
+            "Name": "Sparkling wine",
+            "AddonId": 445409,
             "AmountType": "Unlimited",
-            "TemplateArguments": {
-                "MainProductId": 1,
-                "OptionalProducttypeId": 445409,
-                "Config": [
-                    {
-                        "PricegroupName": "Unit",
-                        "IsLocalized": false,
-                        "Price": {
-                            "Price": 175,
-                            "VatAmount": 0,
-                            "Currency": "NOK"
-                        },
-                        "PricegroupId": -1,
-                        "Quantity": 0
-                    }
-                ]
-            }
-        },
-        {
-            "NeedsToSpecifyPricegroups": false,
-            "NeedsToSpecifyQuantity": true,
-            "Name": "Vedsekk (sjekk at enheten har ildsted)",
-            "ProducttypeId": 456793,
-            "BookedProducts": [
-                {
-                    "Id": 5,
-                    "NoUnits": 1,
-                    "IsExtraBed": false,
-                    "ProductType": 12,
-                    "Name": "Vedsekk (sjekk at enheten har ildsted)",
-                    "IsMandatory": false,
-                    "Price": {
-                        "Price": 150,
-                        "VatAmount": 37.5,
-                        "Currency": "NOK"
-                    }
-                }
-            ],
-            "AmountType": "Unlimited",
-            "TemplateArguments": {
-                "MainProductId": 1,
-                "OptionalProducttypeId": 456793,
-                "Config": [
-                    {
-                        "PricegroupName": "Unit",
-                        "IsLocalized": false,
-                        "Price": {
-                            "Price": 150,
-                            "VatAmount": 0,
-                            "Currency": "NOK"
-                        },
-                        "PricegroupId": -1,
-                        "Quantity": 0
-                    }
-                ]
-            }
-        },
-        {
-            "NeedsToSpecifyPricegroups": false,
-            "NeedsToSpecifyQuantity": true,
-            "Name": "Barneseng",
-            "ProducttypeId": 456758,
-            "BookedProducts": [],
-            "AmountType": "Unlimited",
-            "TemplateArguments": {
-                "MainProductId": 1,
-                "OptionalProducttypeId": 456758,
-                "Config": [
-                    {
-                        "PricegroupName": "Unit",
-                        "IsLocalized": false,
-                        "Price": {
-                            "Price": 175,
-                            "VatAmount": 0,
-                            "Currency": "NOK"
-                        },
-                        "PricegroupId": -1,
-                        "Quantity": 1
-                    }
-                ]
-            }
-        },
-        {
-            "NeedsToSpecifyPricegroups": false,
-            "NeedsToSpecifyQuantity": true,
-            "Name": "Barnestol",
-            "ProducttypeId": 456740,
-            "BookedProducts": [],
-            "AmountType": "Unlimited",
-            "TemplateArguments": {
-                "MainProductId": 1,
-                "OptionalProducttypeId": 456740,
-                "Config": [
-                    {
-                        "PricegroupName": "Unit",
-                        "IsLocalized": false,
-                        "Price": {
-                            "Price": 175,
-                            "VatAmount": 0,
-                            "Currency": "NOK"
-                        },
-                        "PricegroupId": -1,
-                        "Quantity": 1
-                    }
-                ]
-            }
+            "Prices": [
+	    	{
+	            "PricegroupId": null,
+		    "PricegroupName": "",
+		    "IsLocalized": false,
+		    "Price": {
+		        "Price": 175,
+		        "VatAmount": 0,
+		        "Currency": "NOK"
+		    }		    
+	        }
+            ]
         }
     ]
 }
 ```
 Once a product is added to the basket, all mandatory included sub products
 are also included. 
-There may however be optional products that needs extra attention.
+There may however be addon products that are optional.
 
-You will get back a structure that describes the available sub products for the specific product.
-Get the basket and use 
-`basket.Groups[n].Products[p].BookItemId`
-as the mainProductId.
+These calls allows you to get a list of available addons.
+The main product is refered to by its ID in the basket, the `BookItemId`. 
+You can get all the addons for a given basket or a given product in a basket.
 
 If `NeedsToSpecifyQuantity` is set to `true` you can set it to any value between
 0 and 50 depending on the number of units you require.
@@ -1200,75 +1065,27 @@ If `NeedsToSpecifyQuantity` is set to `false` you can set quantity to either
 If `NeedsToSpecifyPricegroups` is set to `true` you need to configure 
 each price group item with the specified quantity.
 
-Let's take a look at the templateArgument section:
-
-<code class="center-column">
-"TemplateArguments": {
-  "MainProductId": 1,
-  "OptionalProducttypeId": 456740,
-  "Config": [
-    {
-      "PricegroupName": "Unit",
-      "IsLocalized": false,
-      "Price": {
-        "Price": 175,
-        "VatAmount": 0,
-        "Currency": "NOK"
-      },
-      "PricegroupId": -1,
-      "Quantity": 1
-    }
-  ]
-}
-</code>
-
-It's there to help you decide how to configure the product. Cross reference this
-with the datatype the post takes, you can see that they are identical on some parts.
-The price on the outer section is there to tell that the price is valid for 
-the entire configuration.
-The price in the config section is there to tell the price if it depends on the 
-number of units for the specific price group.
-
-Basically, if the sub product is included as one per guest, that configuration
+If the addon is included as one per guest, that configuration
 must be submitted for each guest, also the price is known at that time and presented
-on the outer section.
+with a price group information.
 
 In this case the `NeedsToSpecifyQuantity` is set and you will have to configure how
 many items you would like. The price is then presented in the config item so you 
 can tell the price depending on the number of units selected.
 
-The `PricegroupId` set to minus one represents that the price is not dependent 
+The `PricegroupId` set to null represents that the price is not dependent 
 on pricegroup but on the type Unit, meaning that regardless of the age of the 
-person associated with the item, the price will be the same.
+person associated with the item, the price will be the same. In this case
+you don't need to supply price group information when adding the addon to a product.
 
 `IsLocalized` tells the consumer if the price group is generated using the
 translation of the price group. If set to `false` you will have to bring your
 own translation when presenting in to the user.
 
-In order to use that configuration you can simply omit some parts:
+### HTTP Requests
 
-<code class="center-column">
-{
-  "MainProductId": 1,
-  "OptionalProducttypeId": 456740,
-  "Config": [
-    {
-      "PricegroupId": -1,
-      "Quantity": 1
-    }
-  ]
-}
-</code>
-
-
-There is a valid configuration object that could be used with the SetOptionalProducts method.
-
-The default values (Quantity) will be set to a positive value if the subproduct is 
-not configured. When configured, the default value would be to remove it.
-
-### HTTP Request
-
-`GET https://galaxy.citybreak.com/v3/api/api/basket/optional/{basketId}/{bookItemId}`
+`GET https://galaxy.citybreak.com/v3/api/api/basket/addon/{basketId}/{bookItemId}`
+`GET https://galaxy.citybreak.com/v3/api/api/basket/addon/{basketId}`
 
 ### Query Parameters
 
@@ -1277,39 +1094,27 @@ Parameter | Description
 basketId | The Id of the basket.
 bookItemId | The Id of the booking item on which to operate
 
-## Set optional product
+## Add addon product
 
 ```shell
 curl -X POST 
 --header 'Content-Type: application/json' 
 --header 'Accept: application/json' 
 --header 'Accept-Language: en-us' 
---header 'apiKey: APIKEY132456789EWOK' -d '[
-	{
-    "MainProductId": 1,
-    "OptionalProducttypeId": 456793,
-    "Config": [
-        {
-            "PricegroupId": -1,
-            "Quantity": 3
-        }
-    ]
-  },
-  {
-      "MainProductId": 1,
-      "OptionalProducttypeId": 445409,
-      "Config": [
-          {
-              "PricegroupId": -1,
-              "Quantity": 1
-          }
-      ]
-  }
-]' 'https://galaxy.citybreak.com/v3/api/basket/guests/add/{basketId}'
+--header 'apiKey: APIKEY132456789EWOK' -d '{
+  "Queries": [
+    {
+      "BookItemId": 1,
+      "AddonId": 445409,
+      "PriceGroupId": null,
+      "Quantity": 2
+    }
+  ]
+}' 'https://galaxy.citybreak.com/v3/api/basket/addon/{basketId}'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v3/api/basket/guests/add/{basketId}",
+var r = fetch("https://galaxy.citybreak.com/v3/api/basket/addon/{basketId}",
 {
   method:"POST"
   headers: {
@@ -1317,42 +1122,73 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/basket/guests/add/{basketId}"
     "Accept": "application/json",
     "Accept-Language": "en-US"
   }  
-  body: JSON.Stringify([
+  body: JSON.Stringify(
     {
-      "MainProductId": 1,
-      "OptionalProducttypeId": 456793,
-      "Config": [
-        {
-          "PricegroupId": -1,
-          "Quantity": 3
-        }
-      ]
-    },
-    {
-      "MainProductId": 1,
-      "OptionalProducttypeId": 445409,
-      "Config": [
-        {
-          "PricegroupId": -1,
-          "Quantity": 1
-        }
-      ]
-    }
-  ]
+      "Queries": [
+      {
+        "BookItemId": 1,
+        "AddonId": 445409,
+        "PriceGroupId": null,
+        "Quantity": 2
+      }
+    ]
+  }
 );
 ```
 
-This will configure the first product to be three and the second to be one. 
-The other two will be removed if configured. 
+The example call will add 2 sparkling wine to the item with `BookItemId` 1, `PriceGroupId`
+can be null or omitted as it is an addon of type `Unlimited` and `NeedsToSpecifyPricegroups`
+is false.
 
-Keep in mind that you must at all times configure the sub products that you 
-would like. For instance if you add one optional sub product and later you would
-like to configure one more, you must submit the configuration for the existing one
-in order to keep it. Otherwise it will be removed.
+### HTTP Requests
 
-So omitting sub product configurations, means that they should be removed if 
-configured.
+`POST https://galaxy.citybreak.com/v3/api/api/basket/addon/{basketId}`
 
+### Query Parameters
+
+Parameter | Description
+--------- | -----------
+basketId | The Id of the basket.
+Queries | List of addons to add
+BookItemId | Id in the basket of the product which should receive the addon
+AddonId | Id of the addon to add
+PriceGroupId | The price group to use if `NeedsToSpecifyPricegroups` is true
+Quantity | Amount to add
+
+## Delete addon product
+
+```shell
+curl -X DELETE 
+--header 'Content-Type: application/json' 
+--header 'Accept: application/json' 
+--header 'Accept-Language: en-us' 
+--header 'apiKey: APIKEY132456789EWOK' 
+'https://galaxy.citybreak.com/v3/api/basket/addon/{basketId}/{bookItemId}'
+```
+
+```javascript
+var r = fetch("https://galaxy.citybreak.com/v3/api/basket/addon/{basketId}/{bookItemId}",
+{
+  method:"DELETE"
+  headers: {
+    "ApiKey:" "APIKEY132456789EWOK",
+    "Accept": "application/json",
+    "Accept-Language": "en-US"
+  }  
+);
+```
+Deletes the addon with id in basket `BookItemId`.
+
+### HTTP Requests
+
+`DELETE https://galaxy.citybreak.com/v3/api/api/basket/addon/{basketId}/{bookItemId}`
+
+### Query Parameters
+
+Parameter | Description
+--------- | -----------
+basketId | The Id of the basket.
+bookItemId | Id in the basket of the addon you wish to remove
 
 ## Get supplier messages
 
@@ -1393,14 +1229,13 @@ This call will result in a list of available suppliers and the configured messag
 
 ### HTTP Request
 
-`GET https://galaxy.citybreak.com/v3/api/api/basket/optional/{basketId}/{bookItemId}`
+`GET https://galaxy.citybreak.com/v3/api/basket/suppliermessage/{basketId}`
 
 ### Query Parameters
 
 Parameter | Description
 --------- | -----------
 basketId | The Id of the basket.
-bookItemId | The Id of the booking item on which to operate
 
 ## Set supplier messages
 
