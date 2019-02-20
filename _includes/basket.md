@@ -1084,7 +1084,7 @@ own translation when presenting in to the user.
 
 ### HTTP Requests
 
-`GET https://galaxy.citybreak.com/v3/api/api/basket/addon/{basketId}/{bookItemId}`
+`GET https://galaxy.citybreak.com/v3/api/api/basket/addon/{basketId}/{bookItemId}`  
 `GET https://galaxy.citybreak.com/v3/api/api/basket/addon/{basketId}`
 
 ### Query Parameters
