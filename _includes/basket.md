@@ -1393,7 +1393,7 @@ This call will result in a list of available suppliers and the configured messag
 
 ### HTTP Request
 
-`GET https://galaxy.citybreak.com/v3/api/api/basket/optional/{basketId}/{bookItemId}`
+`GET https://galaxy.citybreak.com/v3/api/basket/suppliermessage/{basketId}`
 
 ### Query Parameters
 
@@ -1491,3 +1491,233 @@ The basket price will reflect the new total.
 The insurance is usually based on the types of products that are included in the 
 basket right now. It could be fixed per booking, fixed per product or a percentage
 of the product cost. Hence the `CurrentCost`.
+
+## Get Complementary Info
+
+```shell
+curl -X GET 
+--header 'apiKey: APIKEY132456789EWOK'
+--header 'Accept: application/json' 
+--header 'Accept-Language: en-us' 
+'https://galaxy.citybreak.com/v3/api/basket/complementary/{basketId}'
+```
+
+```javascript
+var r = fetch("https://galaxy.citybreak.com/v3/api/basket/complementary/{basketId}",
+{
+  headers: {
+    "ApiKey:" "APIKEY132456789EWOK",
+    "Accept": "application/json"
+    "Accept-Language": "en-US"
+  }  
+});
+```
+
+
+> Example of Response
+
+```json
+{
+  "BasketId": 123456,
+  "Products": [
+    {
+      "ProductName": "Generic Activity",
+      "ItemId": "1",
+      "ComplementaryInfo": [
+        {
+          "Code": "#COMP-3",
+          "Value": "",
+          "Type": "Boolean",
+          "IsRequired": true,
+          "Label": "Require a guide?",
+          "Comment": null,
+          "Message": null,
+          "Constraints": null
+        }
+      ],
+      "Persons": [
+        {
+          "ItemId": "db2bca44-e134-4709-b604-61e8baa798f4",
+          "ComplementaryInfo": [
+            {
+              "Code": "#COMP-0",
+              "Value": "",
+              "Type": "Date",
+              "IsRequired": false,
+              "Label": "Estimated Arrival Date",
+              "Comment": null,
+              "Message": null,
+              "Constraints": {
+                "MaxStringLength": null,
+                "MinStringLength": null,
+                "MinIntValue": null,
+                "MaxIntValue": null,
+                "MinDecimalValue": null,
+                "MaxDecimalValue": null,
+                "MinDateValue": "0001-01-01T00:00:00",
+                "MaxDateValue": "9999-12-31T00:00:00",
+                "MaxImageHeightInPx": null,
+                "MaxImageWidthInPx": null,
+                "MaxImageSizeInBytes": null
+              }
+            }
+          ]
+        }
+      ],
+      "AddOns": [
+        {
+          "AddOnName": "Helmet",
+          "ItemId": "2",
+          "ComplementaryInfo": [
+            {
+              "Code": "#COMP-1",
+              "Value": "",
+              "Type": "Integer",
+              "IsRequired": false,
+              "Label": "Helmet Size",
+              "Comment": null,
+              "Message": null,
+              "Constraints": {
+                "MaxStringLength": null,
+                "MinStringLength": null,
+                "MinIntValue": 1,
+                "MaxIntValue": 20,
+                "MinDecimalValue": null,
+                "MaxDecimalValue": null,
+                "MinDateValue": null,
+                "MaxDateValue": null,
+                "MaxImageHeightInPx": null,
+                "MaxImageWidthInPx": null,
+                "MaxImageSizeInBytes": null
+              }
+            }
+          ],
+        }
+      ]
+    }
+  ]
+}
+```
+
+Complementary info for products can be retrieved from a basket. This information is often used for things like arrival dates, the names of participants in an activity or any other information that the activity supplier might require in the booking. 
+
+Complementary info can be required or optional and is typed. Currently supported types are Boolean, Integer, Decimal, String, Date and ImageLink. Complementary info may also come with constraints depending on type. If any update attempts are made to info that conflicts with these type restrictions or constraints they will not be successful.
+
+Each Complement is attached to either the main product, the persons who are attached to the product (this may not refer to any specific person but simply the idea of a participant or guest) or to the add on product. These objects are identified by their `ItemId` (for products and add ons this ItemId is equivalent to the BookItemId in the <a href="https://visit.github.io/galaxy-docs/#get-basket">Get Basket</a> call), each complementary that is attached to an item will also have a unique `Code` within that context. These two identifiers are important for updating the `Value`
+
+
+### HTTP Request
+
+`GET https://galaxy.citybreak.com/v3/api/basket/complementary/{basketId}`
+
+### Query Parameters
+
+Parameter | Description
+--------- | -----------
+basketId | The Id of the basket.
+
+## Set complementary information
+
+```shell
+curl -X POST 
+--header 'Content-Type: application/json' 
+--header 'Accept: application/json' 
+--header 'Accept-Language: en-us' 
+--header 'apiKey: APIKEY132456789EWOK' -d '[
+  {
+    "BookItemId": "f18658ea-6cbd-41cf-b243-30799e3e0598",
+    "Code": "#COMP-0",
+    "Value": "2019-04-01"
+  },
+  {
+    "BookItemId": "2",
+    "Code": "#COMP-1",
+    "Value": "1000"
+  },
+    {
+    "BookItemId": "1",
+    "Code": "#COMP-3",
+    "Value": "This is not a Boolean"
+  }
+]' 'https://galaxy.citybreak.com/v3/api/basket/complementary/{basketId}'
+```
+
+```javascript
+var r = fetch("https://galaxy.citybreak.com/v3/api/basket/complementary/{basketId}",
+{
+  method:"POST"
+  headers: {
+    "ApiKey:" "APIKEY132456789EWOK",
+    "Accept": "application/json",
+    "Accept-Language": "en-US"
+  }  
+  body: JSON.Stringify([
+  {
+    "BookItemId": "f18658ea-6cbd-41cf-b243-30799e3e0598",
+    "Code": "#COMP-0",
+    "Value": "2019-04-01"
+  },
+  {
+    "BookItemId": "2",
+    "Code": "#COMP-1",
+    "Value": "1000"
+  },
+    {
+    "BookItemId": "1",
+    "Code": "#COMP-3",
+    "Value": "This is not a Boolean"
+  }
+]
+);
+```
+
+> Example of Response
+
+```json
+[
+    {
+        "Code": "#COMP-0",
+        "ItemId": "f18658ea-6cbd-41cf-b243-30799e3e0598",
+        "Success": true,
+        "Error": ""
+    },
+    {
+        "Code": "#COMP-1",
+        "ItemId": "2",
+        "Success": false,
+        "Error": "Value - 1000 - must be between 1 and 20"
+    },
+    {
+        "Code": "#COMP-3",
+        "ItemId": "1",
+        "Success": false,
+        "Error": "Value - This is not a Boolean - must be a Boolean"
+    }
+]
+
+```
+
+When setting complementary information you need the `basketId` of the booking you wish to update and for each complementary, the `ItemId` and `Code`. It is important to take note of the type of the information and if there are any constraints. Valid updates will be made, invalid ones won't. The return type is a list of successful and unsuccessful updates along with a reason why an update failed if `Success` is false. To the right you can see one successful and two unsuccessful updates in the examples.
+
+The update object is fairly simple:
+
+<code class="center-column">
+[
+  {
+    "ItemId": "f18658ea-6cbd-41cf-b243-30799e3e0598",
+    "Code": "#COMP-0",
+    "Value": "2019-04-01"
+  }
+]
+</code>
+
+### HTTP Request
+
+`POST https://galaxy.citybreak.com/v3/api/basket/complementary/{basketId}`
+
+### Query Parameters
+
+Parameter | Description
+--------- | -----------
+basketId | The Id of the basket.
+list of updates | the POST body with updates
