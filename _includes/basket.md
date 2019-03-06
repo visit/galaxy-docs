@@ -1327,7 +1327,7 @@ The insurance is usually based on the types of products that are included in the
 basket right now. It could be fixed per booking, fixed per product or a percentage
 of the product cost. Hence the `CurrentCost`.
 
-## Get Complementary Info
+## Get Complementary Information
 
 ```shell
 curl -X GET 
@@ -1451,7 +1451,7 @@ Parameter | Description
 --------- | -----------
 basketId | The Id of the basket.
 
-## Set complementary information
+## Set Complementary Information
 
 ```shell
 curl -X POST 
