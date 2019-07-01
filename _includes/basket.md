@@ -383,11 +383,11 @@ curl -X GET
 --header 'Accept: application/json' 
 --header 'apiKey: APIKEY132456789EWOK' 
 --header 'Accept-Language: en-us' 
-'https://galaxy.citybreak.com/v3/api/basket/findByOnline3Session?pointOfSalesId={pointOfSalesId&online3Session={online3Session}&online3GuideId={online3GuideId}'
+'https://galaxy.citybreak.com/v3/api/basket/findByOnline3Session?pointOfSalesId={pointOfSalesId&online3Session={online3Session}&online3Id={online3Id}'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v3/api/basket/findByOnline3Session?pointOfSalesId={pointOfSalesId&online3Session={online3Session}&online3GuideId={online3GuideId}",
+var r = fetch("https://galaxy.citybreak.com/v3/api/basket/findByOnline3Session?pointOfSalesId={pointOfSalesId&online3Session={online3Session}&online3Id={online3Id}",
 {
   method:"GET"
   headers: {
@@ -408,7 +408,7 @@ In Online3 hybrid checkout setups, this locates an existing basket by an Online3
 
 ### HTTP Request
 
-`GET https://galaxy.citybreak.com/v3/api/basket/findByOnline3Session?pointOfSalesId={pointOfSalesId&online3Session={online3Session}&online3GuideId={online3GuideId}`
+`GET https://galaxy.citybreak.com/v3/api/basket/findByOnline3Session?pointOfSalesId={pointOfSalesId&online3Session={online3Session}&online3Id={online3Id}`
 
 ### Query Parameters
 
@@ -416,7 +416,7 @@ Parameter | Description
 --------- | -----------
 pointOfSalesId | The point of sales identifier.
 online3Session | The online 3 session.
-online3GuideId | The online 3 guide identifier 
+online3Id | The online 3 guide identifier 
 
 
 
