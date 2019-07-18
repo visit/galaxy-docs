@@ -17,6 +17,7 @@ includes:
   - accommodation
   - activity
   - availability-accommodation
+  - availability-noplacementaccommodation
   - fuzzy-accommodation
   - availability-activity
   - content-filter

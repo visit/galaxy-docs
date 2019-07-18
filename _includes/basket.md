@@ -469,6 +469,69 @@ searchId | The search Id returned by the <a href="https://visit.github.io/galaxy
 bookKey | The key of the booking item (product) to add to the basket, found in the <a href="https://visit.github.io/galaxy-docs/#availability---accommodation">Accommodation</a> or <a href="https://visit.github.io/galaxy-docs/#availability---activity">Activity</a> Availability Search
 
 
+## Add No Placement Accommodation Booking Item
+
+```shell
+curl -X PUT 
+--header 'Accept: application/json' 
+--header 'apiKey: APIKEY132456789EWOK' 
+--header 'Accept-Language: en-us' 
+--header 'Accept-Language: en-us' -d '[
+  {
+    "BookKey": "1-A",
+    "Amount" 2
+  }, {
+    "BookKey": "2-A",
+    "Amount": 1
+  }
+]' 'https://galaxy.citybreak.com/v3/api/basket/add/accommodation/noplacement/{basketId}/{searchId}'
+```
+
+```javascript
+var r = fetch("https://galaxy.citybreak.com/v3/api/basket/add/accommodation/noplacement/{basketId}/{searchId}",
+{
+  method:"PUT"
+  headers: {
+    "ApiKey:" "APIKEY132456789EWOK",
+    "Accept": "application/json",
+    "Accept-Language": "en-US"
+  },
+  body: JSON.Stringify(
+    [
+      {
+        "BookKey": "1-A",
+        "Amount": 1
+      }, {
+        "BookKey": "2-A",
+        "Amount": 2
+      }
+    ])
+});
+```
+
+> Example of response:
+
+```json
+{
+  "Success": true,
+  "BookItemIds": [1,2]
+}
+```
+
+Adds booking items to the basket, you must first have checked for the <a href="https://visit.github.io/galaxy-docs/#availability---no-placement-accommodation">No Placement Accommodation Availability</a> of a property or properties and obtained the search Id and the bookingKey of the products you wish to add to the basket.
+
+`PUT https://galaxy.citybreak.com/v3/api/basket/add/accommodation/noplacement`
+
+### Query Parameters
+
+Parameter | Description
+--------- | -----------
+basketId | The Id of the basket.
+searchId | The search Id returned by the <a href="https://visit.github.io/galaxy-docs/#availability---no-placement-accommodation">Accommodation</a> Availability Response
+BookKey | The key of the booking item to add to the basket, found in <a href="https://visit.github.io/galaxy-docs/#availability---no-placement-accommodation">Availability Response</a>
+Amount | The amount to book for this item
+
+
 ## Add Fuzzy Accommodation Booking Item
 
 ```shell
