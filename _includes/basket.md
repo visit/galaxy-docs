@@ -896,11 +896,11 @@ curl -X POST
 --header 'Accept: application/json' 
 --header 'apiKey: APIKEY132456789EWOK' 
 --header 'Accept-Language: en-US' 
-'https://galaxy.citybreak.com/v3/api/basket/commit/{basketId}'
+'https://galaxy.citybreak.com/v3/api/basket/commit/async/{basketId}'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v3/api/basket/commit/{basketId}",
+var r = fetch("https://galaxy.citybreak.com/v3/api/basket/commit/async/{basketId}",
 {
   method:"POST"
   headers: {
@@ -921,9 +921,11 @@ This is the method used to start a commit job for a basket. You only need to pro
 
 The return value is a job number with which you can check the status of commit
 
+<aside class="notice">If you wish to have this synchronous, you can use `POST https://galaxy.citybreak.com/v3/api/basket/commit/{basketId}` which will return when the job is done.</aside>
+
 ### HTTP Request
 
-`POST https://galaxy.citybreak.com/v3/api/basket/commit`
+`POST https://galaxy.citybreak.com/v3/api/basket/commit/async/{basketId}`
 
 ### Query Parameters
 
