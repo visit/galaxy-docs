@@ -8,8 +8,8 @@ This documentation is too long? You can check out the Swagger UI <a href="https:
 
 The live Galaxy API endpoint is accessible at <a href="https://galaxy.citybreak.com/v3/">https://galaxy.citybreak.com/v3/</a>
 
-<aside class="warning">These are the docs for the **in development** V3 of the Galaxy API.<br/>
-The docs for the stable V2 version of the galaxy API are found here <a href="https://visit.github.io/galaxy-docs-v2/">https://visit.github.io/galaxy-docs-v2/</a>.<br/>
+<aside class="warning">These are the docs for the V3 of the Galaxy API.<br/>
+The docs for the V2 version of the galaxy API are found here <a href="https://visit.github.io/galaxy-docs-v2/">https://visit.github.io/galaxy-docs-v2/</a>.<br/>
 The endpoint for V2 is <a href="https://galaxy.citybreak.com/v2/">https://galaxy.citybreak.com/v2/</a></aside>
 
 <aside class="notice">One of the first queries you should try is the Point of Sale query as you will need a valid Point of Sale Id for most of the others</aside>
