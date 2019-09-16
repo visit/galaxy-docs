@@ -284,7 +284,7 @@ The Most important return values in this response are the `SearchId` and the `Bo
 
 ### HTTP Request
 
-`POST https://galaxy.citybreak.com/availability/accommodation/noplacement`
+`POST https://galaxy.citybreak.com/v3/api/availability/accommodation/noplacement`
 
 ### Query Parameters
 
