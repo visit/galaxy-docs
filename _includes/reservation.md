@@ -296,7 +296,7 @@ This will cancel a reservation. Similarly to committing a Basket, it returns an 
 
 ### HTTP Request
 
-`POST https://galaxy.citybreak.com/v3/api/basket/commit`
+`POST https://galaxy.citybreak.com/v3/api/reservation/cancel/{bookingCode}`
 
 ### Query Parameters
 
