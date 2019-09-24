@@ -104,8 +104,8 @@ Get details about Accommodation
 Parameter | Description
 --------- | -----------
 pointOfSalesId | The point of sales identifier.
-pageSize | Size of the page.
-page | The page.
+productId | The requested product id.
+
 
 ## Product
 
