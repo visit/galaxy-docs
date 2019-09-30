@@ -465,7 +465,7 @@ var r = fetch("https://galaxy.citybreak.com/v4/api/basket/add/accommodation/{bas
 }
 ```
 
-Adds booking items to the basket, you must first have checked for the <a href="#availability---no-placement-accommodation">Accommodation Availability</a> of a property or properties and obtained the search Id and the bookingKey of the products you wish to add to the basket.
+Adds booking items to the basket, you must first have checked for the <a href="#availability---accommodation">Accommodation Availability</a> of a property or properties and obtained the search Id and the bookingKey of the products you wish to add to the basket.
 
 `PUT https://galaxy.citybreak.com/v4/api/basket/add/accommodation`
 
@@ -474,8 +474,8 @@ Adds booking items to the basket, you must first have checked for the <a href="#
 Parameter | Description
 --------- | -----------
 basketId | The Id of the basket.
-searchId | The search Id returned by the <a href="#availability---no-placement-accommodation">Accommodation</a> Availability Response
-BookKey | The key of the booking item to add to the basket, found in <a href="#availability---no-placement-accommodation">Availability Response</a>
+searchId | The search Id returned by the <a href="#availability---accommodation">Accommodation</a> Availability Response
+BookKey | The key of the booking item to add to the basket, found in <a href="#availability---accommodation">Availability Response</a>
 Amount | The amount to book for this item
 
 
@@ -510,7 +510,7 @@ var r = fetch("https://galaxy.citybreak.com/v4/api/basket/add/accommodation/plac
 }
 ```
 
-Add a booking item to the basket, you must first have checked for the <a href="#availability---accommodation">Placement Accommodation Availability</a> of a property or properties and obtained the search Id and the bookingKey of the product you wish to add to the basket.
+Add a booking item to the basket, you must first have checked for the <a href="#availability---placement-accommodation">Placement Accommodation Availability</a> of a property or properties and obtained the search Id and the bookingKey of the product you wish to add to the basket.
 
 `PUT https://galaxy.citybreak.com/v4/api/basket/add/accommodation/placement`
 
@@ -519,8 +519,8 @@ Add a booking item to the basket, you must first have checked for the <a href="#
 Parameter | Description
 --------- | -----------
 basketId | The Id of the basket.
-searchId | The search Id returned by the <a href="#availability---accommodation">Accommodation</a> or <a href="#availability---activity">Activity</a> Availability Response
-bookKey | The key of the booking item (product) to add to the basket, found in the <a href="#availability---accommodation">Accommodation</a> or <a href="#availability---activity">Activity</a> Availability Search
+searchId | The search Id returned by the <a href="#availability---placement-accommodation">Accommodation</a>
+bookKey | The key of the booking item (product) to add to the basket, found in the <a href="#availability---placement-accommodation">Accommodation</a> Availability Search
 
 
 ## Add Fuzzy Accommodation Booking Item
