@@ -47,15 +47,15 @@ curl -X POST
 		123, 124
 	  ]
    }
- }' 'https://galaxy.citybreak.com/v3/api/availability/accommodation'
+ }' 'https://galaxy.citybreak.com/v4/api/availability/accommodation'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v3/api/availability/accommodation",
+var r = fetch("https://galaxy.citybreak.com/v4/api/availability/accommodation",
 {
 	method: "POST",
 	headers: {
-	    "ApiKey:" "APIKEY132456789EWOK",
+	    "ApiKey": "APIKEY132456789EWOK",
 	    "Accept": "application/json",
 		 "Accept-Language": "en-US"
 	},
@@ -123,15 +123,15 @@ curl -X POST
    ContentFilter{
     "Search":"My Hotel"
    }
- }' 'https://galaxy.citybreak.com/v3/api/availability/accommodation'
+ }' 'https://galaxy.citybreak.com/v4/api/availability/accommodation'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v3/api/availability/accommodation",
+var r = fetch("https://galaxy.citybreak.com/v4/api/availability/accommodation",
 {
 	method: "POST",
 	headers: {
-	    "ApiKey:" "APIKEY132456789EWOK",
+	    "ApiKey": "APIKEY132456789EWOK",
 	    "Accept": "application/json",
 		 "Accept-Language": "en-US"
 	},
@@ -193,15 +193,15 @@ curl -X POST
       "Distance": 10
 	  }
    }
- }' 'https://galaxy.citybreak.com/v3/api/availability/accommodation'
+ }' 'https://galaxy.citybreak.com/v4/api/availability/accommodation'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v3/api/availability/accommodation",
+var r = fetch("https://galaxy.citybreak.com/v4/api/availability/accommodation",
 {
 	method: "POST",
 	headers: {
-	    "ApiKey:" "APIKEY132456789EWOK",
+	    "ApiKey": "APIKEY132456789EWOK",
 	    "Accept": "application/json",
 		 "Accept-Language": "en-US"
 	},
@@ -267,15 +267,15 @@ curl -X POST
         "cbis:12345", "ptg:987654"
       ]
    }
- }' 'https://galaxy.citybreak.com/v3/api/availability/accommodation'
+ }' 'https://galaxy.citybreak.com/v4/api/availability/accommodation'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v3/api/availability/accommodation",
+var r = fetch("https://galaxy.citybreak.com/v4/api/availability/accommodation",
 {
 	method: "POST",
 	headers: {
-	    "ApiKey:" "APIKEY132456789EWOK",
+	    "ApiKey": "APIKEY132456789EWOK",
 	    "Accept": "application/json",
 		 "Accept-Language": "en-US"
 	},
@@ -354,15 +354,15 @@ curl -X POST
         ]
       }
   }
-}' 'https://galaxy.citybreak.com/v3/api/availability/accommodation'
+}' 'https://galaxy.citybreak.com/v4/api/availability/accommodation'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v3/api/availability/accommodation",
+var r = fetch("https://galaxy.citybreak.com/v4/api/availability/accommodation",
 {
 	method: "POST",
 	headers: {
-	    "ApiKey:" "APIKEY132456789EWOK",
+	    "ApiKey": "APIKEY132456789EWOK",
 	    "Accept": "application/json",
 		 "Accept-Language": "en-US"
 	},

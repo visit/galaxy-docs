@@ -10,14 +10,14 @@
 curl -X GET 
 --header 'Accept: application/json' 
 --header 'apiKey: APIKEY132456789EWOK' 
-'https://galaxy.citybreak.com/v3/api/reservation/{bookingCode}'
+'https://galaxy.citybreak.com/v4/api/reservation/{bookingCode}'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v3/api/reservation/{bookingCode}",
+var r = fetch("https://galaxy.citybreak.com/v4/api/reservation/{bookingCode}",
 {
   headers: {
-    "ApiKey:" "APIKEY132456789EWOK",
+    "ApiKey": "APIKEY132456789EWOK",
     "Accept": "application/json"
   }  
 });
@@ -47,13 +47,13 @@ Gets all the versions of a booking that have been created with a Booking Code
 
 ### HTTP Request
 
-`GET https://galaxy.citybreak.com/v3/api/reservation`
+`GET https://galaxy.citybreak.com/v4/api/reservation`
 
 ### Query Parameters
 
 Parameter | Description
 --------- | -----------
-BookingCode | The code representing the reservation returned from <a href="https://visit.github.io/galaxy-docs/#commit-status">Commit Status</a> 
+BookingCode | The code representing the reservation returned from <a href="#commit-status">Commit Status</a> 
 
 
 
@@ -65,14 +65,14 @@ BookingCode | The code representing the reservation returned from <a href="https
 curl -X GET 
 --header 'Accept: application/json' 
 --header 'apiKey: APIKEY132456789EWOK' 
-'https://galaxy.citybreak.com/v3/api/reservation/version/{reservationVersionId}}'
+'https://galaxy.citybreak.com/v4/api/reservation/version/{reservationVersionId}}'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v3/api/reservation/version/{reservationVersionId}",
+var r = fetch("https://galaxy.citybreak.com/v4/api/reservation/version/{reservationVersionId}",
 {
   headers: {
-    "ApiKey:" "APIKEY132456789EWOK",
+    "ApiKey": "APIKEY132456789EWOK",
     "Accept": "application/json"
   }  
 });
@@ -152,7 +152,7 @@ Gets all the information about a booking by version
 
 ### HTTP Request
 
-`GET https://galaxy.citybreak.com/v3/api/reservation/version`
+`GET https://galaxy.citybreak.com/v4/api/reservation/version`
 
 ### Query Parameters
 
@@ -170,14 +170,14 @@ reservationVersionId | The Id for the specific version of the Reservation
 curl -X GET 
 --header 'Accept: application/json' 
 --header 'apiKey: APIKEY132456789EWOK' 
-'https://galaxy.citybreak.com/v3/api/reservation/latest/{bookingCode}'
+'https://galaxy.citybreak.com/v4/api/reservation/latest/{bookingCode}'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v3/api/reservation/latest/{bookingCode}",
+var r = fetch("https://galaxy.citybreak.com/v4/api/reservation/latest/{bookingCode}",
 {
   headers: {
-    "ApiKey:" "APIKEY132456789EWOK",
+    "ApiKey": "APIKEY132456789EWOK",
     "Accept": "application/json"
   }  
 });
@@ -257,13 +257,13 @@ Gets all the information about a booking by version
 
 ### HTTP Request
 
-`GET https://galaxy.citybreak.com/v3/api/reservation/latest`
+`GET https://galaxy.citybreak.com/v4/api/reservation/latest`
 
 ### Query Parameters
 
 Parameter | Description
 --------- | -----------
-BookingCode | The code representing the reservation returned from <a href="https://visit.github.io/galaxy-docs/#commit-status">Commit Status</a> 
+BookingCode | The code representing the reservation returned from <a href="#commit-status">Commit Status</a> 
 
 
 
@@ -276,15 +276,15 @@ BookingCode | The code representing the reservation returned from <a href="https
 curl -X POST 
 --header 'Accept: application/json' 
 --header 'apiKey: APIKEY132456789EWOK' 
-'https://galaxy.citybreak.com/v3/api/reservation/cancel/{bookingCode}'
+'https://galaxy.citybreak.com/v4/api/reservation/cancel/{bookingCode}'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v3/api/reservation/cancel/{bookingCode}",
+var r = fetch("https://galaxy.citybreak.com/v4/api/reservation/cancel/{bookingCode}",
 {
-  method:"POST"
+  method: "POST",
   headers: {
-    "ApiKey:" "APIKEY132456789EWOK",
+    "ApiKey": "APIKEY132456789EWOK",
     "Accept": "application/json",
   }  
 });
@@ -292,14 +292,14 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/reservation/cancel/{bookingCo
 
 > Example of response: int32
 
-This will cancel a reservation. Similarly to committing a Basket, it returns an integer. Use this value in <a href="https://visit.github.io/galaxy-docs/#commit-status">Commit Status</a> to see the status of your cancel job
+This will cancel a reservation. Similarly to committing a Basket, it returns an integer. Use this value in <a href="#commit-status">Commit Status</a> to see the status of your cancel job
 
 ### HTTP Request
 
-`POST https://galaxy.citybreak.com/v3/api/reservation/cancel/{bookingCode}`
+`POST https://galaxy.citybreak.com/v4/api/reservation/cancel/{bookingCode}`
 
 ### Query Parameters
 
 Parameter | Description
 --------- | -----------
-BookingCode | The code representing the reservation returned from <a href="https://visit.github.io/galaxy-docs/#commit-status">Commit Status</a> 
+BookingCode | The code representing the reservation returned from <a href="#commit-status">Commit Status</a> 

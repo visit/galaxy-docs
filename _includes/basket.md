@@ -1,6 +1,6 @@
 # Basket
 
-**Basket** calls are the most complicated in the API workflow as they encapsulate the booking process in typical "shopping basket" object that can have many operations performed on it and which has a limited life span, connected as it is to availability/bookability of products, both internal to Citybreak and from external inventories. It is NOT a reservation but products in a basket are "held" for 60 mins from the time of the <a href="https://visit.github.io/galaxy-docs/#availability---accommodation">Accommodation</a> or <a href="https://visit.github.io/galaxy-docs/#availability---activity">Activity</a> Availability Search where possible (i.e. where external inventories allow).
+**Basket** calls are the most complicated in the API workflow as they encapsulate the booking process in typical "shopping basket" object that can have many operations performed on it and which has a limited life span, connected as it is to availability/bookability of products, both internal to Citybreak and from external inventories. It is NOT a reservation but products in a basket are "held" for 60 mins from the time of the <a href="#availability---accommodation">Accommodation</a> or <a href="#availability---activity">Activity</a> Availability Search where possible (i.e. where external inventories allow).
 
 <aside class="notice">NB: if using the Visit Test Organisation API Key you can use 17692 as the `pointOfSalesId`</aside>
 
@@ -16,15 +16,15 @@ curl -X POST
 --header 'Accept-Language: en-us' -d '{
   "PointOfSalesId": 1234570,
   "Currency": "SEK"
-}' 'https://galaxy.citybreak.com/v3/api/basket/create'
+}' 'https://galaxy.citybreak.com/v4/api/basket/create'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v3/api/basket/create",
+var r = fetch("https://galaxy.citybreak.com/v4/api/basket/create",
 {
   method:"POST"
   headers: {
-    "ApiKey:" "APIKEY132456789EWOK",
+    "ApiKey": "APIKEY132456789EWOK",
     "Accept": "application/json",
     "Accept-Language": "en-US"
   },
@@ -48,7 +48,7 @@ Create a new basket object, you'll need to preserve this ID in order to process 
 
 ### HTTP Request
 
-`POST https://galaxy.citybreak.com/v3/api/basket/create`
+`POST https://galaxy.citybreak.com/v4/api/basket/create`
 
 ### Parameters
 
@@ -73,15 +73,15 @@ curl -X POST
     "Id": "abcdefg12345678,
     "OnlineId": 123456789
   }
-}' 'https://galaxy.citybreak.com/v3/api/basket/create'
+}' 'https://galaxy.citybreak.com/v4/api/basket/create'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v3/api/basket/create",
+var r = fetch("https://galaxy.citybreak.com/v4/api/basket/create",
 {
   method:"POST"
   headers: {
-    "ApiKey:" "APIKEY132456789EWOK",
+    "ApiKey": "APIKEY132456789EWOK",
     "Accept": "application/json",
     "Accept-Language": "en-US"
   },
@@ -109,7 +109,7 @@ This alternative way to create a basket is used when you intend to link the cust
 
 ### HTTP Request
 
-`POST https://galaxy.citybreak.com/v3/api/basket/create`
+`POST https://galaxy.citybreak.com/v4/api/basket/create`
 
 ### Parameters
 
@@ -130,15 +130,15 @@ curl -X DELETE
 --header 'Accept: application/json' 
 --header 'apiKey: APIKEY132456789EWOK' 
 --header 'Accept-Language: en-us' 
-'https://galaxy.citybreak.com/v3/api/basket/delete/{basketId}'
+'https://galaxy.citybreak.com/v4/api/basket/delete/{basketId}'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v3/api/basket/delete/{basketId}",
+var r = fetch("https://galaxy.citybreak.com/v4/api/basket/delete/{basketId}",
 {
   method:"DELETE"
   headers: {
-    "ApiKey:" "APIKEY132456789EWOK",
+    "ApiKey": "APIKEY132456789EWOK",
     "Accept": "application/json",
     "Accept-Language": "en-US"
   }  
@@ -155,7 +155,7 @@ Delete a basket. This will remove all associated information attached to the bas
 
 ### HTTP Request
 
-`DELETE https://galaxy.citybreak.com/v3/api/basket/delete/{basketId}`
+`DELETE https://galaxy.citybreak.com/v4/api/basket/delete/{basketId}`
 
 ### Query Parameters
 
@@ -176,15 +176,15 @@ curl -X GET
 --header 'Accept: application/json' 
 --header 'apiKey: APIKEY132456789EWOK'
 --header 'Accept-Language: en-us' 
-'https://galaxy.citybreak.com/v3/api/basket/{basketId}'
+'https://galaxy.citybreak.com/v4/api/basket/{basketId}'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v3/api/basket/{basketId}",
+var r = fetch("https://galaxy.citybreak.com/v4/api/basket/{basketId}",
 {
   method:"GET"
   headers: {
-    "ApiKey:" "APIKEY132456789EWOK",
+    "ApiKey": "APIKEY132456789EWOK",
     "Accept": "application/json",
     "Accept-Language": "en-US"
   }  
@@ -255,32 +255,32 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/basket/{basketId}",
           "BookItemId": 8,
           "Addons": [
             {
-              "Id": 9,
+              "AddonId": "A:0-C:0-P:0",
               "NoUnits": 1,
               "IsExtraBed": false,
               "Name": null,
               "IsDeletable": false,
               "Price": {
-                "Price": 150,
-                "VatAmount": 30,
+                "Price": 150
                 "Currency": "SEK"
-              }
+              },
+			  "PriceGroupName": "Adult"
             }
           ],
           "Persons": [
             {
-              "Name": "Vuxen",
+              "Name": "Adult",
               "No": 1
             },
             {
-              "Name": "Barn 0-11",
+              "Name": "Child 0-11",
               "No": 1
             }
           ],
           "Guests": [
             {
               "GuestLinkId": 6,
-              "PriceGroupName": "Vuxen",
+              "PriceGroupName": "Adult",
               "Guest": {
                 "GuestId": 1,
                 "NameFirst": "Test",
@@ -292,7 +292,7 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/basket/{basketId}",
             },
             {
               "GuestLinkId": 7,
-              "PriceGroupName": "Barn 0-11",
+              "PriceGroupName": "Child 0-11",
               "Guest": {
                 "GuestId": 2,
                 "NameFirst": null,
@@ -333,14 +333,12 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/basket/{basketId}",
           "IsDeletable": true,
           "Price": {
             "Price": 350,
-            "VatAmount": 5.172413793103448,
             "Currency": "SEK"
           }
         }
       ],
       "Price": {
         "Price": 500,
-        "VatAmount": 35.172413793103445,
         "Currency": "SEK"
       },
       "Position": null
@@ -349,7 +347,6 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/basket/{basketId}",
   "OkToBook": true,
   "TotalPrice": {
     "Price": 500,
-    "VatAmount": 35.172413793103445,
     "Currency": "SEK"
   },
   "PointOfSalesId": 17692,
@@ -358,11 +355,11 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/basket/{basketId}",
 }
 ```
 
-Get a basket. This will fetch a Basket along with all associated information attached to the Basket (the example has one booking added to it). This includes the product booked, the total price and VAT, possible cancellation insurances (can be added), `OkToBook` which will be checked before the Basket can be committed and `Guest Information` which is a separate entity to the number of people included and is used to track and record customer information (also can be added to the booking item later in the basket process). Of note is the `BookItemId` in the `Products` section, it is used to delete the item from the basket.
+Get a basket. This will fetch a Basket along with all associated information attached to the Basket (the example has one booking added to it). This includes the product booked, the total price, possible cancellation insurances (can be added), `OkToBook` which will be checked before the Basket can be committed and `Guest Information` which is a separate entity to the number of people included and is used to track and record customer information (also can be added to the booking item later in the basket process). Of note is the `BookItemId` in the `Products` section, it is used to delete the item from the basket.
 
 ### HTTP Request
 
-`GET https://galaxy.citybreak.com/v3/api/basket`
+`GET https://galaxy.citybreak.com/v4/api/basket`
 
 ### Query Parameters
 
@@ -383,15 +380,15 @@ curl -X GET
 --header 'Accept: application/json' 
 --header 'apiKey: APIKEY132456789EWOK' 
 --header 'Accept-Language: en-us' 
-'https://galaxy.citybreak.com/v3/api/basket/findByOnline3Session?pointOfSalesId={pointOfSalesId&online3Session={online3Session}&online3Id={online3Id}'
+'https://galaxy.citybreak.com/v4/api/basket/findByOnline3Session?pointOfSalesId={pointOfSalesId&online3Session={online3Session}&online3Id={online3Id}'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v3/api/basket/findByOnline3Session?pointOfSalesId={pointOfSalesId&online3Session={online3Session}&online3Id={online3Id}",
+var r = fetch("https://galaxy.citybreak.com/v4/api/basket/findByOnline3Session?pointOfSalesId={pointOfSalesId&online3Session={online3Session}&online3Id={online3Id}",
 {
   method:"GET"
   headers: {
-    "ApiKey:" "APIKEY132456789EWOK",
+    "ApiKey": "APIKEY132456789EWOK",
     "Accept": "application/json",
     "Accept-Language": "en-US"
   }  
@@ -408,7 +405,7 @@ In Online3 hybrid checkout setups, this locates an existing basket by an Online3
 
 ### HTTP Request
 
-`GET https://galaxy.citybreak.com/v3/api/basket/findByOnline3Session?pointOfSalesId={pointOfSalesId&online3Session={online3Session}&online3Id={online3Id}`
+`GET https://galaxy.citybreak.com/v4/api/basket/findByOnline3Session?pointOfSalesId={pointOfSalesId&online3Session={online3Session}&online3Id={online3Id}`
 
 ### Query Parameters
 
@@ -419,57 +416,7 @@ online3Session | The online 3 session.
 online3Id | The online 3 guide identifier 
 
 
-
-
-
-
-
-
 ## Add Accommodation Booking Item
-
-```shell
-curl -X PUT 
---header 'Accept: application/json' 
---header 'apiKey: APIKEY132456789EWOK' 
---header 'Accept-Language: en-us' 
-'https://galaxy.citybreak.com/v3/api/basket/add/accommodation/{basketId}/{searchId}/{bookKey}'
-```
-
-```javascript
-var r = fetch("https://galaxy.citybreak.com/v3/api/basket/add/accommodation/{basketId}/{searchId}/{bookKey}",
-{
-  method:"PUT"
-  headers: {
-    "ApiKey:" "APIKEY132456789EWOK",
-    "Accept": "application/json",
-    "Accept-Language": "en-US"
-  }  
-});
-```
-
-> Example of response:
-
-```json
-{
-  "Success": true,
-  "BookItemIds": [1,2]
-}
-```
-
-Add a booking item to the basket, you must first have checked for the <a href="https://visit.github.io/galaxy-docs/#availability---accommodation">Accommodation Availability</a> of a property or properties (or <a href="https://visit.github.io/galaxy-docs/#availability---activity">Activity/s</a>) and obtained the search Id and the bookingKey of the product you wish to add to the basket.
-
-`PUT https://galaxy.citybreak.com/v3/api/basket/add/accommodation`
-
-### Query Parameters
-
-Parameter | Description
---------- | -----------
-basketId | The Id of the basket.
-searchId | The search Id returned by the <a href="https://visit.github.io/galaxy-docs/#availability---accommodation">Accommodation</a> or <a href="https://visit.github.io/galaxy-docs/#availability---activity">Activity</a> Availability Response
-bookKey | The key of the booking item (product) to add to the basket, found in the <a href="https://visit.github.io/galaxy-docs/#availability---accommodation">Accommodation</a> or <a href="https://visit.github.io/galaxy-docs/#availability---activity">Activity</a> Availability Search
-
-
-## Add No Placement Accommodation Booking Item
 
 ```shell
 curl -X PUT 
@@ -484,15 +431,15 @@ curl -X PUT
     "BookKey": "2-A",
     "Amount": 1
   }
-]' 'https://galaxy.citybreak.com/v3/api/basket/add/accommodation/noplacement/{basketId}/{searchId}'
+]' 'https://galaxy.citybreak.com/v4/api/basket/add/accommodation/{basketId}/{searchId}'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v3/api/basket/add/accommodation/noplacement/{basketId}/{searchId}",
+var r = fetch("https://galaxy.citybreak.com/v4/api/basket/add/accommodation/{basketId}/{searchId}",
 {
   method:"PUT"
   headers: {
-    "ApiKey:" "APIKEY132456789EWOK",
+    "ApiKey": "APIKEY132456789EWOK",
     "Accept": "application/json",
     "Accept-Language": "en-US"
   },
@@ -518,36 +465,36 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/basket/add/accommodation/nopl
 }
 ```
 
-Adds booking items to the basket, you must first have checked for the <a href="https://visit.github.io/galaxy-docs/#availability---no-placement-accommodation">No Placement Accommodation Availability</a> of a property or properties and obtained the search Id and the bookingKey of the products you wish to add to the basket.
+Adds booking items to the basket, you must first have checked for the <a href="#availability---no-placement-accommodation">Accommodation Availability</a> of a property or properties and obtained the search Id and the bookingKey of the products you wish to add to the basket.
 
-`PUT https://galaxy.citybreak.com/v3/api/basket/add/accommodation/noplacement`
+`PUT https://galaxy.citybreak.com/v4/api/basket/add/accommodation`
 
 ### Query Parameters
 
 Parameter | Description
 --------- | -----------
 basketId | The Id of the basket.
-searchId | The search Id returned by the <a href="https://visit.github.io/galaxy-docs/#availability---no-placement-accommodation">Accommodation</a> Availability Response
-BookKey | The key of the booking item to add to the basket, found in <a href="https://visit.github.io/galaxy-docs/#availability---no-placement-accommodation">Availability Response</a>
+searchId | The search Id returned by the <a href="#availability---no-placement-accommodation">Accommodation</a> Availability Response
+BookKey | The key of the booking item to add to the basket, found in <a href="#availability---no-placement-accommodation">Availability Response</a>
 Amount | The amount to book for this item
 
 
-## Add Fuzzy Accommodation Booking Item
+## Add Placement Accommodation Booking Item
 
 ```shell
 curl -X PUT 
 --header 'Accept: application/json' 
 --header 'apiKey: APIKEY132456789EWOK' 
 --header 'Accept-Language: en-us' 
-'https://galaxy.citybreak.com/v3/api/basket/add/accommodation/fuzzy/{basketId}/{searchId}/{bookId}'
+'https://galaxy.citybreak.com/v4/api/basket/add/accommodation/placement/{basketId}/{searchId}/{bookKey}'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v3/api/basket/add/accommodation/fuzzy/{basketId}/{searchId}/{bookId}",
+var r = fetch("https://galaxy.citybreak.com/v4/api/basket/add/accommodation/placement/{basketId}/{searchId}/{bookKey}",
 {
   method:"PUT"
   headers: {
-    "ApiKey:" "APIKEY132456789EWOK",
+    "ApiKey": "APIKEY132456789EWOK",
     "Accept": "application/json",
     "Accept-Language": "en-US"
   }  
@@ -563,17 +510,61 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/basket/add/accommodation/fuzz
 }
 ```
 
-Specifically for the Fuzzy search, to add a booking item to the basket you must first have checked for the <a href="https://visit.github.io/galaxy-docs/#fuzzy-accommodation-search">Fuzzy Availability</a> of a property or properties and obtained the search Id and the `bookId` of the product you wish to add to the basket. NOTE: the bookId is obtained from the `BookableAlternatives` and is a separate entity from the `bookKey` used in the regular basket operation
+Add a booking item to the basket, you must first have checked for the <a href="#availability---accommodation">Placement Accommodation Availability</a> of a property or properties and obtained the search Id and the bookingKey of the product you wish to add to the basket.
 
-`PUT https://galaxy.citybreak.com/v3/api/basket/add/accommodation/fuzzy/`
+`PUT https://galaxy.citybreak.com/v4/api/basket/add/accommodation/placement`
 
 ### Query Parameters
 
 Parameter | Description
 --------- | -----------
 basketId | The Id of the basket.
-searchId | The search Id returned by the <a href="https://visit.github.io/galaxy-docs/#fuzzy-accommodation-search">Availability Response</a>
-bookId | The Id of the booking item (product) to add to the basket, found in <a href="https://visit.github.io/galaxy-docs/#fuzzy-accommodation-search">the Fuzzy Availability Response</a>
+searchId | The search Id returned by the <a href="#availability---accommodation">Accommodation</a> or <a href="#availability---activity">Activity</a> Availability Response
+bookKey | The key of the booking item (product) to add to the basket, found in the <a href="#availability---accommodation">Accommodation</a> or <a href="#availability---activity">Activity</a> Availability Search
+
+
+## Add Fuzzy Accommodation Booking Item
+
+```shell
+curl -X PUT 
+--header 'Accept: application/json' 
+--header 'apiKey: APIKEY132456789EWOK' 
+--header 'Accept-Language: en-us' 
+'https://galaxy.citybreak.com/v4/api/basket/add/accommodation/fuzzy/{basketId}/{searchId}/{bookId}'
+```
+
+```javascript
+var r = fetch("https://galaxy.citybreak.com/v4/api/basket/add/accommodation/fuzzy/{basketId}/{searchId}/{bookId}",
+{
+  method:"PUT"
+  headers: {
+    "ApiKey": "APIKEY132456789EWOK",
+    "Accept": "application/json",
+    "Accept-Language": "en-US"
+  }  
+});
+```
+
+> Example of response:
+
+```json
+{
+  "Success": true,
+  "BookItemIds": [1,2]
+}
+```
+
+Specifically for the Fuzzy search, to add a booking item to the basket you must first have checked for the <a href="#fuzzy-accommodation-search">Fuzzy Availability</a> of a property or properties and obtained the search Id and the `bookId` of the product you wish to add to the basket. NOTE: the bookId is obtained from the `BookableAlternatives` and is a separate entity from the `bookKey` used in the regular basket operation
+
+`PUT https://galaxy.citybreak.com/v4/api/basket/add/accommodation/fuzzy/`
+
+### Query Parameters
+
+Parameter | Description
+--------- | -----------
+basketId | The Id of the basket.
+searchId | The search Id returned by the <a href="#fuzzy-accommodation-search">Availability Response</a>
+bookId | The Id of the booking item (product) to add to the basket, found in <a href="#fuzzy-accommodation-search">the Fuzzy Availability Response</a>
 
 
 ## Add Activity Booking Item
@@ -590,15 +581,15 @@ curl -X PUT
     "BookKey": "2-T",
     "Amount": 1
   }
-]' 'https://galaxy.citybreak.com/v3/api/basket/add/activity/{basketId}/{searchId}'
+]' 'https://galaxy.citybreak.com/v4/api/basket/add/activity/{basketId}/{searchId}'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v3/api/basket/add/activity/{basketId}/{searchId}",
+var r = fetch("https://galaxy.citybreak.com/v4/api/basket/add/activity/{basketId}/{searchId}",
 {
   method:"PUT"
   headers: {
-    "ApiKey:" "APIKEY132456789EWOK",
+    "ApiKey": "APIKEY132456789EWOK",
     "Accept": "application/json",
     "Accept-Language": "en-US"
   },
@@ -624,17 +615,17 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/basket/add/activity/{basketId
 }
 ```
 
-Add a booking item to the basket, you must first have checked for the <a href="https://visit.github.io/galaxy-docs/#availability---activity">Availability</a> of an activity and obtained the search Id and the bookingKey of the product you wish to add to the basket.
+Add a booking item to the basket, you must first have checked for the <a href="#availability---activity">Availability</a> of an activity and obtained the search Id and the bookingKey of the product you wish to add to the basket.
 
-`PUT https://galaxy.citybreak.com/v3/api/basket/add/activity`
+`PUT https://galaxy.citybreak.com/v4/api/basket/add/activity`
 
 ### Parameters
 
 Parameter | Description
 --------- | -----------
 basketId | The Id of the basket.
-searchId | The search Id returned by the <a href="https://visit.github.io/galaxy-docs/#availability---activity">Availability Response</a>
-BookKey | The key of the booking item to add to the basket, found in <a href="https://visit.github.io/galaxy-docs/#availability---activity">Availability Response</a>
+searchId | The search Id returned by the <a href="#availability---activity">Availability Response</a>
+BookKey | The key of the booking item to add to the basket, found in <a href="#availability---activity">Availability Response</a>
 Amount | The amount to book for this item
 
 
@@ -646,15 +637,15 @@ curl -X DELETE
 --header 'Accept: application/json' 
 --header 'apiKey: APIKEY132456789EWOK' 
 --header 'Accept-Language: en-us' 
-'https://galaxy.citybreak.com/v3/api/basket/deleteItem/{basketId}/{bookItemId}'
+'https://galaxy.citybreak.com/v4/api/basket/deleteItem/{basketId}/{bookItemId}'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v3/api/basket/deleteItem/{basketId}/{bookItemId}",
+var r = fetch("https://galaxy.citybreak.com/v4/api/basket/deleteItem/{basketId}/{bookItemId}",
 {
   method:"DELETE"
   headers: {
-    "ApiKey:" "APIKEY132456789EWOK",
+    "ApiKey": "APIKEY132456789EWOK",
     "Accept": "application/json",
     "Accept-Language": "en-US"
   }  
@@ -667,11 +658,11 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/basket/deleteItem/{basketId}/
 true
 ```
 
-Delete a booking item from the basket. In the <a href="https://visit.github.io/galaxy-docs/#get-basket">Get Basket</a> response you can find the bookItemId (this is different to the booking key and is specific to the basket)
+Delete a booking item from the basket. In the <a href="#get-basket">Get Basket</a> response you can find the bookItemId (this is different to the booking key and is specific to the basket)
 
 ### HTTP Request
 
-`DELETE https://galaxy.citybreak.com/v3/api/basket/deleteItem`
+`DELETE https://galaxy.citybreak.com/v4/api/basket/deleteItem`
 
 ### Query Parameters
 
@@ -693,15 +684,15 @@ curl -X PUT
 --header 'Accept: application/json' 
 --header 'apiKey: APIKEY132456789EWOK' 
 --header 'Accept-Language: en-us' 
-'https://galaxy.citybreak.com/v3/api/basket/cancellation/{basketId}/{cancellationId}/{true|false}'
+'https://galaxy.citybreak.com/v4/api/basket/cancellation/{basketId}/{cancellationId}/{true|false}'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v3/api/basket/cancellation/{basketId}/{cancellationId}/{true|false}",
+var r = fetch("https://galaxy.citybreak.com/v4/api/basket/cancellation/{basketId}/{cancellationId}/{true|false}",
 {
   method:"PUT"
   headers: {
-    "ApiKey:" "APIKEY132456789EWOK",
+    "ApiKey": "APIKEY132456789EWOK",
     "Accept": "application/json",
     "Accept-Language": "en-US"
   }  
@@ -718,7 +709,7 @@ If your basket has a set of cancellation insurances you can use this call to add
 
 ### HTTP Request
 
-`PUT https://galaxy.citybreak.com/v3/api/basket/cancellation`
+`PUT https://galaxy.citybreak.com/v4/api/basket/cancellation`
 
 ### Query Parameters
 
@@ -757,15 +748,15 @@ curl -X POST
      "AreaCode": "07",
      "Number": "2222222"
    }
- }' 'https://galaxy.citybreak.com/v3/api/basket/customer/{basketId}'
+ }' 'https://galaxy.citybreak.com/v4/api/basket/customer/{basketId}'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v3/api/basket/customer/{basketId}",
+var r = fetch("https://galaxy.citybreak.com/v4/api/basket/customer/{basketId}",
 {
   method:"POST"
   headers: {
-    "ApiKey:" "APIKEY132456789EWOK",
+    "ApiKey": "APIKEY132456789EWOK",
     "Accept": "application/json",
     "Accept-Language": "en-US"
   }  
@@ -802,7 +793,7 @@ To commit a Basket you will need to provide customer information. This is fairly
 
 ### HTTP Request
 
-`POST https://galaxy.citybreak.com/v3/api/basket/customer`
+`POST https://galaxy.citybreak.com/v4/api/basket/customer`
 
 ### Query Parameters
 
@@ -822,14 +813,14 @@ curl -X GET
 --header 'Accept: application/json' 
 --header 'apiKey: APIKEY132456789EWOK'
 --header 'Accept-Language: en-US' 
-'https://galaxy.testcitybreak.com/v3/api/basket/customer/{basketId}'
+'https://galaxy.citybreak.com/v4/api/basket/customer/{basketId}'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v3/api/basket/customer/{basketId}",
+var r = fetch("https://galaxy.citybreak.com/v4/api/basket/customer/{basketId}",
 {
   headers: {
-    "ApiKey:" "APIKEY132456789EWOK",
+    "ApiKey": "APIKEY132456789EWOK",
     "Accept": "application/json",
     "Accept-Language": "en-US"
   }  
@@ -881,7 +872,7 @@ Get currencies available for a given Point of Sale. Availability searches will r
 
 ### HTTP Request
 
-`GET https://galaxy.citybreak.com/v3/api/basket/customer`
+`GET https://galaxy.citybreak.com/v4/api/basket/customer`
 
 ### Query Parameters
 
@@ -896,15 +887,15 @@ curl -X POST
 --header 'Accept: application/json' 
 --header 'apiKey: APIKEY132456789EWOK' 
 --header 'Accept-Language: en-US' 
-'https://galaxy.citybreak.com/v3/api/basket/commit/async/{basketId}'
+'https://galaxy.citybreak.com/v4/api/basket/commit/{basketId}'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v3/api/basket/commit/async/{basketId}",
+var r = fetch("https://galaxy.citybreak.com/v4/api/basket/commit/{basketId}",
 {
   method:"POST"
   headers: {
-    "ApiKey:" "APIKEY132456789EWOK",
+    "ApiKey": "APIKEY132456789EWOK",
     "Accept": "application/json",
     "Accept-Language": "en-US"
 }  
@@ -917,15 +908,13 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/basket/commit/async/{basketId
 int32
 ```
 
-This is the method used to start a commit job for a basket. You only need to provide the Basket Id for this call. As there may be many products from different internal and external providers this is essentially a two step async operation. Once you have commited the basket you can query <a href="https://visit.github.io/galaxy-docs/#commit-status">Commit Status</a> to get the status of the job and the `ReservationID` and `BookingCode` if it is completed. Before you may commit a basket, there is some information you must provide first. Add at least one Booking Item (<a href="https://visit.github.io/galaxy-docs/#add-accommodation-booking-item">Accommodation</a>, <a href="https://visit.github.io/galaxy-docs/#add-fuzzy-accommodation-booking-item">Fuzzy Accommodation</a> or <a href="https://visit.github.io/galaxy-docs/#add-activity-booking-item">Activity</a>) and provide <a href="https://visit.github.io/galaxy-docs/#update-customer-information">Customer Information</a>.
+This is the method used to start a commit job for a basket. You only need to provide the Basket Id for this call. As there may be many products from different internal and external providers this is essentially a two step async operation. Once you have committed the basket you can query <a href="#commit-status">Commit Status</a> to get the status of the job and the `ReservationID` and `BookingCode` if it is completed. Before you may commit a basket, there is some information you must provide first. Add at least one Booking Item (<a href="#add-accommodation-booking-item">Accommodation</a>, <a href="#add-fuzzy-accommodation-booking-item">Fuzzy Accommodation</a> or <a href="#add-activity-booking-item">Activity</a>) and provide <a href="#update-customer-information">Customer Information</a>.
 
 The return value is a job number with which you can check the status of commit
 
-<aside class="notice">If you wish to have this synchronous, you can use `POST https://galaxy.citybreak.com/v3/api/basket/commit/{basketId}` which will return when the job is done.</aside>
-
 ### HTTP Request
 
-`POST https://galaxy.citybreak.com/v3/api/basket/commit/async/{basketId}`
+`POST https://galaxy.citybreak.com/v4/api/basket/commit/{basketId}`
 
 ### Query Parameters
 
@@ -946,14 +935,14 @@ curl -X GET
 --header 'apiKey: APIKEY132456789EWOK' 
 --header 'Accept-Language: en-US'
 
-'https://galaxy.citybreak.com/v3/api/basket/commit/status/{commitJobId}'
+'https://galaxy.citybreak.com/v4/api/basket/commit/status/{commitJobId}'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v3/api/basket/commit/status/{commitJobId}",
+var r = fetch("https://galaxy.citybreak.com/v4/api/basket/commit/status/{commitJobId}",
 {
   headers: {
-    "ApiKey:" "APIKEY132456789EWOK",
+    "ApiKey": "APIKEY132456789EWOK",
     "Accept": "application/json"
     "Accept-Language": "en-US"
   }  
@@ -1002,18 +991,18 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/basket/commit/status/{commitJ
 }
 ```
 
-Gets the `ResvversionId` (reservation version id) and `BookingCode`, important for <a href="https://visit.github.io/galaxy-docs/#reservation">Reservation</a> calls, and the status of a commit job. Get the commit job id when you make the <a href="https://visit.github.io/galaxy-docs/#commit-basket">Commit</a>.
+Gets the `ResvversionId` (reservation version id) and `BookingCode`, important for <a href="#reservation">Reservation</a> calls, and the status of a commit job. Get the commit job id when you make the <a href="#commit-basket">Commit</a>.
 
 
 ### HTTP Request
 
-`GET https://galaxy.citybreak.com/v3/api/basket/commit/status`
+`GET https://galaxy.citybreak.com/v4/api/basket/commit/status`
 
 ### Query Parameters
 
 Parameter | Description
 --------- | -----------
-commitJobId | The Id of the commit job returned from <a href="https://visit.github.io/galaxy-docs/#commit-basket">Commit Basket</a> 
+commitJobId | The Id of the commit job returned from <a href="#commit-basket">Commit Basket</a> 
 
 
 
@@ -1024,15 +1013,15 @@ curl -X POST
 --header 'Accept: application/json' 
 --header 'apiKey: APIKEY132456789EWOK' 
 --header 'Accept-Language: en-us' 
-'https://galaxy.citybreak.com/v3/api/basket/guests/add/{basketId}'
+'https://galaxy.citybreak.com/v4/api/basket/guests/add/{basketId}'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v3/api/basket/guests/add/{basketId}",
+var r = fetch("https://galaxy.citybreak.com/v4/api/basket/guests/add/{basketId}",
 {
   method:"POST"
   headers: {
-    "ApiKey:" "APIKEY132456789EWOK",
+    "ApiKey": "APIKEY132456789EWOK",
     "Accept": "application/json",
     "Accept-Language": "en-US"
   }  
@@ -1049,11 +1038,11 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/basket/guests/add/{basketId}"
 );
 ```
 
-Returns Response Code 204 if successful. Add a guest to a Booking Item, this is not the same as Customer Information. The Guest ID in the filter must match one in the <a href="https://visit.github.io/galaxy-docs/#get-basket">Basket</a> or be 0 to create a new guest
+Returns Response Code 204 if successful. Add a guest to a Booking Item, this is not the same as Customer Information. The Guest ID in the filter must match one in the <a href="#get-basket">Basket</a> or be 0 to create a new guest
 
 ### HTTP Request
 
-`GET https://galaxy.citybreak.com/v3/api/basket/guests/add`
+`GET https://galaxy.citybreak.com/v4/api/basket/guests/add`
 
 ### Query Parameters
 
@@ -1062,22 +1051,22 @@ Parameter | Description
 basketId | The Id of the basket.
 
 
-## Addons products
+## Addon products
 
 ```shell
 curl -X GET 
 --header 'Accept: application/json' 
 --header 'apiKey: APIKEY132456789EWOK' 
 --header 'Accept-Language: en-us' 
-'https://galaxy.citybreak.com/v3/api/api/basket/addon/{basketId}/{bookItemId}'
+'https://galaxy.citybreak.com/v4/api/api/basket/addon/{basketId}/{bookItemId}'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v3/api/api/basket/addon/{basketId}/{bookItemId}",
+var r = fetch("https://galaxy.citybreak.com/v4/api/api/basket/addon/{basketId}/{bookItemId}",
 {
   method:"GET"
   headers: {
-    "ApiKey:" "APIKEY132456789EWOK",
+    "ApiKey": "APIKEY132456789EWOK",
     "Accept": "application/json",
     "Accept-Language": "en-US"
   }
@@ -1088,29 +1077,23 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/api/basket/addon/{basketId}/{
 
 ```json
 {
-    "BookItemId": 1,
-    "ProductName": "My activity name",
-    "AvailableAddons": [
-        {
-            "NeedsToSpecifyPricegroups": false,
-            "NeedsToSpecifyQuantity": true,
-            "Name": "Sparkling wine",
-            "AddonId": 445409,
-            "AmountType": "Unlimited",
-            "Prices": [
-	    	{
-	            "PricegroupId": null,
-		    "PricegroupName": "",
-		    "IsLocalized": false,
-		    "Price": {
-		        "Price": 175,
-		        "VatAmount": 0,
-		        "Currency": "NOK"
-		    }		    
-	        }
-            ]
-        }
-    ]
+  "BookItemId": 1,
+  "ProductName": "My activity name",
+  "AvailableAddons": [
+    {
+      "Name": "Sparkling wine",
+      "AddonId": "A:0-C:0-P:0",
+      "PricegroupName": "Adult",
+      "MinimumPricegroupAge": 0,
+      "MaximumPricegroupAge": 0,
+      "Price": {
+        "Price": 175,
+        "Currency": "NOK"
+      },
+      "MinimumNumberOfUnits": 0,
+      "MaximumNumberOfUnits": 0
+    }
+  ]
 }
 ```
 Once a product is added to the basket, all mandatory included sub products
@@ -1121,36 +1104,14 @@ These calls allows you to get a list of available addons.
 The main product is refered to by its ID in the basket, the `BookItemId`. 
 You can get all the addons for a given basket or a given product in a basket.
 
-If `NeedsToSpecifyQuantity` is set to `true` you can set it to any value between
-0 and 50 depending on the number of units you require.
+Addons might be priced by pricegroup, which is indicated by the fields `PricegroupName`, `MinimumPricegroupAge` and `MaximumPricegroupAge`.
 
-If `NeedsToSpecifyQuantity` is set to `false` you can set quantity to either 
-0 or 1 depending on if you would like to include the product or not.
-
-If `NeedsToSpecifyPricegroups` is set to `true` you need to configure 
-each price group item with the specified quantity.
-
-If the addon is included as one per guest, that configuration
-must be submitted for each guest, also the price is known at that time and presented
-with a price group information.
-
-In this case the `NeedsToSpecifyQuantity` is set and you will have to configure how
-many items you would like. The price is then presented in the config item so you 
-can tell the price depending on the number of units selected.
-
-The `PricegroupId` set to null represents that the price is not dependent 
-on pricegroup but on the type Unit, meaning that regardless of the age of the 
-person associated with the item, the price will be the same. In this case
-you don't need to supply price group information when adding the addon to a product.
-
-`IsLocalized` tells the consumer if the price group is generated using the
-translation of the price group. If set to `false` you will have to bring your
-own translation when presenting in to the user.
+The quantity available to book is indicated by the fields `MinimumNumberOfUnits` and `MaximumNumberOfUnits`.
 
 ### HTTP Requests
 
-`GET https://galaxy.citybreak.com/v3/api/api/basket/addon/{basketId}/{bookItemId}`  
-`GET https://galaxy.citybreak.com/v3/api/api/basket/addon/{basketId}`
+`GET https://galaxy.citybreak.com/v4/api/api/basket/addon/{basketId}/{bookItemId}`  
+`GET https://galaxy.citybreak.com/v4/api/api/basket/addon/{basketId}`
 
 ### Query Parameters
 
@@ -1170,20 +1131,19 @@ curl -X POST
   "Queries": [
     {
       "BookItemId": 1,
-      "AddonId": 445409,
-      "PriceGroupId": null,
+      "AddonId": "A:0-C:0-P:0",
       "Quantity": 2
     }
   ]
-}' 'https://galaxy.citybreak.com/v3/api/basket/addon/{basketId}'
+}' 'https://galaxy.citybreak.com/v4/api/basket/addon/{basketId}'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v3/api/basket/addon/{basketId}",
+var r = fetch("https://galaxy.citybreak.com/v4/api/basket/addon/{basketId}",
 {
   method:"POST"
   headers: {
-    "ApiKey:" "APIKEY132456789EWOK",
+    "ApiKey": "APIKEY132456789EWOK",
     "Accept": "application/json",
     "Accept-Language": "en-US"
   }  
@@ -1192,8 +1152,7 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/basket/addon/{basketId}",
       "Queries": [
       {
         "BookItemId": 1,
-        "AddonId": 445409,
-        "PriceGroupId": null,
+        "AddonId": "A:0-C:0-P:0",
         "Quantity": 2
       }
     ]
@@ -1201,13 +1160,13 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/basket/addon/{basketId}",
 );
 ```
 
-The example call will add 2 sparkling wine to the item with `BookItemId` 1, `PriceGroupId`
-can be null or omitted as it is an addon of type `Unlimited` and `NeedsToSpecifyPricegroups`
-is false.
+The example call will add 2 sparkling wine to the item with `BookItemId` 1. Set the quantity to 0 to remove the addon.
+
+The quantity available to book is indicated by the fields `MinimumNumberOfUnits` and `MaximumNumberOfUnits` from the <a href="#addon-products">Addon products</a> call.
 
 ### HTTP Requests
 
-`POST https://galaxy.citybreak.com/v3/api/api/basket/addon/{basketId}`
+`POST https://galaxy.citybreak.com/v4/api/api/basket/addon/{basketId}`
 
 ### Query Parameters
 
@@ -1217,43 +1176,7 @@ basketId | The Id of the basket.
 Queries | List of addons to add
 BookItemId | Id in the basket of the product which should receive the addon
 AddonId | Id of the addon to add
-PriceGroupId | The price group to use if `NeedsToSpecifyPricegroups` is true
-Quantity | Amount to add
-
-## Delete addon product
-
-```shell
-curl -X DELETE 
---header 'Content-Type: application/json' 
---header 'Accept: application/json' 
---header 'Accept-Language: en-us' 
---header 'apiKey: APIKEY132456789EWOK' 
-'https://galaxy.citybreak.com/v3/api/basket/addon/{basketId}/{bookItemId}'
-```
-
-```javascript
-var r = fetch("https://galaxy.citybreak.com/v3/api/basket/addon/{basketId}/{bookItemId}",
-{
-  method:"DELETE"
-  headers: {
-    "ApiKey:" "APIKEY132456789EWOK",
-    "Accept": "application/json",
-    "Accept-Language": "en-US"
-  }  
-);
-```
-Deletes the addon with id in basket `BookItemId`.
-
-### HTTP Requests
-
-`DELETE https://galaxy.citybreak.com/v3/api/api/basket/addon/{basketId}/{bookItemId}`
-
-### Query Parameters
-
-Parameter | Description
---------- | -----------
-basketId | The Id of the basket.
-bookItemId | Id in the basket of the addon you wish to remove
+Quantity | Amount to book
 
 ## Get supplier messages
 
@@ -1262,14 +1185,14 @@ curl -X GET
 --header 'apiKey: APIKEY132456789EWOK'
 --header 'Accept: application/json' 
 --header 'Accept-Language: en-us' 
-'https://galaxy.citybreak.com/v3/api/basket/suppliermessage/{basketId}'
+'https://galaxy.citybreak.com/v4/api/basket/suppliermessage/{basketId}'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v3/api/basket/suppliermessage/{basketId}",
+var r = fetch("https://galaxy.citybreak.com/v4/api/basket/suppliermessage/{basketId}",
 {
   headers: {
-    "ApiKey:" "APIKEY132456789EWOK",
+    "ApiKey": "APIKEY132456789EWOK",
     "Accept": "application/json"
     "Accept-Language": "en-US"
   }  
@@ -1294,7 +1217,7 @@ This call will result in a list of available suppliers and the configured messag
 
 ### HTTP Request
 
-`GET https://galaxy.citybreak.com/v3/api/basket/suppliermessage/{basketId}`
+`GET https://galaxy.citybreak.com/v4/api/basket/suppliermessage/{basketId}`
 
 ### Query Parameters
 
@@ -1314,15 +1237,15 @@ curl -X POST
     "SupplierId": 54705,
     "Message": "Will arrive late."
   }
-]' 'https://galaxy.citybreak.com/v3/api/basket/suppliermessage/{basketId}'
+]' 'https://galaxy.citybreak.com/v4/api/basket/suppliermessage/{basketId}'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v3/api/basket/suppliermessage/{basketId}",
+var r = fetch("https://galaxy.citybreak.com/v4/api/basket/suppliermessage/{basketId}",
 {
   method:"POST"
   headers: {
-    "ApiKey:" "APIKEY132456789EWOK",
+    "ApiKey": "APIKEY132456789EWOK",
     "Accept": "application/json",
     "Accept-Language": "en-US"
   }  
@@ -1346,15 +1269,15 @@ curl -X PUT
 --header 'apiKey: APIKEY132456789EWOK'
 --header 'Accept: application/json' 
 --header 'Accept-Language: en-us' 
-'https://galaxy.citybreak.com/v3/api/basket/cancellation/{basketId}/{insuranceId}/{state}'
+'https://galaxy.citybreak.com/v4/api/basket/cancellation/{basketId}/{insuranceId}/{state}'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v3/api/basket/cancellation/{basketId}/{insuranceId}/{state}",
+var r = fetch("https://galaxy.citybreak.com/v4/api/basket/cancellation/{basketId}/{insuranceId}/{state}",
 {
   method:"PUT"
   headers: {
-    "ApiKey:" "APIKEY132456789EWOK",
+    "ApiKey": "APIKEY132456789EWOK",
     "Accept": "application/json",
     "Accept-Language": "en-US"
   }  
@@ -1399,14 +1322,14 @@ curl -X GET
 --header 'apiKey: APIKEY132456789EWOK'
 --header 'Accept: application/json' 
 --header 'Accept-Language: en-us' 
-'https://galaxy.citybreak.com/v3/api/basket/complementary/{basketId}'
+'https://galaxy.citybreak.com/v4/api/basket/complementary/{basketId}'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v3/api/basket/complementary/{basketId}",
+var r = fetch("https://galaxy.citybreak.com/v4/api/basket/complementary/{basketId}",
 {
   headers: {
-    "ApiKey:" "APIKEY132456789EWOK",
+    "ApiKey": "APIKEY132456789EWOK",
     "Accept": "application/json"
     "Accept-Language": "en-US"
   }  
@@ -1503,12 +1426,12 @@ Complementary info for products can be retrieved from a basket. This information
 
 Complementary info can be required or optional and is typed. Currently supported types are Boolean, Integer, Decimal, String, Date and ImageLink. Complementary info may also come with constraints depending on type. If any update attempts are made to info that conflicts with these type restrictions or constraints they will not be successful.
 
-Each Complement is attached to either the main product, the persons who are attached to the product (this may not refer to any specific person but simply the idea of a participant or guest) or to the add on product. These objects are identified by their `ItemId` (for products and add ons this ItemId is equivalent to the BookItemId in the <a href="https://visit.github.io/galaxy-docs/#get-basket">Get Basket</a> call), each complementary that is attached to an item will also have a unique `Code` within that context. These two identifiers are important for updating the `Value`
+Each Complement is attached to either the main product, the persons who are attached to the product (this may not refer to any specific person but simply the idea of a participant or guest) or to the add on product. These objects are identified by their `ItemId` (for products and add ons this ItemId is equivalent to the BookItemId in the <a href="#get-basket">Get Basket</a> call), each complementary that is attached to an item will also have a unique `Code` within that context. These two identifiers are important for updating the `Value`
 
 
 ### HTTP Request
 
-`GET https://galaxy.citybreak.com/v3/api/basket/complementary/{basketId}`
+`GET https://galaxy.citybreak.com/v4/api/basket/complementary/{basketId}`
 
 ### Query Parameters
 
@@ -1539,15 +1462,15 @@ curl -X POST
     "Code": "#COMP-3",
     "Value": "This is not a Boolean"
   }
-]' 'https://galaxy.citybreak.com/v3/api/basket/complementary/{basketId}'
+]' 'https://galaxy.citybreak.com/v4/api/basket/complementary/{basketId}'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v3/api/basket/complementary/{basketId}",
+var r = fetch("https://galaxy.citybreak.com/v4/api/basket/complementary/{basketId}",
 {
   method:"POST"
   headers: {
-    "ApiKey:" "APIKEY132456789EWOK",
+    "ApiKey": "APIKEY132456789EWOK",
     "Accept": "application/json",
     "Accept-Language": "en-US"
   }  
@@ -1613,7 +1536,7 @@ The update object is fairly simple:
 
 ### HTTP Request
 
-`POST https://galaxy.citybreak.com/v3/api/basket/complementary/{basketId}`
+`POST https://galaxy.citybreak.com/v4/api/basket/complementary/{basketId}`
 
 ### Query Parameters
 

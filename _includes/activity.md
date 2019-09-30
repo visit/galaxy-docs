@@ -12,14 +12,14 @@ curl -X GET
   --header 'ApiKey: APIKEY132456789EWOK'
   --header 'Accept: application/json' 
   --header 'Accept-Language: en-US'
-  'https://galaxy.citybreak.com/v3/api/activity/{pointOfSaleId}/20/0'
+  'https://galaxy.citybreak.com/v4/api/activity/{pointOfSaleId}/20/0'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v3/api/activity/{pointOfSaleId}/20/0",
+var r = fetch("https://galaxy.citybreak.com/v4/api/activity/{pointOfSaleId}/20/0",
 {
   headers: {
-    "ApiKey:" "APIKEY132456789EWOK",
+    "ApiKey": "APIKEY132456789EWOK",
     "Accept": "application/json",
 	 "Accept-Language": "en-US"
   }  
@@ -118,7 +118,7 @@ Get details about Activity
 
 ### HTTP Request
 
-`GET https://galaxy.citybreak.com/v3/api/activity/{pointOfSalesId}/{pageSize}/{page}`
+`GET https://galaxy.citybreak.com/v4/api/activity/{pointOfSalesId}/{pageSize}/{page}`
 
 ### Query Parameters
 
@@ -135,14 +135,14 @@ curl -X GET
 --header 'Accept: application/json' 
 --header 'Accept-Language: en-us' 
 --header 'apiKey: APIKEY132456789EWOK' 
-'https://galaxy.citybreak.com/v3/api/activity/view/{pointOfSaleId}/{productId}'
+'https://galaxy.citybreak.com/v4/api/activity/view/{pointOfSaleId}/{productId}'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v3/api/activity/view/{pointOfSaleId}/{productId}'",
+var r = fetch("https://galaxy.citybreak.com/v4/api/activity/view/{pointOfSaleId}/{productId}'",
 {
   headers: {
-    "ApiKey:" "APIKEY132456789EWOK",
+    "ApiKey": "APIKEY132456789EWOK",
     "Accept": "application/json",
    "Accept-Language": "en-US"
   }  
@@ -234,7 +234,7 @@ Get details and content about a specific Citybreak product, the requests require
 
 ### HTTP Request
 
-`GET https://galaxy.citybreak.com/v3/api/activity/view/{pointOfSalesId}/{productId}`
+`GET https://galaxy.citybreak.com/v4/api/activity/view/{pointOfSalesId}/{productId}`
 
 ### Query Parameters
 

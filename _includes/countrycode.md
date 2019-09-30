@@ -10,14 +10,14 @@
 curl -X GET 
 --header 'Accept: application/json' 
 --header 'apiKey: APIKEY132456789EWOK' 
-'https://galaxy.citybreak.com/v3/api/countrycode'
+'https://galaxy.citybreak.com/v4/api/countrycode'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v3/api/countrycode",
+var r = fetch("https://galaxy.citybreak.com/v4/api/countrycode",
 {
   headers: {
-    "ApiKey:" "APIKEY132456789EWOK",
+    "ApiKey": "APIKEY132456789EWOK",
     "Accept": "application/json"
   }  
 });
@@ -36,7 +36,7 @@ Gets all available country codes for a specified API key.
 
 ### HTTP Request
 
-`GET https://galaxy.citybreak.com/v3/api/countrycode`
+`GET https://galaxy.citybreak.com/v4/api/countrycode`
 
 ## Check Country Code
 
@@ -44,15 +44,15 @@ Gets all available country codes for a specified API key.
 curl -X HEAD 
 --header 'Accept: application/json' 
 --header 'apiKey: APIKEY132456789EWOK'
-'https://galaxy.citybreak.com/v3/api/countrycode/{CountryCode}'
+'https://galaxy.citybreak.com/v4/api/countrycode/{CountryCode}'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v3/api/countrycode/{CountryCode}",
+var r = fetch("https://galaxy.citybreak.com/v4/api/countrycode/{CountryCode}",
 {
   method: "HEAD"
   headers: {
-    "ApiKey:" "APIKEY132456789EWOK",
+    "ApiKey": "APIKEY132456789EWOK",
     "Accept": "application/json"
   }  
 });
@@ -68,4 +68,4 @@ Returns a 200 status code if country code is supported, otherwise 404.
 
 ### HTTP Request
 
-`HEAD https://galaxy.citybreak.com/v3/api/countrycode/{CountryCode}`
+`HEAD https://galaxy.citybreak.com/v4/api/countrycode/{CountryCode}`

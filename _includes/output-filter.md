@@ -29,15 +29,15 @@ curl -X POST
       "Pois": true,
       "Position": true
     }
- }' 'https://galaxy.citybreak.com/v3/api/availability/accommodation'
+ }' 'https://galaxy.citybreak.com/v4/api/availability/accommodation'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v3/api/availability/accommodation",
+var r = fetch("https://galaxy.citybreak.com/v4/api/availability/accommodation",
 {
 	method: "POST",
 	headers: {
-    "ApiKey:" "APIKEY132456789EWOK",
+    "ApiKey": "APIKEY132456789EWOK",
     "Accept": "application/json",
     "Accept-Language": "en-US"
 	},

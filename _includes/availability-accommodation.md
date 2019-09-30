@@ -1,15 +1,15 @@
-# Availability - Accommodation
+# Availability - Placement Accommodation
 
-**Availability - Accommodation** calls provide information about the availability of any type of accommodation products. Both searches (normal and fuzzy) will return products with availability, including content, pricing groups with room information (Placements) and subproduct information (such as breakfasts or tickets to nearby attractions), as well as a Search ID with its Expiry. 
+**Availability - Placement Accommodation** calls provide information about the availability of any type of accommodation products. Both searches (normal and fuzzy) will return products with availability, including content, pricing groups with room information (Placements) and subproduct information (such as breakfasts or tickets to nearby attractions), as well as a Search ID with its Expiry. This search differs from the default <a href="#availability---noplacementaccommodation">accommodation</a> availability search in that it does automatic placement of persons into rooms. That means if you send two person configurations: one with 1 adult and one with 2 adults, you will get a list of room combinations priced and bookable as a whole.
 
-The `SearchId` can be used to retrieve prior, cached searches in a much shorter amount of time for both Accommodation Search and Cabin Scan if used before its Expiry. The object recalled by the search contains all the unfiltered information retrieved in the first search, so further or different filtering on content, etc. can be done in this call.
+The `SearchId` can be used to retrieve prior, cached searches in a much shorter amount of time if used before its Expiry. The object recalled by the search contains all the unfiltered information retrieved in the first search, so further or different filtering on content, etc. can be done in this call.
 
-The `SearchId` and the `BookingKey` of each room product are used in the basket operations to add the product found to the <a href="https://visit.github.io/galaxy-docs/#add-accommodation-booking-item">Basket</a> 
+The `SearchId` and the `BookingKey` of each room product are used in the basket operations to add the product found to the <a href="#add-placement-accommodation-booking-item">Basket</a> 
 
 
 **GET** and **POST** operations 
 
-## Accommodation
+## Placement Accommodation
 
 ```shell
 curl -X POST 
@@ -31,15 +31,15 @@ curl -X POST
        ] 
      }
    ]
- }' 'https://galaxy.citybreak.com/v3/api/availability/accommodation'
+ }' 'https://galaxy.citybreak.com/v4/api/availability/accommodation/placement'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v3/api/availability/accommodation",
+var r = fetch("https://galaxy.citybreak.com/v4/api/availability/accommodation/placement",
 {
 	method: "POST",
 	headers: {
-	    "ApiKey:" "APIKEY132456789EWOK",
+	    "ApiKey": "APIKEY132456789EWOK",
 	    "Accept": "application/json",
 		 "Accept-Language": "en-US"
 	},
@@ -281,18 +281,28 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/availability/accommodation",
   ],
   "SearchId": "aaaa1234-4321-1a2b-asdf-123456asdfgh",
   "ExpirationDate": "2017-09-15T09:15:46.0619347Z",
-  "TotalResults": 1
+  "TotalResults": 1,
+  "Operations": [
+    {
+      "System": "ExternalSystem",
+      "Account": "ExternalAccount",
+      "Action": "Search",
+      "Duration": "00:00:01",
+      "Success": true,
+      "ErrorMessage": null
+    }
+  ]
 }
 ```
 
 This is a **POST** request that requires a filter with some mandatory properties, such as arrival and departure dates. 
 The filter can also include content filtering, such as only including those hotels associated with a particular CBIS category or that have 24 hr reception.
-Content filtering possibilities can be found in the <a href="https://visit.github.io/galaxy-docs/#content-filter">Content Section</a> You can see a bare minimum version of this search in the examples.
-The Most important return values in this response are the `SearchId` and the `BookingKey` used in the <a href="https://visit.github.io/galaxy-docs/#add-accommodation-booking-item">Basket</a>, also pay attention to the `ExpirationDate` of the `SearchId`
+Content filtering possibilities can be found in the <a href="#content-filter">Content Section</a> You can see a bare minimum version of this search in the examples.
+The Most important return values in this response are the `SearchId` and the `BookingKey` used in the <a href="#add-placement-accommodation-booking-item">Basket</a>, also pay attention to the `ExpirationDate` of the `SearchId`
 
 ### HTTP Request
 
-`POST https://galaxy.citybreak.com/v3/api/availability/accommodation`
+`POST https://galaxy.citybreak.com/v4/api/availability/accommodation/placement`
 
 ### Query Parameters
 
@@ -322,9 +332,9 @@ Accept-Language | The language culture (e.g en-us)
       ]
     }
   ],
-  "ContentFilter": { // Optional - See <a href="https://visit.github.io/galaxy-docs/#content-filter">ContentFilter</a>
+  "ContentFilter": { // Optional - See <a href="#content-filter">ContentFilter</a>
   },
-  "OutputFilter": { // Optional -  See <a href="https://visit.github.io/galaxy-docs/#output-filter">OutputFilter</a>
+  "OutputFilter": { // Optional -  See <a href="#output-filter">OutputFilter</a>
   }
 }
 </code>
@@ -341,15 +351,15 @@ curl -X POST
   "Page": 1,
   "PageSize": 20,
   "SearchId": "aaaa1234-4321-1a2b-asdf-123456asdfgh"
-}' 'https://galaxy.citybreak.com/v3/api/availability/accommodation/get'
+}' 'https://galaxy.citybreak.com/v4/api/availability/accommodation/placement/get'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v3/api/availability/accommodation/get",
+var r = fetch("https://galaxy.citybreak.com/v4/api/availability/accommodation/placement/get",
 {
 	method: "POST",
 	headers: {
-	   "ApiKey:" "APIKEY132456789EWOK",
+	   "ApiKey": "APIKEY132456789EWOK",
 	   "Accept": "application/json",
 		 "Accept-Language": "en-US"
 	},
@@ -585,11 +595,11 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/availability/accommodation/ge
 }
 ```
 
-This is a **POST** request that requires a filter with a valid (non-expired) SearchId. The filter otherwise has the same constraints as in the original <a href="https://visit.github.io/galaxy-docs/#availability---accommodation">Accommodation availability</a> search. You can see a bare minimum version of this search in the examples.
+This is a **POST** request that requires a filter with a valid (non-expired) SearchId. The filter otherwise has the same constraints as in the original <a href="#availability---accommodation">Accommodation availability</a> search. You can see a bare minimum version of this search in the examples.
 
 ### HTTP Request
 
-`POST https://galaxy.citybreak.com/v3/api/availability/accommodation/get`
+`POST https://galaxy.citybreak.com/v4/api/availability/accommodation/placement/get`
 
 ### Query Parameters
 
@@ -608,7 +618,7 @@ Accept-Language | The language culture (e.g en-us)
   },
   //string - Mandatory - the search Id of a still valid accommodation availability search
   "SearchId":"string", 
-  "OutputFilter": { // Optional -  See <a href="https://visit.github.io/galaxy-docs/#output-filter">OutputFilter</a>
+  "OutputFilter": { // Optional -  See <a href="#output-filter">OutputFilter</a>
   }
 }
 </code>
@@ -626,15 +636,15 @@ curl -X POST
   "Start": "2018-11-09",
   "End": "2018-11-13",
   "Currency": "SEK"
-}' 'https://galaxy.citybreak.com/v3/api/availability/accommodation/calendar'
+}' 'https://galaxy.citybreak.com/v4/api/availability/accommodation/placement/calendar'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v3/api/availability/accommodation/calendar",
+var r = fetch("https://galaxy.citybreak.com/v4/api/availability/accommodation/placement/calendar",
 {
 	method: "POST",
 	headers: {
-	   "ApiKey:" "APIKEY132456789EWOK",
+	   "ApiKey": "APIKEY132456789EWOK",
 	   "Accept": "application/json",
 		 "Accept-Language": "en-US"
 	},
@@ -724,18 +734,28 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/availability/accommodation/ca
     "End": "2018-11-13T00:00:00",
     "Currency": "SEK",
     "ContentFilter": null
-  }
+  },
+  "Operations": [
+    {
+      "System": "ExternalSystem",
+      "Account": "ExternalAccount",
+      "Action": "Search",
+      "Duration": "00:00:01",
+      "Success": true,
+      "ErrorMessage": null
+    }
+  ]
 }
 ```
 
 This is a **POST** request that requires a filter with some mandatory properties, such as the start and end dates of the calendar, the pointOfSalesId and the currency. 
 As in other availability queries, the filter can also include a content filter, such as only those hotels associated with a particular CBIS category or that have 24 hr reception. 
-Content possibilities can be found in the <a href="https://visit.github.io/galaxy-docs/#content-filter">Content Section</a> You can see a bare minimum version of this search in the examples.
+Content possibilities can be found in the <a href="#content-filter">Content Section</a> You can see a bare minimum version of this search in the examples.
 The return of this call is a set of days with an IsAvailable boolean value indicating any availability at all and (if there is availability) an entity called Groups which shows accommodation options available on that day with the nested sub-products (think hotels with sub-products being hotel rooms) in the search period and the possible lengths of stay. This is useful for, say, quickly displaying days on which you can begin a stay and, once clicked, the minimum and maximum number of days you may stay within the search period.
  
 ### HTTP Request
 
-`POST https://galaxy.citybreak.com/v3/api/availability/accommodation/calendar`
+`POST https://galaxy.citybreak.com/v4/api/availability/accommodation/placement/calendar`
 
 ### Query Parameters
 
@@ -750,7 +770,7 @@ Accept-Language | The language culture (e.g en-us)
   "Start": "2018-11-23", //DateTime - Mandatory, conforms to ISO 8601
   "End": "2018-11-23", //DateTime - Mandatory, conforms to ISO 8601
   "Currency": "string", //string - Mandatory e.g SEK or EUR
-  "ContentFilter": { // Optional - See <a href="https://visit.github.io/galaxy-docs/#content-filter">ContentFilter</a>
+  "ContentFilter": { // Optional - See <a href="#content-filter">ContentFilter</a>
   },
 }
 </code>

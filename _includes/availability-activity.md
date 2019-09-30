@@ -4,7 +4,7 @@
 
 The `SearchId` can be used to retrieve prior, cached searches in a much shorter amount of time for Activity Search if used before its Expiry. The object recalled by the search contains all the unfiltered information retrieved in the first search, so further or different filtering on content, etc. can be done in this call.
 
-The `SearchId` and the `BookKey` of each activity quote are used in the basket operations to add the product found to the <a href="https://visit.github.io/galaxy-docs/#add-activity-booking-item">Basket</a> 
+The `SearchId` and the `BookKey` of each activity quote are used in the basket operations to add the product found to the <a href="#add-activity-booking-item">Basket</a> 
 
 
 **GET** and **POST** operations 
@@ -22,15 +22,15 @@ curl -X POST
    "Date": "2019-02-18",
    "Currency": "NOK",
    "PageSize": 20
- }' 'https://galaxy.citybreak.com/v3/api/availability/activity'
+ }' 'https://galaxy.citybreak.com/v4/api/availability/activity'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v3/api/availability/activity",
+var r = fetch("https://galaxy.citybreak.com/v4/api/availability/activity",
 {
 	method: "POST",
 	headers: {
-	    "ApiKey:" "APIKEY132456789EWOK",
+	    "ApiKey": "APIKEY132456789EWOK",
 	    "Accept": "application/json",
 		 "Accept-Language": "en-US"
 	},
@@ -293,15 +293,25 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/availability/activity",
   ],
   "SearchId": "2121as12-1a2s-1s2a-2a1s-12as21sa12as",
   "ExpirationDate": "2019-01-29T15:15:46.2172447+01:00",
-  "TotalResults": 2
+  "TotalResults": 2,
+  "Operations": [
+    {
+      "System": "ExternalSystem",
+      "Account": "ExternalAccount",
+      "Action": "Search",
+      "Duration": "00:00:01",
+      "Success": true,
+      "ErrorMessage": null
+    }
+  ]
 }
 ```
 
 This is a **POST** request that requires a filter with some mandatory properties, such as date.
 The filter can also include content filtering, such as only including those activities associated with a particular CBIS category or with certain attributes.
-Content filtering possibilities can be found in the <a href="https://visit.github.io/galaxy-docs/#content-filter">Content Section</a> You can see a bare minimum version of this search in the examples.
+Content filtering possibilities can be found in the <a href="#content-filter">Content Section</a> You can see a bare minimum version of this search in the examples.
 The return structure is a list of Activity Groups (such as ski lessons) which contain activities (e.g one for each skill level). Each activity contains Occasions, each of which defines a possible start date, time and duration for the Activity (e.g. morning lessons, afternoon lessons). Finally each occasion has a list of quotes, which are the bookable objects, in each of these you will find all the information related to price groups, prices and other pertinent information and the `BookKey` (e.g. one price for adults, another for children).
-The most important return values in the response are the `SearchId` and the `BookKey` found in each `Quote` object, they are used in the <a href="https://visit.github.io/galaxy-docs/#add-activity-booking-item">Basket</a>, also pay attention to the `ExpirationDate` of the `SearchId`.
+The most important return values in the response are the `SearchId` and the `BookKey` found in each `Quote` object, they are used in the <a href="#add-activity-booking-item">Basket</a>, also pay attention to the `ExpirationDate` of the `SearchId`.
 It is also worth paying attention to the Minimum and Maximum Items to Book. These are often values set by external systems and if your basket item is outside these parameters it may fail to commit. A `null` value means unrestricted. Booking Conditions and Discount Information relate can contain specific supplier information or Campaign information respectively.
 IMPORTANT: Paging is 0-indexed.
 
@@ -326,9 +336,9 @@ Accept-Language | The language culture (e.g en-us)
     "Order": "Asc", //string - Mandatory if parent included
     "Field": "string" //string - Mandatory if parent included - Price, Name, Random
   },
-  "ContentFilter": { // Optional - See <a href="https://visit.github.io/galaxy-docs/#content-filter">ContentFilter</a>
+  "ContentFilter": { // Optional - See <a href="#content-filter">ContentFilter</a>
   },
-  "OutputFilter": { // Optional -  See <a href="https://visit.github.io/galaxy-docs/#output-filter">OutputFilter</a>
+  "OutputFilter": { // Optional -  See <a href="#output-filter">OutputFilter</a>
   }
 }
 </code>
@@ -345,15 +355,15 @@ curl -X POST
   "Page": 0,
   "PageSize": 20,
   "SearchId": "2121as12-1a2s-1s2a-2a1s-12as21sa12as"
-}' 'https://galaxy.citybreak.com/v3/api/availability/activity/get'
+}' 'https://galaxy.citybreak.com/v4/api/availability/activity/get'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v3/api/availability/activity/get",
+var r = fetch("https://galaxy.citybreak.com/v4/api/availability/activity/get",
 {
 	method: "POST",
 	headers: {
-	   "ApiKey:" "APIKEY132456789EWOK",
+	   "ApiKey": "APIKEY132456789EWOK",
 	   "Accept": "application/json",
 		 "Accept-Language": "en-US"
 	},
@@ -470,11 +480,11 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/availability/activity/get",
 }
 ```
 
-This is a **POST** request that requires a filter with a valid (non-expired) `SearchId`. The filter otherwise has the same constraints as in the original <a href="https://visit.github.io/galaxy-docs/#availability---activity">Activity availability</a> search. You can see a bare minimum version of this search in the examples. IMPORTANT: Paging is 0-indexed.
+This is a **POST** request that requires a filter with a valid (non-expired) `SearchId`. The filter otherwise has the same constraints as in the original <a href="#availability---activity">Activity availability</a> search. You can see a bare minimum version of this search in the examples. IMPORTANT: Paging is 0-indexed.
 
 ### HTTP Request
 
-`POST https://galaxy.citybreak.com/v3/api/availability/activity/get`
+`POST https://galaxy.citybreak.com/v4/api/availability/activity/get`
 
 ### Query Parameters
 
@@ -493,7 +503,7 @@ Accept-Language | The language culture (e.g en-us)
   },
   //string - Mandatory - the search Id of a still valid activity availability search
   "SearchId":"string", 
-  "OutputFilter": { // Optional -  See <a href="https://visit.github.io/galaxy-docs/#output-filter">OutputFilter</a>
+  "OutputFilter": { // Optional -  See <a href="#output-filter">OutputFilter</a>
   }
 }
 </code>
@@ -511,15 +521,15 @@ curl -X POST
   "Start": "2018-12-14",
   "End": "2018-12-16",
   "Currency": "DKK"
-}' 'https://galaxy.citybreak.com/v3/api/availability/activity/calendar'
+}' 'https://galaxy.citybreak.com/v4/api/availability/activity/calendar'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v3/api/availability/activity/calendar",
+var r = fetch("https://galaxy.citybreak.com/v4/api/availability/activity/calendar",
 {
 	method: "POST",
 	headers: {
-	   "ApiKey:" "APIKEY132456789EWOK",
+	   "ApiKey": "APIKEY132456789EWOK",
 	   "Accept": "application/json",
 		 "Accept-Language": "en-US"
 	},
@@ -580,19 +590,29 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/availability/activity/calenda
           "cbis:1236"
         ]
     }
-  }
+  },
+  "Operations": [
+    {
+      "System": "ExternalSystem",
+      "Account": "ExternalAccount",
+      "Action": "Search",
+      "Duration": "00:00:01",
+      "Success": true,
+      "ErrorMessage": null
+    }
+  ]
 }
 ```
 
 This is a **POST** request that requires a filter with some mandatory properties, such as the start and end dates of the calendar, the pointOfSalesId and the currency. 
 As in other availability queries, the filter can also include a content filter, such as only those activities associated with a particular CBIS category or with certain attributes. 
 This is especially handy if you want a very quick look at availability for a specific product or products over a range of days.
-Content possibilities can be found in the <a href="https://visit.github.io/galaxy-docs/#content-filter">Content Section</a> You can see a bare minimum version of this search in the examples.
-The return of this call is a set of dates with an IsAvailable boolean value indicating any availability at all and (if there is availability) an entity called Activities which is a set of the cbis IDs of the activities (as opposed to activity groups) available on that day. This is useful for, say, quickly displaying days on which you can find available activities. You can use the <a href="https://visit.github.io/galaxy-docs/#activity">Activity content</a> call with if you also wish to populate a specific activity with content (check the relations field if you want the content of the encapsulating group)
+Content possibilities can be found in the <a href="#content-filter">Content Section</a> You can see a bare minimum version of this search in the examples.
+The return of this call is a set of dates with an IsAvailable boolean value indicating any availability at all and (if there is availability) an entity called Activities which is a set of the cbis IDs of the activities (as opposed to activity groups) available on that day. This is useful for, say, quickly displaying days on which you can find available activities. You can use the <a href="#activity">Activity content</a> call with if you also wish to populate a specific activity with content (check the relations field if you want the content of the encapsulating group)
  
 ### HTTP Request
 
-`POST https://galaxy.citybreak.com/v3/api/availability/activity/calendar/byday`
+`POST https://galaxy.citybreak.com/v4/api/availability/activity/calendar/byday`
 
 ### Query Parameters
 
@@ -607,7 +627,7 @@ Accept-Language | The language culture (e.g en-us)
   "Start": "2018-12-14", //DateTime - Mandatory, conforms to ISO 8601
   "End": "2018-12-16", //DateTime - Mandatory, conforms to ISO 8601
   "Currency": "string", //string - Mandatory e.g SEK or EUR
-  "ContentFilter": { // Optional - See <a href="https://visit.github.io/galaxy-docs/#content-filter">ContentFilter</a>
+  "ContentFilter": { // Optional - See <a href="#content-filter">ContentFilter</a>
   },
 }
 </code>
@@ -638,15 +658,15 @@ curl -X POST
     "Pois": false,
     "Position": false
   }
-}' 'https://galaxy.citybreak.com/v3/api/availability/activity/calendar/byproduct'
+}' 'https://galaxy.citybreak.com/v4/api/availability/activity/calendar/byproduct'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v3/api/availability/activity/calendar/byproduct",
+var r = fetch("https://galaxy.citybreak.com/v4/api/availability/activity/calendar/byproduct",
 {
 	method: "POST",
 	headers: {
-	   "ApiKey:" "APIKEY132456789EWOK",
+	   "ApiKey": "APIKEY132456789EWOK",
 	   "Accept": "application/json",
 		 "Accept-Language": "en-US"
 	},
@@ -816,19 +836,29 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/availability/activity/calenda
       "TotalResults": 1
     },
   ],
-  "TotalResults": 2
+  "TotalResults": 2,
+  "Operations": [
+    {
+      "System": "ExternalSystem",
+      "Account": "ExternalAccount",
+      "Action": "Search",
+      "Duration": "00:00:01",
+      "Success": true,
+      "ErrorMessage": null
+    }
+  ]
 }
 ```
 
 This is a **POST** request that requires a filter with some mandatory properties, such as the start and end dates of the calendar, the pointOfSalesId and the currency. 
 As in other availability queries, the filter can also include a content filter, such as only those activities associated with a particular CBIS category or with certain attributes. 
 As there is no paging for the calendar content search it is sensible to request the bare minimum both in terms of products searched and content returned.
-Content possibilities can be found in the <a href="https://visit.github.io/galaxy-docs/#content-filter">Content Section</a> You can see a bare minimum version of this search in the examples.
+Content possibilities can be found in the <a href="#content-filter">Content Section</a> You can see a bare minimum version of this search in the examples.
 The return of this call the activity groups and activities that have availabilities within the time range you are looking for, instead of occasions and quotes you simply get a list of days the product is available.
  
 ### HTTP Request
 
-`POST https://galaxy.citybreak.com/v3/api/availability/activity/calendar/byproduct`
+`POST https://galaxy.citybreak.com/v4/api/availability/activity/calendar/byproduct`
 
 ### Query Parameters
 
@@ -843,9 +873,9 @@ Accept-Language | The language culture (e.g en-us)
   "Start": "2018-12-14", //DateTime - Mandatory, conforms to ISO 8601
   "End": "2018-12-16", //DateTime - Mandatory, conforms to ISO 8601
   "Currency": "string", //string - Mandatory e.g SEK or EUR
-  "ContentFilter": { // Optional - See <a href="https://visit.github.io/galaxy-docs/#content-filter">ContentFilter</a>
+  "ContentFilter": { // Optional - See <a href="#content-filter">ContentFilter</a>
   },
-  "OutputFilter": { // Optional -  See <a href="https://visit.github.io/galaxy-docs/#output-filter">OutputFilter</a>
+  "OutputFilter": { // Optional -  See <a href="#output-filter">OutputFilter</a>
   }
 }
 </code>

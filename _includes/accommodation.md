@@ -12,14 +12,14 @@ curl -X GET
   --header 'ApiKey: APIKEY132456789EWOK'
   --header 'Accept: application/json' 
   --header 'Accept-Language: en-US'
-  'https://galaxy.citybreak.com/v3/api/accommodation/{pointOfSaleId}/20/0'
+  'https://galaxy.citybreak.com/v4/api/accommodation/{pointOfSaleId}/20/0'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v3/api/accommodation/{pointOfSaleId}/20/0",
+var r = fetch("https://galaxy.citybreak.com/v4/api/accommodation/{pointOfSaleId}/20/0",
 {
   headers: {
-    "ApiKey:" "APIKEY132456789EWOK",
+    "ApiKey": "APIKEY132456789EWOK",
     "Accept": "application/json",
 	 "Accept-Language": "en-US"
   }  
@@ -97,7 +97,7 @@ Get details about Accommodation
 
 ### HTTP Request
 
-`GET https://galaxy.citybreak.com/v3/api/accommodation/view/{pointOfSalesId}/{productId}`
+`GET https://galaxy.citybreak.com/v4/api/accommodation/view/{pointOfSalesId}/{productId}`
 
 ### Query Parameters
 
@@ -114,14 +114,14 @@ curl -X GET
 --header 'Accept: application/json' 
 --header 'Accept-Language: en-us' 
 --header 'apiKey: APIKEY132456789EWOK' 
-'https://galaxy.citybreak.com/v3/api/accommodation/{pointOfSalesId}/{pageSize}/{page}'
+'https://galaxy.citybreak.com/v4/api/accommodation/{pointOfSalesId}/{pageSize}/{page}'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v3/api/accommodation/view/{pointOfSaleId}/{productId}'",
+var r = fetch("https://galaxy.citybreak.com/v4/api/accommodation/view/{pointOfSaleId}/{productId}'",
 {
   headers: {
-    "ApiKey:" "APIKEY132456789EWOK",
+    "ApiKey": "APIKEY132456789EWOK",
     "Accept": "application/json",
    "Accept-Language": "en-US"
   }  
@@ -192,7 +192,7 @@ Get details and content about a specific Citybreak product, the requests require
 
 ### HTTP Request
 
-`GET https://galaxy.citybreak.com/v3/api/accommodation/view/{pointOfSalesId}/{productId}`
+`GET https://galaxy.citybreak.com/v4/api/accommodation/view/{pointOfSalesId}/{productId}`
 
 ### Query Parameters
 

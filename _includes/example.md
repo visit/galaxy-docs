@@ -16,7 +16,7 @@ curl -X GET
 var r = fetch("https://example.citybreak.com/v1/example",
 {
   headers: {
-    "ApiKey:" "APIKEY132456789EWOK",
+    "ApiKey": "APIKEY132456789EWOK",
     "Accept": "application/json",
 	"Accept-Language": "en-US"
   }  

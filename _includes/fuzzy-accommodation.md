@@ -16,13 +16,13 @@ By using the Get method you will be able to page through the result.
 Once you get a result you like and would like to investigate further you can get more details of the possible stays with that result by calling *arrivaldates* with a `bookKey` obtained with the *scan* or get methods. That will give you all valid arrival dates available in scan sector that was  used.
 
 ### Get departure dates 
-By calling the `departuredates` with a `bookKey` obtained with the <a href="https://visit.github.io/galaxy-docs/#scan">scan</a> method, given an arrival date you will get all valid departures from that date.
+By calling the `departuredates` with a `bookKey` obtained with the <a href="#scan">scan</a> method, given an arrival date you will get all valid departures from that date.
 
 ### List bookable alternatives
 By calling *bookablealternatives* you will get back actual bookable items between a specified arrival and departure. You will get a list of items back. Since an accommodation product may be sold under certain conditions, you may get more than one back. Each describing a price and the conditions under it will be sold. Included subproducts can differ between the items for instance.
 
 ### Add to basket
-Once you have a bookable alternative you can add it to the <a href="https://visit.github.io/galaxy-docs/#add-fuzzy-booking-item">basket</a> by calling *PUT api/basket/add/cabin/\{basketId\}/\{searchId\}/\{bookKey\}* 
+Once you have a bookable alternative you can add it to the <a href="#add-fuzzy-booking-item">basket</a> by calling *PUT api/basket/add/cabin/\{basketId\}/\{searchId\}/\{bookKey\}* 
 
 
 ## Scan 
@@ -59,15 +59,15 @@ curl -X POST
     "Order": "Asc",
     "Field": "Score"
     } 
-}' 'http://galaxy.citybreak.com/v3/api/availability/accommodation/fuzzy/scan'
+}' 'http://galaxy.citybreak.com/v4/api/availability/accommodation/fuzzy/scan'
 ```
 
 ```javascript
-var r = fetch("http://galaxy.citybreak.com/v3/api/availability/accommodation/fuzzy/scan",
+var r = fetch("http://galaxy.citybreak.com/v4/api/availability/accommodation/fuzzy/scan",
 {
 	method: "POST",
 	headers: {
-	    "ApiKey:" "APIKEY132456789EWOK",
+	    "ApiKey": "APIKEY132456789EWOK",
 	    "Accept": "application/json",
 		 "Accept-Language": "en-US"
 	},
@@ -272,7 +272,17 @@ var r = fetch("http://galaxy.citybreak.com/v3/api/availability/accommodation/fuz
       "Field": "Score"
     }
   },
-  "ExpirationDate": "2018-11-20T12:00:00.1000000+01:00"
+  "ExpirationDate": "2018-11-20T12:00:00.1000000+01:00",
+  "Operations": [
+    {
+      "System": "ExternalSystem",
+      "Account": "ExternalAccount",
+      "Action": "Search",
+      "Duration": "00:00:01",
+      "Success": true,
+      "ErrorMessage": null
+    }
+  ]
 }
 ```
 
@@ -380,7 +390,7 @@ This is **POST** request that requires a filter. You can see a bare minimum vers
 
 ### HTTP Request
 
-`POST https://galaxy.citybreak.com/v3/api/availability/accommodation/fuzzy/scan`
+`POST https://galaxy.citybreak.com/v4/api/availability/accommodation/fuzzy/scan`
 
 ### Query Parameters
 
@@ -448,14 +458,14 @@ curl -X POST
       "Pois": false,
       "Position": false
     }
-}' 'https://galaxy.citybreak.com/v3/api/availability/accommodation/fuzzy/get'
+}' 'https://galaxy.citybreak.com/v4/api/availability/accommodation/fuzzy/get'
 ```
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v3/api/availability/accommodation/fuzzy/get",
+var r = fetch("https://galaxy.citybreak.com/v4/api/availability/accommodation/fuzzy/get",
 {
 	method: "POST",
 	headers: {
-	    "ApiKey:" "APIKEY132456789EWOK",
+	    "ApiKey": "APIKEY132456789EWOK",
 	    "Accept": "application/json",
 		  "Accept-Language": "en-US"
 	},
@@ -484,7 +494,7 @@ This method is used to get a different page of the scan result as represented by
 
 ### HTTP Request
 
-`POST https://galaxy.citybreak.com/v3/api/availability/accommodation/fuzzy/get`
+`POST https://galaxy.citybreak.com/v4/api/availability/accommodation/fuzzy/get`
 
 ### Query Parameters
 
@@ -513,15 +523,15 @@ Accept-Language | The language culture (e.g en-us)
 curl -X GET 
 --header 'Accept: text/plain' 
 --header 'apiKey:  APIKEY132456789EWOK' 
-'https://galaxy.citybreak.com/v3/api/availability/accommodation/fuzzy/arrivaldates?searchId=1234abcd-a1b2-1234-a10f-abcd1234abcd&bookKey=2-C&firstArrival=2018-12-03&lastArrival=2018-12-05&personConfig.adults=2'
+'https://galaxy.citybreak.com/v4/api/availability/accommodation/fuzzy/arrivaldates?searchId=1234abcd-a1b2-1234-a10f-abcd1234abcd&bookKey=2-C&firstArrival=2018-12-03&lastArrival=2018-12-05&personConfig.adults=2'
 
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v3/api/availability/accommodation/fuzzy/arrivaldates?searchId=1234abcd-a1b2-1234-a10f-abcd1234abcd&bookKey=2-C&firstArrival=2018-12-03&lastArrival=2018-12-05&personConfig.adults=2",
+var r = fetch("https://galaxy.citybreak.com/v4/api/availability/accommodation/fuzzy/arrivaldates?searchId=1234abcd-a1b2-1234-a10f-abcd1234abcd&bookKey=2-C&firstArrival=2018-12-03&lastArrival=2018-12-05&personConfig.adults=2",
 {
   headers: {
-    "ApiKey:" "APIKEY132456789EWOK",
+    "ApiKey": "APIKEY132456789EWOK",
     "Accept": "application/json",
 	 "Accept-Language": "en-US"
   }  
@@ -540,7 +550,7 @@ Get a set of valid arrival dates for a specified item based on your scan.
 
 ### HTTP Request
 
-`GET https://galaxy.citybreak.com/v3/api/availability/accommodation/fuzzy/arrivaldates`
+`GET https://galaxy.citybreak.com/v4/api/availability/accommodation/fuzzy/arrivaldates`
 
 
 ### Query Parameters
@@ -560,15 +570,15 @@ personConfig.childrenAges | Ages of children  (usually be same as scan)
 curl -X GET 
 --header 'Accept: application/json' 
 --header 'apiKey:  APIKEY132456789EWOK' 
-'https://galaxy.citybreak.com/v3/api/availability/accommodation/fuzzy/departuredates?searchId=1234abcd-a1b2-1234-a10f-abcd1234abcd&bookKey=2-C&arrival=2018-12-03&personConfig.adults=2'
+'https://galaxy.citybreak.com/v4/api/availability/accommodation/fuzzy/departuredates?searchId=1234abcd-a1b2-1234-a10f-abcd1234abcd&bookKey=2-C&arrival=2018-12-03&personConfig.adults=2'
 
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v3/api/availability/accommodation/fuzzy/departuredates?searchId=1234abcd-a1b2-1234-a10f-abcd1234abcd&bookKey=2-C&arrival=2018-12-03&personConfig.adults=2",
+var r = fetch("https://galaxy.citybreak.com/v4/api/availability/accommodation/fuzzy/departuredates?searchId=1234abcd-a1b2-1234-a10f-abcd1234abcd&bookKey=2-C&arrival=2018-12-03&personConfig.adults=2",
 {
   headers: {
-    "ApiKey:" "APIKEY132456789EWOK",
+    "ApiKey": "APIKEY132456789EWOK",
     "Accept": "application/json",
 	 "Accept-Language": "en-US"
   }  
@@ -597,7 +607,7 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/availability/accommodation/fu
 Get a set of valid departure dates for the specified item given the arrival date.
 ### HTTP Request
 
-`GET https://galaxy.citybreak.com/v3/api/availability/accommodation/fuzzy/departuredates`
+`GET https://galaxy.citybreak.com/v4/api/availability/accommodation/fuzzy/departuredates`
 
 ### Query Parameters
 
@@ -616,15 +626,15 @@ personConfig.childrenAges | Ages of children  (usually be same as scan)
 curl -X GET 
 --header 'Accept: application/json' 
 --header 'apiKey:  APIKEY132456789EWOK' 
-'https://galaxy.citybreak.com/v3/api/availability/accommodation/fuzzy/alldepartures?searchId=1234abcd-a1b2-1234-a10f-abcd1234abcd&bookKey=2-C&arrival=2018-12-03&personConfig.adults=2'
+'https://galaxy.citybreak.com/v4/api/availability/accommodation/fuzzy/alldepartures?searchId=1234abcd-a1b2-1234-a10f-abcd1234abcd&bookKey=2-C&arrival=2018-12-03&personConfig.adults=2'
 
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v3/api/availability/accommodation/fuzzy/alldepartures?searchId=1234abcd-a1b2-1234-a10f-abcd1234abcd&bookKey=2-C&arrival=2018-12-03&personConfig.adults=2",
+var r = fetch("https://galaxy.citybreak.com/v4/api/availability/accommodation/fuzzy/alldepartures?searchId=1234abcd-a1b2-1234-a10f-abcd1234abcd&bookKey=2-C&arrival=2018-12-03&personConfig.adults=2",
 {
   headers: {
-    "ApiKey:" "APIKEY132456789EWOK",
+    "ApiKey": "APIKEY132456789EWOK",
     "Accept": "application/json",
 	 "Accept-Language": "en-US"
   }  
@@ -724,7 +734,7 @@ Similar to the departure dates query, this call will return a more detailed list
 
 ### HTTP Request
 
-`GET https://galaxy.citybreak.com/v3/api/availability/accommodation/fuzzy/alldepartures`
+`GET https://galaxy.citybreak.com/v4/api/availability/accommodation/fuzzy/alldepartures`
 
 ### Query Parameters
 
@@ -740,15 +750,15 @@ personConfig.childrenAges | Ages of children  (usually be same as scan)
 
 ```shell
 curl -X GET --header 'Accept: application/json' --header 'apiKey:  APIKEY132456789EWOK' 
-'https://galaxy.citybreak.com/v3/api/availability/accommodation/fuzzy/bookablealternatives?searchId=1234abcd-a1b2-1234-a10f-abcd1234abcd&bookKey=2-C&arrival=2018-12-03&personConfig.adults=2'
+'https://galaxy.citybreak.com/v4/api/availability/accommodation/fuzzy/bookablealternatives?searchId=1234abcd-a1b2-1234-a10f-abcd1234abcd&bookKey=2-C&arrival=2018-12-03&personConfig.adults=2'
 
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v3/api/availability/accommodation/fuzzy/bookablealternatives?searchId=1234abcd-a1b2-1234-a10f-abcd1234abcd&bookKey=2-C&arrival=2018-12-03&personConfig.adults=2",
+var r = fetch("https://galaxy.citybreak.com/v4/api/availability/accommodation/fuzzy/bookablealternatives?searchId=1234abcd-a1b2-1234-a10f-abcd1234abcd&bookKey=2-C&arrival=2018-12-03&personConfig.adults=2",
 {
   headers: {
-    "ApiKey:" "APIKEY132456789EWOK",
+    "ApiKey": "APIKEY132456789EWOK",
     "Accept": "application/json",
 	 "Accept-Language": "en-US"
   }  
@@ -808,11 +818,11 @@ var r = fetch("https://galaxy.citybreak.com/v3/api/availability/accommodation/fu
 ]
 ```
 
-This call returns a list of valid alternatives to book. Use the `BookId` (different to the `bookKey`) when referring to this specific result when adding it to the <a href="https://visit.github.io/galaxy-docs/#add-fuzzy-booking-item">fuzzy search basket</a>.
+This call returns a list of valid alternatives to book. Use the `BookId` (different to the `bookKey`) when referring to this specific result when adding it to the <a href="#add-fuzzy-booking-item">fuzzy search basket</a>.
 
 ### HTTP Request
 
-`GET https://galaxy.citybreak.com/v3/api/availability/accommodation/fuzzy/bookablealternatives`
+`GET https://galaxy.citybreak.com/v4/api/availability/accommodation/fuzzy/bookablealternatives`
 
 ### Query Parameters
 
