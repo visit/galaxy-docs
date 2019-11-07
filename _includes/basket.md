@@ -1058,11 +1058,11 @@ curl -X GET
 --header 'Accept: application/json' 
 --header 'apiKey: APIKEY132456789EWOK' 
 --header 'Accept-Language: en-us' 
-'https://galaxy.citybreak.com/v4/api/api/basket/addon/{basketId}/{bookItemId}'
+'https://galaxy.citybreak.com/v4/api/basket/addon/{basketId}/{bookItemId}'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v4/api/api/basket/addon/{basketId}/{bookItemId}",
+var r = fetch("https://galaxy.citybreak.com/v4/api/basket/addon/{basketId}/{bookItemId}",
 {
   method:"GET"
   headers: {
@@ -1110,8 +1110,8 @@ The quantity available to book is indicated by the fields `MinimumNumberOfUnits`
 
 ### HTTP Requests
 
-`GET https://galaxy.citybreak.com/v4/api/api/basket/addon/{basketId}/{bookItemId}`  
-`GET https://galaxy.citybreak.com/v4/api/api/basket/addon/{basketId}`
+`GET https://galaxy.citybreak.com/v4/api/basket/addon/{basketId}/{bookItemId}`  
+`GET https://galaxy.citybreak.com/v4/api/basket/addon/{basketId}`
 
 ### Query Parameters
 
@@ -1166,7 +1166,7 @@ The quantity available to book is indicated by the fields `MinimumNumberOfUnits`
 
 ### HTTP Requests
 
-`POST https://galaxy.citybreak.com/v4/api/api/basket/addon/{basketId}`
+`POST https://galaxy.citybreak.com/v4/api/basket/addon/{basketId}`
 
 ### Query Parameters
 
