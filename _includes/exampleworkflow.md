@@ -461,17 +461,30 @@ For this example we will use the double room at BookVisit Hotel with a handy Gar
 curl -X PUT 
 --header 'Accept: application/json' 
 --header 'apiKey: APIKEY132456789EWOK' 
-'https://galaxy.citybreak.com/v4/api/basket/add/accommodation/87654321/899fe054-3bb4-4ff8-b577-ba716b0b3317/19-A'
+--header 'Accept-Language: en-US' -d '[
+  {
+    "BookKey": "19-A",
+    "Amount" 1
+  }
+]' 'https://galaxy.citybreak.com/v4/api/basket/add/accommodation/87654321/899fe054-3bb4-4ff8-b577-ba716b0b3317'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v4/api/basket/add/accommodation/87654321/899fe054-3bb4-4ff8-b577-ba716b0b3317/19-A",
+var r = fetch("https://galaxy.citybreak.com/v4/api/basket/add/accommodation/87654321/899fe054-3bb4-4ff8-b577-ba716b0b3317",
 {
   method:"PUT"
   headers: {
     "ApiKey": "APIKEY132456789EWOK",
     "Accept": "application/json",
-  }  
+    "Accept-Language": "en-US"
+  },
+  body: JSON.Stringify(
+    [
+      {
+        "BookKey": "19-A",
+        "Amount": 1
+      }
+    ])
 });
 ```
 
@@ -481,9 +494,9 @@ var r = fetch("https://galaxy.citybreak.com/v4/api/basket/add/accommodation/8765
 true
 ```
 
-Taking the `BasketId`: 87654321 of the basket we created earlier, the `SearchId`: 899fe054-3bb4-4ff8-b577-ba716b0b3317 from the availability search and the `BookingCode`: 19-A of the product we selected, we can now <a href="#add-accommodation-booking-item">add a product to our Basket</a>.
+Taking the `BasketId`: 87654321 of the basket we created earlier, the `SearchId`: 899fe054-3bb4-4ff8-b577-ba716b0b3317 from the availability search and the `BookKey`: 19-A of the product we selected, we can now <a href="#add-accommodation-booking-item">add a product to our Basket</a>.
 
-`PUT https://galaxy.citybreak.com/v4/api/basket/add/accommodation/87654321/899fe054-3bb4-4ff8-b577-ba716b0b3317/19-A"`
+`PUT https://galaxy.citybreak.com/v4/api/basket/add/accommodation/87654321/899fe054-3bb4-4ff8-b577-ba716b0b3317"`
 
 
 

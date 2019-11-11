@@ -422,8 +422,7 @@ online3Id | The online 3 guide identifier
 curl -X PUT 
 --header 'Accept: application/json' 
 --header 'apiKey: APIKEY132456789EWOK' 
---header 'Accept-Language: en-us' 
---header 'Accept-Language: en-us' -d '[
+--header 'Accept-Language: en-US' -d '[
   {
     "BookKey": "1-A",
     "Amount" 2
