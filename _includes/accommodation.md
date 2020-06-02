@@ -12,11 +12,11 @@ curl -X GET
   --header 'ApiKey: APIKEY132456789EWOK'
   --header 'Accept: application/json' 
   --header 'Accept-Language: en-US'
-  'https://galaxy.citybreak.com/v4/api/accommodation/{pointOfSaleId}/20/0'
+  'https://galaxy.citybreak.com/v4/api/accommodation/{pointOfSaleId}/{pageSize}/{page}'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v4/api/accommodation/{pointOfSaleId}/20/0",
+var r = fetch("https://galaxy.citybreak.com/v4/api/accommodation/{pointOfSaleId}/{pageSize}/{page}",
 {
   headers: {
     "ApiKey": "APIKEY132456789EWOK",
@@ -97,7 +97,7 @@ Get details about Accommodation
 
 ### HTTP Request
 
-`GET https://galaxy.citybreak.com/v4/api/accommodation/view/{pointOfSalesId}/{productId}`
+`GET https://galaxy.citybreak.com/v4/api/accommodation/view/{pointOfSalesId}/{page}/{pageSize}`
 
 ### Query Parameters
 
@@ -105,7 +105,7 @@ Parameter | Description
 --------- | -----------
 pointOfSalesId | The point of sales identifier.
 pageSize | Size of the page.
-page | The page.
+page | The page (starting at 0).
 
 ## Product
 
