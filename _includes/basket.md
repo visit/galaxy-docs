@@ -635,13 +635,8 @@ curl -X PUT
 --header 'Accept: application/json' 
 --header 'apiKey: APIKEY132456789EWOK' 
 --header 'Accept-Language: en-us' -d '[
-  {
-    "BookKey": "922217350-T",
-    "Amount" 1
-  }, {
-    "BookKey": "953089120-T",
-    "Amount": 2
-  }
+  "1022591899-T",
+  "411043540-T"
 ]' 'https://galaxy.citybreak.com/v5/api/basket/add/transport/{basketId}/{searchId}'
 ```
 
@@ -656,13 +651,8 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/basket/add/transport/{basketI
   },
   body: JSON.Stringify(
     [
-      {
-        "BookKey": "922217350-T",
-        "Amount": 1
-      }, {
-        "BookKey": "953089120-T",
-        "Amount": 2
-      }
+      "1022591899-T",
+      "411043540-T"
     ])
 });
 ```
@@ -672,7 +662,8 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/basket/add/transport/{basketI
 ```json
 {
   "Success": true,
-  "BookItemIds": [1,2]
+  "BookItemIds": [1,2],
+  "Errors": null
 }
 ```
 
@@ -1138,22 +1129,203 @@ var r = fetch("https://galaxy.citybreak.com/v4/api/basket/addon/{basketId}/{book
 ```json
 {
   "BookItemId": 1,
-  "ProductName": "My activity name",
-  "AvailableAddons": [
+  "ProductName": "DFDS Københavnbåten",
+  "AddonGroups": [
     {
-      "Name": "Sparkling wine",
-      "AddonId": "A:0-C:0-P:0",
-      "PricegroupName": "Adult",
-      "MinimumPricegroupAge": 0,
-      "MaximumPricegroupAge": 0,
-      "Price": {
-        "Price": 175,
-        "Currency": "NOK"
+      "Name": "7 Seas Breakfast",
+      "Content": {
+        "Images": [
+          {
+            "Uri": "",
+            "IsMain": false,
+            "Name": null,
+            "Copyright": null,
+            "Description": null
+          },
+          {
+            "Uri": "BFAST",
+            "IsMain": false,
+            "Name": null,
+            "Copyright": null,
+            "Description": null
+          }
+        ],
+        "Information": [
+          {
+            "Id": 99,
+            "Name": "Name",
+            "Value": "7 Seas Breakfast"
+          },
+          {
+            "Id": 102,
+            "Name": "Description",
+            "Value": "Start your day as you mean to continue with our hearty breakfast buffet in our 7 seas restaurant. Opt for a cooked breakfast, or a continental option. Choose from a range of hot and cold breakfast favourites, including eggs, sausages, toast, cereal, pastries, fruit and much more. \n\nAnd as it’s all-you-can-eat you can visit the buffet table as many times as you wish!"
+          }
+        ],
+        "Categories": null,
+        "Geos": null,
+        "Pois": null,
+        "Position": null
       },
-      "MinimumNumberOfUnits": 0,
-      "MaximumNumberOfUnits": 0
+      "AddonGroups": [
+        {
+          "Name": "Breakfast, for all passengers",
+          "Content": {
+            "Images": [],
+            "Information": [
+              {
+                "Id": 99,
+                "Name": "Name",
+                "Value": "Breakfast, for all passengers"
+              }
+            ],
+            "Categories": null,
+            "Geos": null,
+            "Pois": null,
+            "Position": null
+          },
+          "AddonGroups": [],
+          "AvailableAddons": [
+            {
+              "Name": "7 Seas Breakfast, Breakfast, for all passengers",
+              "Content": {
+                "Images": [],
+                "Information": [
+                  {
+                    "Id": 99,
+                    "Name": "Name",
+                    "Value": "7 Seas Breakfast, Breakfast, for all passengers"
+                  },
+                  {
+                    "Id": 102,
+                    "Name": "Description",
+                    "Value": "Description"
+                  }
+                ],
+                "Categories": null,
+                "Geos": null,
+                "Pois": null,
+                "Position": null
+              },
+              "PricegroupName": null,
+              "MinimumPricegroupAge": null,
+              "MaximumPricegroupAge": null,
+              "Price": {
+                "Price": 298,
+                "Currency": "NOK"
+              },
+              "AddonId": "A:14548579.0-C:0-P:0",
+              "MinimumNumberOfUnits": 0,
+              "MaximumNumberOfUnits": 1
+            }
+          ]
+        }
+      ],
+      "AvailableAddons": []
+    },
+    {
+      "Name": "Other",
+      "Content": {
+        "Images": [],
+        "Information": [
+          {
+            "Id": 99,
+            "Name": "Name",
+            "Value": "Other"
+          }
+        ],
+        "Categories": null,
+        "Geos": null,
+        "Pois": null,
+        "Position": null
+      },
+      "AddonGroups": [],
+      "AvailableAddons": [
+        {
+          "Name": "1/2 bottle of Sparkling Wine, peanuts & grapes",
+          "Content": {
+            "Images": [],
+            "Information": [
+              {
+                "Id": 99,
+                "Name": "Name",
+                "Value": "1/2 bottle of Sparkling Wine, peanuts & grapes"
+              }
+            ],
+            "Categories": null,
+            "Geos": null,
+            "Pois": null,
+            "Position": null
+          },
+          "PricegroupName": null,
+          "MinimumPricegroupAge": null,
+          "MaximumPricegroupAge": null,
+          "Price": {
+            "Price": 229,
+            "Currency": "NOK"
+          },
+          "AddonId": "A:14548579.1-C:0-P:0",
+          "MinimumNumberOfUnits": 0,
+          "MaximumNumberOfUnits": 1
+        },
+        {
+          "Name": "1/1 bottle of Champagne, peanuts & grapes",
+          "Content": {
+            "Images": [],
+            "Information": [
+              {
+                "Id": 99,
+                "Name": "Name",
+                "Value": "1/1 bottle of Champagne, peanuts & grapes"
+              }
+            ],
+            "Categories": null,
+            "Geos": null,
+            "Pois": null,
+            "Position": null
+          },
+          "PricegroupName": null,
+          "MinimumPricegroupAge": null,
+          "MaximumPricegroupAge": null,
+          "Price": {
+            "Price": 510,
+            "Currency": "NOK"
+          },
+          "AddonId": "A:14548579.2-C:0-P:0",
+          "MinimumNumberOfUnits": 0,
+          "MaximumNumberOfUnits": 1
+        },
+        {
+          "Name": "2 beers, 2 soft drinks & 1 pack of crisps",
+          "Content": {
+            "Images": [],
+            "Information": [
+              {
+                "Id": 99,
+                "Name": "Name",
+                "Value": "2 beers, 2 soft drinks & 1 pack of crisps"
+              }
+            ],
+            "Categories": null,
+            "Geos": null,
+            "Pois": null,
+            "Position": null
+          },
+          "PricegroupName": null,
+          "MinimumPricegroupAge": null,
+          "MaximumPricegroupAge": null,
+          "Price": {
+            "Price": 182,
+            "Currency": "NOK"
+          },
+          "AddonId": "A:14548579.3-C:0-P:0",
+          "MinimumNumberOfUnits": 0,
+          "MaximumNumberOfUnits": 1
+        }
+      ]
     }
-  ]
+  ],
+  "AvailableAddons": []
 }
 ```
 Once a product is added to the basket, all mandatory included sub products
@@ -1191,7 +1363,7 @@ curl -X POST
   "Queries": [
     {
       "BookItemId": 1,
-      "AddonId": "A:0-C:0-P:0",
+      "AddonId": "A:14548579.0-C:0-P:0",
       "Quantity": 2
     }
   ]
@@ -1212,15 +1384,15 @@ var r = fetch("https://galaxy.citybreak.com/v4/api/basket/addon/{basketId}",
       "Queries": [
       {
         "BookItemId": 1,
-        "AddonId": "A:0-C:0-P:0",
-        "Quantity": 2
+        "AddonId": "A:14548579.0-C:0-P:0",
+        "Quantity": 1
       }
     ]
   }
 );
 ```
 
-The example call will add 2 sparkling wine to the item with `BookItemId` 1. Set the quantity to 0 to remove the addon.
+The example call will add 7 Seas Breakfast to the item with `BookItemId` 1. Set the quantity to 0 to remove the addon.
 
 The quantity available to book is indicated by the fields `MinimumNumberOfUnits` and `MaximumNumberOfUnits` from the <a href="#addon-products">Addon products</a> call.
 
