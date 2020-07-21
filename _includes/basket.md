@@ -628,6 +628,67 @@ BookKey | The key of the booking item to add to the basket, found in <a href="#a
 Amount | The amount to book for this item
 
 
+## Add Transport Booking Item
+
+```shell
+curl -X PUT 
+--header 'Accept: application/json' 
+--header 'apiKey: APIKEY132456789EWOK' 
+--header 'Accept-Language: en-us' -d '[
+  {
+    "BookKey": "922217350-T",
+    "Amount" 1
+  }, {
+    "BookKey": "953089120-T",
+    "Amount": 2
+  }
+]' 'https://galaxy.citybreak.com/v5/api/basket/add/transport/{basketId}/{searchId}'
+```
+
+```javascript
+var r = fetch("https://galaxy.citybreak.com/v5/api/basket/add/transport/{basketId}/{searchId}",
+{
+  method:"PUT"
+  headers: {
+    "ApiKey": "APIKEY132456789EWOK",
+    "Accept": "application/json",
+    "Accept-Language": "en-US"
+  },
+  body: JSON.Stringify(
+    [
+      {
+        "BookKey": "922217350-T",
+        "Amount": 1
+      }, {
+        "BookKey": "953089120-T",
+        "Amount": 2
+      }
+    ])
+});
+```
+
+> Example of response:
+
+```json
+{
+  "Success": true,
+  "BookItemIds": [1,2]
+}
+```
+
+Add a booking item to the basket, you must first have checked for the <a href="#availability---transport">Availability</a> of a transport and obtained the search Id and the bookingKey of the product you wish to add to the basket.
+
+`PUT https://galaxy.citybreak.com/v5/api/basket/add/transport`
+
+### Parameters
+
+Parameter | Description
+--------- | -----------
+basketId | The Id of the basket.
+searchId | The search Id returned by the <a href="#availability---transport">Availability Response</a>
+BookKeys | The keys of the booking items to add to the basket, found in <a href="#availability---transport">Availability Response</a>
+
+
 
 ## Delete Booking Item
 
