@@ -10,7 +10,7 @@ The live Galaxy API endpoint is accessible at <a href="https://galaxy.citybreak.
 
 <aside class="warning">These are the docs for the V5 of the Galaxy API.<br/>
 The docs for the V4 version of the galaxy API are found here <a href="https://github.com/visit/galaxy-docs-v4/">https://github.com/visit/galaxy-docs-v4/</a>.<br/>
-The endpoint for V4 is <a href="https://galaxy.citybreak.com/v4/">https://galaxy.citybreak.com/v4/</a></aside>
+The endpoint for V4 is <a href="https://galaxy.citybreak.com/v4/">https://galaxy.citybreak.com/v4/</a>
 <br/>
 The docs for the V3 version of the galaxy API are found here <a href="https://visit.github.io/galaxy-docs-v3/">https://visit.github.io/galaxy-docs-v3/</a>.<br/>
 The endpoint for V3 is <a href="https://galaxy.citybreak.com/v3/">https://galaxy.citybreak.com/v3/</a></aside>
