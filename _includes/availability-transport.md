@@ -1,6 +1,6 @@
 # Availability - Transport
 
-**Availability - Transport** calls provide information about the availability of any type of transport products. The search will return products with availability, including content, pricing groups, as well as a Search ID with its Expiry. 
+**Availability - Transport** calls provide information about the availability of any type of transport products. The search will return products with availability, including content, pricing groups, included addons as well as a Search ID with its Expiry. 
 
 The `SearchId` can be used to retrieve prior, cached searches in a much shorter amount of time if used before its Expiry. The object recalled by the search contains all the unfiltered information retrieved in the first search, so further or different filtering on content, etc. can be done in this call.
 
@@ -18,22 +18,36 @@ curl -X POST
 --header 'Accept-Language: en-us' 
 --header 'apiKey: APIKEY132456789EWOK' 
 -d '{
-  "PointOfSalesId": 18724,
-  "Currency": "EUR",
-  "PageSize": 20,
-  "Page": 0,
-  "Persons": [
+  "PointOfSalesId":18724,
+  "Currency":"NOK",
+  "PageSize":50,
+  "Page":0,
+  "Sort":{
+    "Order":"Asc",
+    "Field":"Price"
+  },
+  "Persons":[
     {
-      "Code": "997",
-      "Quantity": 2
+      "Code":"997",
+      "Quantity":2
     }
   ],
-  "Vehicles": [],
-  "Routes": [
+  "Vehicles":[
     {
-      "DepartureLocationCode": "25142",
-      "DepartureDate": "2020-08-21",
-      "ArrivalLocationCode": "25132"
+      "Code":"998",
+      "Quantity":1
+    }
+  ],
+  "Routes":[
+    {
+      "DepartureLocationCode":"25130",
+      "DepartureDate":"2020-08-17T00:00:00",
+      "ArrivalLocationCode":"25140"
+    },
+    {
+      "DepartureLocationCode":"25140",
+      "DepartureDate":"2020-08-18T00:00:00",
+      "ArrivalLocationCode":"25130"
     }
   ]
 }' 'https://galaxy.citybreak.com/v5/api/availability/transport'
@@ -49,25 +63,39 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/transport",
 		"Accept-Language": "en-US"
 	},
 	body: JSON.Stringify({
-        "PointOfSalesId": 18724,
-        "Currency": "EUR",
-        "PageSize": 20,
-        "Page": 0,
-        "Persons": [
-            {
-            "Code": "997",
-            "Quantity": 2
-            }
-        ],
-        "Vehicles": [],
-        "Routes": [
-            {
-            "DepartureLocationCode": "25142",
-            "DepartureDate": "2020-08-21",
-            "ArrivalLocationCode": "25132"
-            }
-        ]
-     })  
+    "PointOfSalesId":18724,
+    "Currency":"NOK",
+    "PageSize":50,
+    "Page":0,
+    "Sort":{
+      "Order":"Asc",
+      "Field":"Price"
+    },
+    "Persons":[
+      {
+        "Code":"997",
+        "Quantity":2
+      }
+    ],
+    "Vehicles":[
+      {
+        "Code":"998",
+        "Quantity":1
+      }
+    ],
+    "Routes":[
+      {
+        "DepartureLocationCode":"25130",
+        "DepartureDate":"2020-08-17T00:00:00",
+        "ArrivalLocationCode":"25140"
+      },
+      {
+        "DepartureLocationCode":"25140",
+        "DepartureDate":"2020-08-18T00:00:00",
+        "ArrivalLocationCode":"25130"
+      }
+    ]
+  })
 });
 ```
 
@@ -77,8 +105,8 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/transport",
 {
   "TransportSearch": {
     "PointOfSalesId": 18724,
-    "Currency": "EUR",
-    "PageSize": 20,
+    "Currency": "NOK",
+    "PageSize": 50,
     "Page": 0,
     "Sort": {
       "Order": "Asc",
@@ -90,30 +118,40 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/transport",
         "Quantity": 2
       }
     ],
-    "Vehicles": [],
+    "Vehicles": [
+      {
+        "Code": "998",
+        "Quantity": 1
+      }
+    ],
     "Routes": [
       {
-        "DepartureLocationCode": "25142",
-        "DepartureDate": "2020-08-21T00:00:00",
-        "ArrivalLocationCode": "25132"
+        "DepartureLocationCode": "25130",
+        "DepartureDate": "2020-08-17T00:00:00",
+        "ArrivalLocationCode": "25140"
+      },
+      {
+        "DepartureLocationCode": "25140",
+        "DepartureDate": "2020-08-18T00:00:00",
+        "ArrivalLocationCode": "25130"
       }
     ]
   },
   "Locations": [
     {
-      "Code": "25142",
+      "Code": "25130",
       "City": null,
       "Country": null,
-      "Name": "Oslo",
+      "Name": "Amsterdam",
       "Position": null,
       "State": null,
       "Regions": null
     },
     {
-      "Code": "25132",
+      "Code": "25140",
       "City": null,
       "Country": null,
-      "Name": "Copenhagen",
+      "Name": "Newcastle",
       "Position": null,
       "State": null,
       "Regions": null
@@ -121,7 +159,7 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/transport",
   ],
   "Fares": [
     {
-      "Code": "TOSC",
+      "Code": "SVAN",
       "Name": "DFDS",
       "Content": {
         "Images": null,
@@ -179,12 +217,12 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/transport",
       }
     },
     {
-      "Code": "B3",
-      "Name": "3-bed inside cabin with bunk beds",
+      "Code": "BD",
+      "Name": "2-bed inside cabin with double bed ",
       "Content": {
         "Images": [
           {
-            "Uri": "//resources.citybreak.com/online3/img/ferry/DFDS/B3.jpg",
+            "Uri": "//resources.citybreak.com/online3/img/ferry/DFDS/BD.jpg",
             "IsMain": false,
             "Name": null,
             "Copyright": null,
@@ -195,12 +233,12 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/transport",
           {
             "Id": 99,
             "Name": "Name",
-            "Value": "3-bed inside cabin with bunk beds"
+            "Value": "2-bed inside cabin with double bed "
           },
           {
             "Id": 102,
             "Name": "Description",
-            "Value": "3-Bed inside cabin with bunk beds"
+            "Value": "• Standard cabin\r\n• The cabin is for 1-2 people\r\n• Small double bed\r\n• Shower and toilet\r\n\r\nStandard Standard Cabin with Small Double Bed."
           }
         ],
         "Categories": null,
@@ -231,67 +269,197 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/transport",
     }
   ],
   "Vehicles": [],
+  "IncludedAddons": [
+    {
+      "Code": "NCLCT/ADL_NCLCT/ADL_LandServices",
+      "Name": "Land Services Excursion, for all passengers",
+      "Content": {
+        "Images": [],
+        "Information": [
+          {
+            "Id": 99,
+            "Name": "Name",
+            "Value": "Land Services Excursion, for all passengers"
+          },
+          {
+            "Id": 102,
+            "Name": "Description",
+            "Value": "LandServices Description"
+          }
+        ],
+        "Categories": null,
+        "Geos": null,
+        "Pois": null,
+        "Position": null
+      }
+    },
+    {
+      "Code": "NCLTC/ADL_NCLTC/ADL_LandServices",
+      "Name": "Land Services Excursion, for all passengers",
+      "Content": {
+        "Images": [],
+        "Information": [
+          {
+            "Id": 99,
+            "Name": "Name",
+            "Value": "Land Services Excursion, for all passengers"
+          },
+          {
+            "Id": 102,
+            "Name": "Description",
+            "Value": "LandServices Description"
+          }
+        ],
+        "Categories": null,
+        "Geos": null,
+        "Pois": null,
+        "Position": null
+      }
+    }
+  ],
   "Results": [
     {
-      "BookKey": "922217350-T",
+      "BookKey": "1110008262-T",
       "Price": {
-        "Price": 57,
-        "Currency": "EUR"
+        "Price": 3060,
+        "Currency": "NOK"
       },
       "OutboundJourney": {
-        "Duration": "17:15:00",
+        "Duration": "15:45:00",
         "CabinCode": "B2",
         "Legs": [
           {
-            "DepartureLocationCode": "25142",
-            "DepartureTime": "2020-08-21T16:30:00",
-            "ArrivalLocationCode": "25132",
-            "ArrivalTime": "2020-08-22T09:45:00",
-            "Duration": "17:15:00",
+            "DepartureLocationCode": "25130",
+            "DepartureTime": "2020-08-17T17:30:00",
+            "ArrivalLocationCode": "25140",
+            "ArrivalTime": "2020-08-18T09:15:00",
+            "Duration": "15:45:00",
             "OperatingCarrierCode": "DFDS",
             "VehicleCode": null,
-            "TransportNumber": "NOOSL"
+            "TransportNumber": "NLAMS"
           }
         ],
-        "FareCode": "TOSC"
+        "FareCode": "SVAN",
+        "IncludedAddons": [
+          {
+            "AddonCode": "NCLCT/ADL_NCLCT/ADL_LandServices",
+            "Price": 10,
+            "Currency": "EUR",
+            "PriceIncluded": true
+          }
+        ]
       },
       "HomeboundJourney": null
     },
     {
-      "BookKey": "1437189711-T",
+      "BookKey": "59730793-T",
       "Price": {
-        "Price": 64,
-        "Currency": "EUR"
+        "Price": 3140,
+        "Currency": "NOK"
       },
       "OutboundJourney": {
-        "Duration": "17:15:00",
-        "CabinCode": "B3",
+        "Duration": "15:45:00",
+        "CabinCode": "BD",
         "Legs": [
           {
-            "DepartureLocationCode": "25142",
-            "DepartureTime": "2020-08-21T16:30:00",
-            "ArrivalLocationCode": "25132",
-            "ArrivalTime": "2020-08-22T09:45:00",
-            "Duration": "17:15:00",
+            "DepartureLocationCode": "25130",
+            "DepartureTime": "2020-08-17T17:30:00",
+            "ArrivalLocationCode": "25140",
+            "ArrivalTime": "2020-08-18T09:15:00",
+            "Duration": "15:45:00",
             "OperatingCarrierCode": "DFDS",
             "VehicleCode": null,
-            "TransportNumber": "NOOSL"
+            "TransportNumber": "NLAMS"
           }
         ],
-        "FareCode": "TOSC"
+        "FareCode": "SVAN",
+        "IncludedAddons": [
+          {
+            "AddonCode": "NCLCT/ADL_NCLCT/ADL_LandServices",
+            "Price": 10,
+            "Currency": "EUR",
+            "PriceIncluded": true
+          }
+        ]
       },
       "HomeboundJourney": null
+    },
+    {
+      "BookKey": "1600706669-T",
+      "Price": {
+        "Price": 3470,
+        "Currency": "NOK"
+      },
+      "OutboundJourney": null,
+      "HomeboundJourney": {
+        "Duration": "16:45:00",
+        "CabinCode": "B2",
+        "Legs": [
+          {
+            "DepartureLocationCode": "25140",
+            "DepartureTime": "2020-08-18T17:00:00",
+            "ArrivalLocationCode": "25130",
+            "ArrivalTime": "2020-08-19T09:45:00",
+            "Duration": "16:45:00",
+            "OperatingCarrierCode": "DFDS",
+            "VehicleCode": null,
+            "TransportNumber": "GBNEW"
+          }
+        ],
+        "FareCode": "SVAN",
+        "IncludedAddons": [
+          {
+            "AddonCode": "NCLTC/ADL_NCLTC/ADL_LandServices",
+            "Price": 10,
+            "Currency": "EUR",
+            "PriceIncluded": true
+          }
+        ]
+      }
+    },
+    {
+      "BookKey": "293005052-T",
+      "Price": {
+        "Price": 3550,
+        "Currency": "NOK"
+      },
+      "OutboundJourney": null,
+      "HomeboundJourney": {
+        "Duration": "16:45:00",
+        "CabinCode": "BD",
+        "Legs": [
+          {
+            "DepartureLocationCode": "25140",
+            "DepartureTime": "2020-08-18T17:00:00",
+            "ArrivalLocationCode": "25130",
+            "ArrivalTime": "2020-08-19T09:45:00",
+            "Duration": "16:45:00",
+            "OperatingCarrierCode": "DFDS",
+            "VehicleCode": null,
+            "TransportNumber": "GBNEW"
+          }
+        ],
+        "FareCode": "SVAN",
+        "IncludedAddons": [
+          {
+            "AddonCode": "NCLTC/ADL_NCLTC/ADL_LandServices",
+            "Price": 10,
+            "Currency": "EUR",
+            "PriceIncluded": true
+          }
+        ]
+      }
     }
   ],
-  "SearchId": "af968f68-3067-49c2-b934-ec56b72aed97",
-  "ExpirationDate": "2020-07-21T13:11:46.0769699+02:00",
-  "TotalResults": 16,
+  "SearchId": "c2b2e3c4-53e0-41ff-8012-8c9da7fa053a",
+  "ExpirationDate": "2020-07-22T11:30:18.205109+02:00",
+  "TotalResults": 23,
   "Operations": [
     {
       "System": "FerryGateway DFDS",
-      "Account": "Ferry Gateway DFDS test",
+      "Account": "Ferry Gateway DFDS test EUR",
       "Action": "Search",
-      "Duration": "00:00:05.9061986",
+      "Duration": "00:00:08.0929013",
       "Success": true,
       "ErrorMessage": null
     }
@@ -356,7 +524,7 @@ curl -X POST
 -d '{
   "Page": 1,
   "PageSize": 20,
-  "SearchId": "af968f68-3067-49c2-b934-ec56b72aed97"
+  "SearchId": "c2b2e3c4-53e0-41ff-8012-8c9da7fa053a"
 }' 'https://galaxy.citybreak.com/v5/api/availability/transport/get'
 ```
 
@@ -372,7 +540,7 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/transport/get",
 	body: JSON.Stringify({
     "Page": 0,
     "PageSize": 20,
-    "SearchId": "af968f68-3067-49c2-b934-ec56b72aed97"
+    "SearchId": "c2b2e3c4-53e0-41ff-8012-8c9da7fa053a"
   })  
 });
 ```
@@ -383,8 +551,8 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/transport/get",
 {
   "TransportSearch": {
     "PointOfSalesId": 18724,
-    "Currency": "EUR",
-    "PageSize": 20,
+    "Currency": "NOK",
+    "PageSize": 50,
     "Page": 0,
     "Sort": {
       "Order": "Asc",
@@ -396,30 +564,40 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/transport/get",
         "Quantity": 2
       }
     ],
-    "Vehicles": [],
+    "Vehicles": [
+      {
+        "Code": "998",
+        "Quantity": 1
+      }
+    ],
     "Routes": [
       {
-        "DepartureLocationCode": "25142",
-        "DepartureDate": "2020-08-21T00:00:00",
-        "ArrivalLocationCode": "25132"
+        "DepartureLocationCode": "25130",
+        "DepartureDate": "2020-08-17T00:00:00",
+        "ArrivalLocationCode": "25140"
+      },
+      {
+        "DepartureLocationCode": "25140",
+        "DepartureDate": "2020-08-18T00:00:00",
+        "ArrivalLocationCode": "25130"
       }
     ]
   },
   "Locations": [
     {
-      "Code": "25142",
+      "Code": "25130",
       "City": null,
       "Country": null,
-      "Name": "Oslo",
+      "Name": "Amsterdam",
       "Position": null,
       "State": null,
       "Regions": null
     },
     {
-      "Code": "25132",
+      "Code": "25140",
       "City": null,
       "Country": null,
-      "Name": "Copenhagen",
+      "Name": "Newcastle",
       "Position": null,
       "State": null,
       "Regions": null
@@ -427,7 +605,7 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/transport/get",
   ],
   "Fares": [
     {
-      "Code": "TOSC",
+      "Code": "SVAN",
       "Name": "DFDS",
       "Content": {
         "Images": null,
@@ -485,12 +663,12 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/transport/get",
       }
     },
     {
-      "Code": "B3",
-      "Name": "3-bed inside cabin with bunk beds",
+      "Code": "BD",
+      "Name": "2-bed inside cabin with double bed ",
       "Content": {
         "Images": [
           {
-            "Uri": "//resources.citybreak.com/online3/img/ferry/DFDS/B3.jpg",
+            "Uri": "//resources.citybreak.com/online3/img/ferry/DFDS/BD.jpg",
             "IsMain": false,
             "Name": null,
             "Copyright": null,
@@ -501,12 +679,12 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/transport/get",
           {
             "Id": 99,
             "Name": "Name",
-            "Value": "3-bed inside cabin with bunk beds"
+            "Value": "2-bed inside cabin with double bed "
           },
           {
             "Id": 102,
             "Name": "Description",
-            "Value": "3-Bed inside cabin with bunk beds"
+            "Value": "• Standard cabin\r\n• The cabin is for 1-2 people\r\n• Small double bed\r\n• Shower and toilet\r\n\r\nStandard Standard Cabin with Small Double Bed."
           }
         ],
         "Categories": null,
@@ -537,67 +715,197 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/transport/get",
     }
   ],
   "Vehicles": [],
+  "IncludedAddons": [
+    {
+      "Code": "NCLCT/ADL_NCLCT/ADL_LandServices",
+      "Name": "Land Services Excursion, for all passengers",
+      "Content": {
+        "Images": [],
+        "Information": [
+          {
+            "Id": 99,
+            "Name": "Name",
+            "Value": "Land Services Excursion, for all passengers"
+          },
+          {
+            "Id": 102,
+            "Name": "Description",
+            "Value": "LandServices Description"
+          }
+        ],
+        "Categories": null,
+        "Geos": null,
+        "Pois": null,
+        "Position": null
+      }
+    },
+    {
+      "Code": "NCLTC/ADL_NCLTC/ADL_LandServices",
+      "Name": "Land Services Excursion, for all passengers",
+      "Content": {
+        "Images": [],
+        "Information": [
+          {
+            "Id": 99,
+            "Name": "Name",
+            "Value": "Land Services Excursion, for all passengers"
+          },
+          {
+            "Id": 102,
+            "Name": "Description",
+            "Value": "LandServices Description"
+          }
+        ],
+        "Categories": null,
+        "Geos": null,
+        "Pois": null,
+        "Position": null
+      }
+    }
+  ],
   "Results": [
     {
-      "BookKey": "183371946-T",
+      "BookKey": "1110008262-T",
       "Price": {
-        "Price": 57,
-        "Currency": "EUR"
+        "Price": 3060,
+        "Currency": "NOK"
       },
       "OutboundJourney": {
-        "Duration": "17:15:00",
+        "Duration": "15:45:00",
         "CabinCode": "B2",
         "Legs": [
           {
-            "DepartureLocationCode": "25142",
-            "DepartureTime": "2020-08-21T16:30:00",
-            "ArrivalLocationCode": "25132",
-            "ArrivalTime": "2020-08-22T09:45:00",
-            "Duration": "17:15:00",
+            "DepartureLocationCode": "25130",
+            "DepartureTime": "2020-08-17T17:30:00",
+            "ArrivalLocationCode": "25140",
+            "ArrivalTime": "2020-08-18T09:15:00",
+            "Duration": "15:45:00",
             "OperatingCarrierCode": "DFDS",
             "VehicleCode": null,
-            "TransportNumber": "NOOSL"
+            "TransportNumber": "NLAMS"
           }
         ],
-        "FareCode": "TOSC"
+        "FareCode": "SVAN",
+        "IncludedAddons": [
+          {
+            "AddonCode": "NCLCT/ADL_NCLCT/ADL_LandServices",
+            "Price": 10,
+            "Currency": "EUR",
+            "PriceIncluded": true
+          }
+        ]
       },
       "HomeboundJourney": null
     },
     {
-      "BookKey": "486772987-T",
+      "BookKey": "59730793-T",
       "Price": {
-        "Price": 64,
-        "Currency": "EUR"
+        "Price": 3140,
+        "Currency": "NOK"
       },
       "OutboundJourney": {
-        "Duration": "17:15:00",
-        "CabinCode": "B3",
+        "Duration": "15:45:00",
+        "CabinCode": "BD",
         "Legs": [
           {
-            "DepartureLocationCode": "25142",
-            "DepartureTime": "2020-08-21T16:30:00",
-            "ArrivalLocationCode": "25132",
-            "ArrivalTime": "2020-08-22T09:45:00",
-            "Duration": "17:15:00",
+            "DepartureLocationCode": "25130",
+            "DepartureTime": "2020-08-17T17:30:00",
+            "ArrivalLocationCode": "25140",
+            "ArrivalTime": "2020-08-18T09:15:00",
+            "Duration": "15:45:00",
             "OperatingCarrierCode": "DFDS",
             "VehicleCode": null,
-            "TransportNumber": "NOOSL"
+            "TransportNumber": "NLAMS"
           }
         ],
-        "FareCode": "TOSC"
+        "FareCode": "SVAN",
+        "IncludedAddons": [
+          {
+            "AddonCode": "NCLCT/ADL_NCLCT/ADL_LandServices",
+            "Price": 10,
+            "Currency": "EUR",
+            "PriceIncluded": true
+          }
+        ]
       },
       "HomeboundJourney": null
+    },
+    {
+      "BookKey": "1600706669-T",
+      "Price": {
+        "Price": 3470,
+        "Currency": "NOK"
+      },
+      "OutboundJourney": null,
+      "HomeboundJourney": {
+        "Duration": "16:45:00",
+        "CabinCode": "B2",
+        "Legs": [
+          {
+            "DepartureLocationCode": "25140",
+            "DepartureTime": "2020-08-18T17:00:00",
+            "ArrivalLocationCode": "25130",
+            "ArrivalTime": "2020-08-19T09:45:00",
+            "Duration": "16:45:00",
+            "OperatingCarrierCode": "DFDS",
+            "VehicleCode": null,
+            "TransportNumber": "GBNEW"
+          }
+        ],
+        "FareCode": "SVAN",
+        "IncludedAddons": [
+          {
+            "AddonCode": "NCLTC/ADL_NCLTC/ADL_LandServices",
+            "Price": 10,
+            "Currency": "EUR",
+            "PriceIncluded": true
+          }
+        ]
+      }
+    },
+    {
+      "BookKey": "293005052-T",
+      "Price": {
+        "Price": 3550,
+        "Currency": "NOK"
+      },
+      "OutboundJourney": null,
+      "HomeboundJourney": {
+        "Duration": "16:45:00",
+        "CabinCode": "BD",
+        "Legs": [
+          {
+            "DepartureLocationCode": "25140",
+            "DepartureTime": "2020-08-18T17:00:00",
+            "ArrivalLocationCode": "25130",
+            "ArrivalTime": "2020-08-19T09:45:00",
+            "Duration": "16:45:00",
+            "OperatingCarrierCode": "DFDS",
+            "VehicleCode": null,
+            "TransportNumber": "GBNEW"
+          }
+        ],
+        "FareCode": "SVAN",
+        "IncludedAddons": [
+          {
+            "AddonCode": "NCLTC/ADL_NCLTC/ADL_LandServices",
+            "Price": 10,
+            "Currency": "EUR",
+            "PriceIncluded": true
+          }
+        ]
+      }
     }
   ],
-  "SearchId": "a04a05dc-5ed9-48c3-8c91-11b6747c4e3f",
-  "ExpirationDate": "2020-07-21T14:16:18.7041371+02:00",
-  "TotalResults": 16,
+  "SearchId": "c2b2e3c4-53e0-41ff-8012-8c9da7fa053a",
+  "ExpirationDate": "2020-07-22T11:30:18.205109+02:00",
+  "TotalResults": 23,
   "Operations": [
     {
       "System": "FerryGateway DFDS",
-      "Account": "Ferry Gateway DFDS test",
+      "Account": "Ferry Gateway DFDS test EUR",
       "Action": "Search",
-      "Duration": "00:00:06.0823252",
+      "Duration": "00:00:08.0929013",
       "Success": true,
       "ErrorMessage": null
     }
