@@ -31,11 +31,11 @@ curl -X POST
        ] 
      }
    ]
- }' 'https://galaxy.citybreak.com/v4/api/availability/accommodation'
+ }' 'https://galaxy.citybreak.com/v5/api/availability/accommodation'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v4/api/availability/accommodation",
+var r = fetch("https://galaxy.citybreak.com/v5/api/availability/accommodation",
 {
 	method: "POST",
 	headers: {
@@ -294,7 +294,7 @@ The Most important return values in this response are the `SearchId` and the `Bo
 
 ### HTTP Request
 
-`POST https://galaxy.citybreak.com/v4/api/availability/accommodation`
+`POST https://galaxy.citybreak.com/v5/api/availability/accommodation`
 
 ### Query Parameters
 
@@ -343,11 +343,11 @@ curl -X POST
   "Page": 1,
   "PageSize": 20,
   "SearchId": "aaaa1234-4321-1a2b-asdf-123456asdfgh"
-}' 'https://galaxy.citybreak.com/v4/api/availability/accommodation/get'
+}' 'https://galaxy.citybreak.com/v5/api/availability/accommodation/get'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v4/api/availability/accommodation/get",
+var r = fetch("https://galaxy.citybreak.com/v5/api/availability/accommodation/get",
 {
 	method: "POST",
 	headers: {
@@ -583,7 +583,7 @@ This is a **POST** request that requires a filter with a valid (non-expired) Sea
 
 ### HTTP Request
 
-`POST https://galaxy.citybreak.com/v4/api/availability/accommodation/get`
+`POST https://galaxy.citybreak.com/v5/api/availability/accommodation/get`
 
 ### Query Parameters
 

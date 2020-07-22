@@ -89,7 +89,7 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/transport/priceGroups/{pointO
 }
 ```
 
-Get details about Price Groups
+Get lists of person and vehicle price groups that could be available from the specified point of sales, with full details about them
 
 ### HTTP Request
 
@@ -113,7 +113,7 @@ curl -X GET
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v5/api/transport/routes/{pointOfSalesId}'",
+var r = fetch("https://galaxy.citybreak.com/v5/api/transport/routes/{pointOfSalesId}",
 {
   headers: {
     "ApiKey": "APIKEY132456789EWOK",
@@ -197,7 +197,109 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/transport/routes/{pointOfSale
 }
 ```
 
-Get details about routes
+Get list of locations and routes that could be available from the specified point of sales, with full details about them
+
+### HTTP Request
+
+`GET https://galaxy.citybreak.com/v5/api/transport/routes/{pointOfSalesId}`
+
+### Query Parameters
+
+Parameter | Description
+--------- | -----------
+pointOfSalesId | The point of sales identifier.
+Accept-Language | The language culture (e.g en-us)
+
+
+## Locations
+
+```shell
+curl -X GET 
+--header 'Accept: application/json' 
+--header 'Accept-Language: en-us' 
+--header 'apiKey: APIKEY132456789EWOK' 
+'https://galaxy.citybreak.com/v5/api/transport/locations/{pointOfSalesId}'
+```
+
+```javascript
+var r = fetch("https://galaxy.citybreak.com/v5/api/transport/locations/{pointOfSalesId}",
+{
+  headers: {
+    "ApiKey": "APIKEY132456789EWOK",
+    "Accept": "application/json",
+   "Accept-Language": "en-US"
+  }  
+});
+```
+
+> Example of response:
+
+```json
+{
+  "DepartureLocations": [
+    {
+      "Code": "25130",
+      "Name": "Amsterdam",
+      "City": null,
+      "Country": "NL",
+      "NameScheme": "DFDS",
+      "Type": "Seaport"
+    },
+    {
+      "Code": "25142",
+      "Name": "Oslo",
+      "City": null,
+      "Country": "NO",
+      "NameScheme": "DFDS",
+      "Type": "Seaport"
+    },
+    {
+      "Code": "25852",
+      "Name": "Frederikshavn",
+      "City": null,
+      "Country": "DK",
+      "NameScheme": "DFDS",
+      "Type": "Seaport"
+    }
+  ],
+  "ArrivalLocations": [
+    {
+      "Code": "25132",
+      "Name": "Copenhagen",
+      "City": null,
+      "Country": "DK",
+      "NameScheme": "DFDS",
+      "Type": "Seaport"
+    },
+    {
+      "Code": "25140",
+      "Name": "Newcastle",
+      "City": null,
+      "Country": "GB",
+      "NameScheme": "DFDS",
+      "Type": "Seaport"
+    },
+    {
+      "Code": "25142",
+      "Name": "Oslo",
+      "City": null,
+      "Country": "NO",
+      "NameScheme": "DFDS",
+      "Type": "Seaport"
+    },
+    {
+      "Code": "25852",
+      "Name": "Frederikshavn",
+      "City": null,
+      "Country": "DK",
+      "NameScheme": "DFDS",
+      "Type": "Seaport"
+    }
+  ]
+}
+```
+
+Get details about locations that could be available from the specified point of sales, with full details about them
 
 ### HTTP Request
 

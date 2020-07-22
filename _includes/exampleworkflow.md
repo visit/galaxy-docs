@@ -19,12 +19,12 @@ Cancel Reservation
 curl -X GET 
 --header 'Accept: application/json' 
 --header 'apiKey: APIKEY132456789EWOK' 
-'https://galaxy.citybreak.com/v4/api/pointofsales'
+'https://galaxy.citybreak.com/v5/api/pointofsales'
 
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v4/api/pointofsales",
+var r = fetch("https://galaxy.citybreak.com/v5/api/pointofsales",
 {
   headers: {
     "ApiKey": "APIKEY132456789EWOK",
@@ -64,7 +64,7 @@ The first step is to obtain a valid <a href="#point-of-sale">Point of Sale</a> I
 
 ### HTTP Request
 
-`GET https://galaxy.citybreak.com/v4/api/pointofsales`
+`GET https://galaxy.citybreak.com/v5/api/pointofsales`
 
 
 
@@ -74,11 +74,11 @@ The first step is to obtain a valid <a href="#point-of-sale">Point of Sale</a> I
 curl -X GET 
 --header 'Accept: application/json' 
 --header 'apiKey: APIKEY132456789EWOK' 
-'https://galaxy.citybreak.com/v4/api/pointofsales/currencies/1234570'
+'https://galaxy.citybreak.com/v5/api/pointofsales/currencies/1234570'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v4/api/pointofsales/currencies/1234570",
+var r = fetch("https://galaxy.citybreak.com/v5/api/pointofsales/currencies/1234570",
 {
   headers: {
     "ApiKey": "APIKEY132456789EWOK",
@@ -103,7 +103,7 @@ Once we have a Point of Sale we need to choose a <a href="#currencies">Currency<
 
 ### HTTP Request
 
-`GET https://galaxy.citybreak.com/v4/api/pointofsales/currencies/1234570`
+`GET https://galaxy.citybreak.com/v5/api/pointofsales/currencies/1234570`
 
 
 
@@ -117,11 +117,11 @@ curl -X POST
 --header 'apiKey: APIKEY132456789EWOK' -d '{
   "PointOfSalesId": 1234570,
   "Currency": "SEK"
-}' 'https://galaxy.citybreak.com/v4/api/basket/create'
+}' 'https://galaxy.citybreak.com/v5/api/basket/create'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v4/api/basket/create",
+var r = fetch("https://galaxy.citybreak.com/v5/api/basket/create",
 {
   method:"POST"
   headers: {
@@ -148,7 +148,7 @@ For all booking operations you will need a <a href="#create-basket">Shopping Bas
 
 ### HTTP Request
 
-`POST https://galaxy.citybreak.com/v4/api/basket/create`
+`POST https://galaxy.citybreak.com/v5/api/basket/create`
 
 
 
@@ -176,11 +176,11 @@ curl -X POST
        ] 
      }
    ]
- }' 'https://galaxy.citybreak.com/v4/api/availability/accommodation'
+ }' 'https://galaxy.citybreak.com/v5/api/availability/accommodation'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v4/api/availability/accommodation",
+var r = fetch("https://galaxy.citybreak.com/v5/api/availability/accommodation",
 {
 	method: "POST",
 	headers: {
@@ -450,7 +450,7 @@ For this example we will use the double room at BookVisit Hotel with a handy Gar
 
 ### HTTP Request
 
-`POST https://galaxy.citybreak.com/v4/api/availability/accommodation`
+`POST https://galaxy.citybreak.com/v5/api/availability/accommodation`
 
 
 
@@ -466,11 +466,11 @@ curl -X PUT
     "BookKey": "19-A",
     "Amount" 1
   }
-]' 'https://galaxy.citybreak.com/v4/api/basket/add/accommodation/87654321/899fe054-3bb4-4ff8-b577-ba716b0b3317'
+]' 'https://galaxy.citybreak.com/v5/api/basket/add/accommodation/87654321/899fe054-3bb4-4ff8-b577-ba716b0b3317'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v4/api/basket/add/accommodation/87654321/899fe054-3bb4-4ff8-b577-ba716b0b3317",
+var r = fetch("https://galaxy.citybreak.com/v5/api/basket/add/accommodation/87654321/899fe054-3bb4-4ff8-b577-ba716b0b3317",
 {
   method:"PUT"
   headers: {
@@ -496,7 +496,7 @@ true
 
 Taking the `BasketId`: 87654321 of the basket we created earlier, the `SearchId`: 899fe054-3bb4-4ff8-b577-ba716b0b3317 from the availability search and the `BookKey`: 19-A of the product we selected, we can now <a href="#add-accommodation-booking-item">add a product to our Basket</a>.
 
-`PUT https://galaxy.citybreak.com/v4/api/basket/add/accommodation/87654321/899fe054-3bb4-4ff8-b577-ba716b0b3317"`
+`PUT https://galaxy.citybreak.com/v5/api/basket/add/accommodation/87654321/899fe054-3bb4-4ff8-b577-ba716b0b3317"`
 
 
 
@@ -525,11 +525,11 @@ curl -X POST
      "AreaCode": "07",
      "Number": "2222222"
    }
- }' 'https://galaxy.citybreak.com/v4/api/basket/customer/87654321'
+ }' 'https://galaxy.citybreak.com/v5/api/basket/customer/87654321'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v4/api/basket/customer/87654321",
+var r = fetch("https://galaxy.citybreak.com/v5/api/basket/customer/87654321",
 {
   method:"POST"
   headers: {
@@ -565,7 +565,7 @@ To commit a Basket we will need to <a href="#update-customer-information">provid
 
 ### HTTP Request
 
-`GET https://galaxy.citybreak.com/v4/api/basket/customer/87654321"`
+`GET https://galaxy.citybreak.com/v5/api/basket/customer/87654321"`
 
 
 
@@ -578,11 +578,11 @@ To commit a Basket we will need to <a href="#update-customer-information">provid
 curl -X POST 
 --header 'Accept: application/json' 
 --header 'apiKey: APIKEY132456789EWOK' 
-'https://galaxy.citybreak.com/v4/api/basket/commit/87654321'
+'https://galaxy.citybreak.com/v5/api/basket/commit/87654321'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v4/api/basket/commit/87654321",
+var r = fetch("https://galaxy.citybreak.com/v5/api/basket/commit/87654321",
 {
   method:"POST"
   headers: {
@@ -609,7 +609,7 @@ Our `CommitJobId` is **98761234**.
 
 ### HTTP Request
 
-`POST https://galaxy.citybreak.com/v4/api/basket/commit/87654321`
+`POST https://galaxy.citybreak.com/v5/api/basket/commit/87654321`
 
 
 
@@ -623,11 +623,11 @@ Our `CommitJobId` is **98761234**.
 curl -X GET 
 --header 'Accept: application/json' 
 --header 'apiKey: APIKEY132456789EWOK' 
-'https://galaxy.citybreak.com/v4/api/basket/commit/status/98761234'
+'https://galaxy.citybreak.com/v5/api/basket/commit/status/98761234'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v4/api/basket/commit/status/98761234",
+var r = fetch("https://galaxy.citybreak.com/v5/api/basket/commit/status/98761234",
 {
   headers: {
     "ApiKey": "APIKEY132456789EWOK",
@@ -689,7 +689,7 @@ The other important information returned by the status is the ResvVersionId (res
 
 ### HTTP Request
 
-`GET https://galaxy.citybreak.com/v4/api/basket/commit/status/98761234`
+`GET https://galaxy.citybreak.com/v5/api/basket/commit/status/98761234`
 
 
 
@@ -702,11 +702,11 @@ The other important information returned by the status is the ResvVersionId (res
 curl -X GET 
 --header 'Accept: application/json' 
 --header 'apiKey: APIKEY132456789EWOK' 
-'https://galaxy.citybreak.com/v4/api/reservation/latest/EWOK12'
+'https://galaxy.citybreak.com/v5/api/reservation/latest/EWOK12'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v4/api/reservation/latest/EWOK12",
+var r = fetch("https://galaxy.citybreak.com/v5/api/reservation/latest/EWOK12",
 {
   headers: {
     "ApiKey": "APIKEY132456789EWOK",
@@ -789,7 +789,7 @@ There are two ways to return information about a reservation, either by <a href=
 
 ### HTTP Request
 
-`GET https://galaxy.citybreak.com/v4/api/reservation/latest/EWOK12`
+`GET https://galaxy.citybreak.com/v5/api/reservation/latest/EWOK12`
 
 
 
@@ -803,11 +803,11 @@ There are two ways to return information about a reservation, either by <a href=
 curl -X POST 
 --header 'Accept: application/json' 
 --header 'apiKey: APIKEY132456789EWOK' 
-'https://galaxy.citybreak.com/v4/api/reservation/cancel/EWOK12'
+'https://galaxy.citybreak.com/v5/api/reservation/cancel/EWOK12'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v4/api/reservation/cancel/EWOK12",
+var r = fetch("https://galaxy.citybreak.com/v5/api/reservation/cancel/EWOK12",
 {
   method: "POST",
   headers: {
@@ -824,4 +824,4 @@ Finally, lets cancel our reservation. <a href="#cancel-reservation">Cancelling</
 
 ### HTTP Request
 
-`POST https://galaxy.citybreak.com/v4/api/reservation/cancel/EWOK12`
+`POST https://galaxy.citybreak.com/v5/api/reservation/cancel/EWOK12`

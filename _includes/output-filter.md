@@ -29,11 +29,11 @@ curl -X POST
       "Pois": true,
       "Position": true
     }
- }' 'https://galaxy.citybreak.com/v4/api/availability/accommodation'
+ }' 'https://galaxy.citybreak.com/v5/api/availability/accommodation'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v4/api/availability/accommodation",
+var r = fetch("https://galaxy.citybreak.com/v5/api/availability/accommodation",
 {
 	method: "POST",
 	headers: {
