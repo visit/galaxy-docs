@@ -1109,11 +1109,11 @@ curl -X GET
 --header 'Accept: application/json' 
 --header 'apiKey: APIKEY132456789EWOK' 
 --header 'Accept-Language: en-us' 
-'https://galaxy.citybreak.com/v4/api/basket/addon/{basketId}/{bookItemId}'
+'https://galaxy.citybreak.com/v5/api/basket/addon/{basketId}/{bookItemId}'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v4/api/basket/addon/{basketId}/{bookItemId}",
+var r = fetch("https://galaxy.citybreak.com/v5/api/basket/addon/{basketId}/{bookItemId}",
 {
   method:"GET"
   headers: {
@@ -1294,33 +1294,6 @@ var r = fetch("https://galaxy.citybreak.com/v4/api/basket/addon/{basketId}/{book
           "AddonId": "A:14548579.2-C:0-P:0",
           "MinimumNumberOfUnits": 0,
           "MaximumNumberOfUnits": 1
-        },
-        {
-          "Name": "2 beers, 2 soft drinks & 1 pack of crisps",
-          "Content": {
-            "Images": [],
-            "Information": [
-              {
-                "Id": 99,
-                "Name": "Name",
-                "Value": "2 beers, 2 soft drinks & 1 pack of crisps"
-              }
-            ],
-            "Categories": null,
-            "Geos": null,
-            "Pois": null,
-            "Position": null
-          },
-          "PricegroupName": null,
-          "MinimumPricegroupAge": null,
-          "MaximumPricegroupAge": null,
-          "Price": {
-            "Price": 182,
-            "Currency": "NOK"
-          },
-          "AddonId": "A:14548579.3-C:0-P:0",
-          "MinimumNumberOfUnits": 0,
-          "MaximumNumberOfUnits": 1
         }
       ]
     }
@@ -1342,8 +1315,8 @@ The quantity available to book is indicated by the fields `MinimumNumberOfUnits`
 
 ### HTTP Requests
 
-`GET https://galaxy.citybreak.com/v4/api/basket/addon/{basketId}/{bookItemId}`  
-`GET https://galaxy.citybreak.com/v4/api/basket/addon/{basketId}`
+`GET https://galaxy.citybreak.com/v5/api/basket/addon/{basketId}/{bookItemId}`  
+`GET https://galaxy.citybreak.com/v5/api/basket/addon/{basketId}`
 
 ### Query Parameters
 
@@ -1363,15 +1336,15 @@ curl -X POST
   "Queries": [
     {
       "BookItemId": 1,
-      "AddonId": "A:14548579.0-C:0-P:0",
+      "AddonId": "A:14548579.1-C:0-P:0",
       "Quantity": 2
     }
   ]
-}' 'https://galaxy.citybreak.com/v4/api/basket/addon/{basketId}'
+}' 'https://galaxy.citybreak.com/v5/api/basket/addon/{basketId}'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v4/api/basket/addon/{basketId}",
+var r = fetch("https://galaxy.citybreak.com/v5/api/basket/addon/{basketId}",
 {
   method:"POST"
   headers: {
@@ -1384,7 +1357,7 @@ var r = fetch("https://galaxy.citybreak.com/v4/api/basket/addon/{basketId}",
       "Queries": [
       {
         "BookItemId": 1,
-        "AddonId": "A:14548579.0-C:0-P:0",
+        "AddonId": "A:14548579.1-C:0-P:0",
         "Quantity": 1
       }
     ]
@@ -1392,7 +1365,7 @@ var r = fetch("https://galaxy.citybreak.com/v4/api/basket/addon/{basketId}",
 );
 ```
 
-The example call will add 7 Seas Breakfast to the item with `BookItemId` 1. Set the quantity to 0 to remove the addon.
+The example call will add 1 sparkling wine to the item with `BookItemId` 1. Set the quantity to 0 to remove the addon.
 
 The quantity available to book is indicated by the fields `MinimumNumberOfUnits` and `MaximumNumberOfUnits` from the <a href="#addon-products">Addon products</a> call.
 
