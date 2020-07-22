@@ -1337,7 +1337,7 @@ curl -X POST
     {
       "BookItemId": 1,
       "AddonId": "A:14548579.1-C:0-P:0",
-      "Quantity": 2
+      "Quantity": 1
     }
   ]
 }' 'https://galaxy.citybreak.com/v5/api/basket/addon/{basketId}'
