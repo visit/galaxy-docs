@@ -22,11 +22,11 @@ curl -X POST
    "Date": "2019-02-18",
    "Currency": "NOK",
    "PageSize": 20
- }' 'https://galaxy.citybreak.com/v4/api/availability/activity'
+ }' 'https://galaxy.citybreak.com/v5/api/availability/activity'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v4/api/availability/activity",
+var r = fetch("https://galaxy.citybreak.com/v5/api/availability/activity",
 {
 	method: "POST",
 	headers: {
@@ -355,11 +355,11 @@ curl -X POST
   "Page": 0,
   "PageSize": 20,
   "SearchId": "2121as12-1a2s-1s2a-2a1s-12as21sa12as"
-}' 'https://galaxy.citybreak.com/v4/api/availability/activity/get'
+}' 'https://galaxy.citybreak.com/v5/api/availability/activity/get'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v4/api/availability/activity/get",
+var r = fetch("https://galaxy.citybreak.com/v5/api/availability/activity/get",
 {
 	method: "POST",
 	headers: {
@@ -484,7 +484,7 @@ This is a **POST** request that requires a filter with a valid (non-expired) `Se
 
 ### HTTP Request
 
-`POST https://galaxy.citybreak.com/v4/api/availability/activity/get`
+`POST https://galaxy.citybreak.com/v5/api/availability/activity/get`
 
 ### Query Parameters
 
@@ -521,11 +521,11 @@ curl -X POST
   "Start": "2018-12-14",
   "End": "2018-12-16",
   "Currency": "DKK"
-}' 'https://galaxy.citybreak.com/v4/api/availability/activity/calendar'
+}' 'https://galaxy.citybreak.com/v5/api/availability/activity/calendar'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v4/api/availability/activity/calendar",
+var r = fetch("https://galaxy.citybreak.com/v5/api/availability/activity/calendar",
 {
 	method: "POST",
 	headers: {
@@ -612,7 +612,7 @@ The return of this call is a set of dates with an IsAvailable boolean value indi
  
 ### HTTP Request
 
-`POST https://galaxy.citybreak.com/v4/api/availability/activity/calendar/byday`
+`POST https://galaxy.citybreak.com/v5/api/availability/activity/calendar/byday`
 
 ### Query Parameters
 
@@ -658,11 +658,11 @@ curl -X POST
     "Pois": false,
     "Position": false
   }
-}' 'https://galaxy.citybreak.com/v4/api/availability/activity/calendar/byproduct'
+}' 'https://galaxy.citybreak.com/v5/api/availability/activity/calendar/byproduct'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v4/api/availability/activity/calendar/byproduct",
+var r = fetch("https://galaxy.citybreak.com/v5/api/availability/activity/calendar/byproduct",
 {
 	method: "POST",
 	headers: {
@@ -858,7 +858,7 @@ The return of this call the activity groups and activities that have availabilit
  
 ### HTTP Request
 
-`POST https://galaxy.citybreak.com/v4/api/availability/activity/calendar/byproduct`
+`POST https://galaxy.citybreak.com/v5/api/availability/activity/calendar/byproduct`
 
 ### Query Parameters
 

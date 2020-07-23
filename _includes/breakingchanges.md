@@ -1,5 +1,15 @@
 # Breaking changes
 
+## From V4 to V5
+
+- New <a href="#transport">transport</a> endpoints have been added: `transport/priceGroups`, `transport/routes` and `transport/locations`.
+
+- New <a href="#availability---transport">transport availability search</a> endpoints have been added: `availability/transport` and `availability/transport/get`.
+
+- <a href="#basket">Basket</a> has new endpoint `basket/add/transport` for adding transport products to the basket.
+
+- Response from endpoints <a href="#addon-products">`basket/addon/{basketId}`</a> and <a href="#addon-products">`basket/addon/{basketId}/{bookItemId}`</a> are now restructured to return addon groups which contain available addons.
+
 ## From V3 to V4
 
 - <a href="#availability---placement-accommodation">Accommodation availability search with placement</a> (the previous default) has endpoints moved from `availability/accommodation`, `availability/accommodation/get` and `basket/add/accommodation` to `availability/accommodation/placement`, `availability/accommodation/placement/get` and `basket/add/accommodation/placement`.

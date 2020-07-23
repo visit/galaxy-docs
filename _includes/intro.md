@@ -4,11 +4,14 @@ Welcome to the Visit Galaxy API Reference. If you don’t have an API key, get i
 
 The API gives you access to some of the citybreak functionaility, enabling you to search for products, get content, search availability and use shopping baskets for booking and generating pay-later invoices. 
 
-This documentation is too long? You can check out the Swagger UI <a href="https://galaxy.test.citybreak.com/v4/">https://galaxy.test.citybreak.com/v4/</a>. It targets test data and you can request a test API key for internal products that you can make bookings and do availability searches for. Give it a try and come back later.
+This documentation is too long? You can check out the Swagger UI <a href="https://galaxy.test.citybreak.com/v5/">https://galaxy.test.citybreak.com/v5/</a>. It targets test data and you can request a test API key for internal products that you can make bookings and do availability searches for. Give it a try and come back later.
 
-The live Galaxy API endpoint is accessible at <a href="https://galaxy.citybreak.com/v4/">https://galaxy.citybreak.com/v4/</a>
+The live Galaxy API endpoint is accessible at <a href="https://galaxy.citybreak.com/v5/">https://galaxy.citybreak.com/v5/</a>
 
-<aside class="warning">These are the docs for the V4 of the Galaxy API.<br/>
+<aside class="warning">These are the docs for the V5 of the Galaxy API.<br/>
+The docs for the V4 version of the galaxy API are found here <a href="https://github.com/visit/galaxy-docs-v4/">https://github.com/visit/galaxy-docs-v4/</a>.<br/>
+The endpoint for V4 is <a href="https://galaxy.citybreak.com/v4/">https://galaxy.citybreak.com/v4/</a>
+<br/>
 The docs for the V3 version of the galaxy API are found here <a href="https://visit.github.io/galaxy-docs-v3/">https://visit.github.io/galaxy-docs-v3/</a>.<br/>
 The endpoint for V3 is <a href="https://galaxy.citybreak.com/v3/">https://galaxy.citybreak.com/v3/</a></aside>
 

@@ -16,10 +16,12 @@ includes:
   - pointofsales
   - accommodation
   - activity
+  - transport
   - availability-noplacementaccommodation
   - availability-accommodation
   - fuzzy-accommodation
   - availability-activity
+  - availability-transport
   - content-filter
   - output-filter
   - content
