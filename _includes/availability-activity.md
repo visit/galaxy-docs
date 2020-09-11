@@ -604,7 +604,7 @@ This is a **POST** request that requires a filter with some mandatory properties
 As in other availability queries, the filter can also include a content filter, such as only those activities associated with a particular CBIS category or with certain attributes. 
 This is especially handy if you want a very quick look at availability for a specific product or products over a range of days.
 Content possibilities can be found in the <a href="#content-filter">Content Section</a> You can see a bare minimum version of this search in the examples.
-The return of this call is a set of availble dates (if there is availability) an entity called Activities which is a set of the cbis IDs of the activities (as opposed to activity groups) available on that day. This is useful for, say, quickly displaying days on which you can find available activities. You can use the <a href="#content">Product content</a> call with if you also wish to populate a specific activity with content (check the relations field if you want the content of the encapsulating group)
+The return of this call is a set of availble dates (if there is availability) an entity called Activities which is a set of the cbis IDs of the activities (as opposed to activity groups) available on that day. This is useful for, say, quickly displaying days on which you can find available activities. You can use the <a href="#product">Product content</a> call with if you also wish to populate a specific activity with content (check the relations field if you want the content of the encapsulating group)
  
 ### HTTP Request
 

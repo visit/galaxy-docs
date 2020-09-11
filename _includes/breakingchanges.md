@@ -10,9 +10,9 @@
 
 - Response from endpoints <a href="#addon-products">`basket/addon/{basketId}`</a> and <a href="#addon-products">`basket/addon/{basketId}/{bookItemId}`</a> are now restructured to return addon groups which contain available addons.
 
-- New <a href="#content">product content</a> endpoint have been added.
+- New <a href="#product">product content</a> endpoint have been added.
 
-- <a href="#reservation---get-reservation-version">Get reservation version</a> and <a href="#reservation---get-latest-reservation-version">Get latest reservation version</a> responses have been extended with ExternalBookingCode information per each product.
+- <a href="#get-reservation-version">Get reservation version</a> and <a href="#get-latest-reservation-version">Get latest reservation version</a> responses have been extended with ExternalBookingCode information per each product.
 
 ## From V3 to V4
 

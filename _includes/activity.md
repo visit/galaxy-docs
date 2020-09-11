@@ -1,6 +1,6 @@
 # Activity
 
-<aside class="warning">These methods are deprecated, please use <a href="#content">Product content</a> instead</aside>
+<aside class="warning">These methods are deprecated, please use <a href="#product">Product content</a> instead</aside>
 
 **Activity** operations provide information on **Activity** products available in a point of sale. No availability information is included here, it is primarily content (images, position, categories, etc). 
 
