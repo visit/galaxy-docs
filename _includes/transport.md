@@ -506,7 +506,7 @@ Get details about locations that could be available from the specified point of 
 
 ### HTTP Request
 
-`GET https://galaxy.citybreak.com/v5/api/transport/routes/{pointOfSalesId}`
+`GET https://galaxy.citybreak.com/v5/api/transport/locations/{pointOfSalesId}`
 
 ### Query Parameters
 
