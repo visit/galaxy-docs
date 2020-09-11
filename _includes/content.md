@@ -4,7 +4,7 @@
 
 <aside class="notice">NB: if using the Visit Test Organisation API Key you can use 17692 as the `pointOfSalesId`</aside>
 
-## Product
+## Product content
 
 
 ```shell
