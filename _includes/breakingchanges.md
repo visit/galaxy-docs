@@ -4,11 +4,15 @@
 
 - New <a href="#transport">transport</a> endpoints have been added: `transport/priceGroups`, `transport/routes` and `transport/locations`.
 
-- New <a href="#availability---transport">transport availability search</a> endpoints have been added: `availability/transport` and `availability/transport/get`.
+- New <a href="#availability---transport">transport availability search</a> endpoints have been added: `availability/transport`, `availability/transport/get`, `availability/transport/calendar/byday` and `availability/transport/calendar/byproduct`.
 
 - <a href="#basket">Basket</a> has new endpoint `basket/add/transport` for adding transport products to the basket.
 
 - Response from endpoints <a href="#addon-products">`basket/addon/{basketId}`</a> and <a href="#addon-products">`basket/addon/{basketId}/{bookItemId}`</a> are now restructured to return addon groups which contain available addons.
+
+- New <a href="#product-content">product content</a> endpoint have been added.
+
+- <a href="#get-reservation-version">Get reservation version</a> and <a href="#get-latest-reservation-version">Get latest reservation version</a> responses have been extended with ExternalBookingCode information per each product.
 
 ## From V3 to V4
 
