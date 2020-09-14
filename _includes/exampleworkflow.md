@@ -496,7 +496,7 @@ true
 
 Taking the `BasketId`: 87654321 of the basket we created earlier, the `SearchId`: 899fe054-3bb4-4ff8-b577-ba716b0b3317 from the availability search and the `BookKey`: 19-A of the product we selected, we can now <a href="#add-accommodation-booking-item">add a product to our Basket</a>.
 
-`PUT https://galaxy.citybreak.com/v5/api/basket/add/accommodation/87654321/899fe054-3bb4-4ff8-b577-ba716b0b3317"`
+`PUT https://galaxy.citybreak.com/v5/api/basket/add/accommodation/87654321/899fe054-3bb4-4ff8-b577-ba716b0b3317`
 
 
 
@@ -565,7 +565,7 @@ To commit a Basket we will need to <a href="#update-customer-information">provid
 
 ### HTTP Request
 
-`GET https://galaxy.citybreak.com/v5/api/basket/customer/87654321"`
+`GET https://galaxy.citybreak.com/v5/api/basket/customer/87654321`
 
 
 
