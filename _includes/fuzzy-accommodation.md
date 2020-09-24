@@ -164,7 +164,8 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/accommodation/fu
           "MaxPopluationForAnyItem": 3,
           "MaxPopulation": 2,
           "OriginalPrice": 300,
-          "Price": 300
+          "Price": 300,
+          "PromoCodeDescription": null
         },
         {
           "Id": "pt:23456",
@@ -197,7 +198,8 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/accommodation/fu
           "MaxPopluationForAnyItem": 3,
           "MaxPopulation": 3,
           "OriginalPrice": 250,
-          "Price": 250
+          "Price": 250,
+          "PromoCodeDescription": null
         },
         {
           "Id": "pt:34567",
@@ -230,11 +232,13 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/accommodation/fu
           "MaxPopluationForAnyItem": 3,
           "MaxPopulation": 2,
           "OriginalPrice": 280,
-          "Price": 280
+          "Price": 280,
+          "PromoCodeDescription": null
         }
       ]
     }
   ],
+  "PromoCodeStatus": "None",
   "SearchContext": {
     "Arrival": "2018-12-04T00:00:00+01:00",
     "Departure": "2018-12-08T00:00:00+01:00",
@@ -429,7 +433,8 @@ Accept-Language | The language culture (e.g en-us)
   "Sort": { // Optional - default sort is price ascending
     "Order": "Asc", //string - Mandatory if parent included
     "Field": "string" //string - Mandatory if parent included - Price, Name, Score, Random
-  }
+  },
+  "PromoCode": "string" // string - Optional
 }
 </code>
 

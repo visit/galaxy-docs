@@ -190,6 +190,7 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/accommodation",
             "Name": null,
             "Terms": null
           },
+          "PromoCodeDescription": null,
           "BookingKey": "18-A"
         },
         {
@@ -265,12 +266,14 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/accommodation",
             "Name": null,
             "Terms": null
           },
+          "PromoCodeDescription": null,
           "BookingKey": "19-A"
         }
       ],
       "TotalResults": 2
     }
   ],
+  "PromoCodeStatus": "None",
   "SearchId": "aaaa1234-4321-1a2b-asdf-123456asdfgh",
   "ExpirationDate": "2017-09-15T09:15:46.0619347Z",
   "TotalResults": 1,
@@ -327,7 +330,8 @@ Accept-Language | The language culture (e.g en-us)
   "ContentFilter": { // Optional - See <a href="#content-filter">ContentFilter</a>
   },
   "OutputFilter": { // Optional -  See <a href="#output-filter">OutputFilter</a>
-  }
+  },
+  "PromoCode": "string" // string - Optional
 }
 </code>
 
@@ -492,6 +496,7 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/accommodation/ge
             "Name": null,
             "Terms": null
           },
+          "PromoCodeDescription": null,
           "BookingKey": "18-A"
         },
         {
@@ -567,12 +572,14 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/accommodation/ge
             "Name": null,
             "Terms": null
           },
+          "PromoCodeDescription": null,
           "BookingKey": "19-A"
         }
       ],
       "TotalResults": 2
     }
   ],
+  "PromoCodeStatus": "None",
   "SearchId": "aaaa1234-4321-1a2b-asdf-123456asdfgh",
   "ExpirationDate": "2017-09-15T09:15:46.0619347Z",
   "TotalResults": 1
