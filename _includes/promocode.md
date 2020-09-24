@@ -1,6 +1,6 @@
 # Promo code
 
-**Promo code** call validate specific promotion code for specified `PointOfSalesId`. Result can be filtered based on specific `ProductId`
+**Promo code** call validates entered promotion code for specified `PointOfSalesId`. Result can be filtered based on specific `ProductId`
 
 ## Promo code
 
