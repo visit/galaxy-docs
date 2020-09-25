@@ -85,7 +85,8 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/accommodation",
       }
     ],
     "ContentFilter": null,
-    "OutputFilter": null
+    "OutputFilter": null,
+    "PromoCode": null
   },
   "Accommodations": [
     {
@@ -166,7 +167,7 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/accommodation",
             "Pois": null,
             "Position": null
           },
-          "IncludedSubProducts": [],
+          "IncludedAddons": [],
           "MaxPopopulation": 3,
           "MinPopulation": 1,
           "ExtraBeds": 1,
@@ -217,7 +218,7 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/accommodation",
             "Pois": null,
             "Position": null
           },
-          "IncludedSubProducts": [
+          "IncludedAddons": [
             {
               "Name": "Trädgårdstomte",
               "Content": {
@@ -472,7 +473,7 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/accommodation/ge
             "Pois": null,
             "Position": null
           },
-          "IncludedSubProducts": [],
+          "IncludedAddons": [],
           "MaxPopopulation": 3,
           "MinPopulation": 1,
           "ExtraBeds": 1,
@@ -523,7 +524,7 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/accommodation/ge
             "Pois": null,
             "Position": null
           },
-          "IncludedSubProducts": [
+          "IncludedAddons": [
             {
               "Name": "Trädgårdstomte",
               "Content": {

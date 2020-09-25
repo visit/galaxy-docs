@@ -85,7 +85,8 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/accommodation/pl
       }
     ],
     "ContentFilter": null,
-    "OutputFilter": null
+    "OutputFilter": null,
+    "PromoCode": null
   },
   "Accommodations": [
     {
@@ -168,7 +169,7 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/accommodation/pl
                 "Pois": null,
                 "Position": null
               },
-              "IncludedSubProducts": [],
+              "IncludedAddons": [],
               "MaxPopopulation": 3,
               "MinPopulation": 1,
               "ExtraBeds": 1,
@@ -223,7 +224,7 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/accommodation/pl
                 "Pois": null,
                 "Position": null
               },
-              "IncludedSubProducts": [
+              "IncludedAddons": [
                 {
                   "Name": "Trädgårdstomte",
                   "Content": {
@@ -482,7 +483,7 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/accommodation/pl
                 "Pois": null,
                 "Position": null
               },
-              "IncludedSubProducts": [],
+              "IncludedAddons": [],
               "MaxPopopulation": 3,
               "MinPopulation": 1,
               "ExtraBeds": 1,
@@ -537,7 +538,7 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/accommodation/pl
                 "Pois": null,
                 "Position": null
               },
-              "IncludedSubProducts": [
+              "IncludedAddons": [
                 {
                   "Name": "Trädgårdstomte",
                   "Content": {
@@ -653,11 +654,11 @@ curl -X POST
   "Start": "2018-11-09",
   "End": "2018-11-13",
   "Currency": "SEK"
-}' 'https://galaxy.citybreak.com/v5/api/availability/accommodation/placement/calendar'
+}' 'https://galaxy.citybreak.com/v5/api/availability/accommodation/calendar'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v5/api/availability/accommodation/placement/calendar",
+var r = fetch("https://galaxy.citybreak.com/v5/api/availability/accommodation/calendar",
 {
 	method: "POST",
 	headers: {
@@ -734,7 +735,8 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/accommodation/pl
     "Start": "2018-11-09T00:00:00",
     "End": "2018-11-13T00:00:00",
     "Currency": "SEK",
-    "ContentFilter": null
+    "ContentFilter": null,
+    "PromoCode": null
   },
   "Operations": [
     {

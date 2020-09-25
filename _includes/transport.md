@@ -102,6 +102,8 @@ Parameter | Description
 pointOfSalesId | The point of sales identifier.
 Accept-Language | The language culture (e.g en-us)
 
+## Price Groups for product
+
 ```shell
 curl -X GET 
   --header 'ApiKey: APIKEY132456789EWOK'
@@ -305,6 +307,8 @@ Parameter | Description
 --------- | -----------
 pointOfSalesId | The point of sales identifier.
 Accept-Language | The language culture (e.g en-us)
+
+## Routes for product
 
 ```shell
 curl -X GET 

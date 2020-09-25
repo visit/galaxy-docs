@@ -131,7 +131,8 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/transport",
         "DepartureDate": "2020-09-17T00:00:00",
         "ArrivalLocationCode": "18431"
       }
-    ]
+    ],
+    "PromoCode": null
   },
   "Locations": [
     {
@@ -1368,11 +1369,11 @@ curl -X POST
   "Start": "2020-10-01",
   "End": "2020-10-07",
   "Currency": "NOK"
-}' 'https://galaxy.citybreak.com/v5/api/availability/transport/calendar'
+}' 'https://galaxy.citybreak.com/v5/api/availability/transport/calendar/byday'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v5/api/availability/transport/calendar",
+var r = fetch("https://galaxy.citybreak.com/v5/api/availability/transport/calendar/byday",
 {
 	method: "POST",
 	headers: {

@@ -274,7 +274,8 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/accommodation/fu
     "Sort": {
       "Order": "Desc",
       "Field": "Score"
-    }
+    },
+    "PromoCode": null
   },
   "ExpirationDate": "2018-11-20T12:00:00.1000000+01:00",
   "Operations": [
@@ -403,7 +404,7 @@ Parameter | Description
 filter | the POST filter
 Accept-Language | The language culture (e.g en-us)
 
-<code class="ceter-column">
+<code class="center-column">
 {
   "PointOfSalesId": 0, //int - Mandatory 
   "Currency": "string", //string - Mandatory e.g SEK or EUR
@@ -508,8 +509,7 @@ Parameter | Description
 filter | the POST filter
 Accept-Language | The language culture (e.g en-us)
 
-<div class="center-column"></div>
-```
+<code class="center-column">
 {
   "Page":1, //int mandatory - the pager is 0-indexed so 1 is the second page
   "PageSize": 0, //int Mandatory
@@ -521,7 +521,7 @@ Accept-Language | The language culture (e.g en-us)
   "OutputFilter": { // Optional -  See the OutputFilter section
   }
 }
-```
+</code>
 
 ## Arrival dates
 ```shell

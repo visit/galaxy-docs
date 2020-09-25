@@ -64,7 +64,8 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/activity",
       "Geos": false,
       "Pois": false,
       "Position": false
-    }
+    },
+    "PromoCode": null
   },
   "ActivityGroups": [
     {
@@ -533,11 +534,11 @@ curl -X POST
   "Start": "2018-12-14",
   "End": "2018-12-16",
   "Currency": "DKK"
-}' 'https://galaxy.citybreak.com/v5/api/availability/activity/calendar'
+}' 'https://galaxy.citybreak.com/v5/api/availability/activity/calendar/byday'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v5/api/availability/activity/calendar",
+var r = fetch("https://galaxy.citybreak.com/v5/api/availability/activity/calendar/byday",
 {
 	method: "POST",
 	headers: {
