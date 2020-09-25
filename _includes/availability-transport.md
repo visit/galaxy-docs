@@ -1356,7 +1356,7 @@ Accept-Language | The language culture (e.g en-us)
   "SearchId":"string"
 }
 
-## Calendar Search
+## Calendar Search By Day
 
 ```shell
 curl -X POST 

@@ -4,7 +4,7 @@
 
 - Response from endpoints <a href="#addon-products">`basket/addon/{basketId}`</a> and <a href="#addon-products">`basket/addon/{basketId}/{bookItemId}`</a> are now restructured to return addon groups which contain available addons.
 
-- Response from endpoints <a href="#calendar-search">`availability/accommodation/placement/calendar`</a> and <a href="#calendar-search44">`availability/activity/calendar/byday`</a> now return only available dates, therefore isAvailble flag is removed.
+- Response from endpoints <a href="#calendar-search">`availability/accommodation/placement/calendar`</a> and <a href="#calendar-search-by-day">`availability/activity/calendar/byday`</a> now return only available dates, therefore isAvailble flag is removed.
 
 ## From V3 to V4
 

@@ -521,7 +521,7 @@ Accept-Language | The language culture (e.g en-us)
 }
 </code>
 
-## Calendar Search
+## Calendar Search By Day
 
 ```shell
 curl -X POST 
