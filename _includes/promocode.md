@@ -1,7 +1,7 @@
 # Promo code
 
 **Promo code** call validates entered promotion code for specified `PointOfSalesId`. 
-In case Point of Sales is connected to more than one external account it is advised to send `ProductId` to avoid unambiguously checked promo codes.
+In case Point of Sales is connected to more than one external account it is advised to send `ProductId` to avoid ambiguously checked promo codes and to ensure checking promo code per account.
 
 ## Promo code
 
@@ -87,7 +87,7 @@ request | the POST request
       {
           "PromoCode": "string", //Mandatory - promotion code
           //If Point of Sales is connected to multiple external accounts
-          //user should specify this field to avoid unambiguously checked promo codes
+          //user should specify this field to check promo code per account
           "ProductId": "string" //Optional - product filtering
       }
   ]
