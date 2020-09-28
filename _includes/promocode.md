@@ -86,7 +86,8 @@ request | the POST request
   "PromoCodeInfo": [
       {
           "PromoCode": "string", //Mandatory - promotion code
-          //If Point of Sales is connected to multiple external accounts, user should specify this field to avoid unambiguously checked promo codes
+          //If Point of Sales is connected to multiple external accounts
+          //user should specify this field to avoid unambiguously checked promo codes
           "ProductId": "string" //Optional - product filtering
       }
   ]
