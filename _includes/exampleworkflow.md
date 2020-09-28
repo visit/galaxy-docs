@@ -312,7 +312,7 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/accommodation",
             "Pois": null,
             "Position": null
           },
-          "IncludedSubProducts": [],
+          "IncludedAddons": [],
           "MaxPopopulation": 3,
           "MinPopulation": 1,
           "ExtraBeds": 1,
@@ -362,7 +362,7 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/accommodation",
             "Pois": null,
             "Position": null
           },
-          "IncludedSubProducts": [
+          "IncludedAddons": [
             {
               "Name": "Trädgårdstomte",
               "Content": {
