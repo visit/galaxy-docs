@@ -164,7 +164,8 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/accommodation/fu
           "MaxPopluationForAnyItem": 3,
           "MaxPopulation": 2,
           "OriginalPrice": 300,
-          "Price": 300
+          "Price": 300,
+          "PromoCodeDescription": null
         },
         {
           "Id": "pt:23456",
@@ -197,7 +198,8 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/accommodation/fu
           "MaxPopluationForAnyItem": 3,
           "MaxPopulation": 3,
           "OriginalPrice": 250,
-          "Price": 250
+          "Price": 250,
+          "PromoCodeDescription": null
         },
         {
           "Id": "pt:34567",
@@ -230,11 +232,13 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/accommodation/fu
           "MaxPopluationForAnyItem": 3,
           "MaxPopulation": 2,
           "OriginalPrice": 280,
-          "Price": 280
+          "Price": 280,
+          "PromoCodeDescription": null
         }
       ]
     }
   ],
+  "PromoCodeStatus": "None",
   "SearchContext": {
     "Arrival": "2018-12-04T00:00:00+01:00",
     "Departure": "2018-12-08T00:00:00+01:00",
@@ -270,7 +274,8 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/accommodation/fu
     "Sort": {
       "Order": "Desc",
       "Field": "Score"
-    }
+    },
+    "PromoCode": null
   },
   "ExpirationDate": "2018-11-20T12:00:00.1000000+01:00",
   "Operations": [
@@ -399,7 +404,7 @@ Parameter | Description
 filter | the POST filter
 Accept-Language | The language culture (e.g en-us)
 
-<code class="ceter-column">
+<code class="center-column">
 {
   "PointOfSalesId": 0, //int - Mandatory 
   "Currency": "string", //string - Mandatory e.g SEK or EUR
@@ -429,7 +434,8 @@ Accept-Language | The language culture (e.g en-us)
   "Sort": { // Optional - default sort is price ascending
     "Order": "Asc", //string - Mandatory if parent included
     "Field": "string" //string - Mandatory if parent included - Price, Name, Score, Random
-  }
+  },
+  "PromoCode": "string" // string - Optional
 }
 </code>
 
@@ -503,8 +509,7 @@ Parameter | Description
 filter | the POST filter
 Accept-Language | The language culture (e.g en-us)
 
-<div class="center-column"></div>
-```
+<code class="center-column">
 {
   "Page":1, //int mandatory - the pager is 0-indexed so 1 is the second page
   "PageSize": 0, //int Mandatory
@@ -516,7 +521,7 @@ Accept-Language | The language culture (e.g en-us)
   "OutputFilter": { // Optional -  See the OutputFilter section
   }
 }
-```
+</code>
 
 ## Arrival dates
 ```shell

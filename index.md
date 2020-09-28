@@ -22,6 +22,7 @@ includes:
   - fuzzy-accommodation
   - availability-activity
   - availability-transport
+  - promocode
   - content-filter
   - output-filter
   - content

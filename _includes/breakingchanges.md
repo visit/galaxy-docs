@@ -2,17 +2,9 @@
 
 ## From V4 to V5
 
-- New <a href="#transport">transport</a> endpoints have been added: `transport/priceGroups`, `transport/routes` and `transport/locations`.
-
-- New <a href="#availability---transport">transport availability search</a> endpoints have been added: `availability/transport`, `availability/transport/get`, `availability/transport/calendar/byday` and `availability/transport/calendar/byproduct`.
-
-- <a href="#basket">Basket</a> has new endpoint `basket/add/transport` for adding transport products to the basket.
-
 - Response from endpoints <a href="#addon-products">`basket/addon/{basketId}`</a> and <a href="#addon-products">`basket/addon/{basketId}/{bookItemId}`</a> are now restructured to return addon groups which contain available addons.
 
-- New <a href="#product-content">product content</a> endpoint have been added.
-
-- <a href="#get-reservation-version">Get reservation version</a> and <a href="#get-latest-reservation-version">Get latest reservation version</a> responses have been extended with ExternalBookingCode information per each product.
+- Response from endpoints <a href="#calendar-search">`availability/accommodation/placement/calendar`</a> and <a href="#calendar-search-by-day">`availability/activity/calendar/byday`</a> now return only available dates, therefore isAvailble flag is removed.
 
 ## From V3 to V4
 
@@ -25,6 +17,8 @@
 - <a href="#get-basket">`basket/{basketId}`</a> product addons integer fields `BookItemId`, `PriceGroupId` and `AddonId` have been replaced by a string field `AddonId`.
 
 - <a href="#addon-products">`basket/addon/{basketId}`</a> and <a href="#addon-products">`basket/addon/{basketId}/{bookItemId}`</a> available addons are further simplified and now provides you with a total price, `MinimumNumberOfUnits` and `MaximumNumberOfUnits`. The integer fields `AddonId` and `PriceGroupId` are replaced by a string field `AddonId`. Addons DELETE verb is removed, you can remove addons by posting zero to `Quantity`.
+
+- `availability/accommodation/placement`, `availability/accommodation/placement/get`, `availability/accommodation` and `availability/accommodation/get` now include list of mandatory addons that have been renamed from IncludedSubProducts to IncludedAddons.
 
 - `reservation/cancel/info` was removed. Use the `LastCancellation` field from <a href="#get-latest-reservation-version">`reservation/latest`</a> instead.
 

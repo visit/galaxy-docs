@@ -85,7 +85,8 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/accommodation/pl
       }
     ],
     "ContentFilter": null,
-    "OutputFilter": null
+    "OutputFilter": null,
+    "PromoCode": null
   },
   "Accommodations": [
     {
@@ -168,7 +169,7 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/accommodation/pl
                 "Pois": null,
                 "Position": null
               },
-              "IncludedSubProducts": [],
+              "IncludedAddons": [],
               "MaxPopopulation": 3,
               "MinPopulation": 1,
               "ExtraBeds": 1,
@@ -191,7 +192,8 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/accommodation/pl
               "BookingConditions": {
                 "Name": null,
                 "Terms": null
-              }
+              },
+              "PromoCodeDescription": null
             }
           ],
           "BookingKey": "18-A"
@@ -222,7 +224,7 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/accommodation/pl
                 "Pois": null,
                 "Position": null
               },
-              "IncludedSubProducts": [
+              "IncludedAddons": [
                 {
                   "Name": "Trädgårdstomte",
                   "Content": {
@@ -270,7 +272,8 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/accommodation/pl
               "BookingConditions": {
                 "Name": null,
                 "Terms": null
-              }
+              },
+              "PromoCodeDescription": null
             }
           ],
           "BookingKey": "19-A"
@@ -279,6 +282,7 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/accommodation/pl
       "TotalResults": 2
     }
   ],
+  "PromoCodeStatus": "None",
   "SearchId": "aaaa1234-4321-1a2b-asdf-123456asdfgh",
   "ExpirationDate": "2017-09-15T09:15:46.0619347Z",
   "TotalResults": 1,
@@ -317,7 +321,7 @@ Accept-Language | The language culture (e.g en-us)
   "Arrival": "2018-11-23T15:23:15.087Z", //DateTime - Mandatory
   "Departure": "2018-11-23T15:23:15.088Z", //DateTime - Mandatory
   "Currency": "string", //string - Mandatory e.g SEK or EUR
-  "PageSize": 0, //int Mandatory
+  "PageSize": 0, //int - Mandatory
   "Sort": { // Optional - defaults to Price Ascending
     "Order": "Asc", //string - Mandatory if parent included
     "Field": "string" //string - Mandatory if parent included - Price, Name, Random
@@ -335,7 +339,8 @@ Accept-Language | The language culture (e.g en-us)
   "ContentFilter": { // Optional - See <a href="#content-filter">ContentFilter</a>
   },
   "OutputFilter": { // Optional -  See <a href="#output-filter">OutputFilter</a>
-  }
+  },
+  "PromoCode": "string" // string - Optional
 }
 </code>
 
@@ -478,7 +483,7 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/accommodation/pl
                 "Pois": null,
                 "Position": null
               },
-              "IncludedSubProducts": [],
+              "IncludedAddons": [],
               "MaxPopopulation": 3,
               "MinPopulation": 1,
               "ExtraBeds": 1,
@@ -501,7 +506,8 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/accommodation/pl
               "BookingConditions": {
                 "Name": null,
                 "Terms": null
-              }
+              },
+              "PromoCodeDescription": null
             }
           ],
           "BookingKey": "18-A"
@@ -532,7 +538,7 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/accommodation/pl
                 "Pois": null,
                 "Position": null
               },
-              "IncludedSubProducts": [
+              "IncludedAddons": [
                 {
                   "Name": "Trädgårdstomte",
                   "Content": {
@@ -580,7 +586,8 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/accommodation/pl
               "BookingConditions": {
                 "Name": null,
                 "Terms": null
-              }
+              },
+              "PromoCodeDescription": null
             }
           ],
           "BookingKey": "19-A"
@@ -589,9 +596,20 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/accommodation/pl
       "TotalResults": 2
     }
   ],
+  "PromoCodeStatus": "None",
   "SearchId": "aaaa1234-4321-1a2b-asdf-123456asdfgh",
   "ExpirationDate": "2017-09-15T09:15:46.0619347Z",
-  "TotalResults": 1
+  "TotalResults": 1,
+  "Operations": [
+    {
+      "System": "ExternalSystem",
+      "Account": "ExternalAccount",
+      "Action": "Search",
+      "Duration": "00:00:01",
+      "Success": true,
+      "ErrorMessage": null
+    }
+  ]
 }
 ```
 
@@ -636,11 +654,11 @@ curl -X POST
   "Start": "2018-11-09",
   "End": "2018-11-13",
   "Currency": "SEK"
-}' 'https://galaxy.citybreak.com/v5/api/availability/accommodation/placement/calendar'
+}' 'https://galaxy.citybreak.com/v5/api/availability/accommodation/calendar'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v5/api/availability/accommodation/placement/calendar",
+var r = fetch("https://galaxy.citybreak.com/v5/api/availability/accommodation/calendar",
 {
 	method: "POST",
 	headers: {
@@ -664,7 +682,6 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/accommodation/pl
   "Calendar": [
     {
       "Date": "2018-11-09T00:00:00",
-      "IsAvailable": true,
       "Groups": [
         {
           "Id": "ptg:987654",
@@ -697,7 +714,6 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/accommodation/pl
     },
     {
       "Date": "2018-11-10T00:00:00",
-      "IsAvailable": false,
       "Groups": [
         {
           "Id": "ptg:1234567",
@@ -711,29 +727,16 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/accommodation/pl
           ]
         }
       ]
-    },
-    {
-      "Date": "2018-11-11T00:00:00",
-      "IsAvailable": false,
-      "Groups": null
-    },
-    {
-      "Date": "2018-11-12T00:00:00",
-      "IsAvailable": false,
-      "Groups": null
-    },
-    {
-      "Date": "2018-11-13T00:00:00",
-      "IsAvailable": false,
-      "Groups": null
-    },
+    }
   ],
+  "PromoCodeStatus": "None",
   "CalendarContext": {
     "PointOfSalesId": 0,
     "Start": "2018-11-09T00:00:00",
     "End": "2018-11-13T00:00:00",
     "Currency": "SEK",
-    "ContentFilter": null
+    "ContentFilter": null,
+    "PromoCode": null
   },
   "Operations": [
     {
@@ -751,7 +754,7 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/accommodation/pl
 This is a **POST** request that requires a filter with some mandatory properties, such as the start and end dates of the calendar, the pointOfSalesId and the currency. 
 As in other availability queries, the filter can also include a content filter, such as only those hotels associated with a particular CBIS category or that have 24 hr reception. 
 Content possibilities can be found in the <a href="#content-filter">Content Section</a> You can see a bare minimum version of this search in the examples.
-The return of this call is a set of days with an IsAvailable boolean value indicating any availability at all and (if there is availability) an entity called Groups which shows accommodation options available on that day with the nested sub-products (think hotels with sub-products being hotel rooms) in the search period and the possible lengths of stay. This is useful for, say, quickly displaying days on which you can begin a stay and, once clicked, the minimum and maximum number of days you may stay within the search period.
+The return of this call is a set of availble dates (if there is availability) an entity called Groups which shows accommodation options available on that day with the nested sub-products (think hotels with sub-products being hotel rooms) in the search period and the possible lengths of stay. This is useful for, say, quickly displaying days on which you can begin a stay and, once clicked, the minimum and maximum number of days you may stay within the search period.
  
 ### HTTP Request
 
@@ -772,5 +775,6 @@ Accept-Language | The language culture (e.g en-us)
   "Currency": "string", //string - Mandatory e.g SEK or EUR
   "ContentFilter": { // Optional - See <a href="#content-filter">ContentFilter</a>
   },
+  "PromoCode": "string" // string - Optional
 }
 </code>

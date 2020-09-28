@@ -64,8 +64,8 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/activity",
       "Geos": false,
       "Pois": false,
       "Position": false
-    }
-}
+    },
+    "PromoCode": null
   },
   "ActivityGroups": [
     {
@@ -140,7 +140,7 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/activity",
                     "Description": null
                   },
                   "IncludedAddons": []
-                }
+                },
                 {
                   "BookKey": "124-T",
                   "AvailableCapacity": 3,
@@ -291,6 +291,7 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/activity",
       "TotalResults": 2
     }
   ],
+  "PromoCodeStatus": "None",
   "SearchId": "2121as12-1a2s-1s2a-2a1s-12as21sa12as",
   "ExpirationDate": "2019-01-29T15:15:46.2172447+01:00",
   "TotalResults": 2,
@@ -339,7 +340,8 @@ Accept-Language | The language culture (e.g en-us)
   "ContentFilter": { // Optional - See <a href="#content-filter">ContentFilter</a>
   },
   "OutputFilter": { // Optional -  See <a href="#output-filter">OutputFilter</a>
-  }
+  },
+  "PromoCode": "string" // string - Optional
 }
 </code>
 
@@ -474,9 +476,20 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/activity/get",
       "TotalResults": 1
     }
   ],
+  "PromoCodeStatus": "None",
   "SearchId": "2121as12-1a2s-1s2a-2a1s-12as21sa12as",
   "ExpirationDate": "2019-01-29T15:15:46.2172447+01:00",
-  "TotalResults": 2
+  "TotalResults": 2,
+  "Operations": [
+    {
+      "System": "ExternalSystem",
+      "Account": "ExternalAccount",
+      "Action": "Search",
+      "Duration": "00:00:01",
+      "Success": true,
+      "ErrorMessage": null
+    }
+  ]
 }
 ```
 
@@ -508,7 +521,7 @@ Accept-Language | The language culture (e.g en-us)
 }
 </code>
 
-## Calendar Search
+## Calendar Search By Day
 
 ```shell
 curl -X POST 
@@ -521,11 +534,11 @@ curl -X POST
   "Start": "2018-12-14",
   "End": "2018-12-16",
   "Currency": "DKK"
-}' 'https://galaxy.citybreak.com/v5/api/availability/activity/calendar'
+}' 'https://galaxy.citybreak.com/v5/api/availability/activity/calendar/byday'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v5/api/availability/activity/calendar",
+var r = fetch("https://galaxy.citybreak.com/v5/api/availability/activity/calendar/byday",
 {
 	method: "POST",
 	headers: {
@@ -574,6 +587,7 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/activity/calenda
       ]
     }
   ],
+  "PromoCodeStatus": "None",
   "CalendarContext": {
     "PointOfSalesId": 0,
     "Start": "2018-12-14T00:00:00",
@@ -585,7 +599,8 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/activity/calenda
           "cbis:1235"
           "cbis:1236"
         ]
-    }
+    },
+    "PromoCode": null
   },
   "Operations": [
     {
@@ -625,6 +640,7 @@ Accept-Language | The language culture (e.g en-us)
   "Currency": "string", //string - Mandatory e.g SEK or EUR
   "ContentFilter": { // Optional - See <a href="#content-filter">ContentFilter</a>
   },
+  "PromoCode": "string" // string - Optional
 }
 </code>
 
@@ -706,7 +722,8 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/activity/calenda
         "Geos": false,
         "Pois": false,
         "Position": false
-      }
+      },
+      "PromoCode": null
   },
   "ActivityGroups": [
     {
@@ -832,6 +849,7 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/activity/calenda
       "TotalResults": 1
     },
   ],
+  "PromoCodeStatus": "None",
   "TotalResults": 2,
   "Operations": [
     {
@@ -872,7 +890,8 @@ Accept-Language | The language culture (e.g en-us)
   "ContentFilter": { // Optional - See <a href="#content-filter">ContentFilter</a>
   },
   "OutputFilter": { // Optional -  See <a href="#output-filter">OutputFilter</a>
-  }
+  },
+  "PromoCode": "string" // string - Optional
 }
 </code>
 

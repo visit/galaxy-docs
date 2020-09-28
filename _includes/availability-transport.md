@@ -131,7 +131,8 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/transport",
         "DepartureDate": "2020-09-17T00:00:00",
         "ArrivalLocationCode": "18431"
       }
-    ]
+    ],
+    "PromoCode": null
   },
   "Locations": [
     {
@@ -605,6 +606,7 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/transport",
         "FareCode": "20GCF",
         "IncludedAddons": []
       },
+      "PromoCodeDescription": null,
       "HomeboundJourney": {
         "Duration": "01:05:00",
         "CabinCode": "",
@@ -650,6 +652,7 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/transport",
         "FareCode": "20GCF",
         "IncludedAddons": []
       },
+      "PromoCodeDescription": null,
       "HomeboundJourney": {
         "Duration": "01:05:00",
         "CabinCode": "",
@@ -695,6 +698,7 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/transport",
         "FareCode": "20GCF",
         "IncludedAddons": []
       },
+      "PromoCodeDescription": null,
       "HomeboundJourney": {
         "Duration": "01:05:00",
         "CabinCode": "",
@@ -740,6 +744,7 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/transport",
         "FareCode": "20GCF",
         "IncludedAddons": []
       },
+      "PromoCodeDescription": null,
       "HomeboundJourney": {
         "Duration": "01:05:00",
         "CabinCode": "",
@@ -785,6 +790,7 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/transport",
         "FareCode": "20GCF",
         "IncludedAddons": []
       },
+      "PromoCodeDescription": null,
       "HomeboundJourney": {
         "Duration": "01:05:00",
         "CabinCode": "",
@@ -830,6 +836,7 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/transport",
         "FareCode": "20GCF",
         "IncludedAddons": []
       },
+      "PromoCodeDescription": null,
       "HomeboundJourney": {
         "Duration": "01:05:00",
         "CabinCode": "",
@@ -851,6 +858,7 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/transport",
       }
     }
   ],
+  "PromoCodeStatus": "None",
   "SearchId": "119b7042-0fb6-4918-9775-5b8854734c51",
   "ExpirationDate": "2020-09-11T13:07:36.0248923+02:00",
   "TotalResults": 6,
@@ -911,7 +919,8 @@ Accept-Language | The language culture (e.g en-us)
       "DepartureDate": "2020-07-21T09:45:20.179Z",  //DateTime - Mandatory
       "ArrivalLocationCode": "string"   //string - Mandatory
     }
-  ]
+  ],
+  "PromoCode": "string" // string - Optional
 }
 </code>
 
@@ -1199,6 +1208,7 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/transport/get",
           }
         ]
       },
+      "PromoCodeDescription": null,
       "HomeboundJourney": null
     },
     {
@@ -1232,6 +1242,7 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/transport/get",
           }
         ]
       },
+      "PromoCodeDescription": null,
       "HomeboundJourney": null
     },
     {
@@ -1241,6 +1252,7 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/transport/get",
         "Currency": "NOK"
       },
       "OutboundJourney": null,
+      "PromoCodeDescription": null,
       "HomeboundJourney": {
         "Duration": "16:45:00",
         "CabinCode": "B2",
@@ -1274,6 +1286,7 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/transport/get",
         "Currency": "NOK"
       },
       "OutboundJourney": null,
+      "PromoCodeDescription": null,
       "HomeboundJourney": {
         "Duration": "16:45:00",
         "CabinCode": "BD",
@@ -1301,6 +1314,7 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/transport/get",
       }
     }
   ],
+  "PromoCodeStatus": "None",
   "SearchId": "c2b2e3c4-53e0-41ff-8012-8c9da7fa053a",
   "ExpirationDate": "2020-07-22T11:30:18.205109+02:00",
   "TotalResults": 23,
@@ -1342,7 +1356,7 @@ Accept-Language | The language culture (e.g en-us)
   "SearchId":"string"
 }
 
-## Calendar Search
+## Calendar Search By Day
 
 ```shell
 curl -X POST 
@@ -1355,11 +1369,11 @@ curl -X POST
   "Start": "2020-10-01",
   "End": "2020-10-07",
   "Currency": "NOK"
-}' 'https://galaxy.citybreak.com/v5/api/availability/transport/calendar'
+}' 'https://galaxy.citybreak.com/v5/api/availability/transport/calendar/byday'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v5/api/availability/transport/calendar",
+var r = fetch("https://galaxy.citybreak.com/v5/api/availability/transport/calendar/byday",
 {
 	method: "POST",
 	headers: {
@@ -1529,12 +1543,14 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/transport/calend
       ]
     },
   ],
+  "PromoCodeStatus": "None",
   "CalendarContext": {
     "PointOfSalesId": 13723,
     "Start": "2020-10-01T00:00:00",
     "End": "2020-10-07T00:00:00",
     "Currency": "NOK",
-    "ContentFilter": null
+    "ContentFilter": null,
+    "PromoCode": null
   },
   "Operations": [
     {
@@ -1590,6 +1606,7 @@ Accept-Language | The language culture (e.g en-us)
   "Currency": "string", //string - Mandatory e.g SEK or EUR
   "ContentFilter": { // Optional - See <a href="#content-filter">ContentFilter</a>
   },
+  "PromoCode": "string" // string - Optional
 }
 </code>
 
@@ -1648,7 +1665,8 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/transport/calend
     "Start": "2020-10-01T00:00:00",
     "End": "2020-10-07T00:00:00",
     "Currency": "NOK",
-    "ContentFilter": null
+    "ContentFilter": null,
+    "PromoCode": null
   },
   "TransportActivityCalendars": [
     {
@@ -2279,6 +2297,7 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/transport/calend
       ]
     }
   ],
+  "PromoCodeStatus": "None",
   "TotalResults": 2,
   "Operations": [
     {
@@ -2333,6 +2352,7 @@ Accept-Language | The language culture (e.g en-us)
   "End": "2018-12-16", //DateTime - Mandatory, conforms to ISO 8601
   "Currency": "string", //string - Mandatory e.g SEK or EUR
   "ContentFilter": { // Optional - See <a href="#content-filter">ContentFilter</a>
-  }
+  },
+  "PromoCode": "string" // string - Optional
 }
 </code>
