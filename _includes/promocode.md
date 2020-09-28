@@ -1,6 +1,7 @@
 # Promo code
 
-**Promo code** call validates entered promotion code for specified `PointOfSalesId`. Result can be filtered based on specific `ProductId`
+**Promo code** call validates entered promotion code for specified `PointOfSalesId`. 
+In case Point of Sales is connected to more than one external account it is advised to send `ProductId` to avoid unambiguously checked promo codes.
 
 ## Promo code
 
@@ -13,7 +14,8 @@ curl -X POST
    "PointOfSalesId": 13633,
    "PromoCodeInfo": [
      {
-       "PromoCode": "KOMTILBAKE2020"
+       "PromoCode": "KOMTILBAKE2020",
+       "ProductId": "cbis:1614826"
      }
    ]
  }' 'https://galaxy.citybreak.com/v5/api/promocode/validate'
@@ -31,7 +33,8 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/promocode/validate",
 	   "PointOfSalesId": 13633,
 	   "PromoCodeInfo": [
 	     {
-	       "PromoCode": "KOMTILBAKE2020"
+	       "PromoCode": "KOMTILBAKE2020",
+         "ProductId": "cbis:1614826"
 	     }
 	   ]
 	})  
@@ -83,7 +86,8 @@ request | the POST request
   "PromoCodeInfo": [
       {
           "PromoCode": "string", //Mandatory - promotion code
-          "ProductId": "string" //Optional - product filtering 
+          //If Point of Sales is connected to multiple external accounts, user should specify this field to avoid unambiguously checked promo codes
+          "ProductId": "string" //Optional - product filtering
       }
   ]
 }

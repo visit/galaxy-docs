@@ -18,6 +18,8 @@
 
 - <a href="#addon-products">`basket/addon/{basketId}`</a> and <a href="#addon-products">`basket/addon/{basketId}/{bookItemId}`</a> available addons are further simplified and now provides you with a total price, `MinimumNumberOfUnits` and `MaximumNumberOfUnits`. The integer fields `AddonId` and `PriceGroupId` are replaced by a string field `AddonId`. Addons DELETE verb is removed, you can remove addons by posting zero to `Quantity`.
 
+- `availability/accommodation/placement`, `availability/accommodation/placement/get`, `availability/accommodation` and `availability/accommodation/get` now include list of mandatory addons that have been renamed from IncludedSubProducts to IncludedAddons.
+
 - `reservation/cancel/info` was removed. Use the `LastCancellation` field from <a href="#get-latest-reservation-version">`reservation/latest`</a> instead.
 
 - `basket/commit/async` has moved to <a href="#commit-basket">`basket/commit`</a> and replaced the previous synchronous commit call, poll <a href="#commit-status">`basket/commit/status/{id}`</a> to check status.
