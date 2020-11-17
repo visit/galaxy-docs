@@ -21,7 +21,6 @@ curl -X POST
   "PointOfSalesId": 13723,
   "Currency": "NOK",
   "PageSize": 50,
-  "Page": 0,
   "ContentFilter": {
 	  "Ids": [
 		"cbis:822973"
@@ -61,7 +60,6 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/transport",
   "PointOfSalesId": 13723,
   "Currency": "NOK",
   "PageSize": 50,
-  "Page": 0,
   "ContentFilter": {
 	  "Ids": [
 		"cbis:822973"
@@ -894,7 +892,6 @@ Accept-Language | The language culture (e.g en-us)
   "PointOfSalesId": 0,  //int - Mandatory 
   "Currency": "string", //string - Mandatory e.g SEK or EUR
   "PageSize": 0,    //int Mandatory
-  "Page": 0,      //int Mandatory
   "Sort": { // Optional - defaults to Price Ascending
     "Order": "Asc", //string - Mandatory if parent included
     "Field": "string"   //string - Mandatory if parent included - Price, Name, Random
@@ -933,7 +930,7 @@ curl -X POST
 --header 'Accept-Language: en-us' 
 --header 'apiKey: APIKEY132456789EWOK' 
 -d '{
-  "Page": 1,
+  "Page": 0,
   "PageSize": 20,
   "SearchId": "c2b2e3c4-53e0-41ff-8012-8c9da7fa053a"
 }' 'https://galaxy.citybreak.com/v5/api/availability/transport/get'
