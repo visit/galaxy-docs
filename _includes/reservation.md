@@ -305,3 +305,4 @@ This will cancel a reservation. Similarly to committing a Basket, it returns an 
 Parameter | Description
 --------- | -----------
 BookingCode | The code representing the reservation returned from <a href="#commit-status">Commit Status</a> 
+Accept-Language |	The language culture (e.g en-us)
