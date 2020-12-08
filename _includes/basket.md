@@ -972,7 +972,7 @@ The return value is a job number with which you can check the status of commit
 Parameter | Description
 --------- | -----------
 basketId | The Id of the basket.
-
+Accept-Language | The language culture (e.g en-us)
 
 
 
