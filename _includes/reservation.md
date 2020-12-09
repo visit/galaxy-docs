@@ -278,6 +278,7 @@ BookingCode | The code representing the reservation returned from <a href="#comm
 curl -X POST 
 --header 'Accept: application/json' 
 --header 'apiKey: APIKEY132456789EWOK' 
+--header 'Accept-Language: en-US' 
 'https://galaxy.citybreak.com/v5/api/reservation/cancel/{bookingCode}'
 ```
 
@@ -288,6 +289,7 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/reservation/cancel/{bookingCo
   headers: {
     "ApiKey": "APIKEY132456789EWOK",
     "Accept": "application/json",
+    "Accept-Language": "en-US"
   }  
 });
 ```
