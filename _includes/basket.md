@@ -70,7 +70,6 @@ curl -X POST
   "PointOfSalesId": 1234570,
   "Currency": "SEK",
   "Online3Session": {
-    "Id": "abcdefg12345678,
     "OnlineId": 123456789
   }
 }' 'https://galaxy.citybreak.com/v5/api/basket/create'
@@ -89,7 +88,6 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/basket/create",
   "PointOfSalesId": 1234570,
   "Currency": "SEK",
   "Online3Session": {
-    "Id": "abcdefg12345678,
     "OnlineId": 123456789
 	}
   })
@@ -105,7 +103,9 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/basket/create",
 }
 ```
 
-This alternative way to create a basket is used when you intend to link the customer basket to a Citybreak Online3 guide for customer details & payments
+This alternative way to create a basket is used when you intend to link the customer basket to a Citybreak Online3 guide for customer details & payments.
+
+By supplying the Online3 identifier, you'll be able to transfer the Galaxy basket to an Online3 session using the `HybridCheckoutUrl` present in the <a href="#get-basket">Get Basket</a> call. HTTP Post the user's browser to the endpoint and it will redirect the user to the Online3 basket page.
 
 ### HTTP Request
 
@@ -117,7 +117,6 @@ Parameter | Description
 --------- | -----------
 PointOfSalesId | The point of sales identifier.
 Currency | The currency of the basket.
-Online3Session.Id | The user session identifier.
 Online3Session.OnlineId | The online3 identifier.
 
 
@@ -351,7 +350,8 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/basket/{basketId}",
   },
   "PointOfSalesId": 17692,
   "AutoCancellationDate": "9999-12-31T23:59:59.9999999",
-  "CancellationInsurrances": []
+  "CancellationInsurrances": [],
+  "HybridCheckoutUrl": "https://book.youronlineguide.com/en/basket/galaxy/688fc85e-f57f-447d-8ceb-2b548455735f"
 }
 ```
 
@@ -400,6 +400,8 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/basket/findByOnline3Session?p
 ```json
 48869100
 ```
+
+<aside class="warning">This method is deprecated, please refer to the simplified <a href="#create-basket-for-hybrid-checkout-in-citybreak-online3">hybrid checkout</a> flow instead</aside>
 
 In Online3 hybrid checkout setups, this locates an existing basket by an Online3 session id. Returns the basket id, if found.
 

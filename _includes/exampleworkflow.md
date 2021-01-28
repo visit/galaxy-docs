@@ -144,7 +144,9 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/basket/create",
 }
 ```
 
-For all booking operations you will need a <a href="#create-basket">Shopping Basket</a>. This entity will be the reference for all information related to a booking, right up until the time the customer decides to commit to the booking and has provided all the necessary information. It is therefore very important to hold a reference to the `BasketId`, in this case - **87654321**
+For all booking operations you will need a <a href="#create-basket">Shopping Basket</a>. This entity will be the reference for all information related to a booking, right up until the time the customer decides to commit to the booking and has provided all the necessary information. It is therefore very important to hold a reference to the `BasketId`, in this case - **87654321**.
+
+You can optionally provide an Online3 Id to use the <a href="#create-basket-for-hybrid-checkout-in-citybreak-online3">hybrid checkout</a> flow, which means the Galaxy basket and the user can be redirected to your existing Online3 checkout & payment flow.
 
 ### HTTP Request
 
@@ -562,6 +564,8 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/basket/customer/87654321",
 > Example of response: no content
 
 To commit a Basket we will need to <a href="#update-customer-information">provide Customer Information</a> using our `BasketId`: 87654321. In the example, we have created Ms. Test User and will POST her data which will attach it to the basket. You will only receive a status code of 204 to indicate success. The basket now has the bare minimum required to commit it.
+
+If you'd rather redirect the user to your existing Online3 checkout & payment flow, this is where you would redirect the user to the <a href="#create-basket-for-hybrid-checkout-in-citybreak-online3">hybrid checkout</a>.
 
 ### HTTP Request
 
