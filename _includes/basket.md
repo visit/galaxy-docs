@@ -795,7 +795,8 @@ curl -X POST
      "City": "Gothenburg",
      "CountryCode": "SE"
    },
-   "Email": "testuser%40visit.com",
+   "Email": "testuser@visit.com",
+   "SendEmailConfirmation": true,
    "PhoneMobile": { 
      "CountryCode": "46",
      "AreaCode": "07",
@@ -826,6 +827,7 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/basket/customer/{basketId}",
       "CountryCode": "SE"
     },
     "Email": "testuser@visit.com",
+    "SendEmailConfirmation": true,
     "PhoneMobile": {
       "CountryCode": "46",
       "AreaCode": "07",
@@ -852,7 +854,7 @@ To commit a Basket you will need to provide customer information. This is fairly
 
 Parameter | Description
 --------- | -----------
-basketId | The Id of the basket.
+basketId  | The Id of the basket.
 
 
 
