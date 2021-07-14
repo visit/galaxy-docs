@@ -1052,13 +1052,13 @@ Gets the `ResvversionId` (reservation version id) and `BookingCode`, important f
 
 ### HTTP Request
 
-`GET https://galaxy.citybreak.com/v5/api/basket/commit/status`
+`GET https://galaxy.citybreak.com/v5/api/basket/commit/status/id`
 
 ### Query Parameters
 
 Parameter | Description
 --------- | -----------
-commitJobId | The Id of the commit job returned from <a href="#commit-basket">Commit Basket</a> 
+id | The Id of the commit job returned from <a href="#commit-basket">Commit Basket</a> 
 
 
 
