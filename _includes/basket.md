@@ -844,7 +844,8 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/basket/customer/{basketId}",
 no content
 ```
 
-To commit a Basket you will need to provide customer information. This is fairly standard: name, address, email. phone, etc. for the person conducting the booking (not necessarily the Guests)
+To commit a Basket you will need to provide customer information. This is fairly standard: name, address, email. phone, etc. for the person conducting the booking (not necessarily the Guests).
+The SendEmailConfirmation field is used to trigger whether to send an email with the changes to the customer.
 
 ### HTTP Request
 
