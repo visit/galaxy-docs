@@ -13,7 +13,8 @@ curl -X POST
 --header 'Accept: application/json' 
 --header 'Accept-Language: en-us' 
 --header 'apiKey: APIKEY132456789EWOK' 
--d '{
+-d 
+'{
   "PointOfSalesId": 13723,
   "PageSize": 50,
   "Page": 0,
@@ -22,7 +23,8 @@ curl -X POST
       "cbis:1614826"
     ]
   }
-}' 'https://galaxy.citybreak.com/v5/api/content/product'
+}' 
+'https://galaxy.citybreak.com/v5/api/content/product'
 ```
 
 ```javascript
