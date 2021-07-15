@@ -355,8 +355,8 @@ Accept-Language | The language culture (e.g en-us)
 <code class="center-column">
 {
   "PointOfSalesId": 0,  => int - Mandatory 
-  "PageSize": 0,        => int Mandatory
-  "Page": 0,            => int Mandatory
+  "PageSize": 0,        => int - Mandatory
+  "Page": 0,            => int - Mandatory
   "ProductTypes": [     => Optional - list of possible product types to Search.
     "Accommodation"     => Allowed values: "Accommodation", "Activity" and "Transport"
   ],
