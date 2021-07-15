@@ -47,7 +47,7 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/content/product",
 });
 ```
 
-Example of response:
+> Example of response:
 
 ```json
 {
