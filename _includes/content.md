@@ -372,11 +372,11 @@ curl -X GET
 --header 'apiKey: APIKEY132456789EWOK'  
 --header 'Accept: application/json' 
 --header 'Accept-Language: en-us' 
-'https://galaxy.citybreak.com/v5/api/content/product'
+'https://galaxy.citybreak.com/v5/api/content/attributes/{PointOfSalesId}'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v5/api/content/product",
+var r = fetch("https://galaxy.citybreak.com/v5/api/content/attributes/{PointOfSalesId}",
 {
   headers: {
     "ApiKey": "APIKEY132456789EWOK",
