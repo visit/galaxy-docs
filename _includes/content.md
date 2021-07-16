@@ -15,12 +15,12 @@ curl -X POST
 --header 'apiKey: APIKEY132456789EWOK' 
 -d 
 '{
-  "PointOfSalesId": 13723,
+  "PointOfSalesId": 16697,
   "PageSize": 50,
   "Page": 0,
   "ContentFilter": {
     "Ids": [
-      "cbis:1614826"
+      "cbis:1714422"
     ]
   }
 }' 
