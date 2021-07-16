@@ -15,12 +15,12 @@ curl -X POST
 --header 'apiKey: APIKEY132456789EWOK' 
 -d 
 '{
-  "PointOfSalesId": 13723,
+  "PointOfSalesId": 16697,
   "PageSize": 50,
   "Page": 0,
   "ContentFilter": {
     "Ids": [
-      "cbis:1614826"
+      "cbis:1714422"
     ]
   }
 }' 
@@ -37,12 +37,12 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/content/product",
 		 "Accept-Language": "en-US"
 	},
 	body: JSON.Stringify({
-    "PointOfSalesId": 13723,
+    "PointOfSalesId": 16697,
     "PageSize": 50,
     "Page": 0,
     "ContentFilter": {
       "Ids": [
-        "cbis:1614826"
+        "cbis:1714422"
       ]
     }
   })  
@@ -58,280 +58,505 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/content/product",
   "TotalResults": 1,
   "Items": [
     {
-      "ProductType": "Transport",
-      "Id": "cbis:1614826",
-      "Images": [
-        {
-          "Uri": "//images.citybreak.com/image.aspx?ImageId=4019784",
-          "IsMain": false,
-          "Name": null,
-          "Copyright": null,
-          "Description": null
-        },
-        {
-          "Uri": "//images.citybreak.com/image.aspx?ImageId=4287044",
-          "IsMain": true,
-          "Name": null,
-          "Copyright": null,
-          "Description": null
+      "Id": "cbis:1714422",
+      "Name": "Scandic Hafjell",
+      "ProductType": "Accommodation",
+      "Content": {
+        "Id": "cbis:1714422",
+        "Images": [
+          {
+            "Uri": "//images.citybreak.com/image.aspx?ImageId=5860262",
+            "IsMain": false,
+            "Name": null,
+            "Copyright": null,
+            "Description": null
+          },
+          {
+            "Uri": "//images.citybreak.com/image.aspx?ImageId=5860263",
+            "IsMain": false,
+            "Name": null,
+            "Copyright": null,
+            "Description": null
+          },
+          {
+            "Uri": "//images.citybreak.com/image.aspx?ImageId=5860264",
+            "IsMain": false,
+            "Name": null,
+            "Copyright": null,
+            "Description": null
+          },
+          {
+            "Uri": "//images.citybreak.com/image.aspx?ImageId=5860265",
+            "IsMain": true,
+            "Name": null,
+            "Copyright": null,
+            "Description": null
+          },
+          {
+            "Uri": "//images.citybreak.com/image.aspx?ImageId=5860268",
+            "IsMain": false,
+            "Name": null,
+            "Copyright": null,
+            "Description": null
+          },
+          {
+            "Uri": "//images.citybreak.com/image.aspx?ImageId=5860269",
+            "IsMain": false,
+            "Name": null,
+            "Copyright": null,
+            "Description": null
+          },
+          {
+            "Uri": "//images.citybreak.com/image.aspx?ImageId=5860270",
+            "IsMain": false,
+            "Name": null,
+            "Copyright": null,
+            "Description": null
+          },
+          {
+            "Uri": "//images.citybreak.com/image.aspx?ImageId=5860271",
+            "IsMain": false,
+            "Name": null,
+            "Copyright": null,
+            "Description": null
+          },
+          {
+            "Uri": "//images.citybreak.com/image.aspx?ImageId=5860272",
+            "IsMain": false,
+            "Name": null,
+            "Copyright": null,
+            "Description": null
+          },
+          {
+            "Uri": "//images.citybreak.com/image.aspx?ImageId=5860273",
+            "IsMain": false,
+            "Name": null,
+            "Copyright": null,
+            "Description": null
+          },
+          {
+            "Uri": "//images.citybreak.com/image.aspx?ImageId=5860274",
+            "IsMain": false,
+            "Name": null,
+            "Copyright": null,
+            "Description": null
+          },
+          {
+            "Uri": "//images.citybreak.com/image.aspx?ImageId=6661261",
+            "IsMain": false,
+            "Name": null,
+            "Copyright": null,
+            "Description": null
+          },
+          {
+            "Uri": "//images.citybreak.com/image.aspx?ImageId=6661262",
+            "IsMain": false,
+            "Name": null,
+            "Copyright": null,
+            "Description": null
+          },
+          {
+            "Uri": "//images.citybreak.com/image.aspx?ImageId=6661263",
+            "IsMain": false,
+            "Name": null,
+            "Copyright": null,
+            "Description": null
+          }
+        ],
+        "Information": [
+          {
+            "Id": 122,
+            "Name": "Country (address)",
+            "Value": "162"
+          },
+          {
+            "Id": 130,
+            "Name": "Number of rooms",
+            "Value": "210"
+          },
+          {
+            "Id": 131,
+            "Name": "Number of floors",
+            "Value": "3"
+          },
+          {
+            "Id": 132,
+            "Name": "Number of conference rooms",
+            "Value": "12"
+          },
+          {
+            "Id": 133,
+            "Name": "Number of bars",
+            "Value": "1"
+          },
+          {
+            "Id": 151,
+            "Name": "Classification",
+            "Value": "4"
+          },
+          {
+            "Id": 910,
+            "Name": "UrlName",
+            "Value": "Scandic_Hafjell_1714422"
+          },
+          {
+            "Id": 117,
+            "Name": "Street address 1",
+            "Value": "Hunderveien 1 "
+          },
+          {
+            "Id": 120,
+            "Name": "Postal code",
+            "Value": "2636"
+          },
+          {
+            "Id": 121,
+            "Name": "City (address)",
+            "Value": "Øyer"
+          },
+          {
+            "Id": 134,
+            "Name": "Built in year",
+            "Value": "1991"
+          },
+          {
+            "Id": 135,
+            "Name": "Last renovated year",
+            "Value": "2017"
+          },
+          {
+            "Id": 142,
+            "Name": "Phone number (reception)",
+            "Value": "61277777"
+          },
+          {
+            "Id": 144,
+            "Name": "Country code (reception)",
+            "Value": "47"
+          },
+          {
+            "Id": 99,
+            "Name": "Name",
+            "Value": "Scandic Hafjell"
+          },
+          {
+            "Id": 101,
+            "Name": "Introduction",
+            "Value": "Hafjell is the perfect starting point for activities and leisure."
+          },
+          {
+            "Id": 102,
+            "Name": "Description",
+            "Value": "The perfect meeting point for leisure and activities is just 2,5 hours from Oslo, with a central location in Hafjell and proximity to exciting activities. The hotel has many family rooms, and great facilities for entertaining young and old.\r\n\r\nThe hotel offers a barception and 24-hour shop throughout the year, with a selection of light meals, snacks and beverages. With an indoor pool, large playroom, sauna and modern fitness room, we have something for everyone.\r\n \r\nHafjell is the perfect starting point for activities and leisure. Our hotel is located only 700 metres from one of Norway’s largest alpine skiing facilities, Hafjell alpinsenter, and only 15 minutes from Lillehammer. This makes us the natural choice if you're looking for an active and exciting holiday. Hunderfossen family park, the bobsleigh and luge track, and great hiking trails make Hafjell a great destination, both in summer and winter."
+          },
+          {
+            "Id": 103,
+            "Name": "Directions",
+            "Value": "Scandic Hafjell is located 2.5 hours from Oslo, and only 15 minutes north of Lillehammer. The hotel sits next to the highway E6, only 700 meters from Hafjell Alpine Centre. \r\n\r\nIf you wish to use public transport, we recommend taking the train to Lillehammer, and bus line 242 to Hafjell from Lillehammer. \r\nPlease see www.entur.no and www.innlandstrafikk.no for information and departure times."
+          },
+          {
+            "Id": 100036,
+            "Name": "Disability friendly",
+            "Value": "True"
+          },
+          {
+            "Id": 100037,
+            "Name": "Pets allowed",
+            "Value": "False"
+          },
+          {
+            "Id": 100038,
+            "Name": "Elevator",
+            "Value": "True"
+          },
+          {
+            "Id": 100039,
+            "Name": "Parking nearby",
+            "Value": "True"
+          },
+          {
+            "Id": 100040,
+            "Name": "Indoor pool",
+            "Value": "True"
+          },
+          {
+            "Id": 100043,
+            "Name": "Sauna",
+            "Value": "True"
+          },
+          {
+            "Id": 100053,
+            "Name": "Washing machine",
+            "Value": "False"
+          },
+          {
+            "Id": 100059,
+            "Name": "TV",
+            "Value": "False"
+          },
+          {
+            "Id": 100062,
+            "Name": "Refrigerator",
+            "Value": "False"
+          },
+          {
+            "Id": 100063,
+            "Name": "Microwave",
+            "Value": "False"
+          },
+          {
+            "Id": 100071,
+            "Name": "Fridge ",
+            "Value": "False"
+          },
+          {
+            "Id": 100074,
+            "Name": "Dishwasher",
+            "Value": "False"
+          },
+          {
+            "Id": 100086,
+            "Name": "Children's playground",
+            "Value": "True"
+          },
+          {
+            "Id": 100187,
+            "Name": "Non smoking rooms",
+            "Value": "True"
+          },
+          {
+            "Id": 100188,
+            "Name": "Non smoking",
+            "Value": "False"
+          },
+          {
+            "Id": 100208,
+            "Name": "Allergy friendly room",
+            "Value": "True"
+          },
+          {
+            "Id": 100237,
+            "Name": "Jacuzzi",
+            "Value": "False"
+          },
+          {
+            "Id": 100502,
+            "Name": "Alpint",
+            "Value": "True"
+          },
+          {
+            "Id": 100540,
+            "Name": "Billiard",
+            "Value": "True"
+          },
+          {
+            "Id": 100545,
+            "Name": "Golf",
+            "Value": "True"
+          },
+          {
+            "Id": 100592,
+            "Name": "Facilities for people with allergies",
+            "Value": "False"
+          },
+          {
+            "Id": 100599,
+            "Name": "24 hours check-in",
+            "Value": "True"
+          },
+          {
+            "Id": 100606,
+            "Name": "Breakfast",
+            "Value": "True"
+          },
+          {
+            "Id": 100624,
+            "Name": "Air condition",
+            "Value": "True"
+          },
+          {
+            "Id": 100629,
+            "Name": "Terrace",
+            "Value": "False"
+          },
+          {
+            "Id": 100635,
+            "Name": "Fireplace",
+            "Value": "False"
+          },
+          {
+            "Id": 100752,
+            "Name": "Luggage room",
+            "Value": "True"
+          },
+          {
+            "Id": 100767,
+            "Name": "Mountain hiking",
+            "Value": "True"
+          },
+          {
+            "Id": 100826,
+            "Name": "Close to mountains",
+            "Value": "True"
+          },
+          {
+            "Id": 100899,
+            "Name": "Skibod",
+            "Value": "True"
+          },
+          {
+            "Id": 100928,
+            "Name": "Games room",
+            "Value": "True"
+          },
+          {
+            "Id": 100929,
+            "Name": "Ski in/Ski out",
+            "Value": "False"
+          },
+          {
+            "Id": 101383,
+            "Name": "Indoor parking",
+            "Value": "False"
+          },
+          {
+            "Id": 101395,
+            "Name": "Outdoor parking",
+            "Value": "False"
+          },
+          {
+            "Id": 101598,
+            "Name": "All public areas non-smoking",
+            "Value": "True"
+          },
+          {
+            "Id": 101830,
+            "Name": "Tumble dryer",
+            "Value": "False"
+          },
+          {
+            "Id": 101845,
+            "Name": "WIFI",
+            "Value": "True"
+          },
+          {
+            "Id": 102045,
+            "Name": "Close to center",
+            "Value": "True"
+          },
+          {
+            "Id": 102124,
+            "Name": "Hiking",
+            "Value": "False"
+          },
+          {
+            "Id": 102267,
+            "Name": "Snackbar",
+            "Value": "True"
+          },
+          {
+            "Id": 102272,
+            "Name": "Cycling",
+            "Value": "True"
+          },
+          {
+            "Id": 102276,
+            "Name": "Resort",
+            "Value": "True"
+          },
+          {
+            "Id": 102711,
+            "Name": "Downhill biking",
+            "Value": "False"
+          },
+          {
+            "Id": 102712,
+            "Name": "ski in/ ski out through transport slope",
+            "Value": "False"
+          }
+        ],
+        "Categories": [
+          {
+            "Id": 32039,
+            "Path": "ALPINCO Hafjell och Kvitfjell"
+          },
+          {
+            "Id": 32042,
+            "Path": "Accommodation"
+          },
+          {
+            "Id": 32062,
+            "Path": "Hotels"
+          }
+        ],
+        "Geos": [
+          {
+            "Id": 105257,
+            "Path": "[ALPINCO Hafjell och Kvitfjell]"
+          },
+          {
+            "Id": 105629,
+            "Path": "Hafjell & Kvitfjell"
+          },
+          {
+            "Id": 105260,
+            "Path": "Hafjell"
+          },
+          {
+            "Id": 105257,
+            "Path": "[ALPINCO Hafjell och Kvitfjell]"
+          },
+          {
+            "Id": 105629,
+            "Path": "Hafjell & Kvitfjell"
+          },
+          {
+            "Id": 105525,
+            "Path": "Lillehammer"
+          },
+          {
+            "Id": 105526,
+            "Path": "Øyer"
+          }
+        ],
+        "Pois": [],
+        "Position": {
+          "Latitude": 61.2417171,
+          "Longitude": 10.4379985
         }
-      ],
-      "Information": [
+      },
+      "Children": [
         {
-          "Id": 297,
-          "Name": "Zoom level",
-          "Value": "17"
-        },
-        {
-          "Id": 910,
-          "Name": "UrlName",
-          "Value": "Nryfjord_Sightseeing_B2B__1614826"
-        },
-        {
-          "Id": 145,
-          "Name": "Phone number (Booking)",
-          "Value": "57631400"
-        },
-        {
-          "Id": 147,
-          "Name": "Country code (Booking)",
-          "Value": "+47"
-        },
-        {
-          "Id": 99,
-          "Name": "Name",
-          "Value": "Nærøyfjord Sightseeing B2B "
-        },
-        {
-          "Id": 101,
-          "Name": "Introduction",
-          "Value": "Experience the Aurland fjord and Nærøy fjord up close. We travel from Flåm to   Gudvangen and make sure you get back to the starting-point when you desire. "
-        },
-        {
-          "Id": 102,
-          "Name": "Description",
-          "Value": "Experience the Aurlandsfjord and Nærøyfjord, which is on the UNESCO world heritage   list up close. \r\nThe route between Flåm and Gudvangen is one of the most popular fjord   areas in all of Norway! The spectacular Nærøyfjord is surrounding by steep mountains (up to   1400m high) and beautiful waterfalls. \r\n\r\nEnjoy the silence and nature up close from  one  of our sightseeing boats. \r\n\r\nChoose between many departures and assemble your  journey as  you please.  For our disabeld guests we recommend our Premium vessels with  universal design. \r\n\r\nOn board our boats we serve refreshments and light meals. "
-        },
-        {
-          "Id": 402,
-          "Name": "Currency",
-          "Value": "NOK"
-        },
-        {
-          "Id": 415,
-          "Name": "Price description",
-          "Value": "per person"
-        },
-        {
-          "Id": 902,
-          "Name": "Duration",
-          "Value": "3-4 hours"
-        },
-        {
-          "Id": 710,
-          "Name": "Departure from",
-          "Value": "Flåm & Gudvangen"
-        },
-        {
-          "Id": 100017,
-          "Name": "Summer",
-          "Value": "False"
-        },
-        {
-          "Id": 100588,
-          "Name": "Winter",
-          "Value": "False"
-        },
-        {
-          "Id": 100738,
-          "Name": "Fall",
-          "Value": "False"
-        },
-        {
-          "Id": 100739,
-          "Name": "Spring",
-          "Value": "False"
-        },
-        {
-          "Id": 100939,
-          "Name": "Monday",
-          "Value": "False"
-        },
-        {
-          "Id": 100587,
-          "Name": "All year",
-          "Value": "True"
-        },
-        {
-          "Id": 102391,
-          "Name": "No (bicycles not allowed)",
-          "Value": "False"
-        },
-        {
-          "Id": 100940,
-          "Name": "Tuesday",
-          "Value": "False"
-        },
-        {
-          "Id": 100941,
-          "Name": "Wednesday",
-          "Value": "False"
-        },
-        {
-          "Id": 100942,
-          "Name": "Thursday",
-          "Value": "False"
-        },
-        {
-          "Id": 100943,
-          "Name": "Friday",
-          "Value": "False"
-        },
-        {
-          "Id": 100944,
-          "Name": "Saturday",
-          "Value": "False"
-        },
-        {
-          "Id": 100945,
-          "Name": "Sunday",
-          "Value": "False"
-        },
-        {
-          "Id": 102390,
-          "Name": "All days",
-          "Value": "True"
-        },
-        {
-          "Id": 102392,
-          "Name": "Yes (bicycles allowed)",
-          "Value": "False"
-        },
-        {
-          "Id": 102393,
-          "Name": "Everyone",
-          "Value": "True"
-        },
-        {
-          "Id": 102394,
-          "Name": "Family",
-          "Value": "False"
-        },
-        {
-          "Id": 102395,
-          "Name": "The adventurous",
-          "Value": "False"
-        },
-        {
-          "Id": 100847,
-          "Name": "January",
-          "Value": "True"
-        },
-        {
-          "Id": 100848,
-          "Name": "February",
-          "Value": "True"
-        },
-        {
-          "Id": 100849,
-          "Name": "March",
-          "Value": "True"
-        },
-        {
-          "Id": 100850,
-          "Name": "April",
-          "Value": "True"
-        },
-        {
-          "Id": 100851,
-          "Name": "May",
-          "Value": "True"
-        },
-        {
-          "Id": 100852,
-          "Name": "June",
-          "Value": "True"
-        },
-        {
-          "Id": 100853,
-          "Name": "July",
-          "Value": "True"
-        },
-        {
-          "Id": 100854,
-          "Name": "August",
-          "Value": "True"
-        },
-        {
-          "Id": 100855,
-          "Name": "September",
-          "Value": "True"
-        },
-        {
-          "Id": 100856,
-          "Name": "October",
-          "Value": "True"
-        },
-        {
-          "Id": 100857,
-          "Name": "November",
-          "Value": "True"
-        },
-        {
-          "Id": 100858,
-          "Name": "December",
-          "Value": "True"
+          "Id": "pt:520359",
+          "Name": "Scandic Hafjell BookVisit",
+          "ProductType": "Accommodation",
+          "Content": {
+            "Id": null,
+            "Images": [],
+            "Information": [
+              {
+                "Id": 99,
+                "Name": "Name",
+                "Value": "Scandic Hafjell BookVisit"
+              },
+              {
+                "Id": 101,
+                "Name": "Introduction",
+                "Value": null
+              },
+              {
+                "Id": 102,
+                "Name": "Description",
+                "Value": null
+              }
+            ],
+            "Categories": null,
+            "Geos": null,
+            "Pois": null,
+            "Position": null
+          }
         }
-      ],
-      "Categories": [
-        {
-          "Id": 26397,
-          "Path": "Aurland (Visit Flåm)"
-        },
-        {
-          "Id": 26401,
-          "Path": "To do"
-        },
-        {
-          "Id": 26402,
-          "Path": "Activities"
-        },
-        {
-          "Id": 26403,
-          "Path": "Fjord Cruise"
-        },
-        {
-          "Id": 26397,
-          "Path": "Aurland (Visit Flåm)"
-        },
-        {
-          "Id": 26401,
-          "Path": "To do"
-        },
-        {
-          "Id": 26402,
-          "Path": "Activities"
-        }
-      ],
-      "Geos": [
-        {
-          "Id": 76664,
-          "Path": "[Aurland (Visit Flåm)]"
-        },
-        {
-          "Id": 108308,
-          "Path": "Norway"
-        },
-        {
-          "Id": 80944,
-          "Path": "Flåm"
-        }
-      ],
-      "Pois": [],
-      "Position": {
-        "Latitude": 60.8628231038964,
-        "Longitude": 7.11472034454346
-      }
+      ]
     }
   ]
 }
