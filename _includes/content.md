@@ -13,7 +13,8 @@ curl -X POST
 --header 'Accept: application/json' 
 --header 'Accept-Language: en-us' 
 --header 'apiKey: APIKEY132456789EWOK' 
--d '{
+-d 
+'{
   "PointOfSalesId": 13723,
   "PageSize": 50,
   "Page": 0,
@@ -22,7 +23,8 @@ curl -X POST
       "cbis:1614826"
     ]
   }
-}' 'https://galaxy.citybreak.com/v5/api/content/product'
+}' 
+'https://galaxy.citybreak.com/v5/api/content/product'
 ```
 
 ```javascript
@@ -47,7 +49,7 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/content/product",
 });
 ```
 
-Example of response:
+> Example of response:
 
 ```json
 {
@@ -354,13 +356,13 @@ Accept-Language | The language culture (e.g en-us)
 
 <code class="center-column">
 {
-  "PointOfSalesId": 0, //int - Mandatory 
-  "PageSize": 0,    //int Mandatory
-  "Page": 0,      //int Mandatory
-  "ProductTypes": [ //Optional - list of possible product types to Search
-    "Accommodation" //Allowed values: "Accommodation", "Activity" and "Transport"
+  "PointOfSalesId": 0,  => int - Mandatory 
+  "PageSize": 0,        => int - Mandatory
+  "Page": 0,            => int - Mandatory
+  "ProductTypes": [     => Optional - list of possible product types to Search.
+    "Accommodation"     => Allowed values: "Accommodation", "Activity" and "Transport"
   ],
-  "ContentFilter": { // Optional - See <a href="#content-filter">ContentFilter</a>
+  "ContentFilter": { // Optional - See <a href="#content-filter">ContentFilter</a> for more info.
   }
 }
 </code>
@@ -372,11 +374,11 @@ curl -X GET
 --header 'apiKey: APIKEY132456789EWOK'  
 --header 'Accept: application/json' 
 --header 'Accept-Language: en-us' 
-'https://galaxy.citybreak.com/v5/api/content/product'
+'https://galaxy.citybreak.com/v5/api/content/attributes/{PointOfSalesId}'
 ```
 
 ```javascript
-var r = fetch("https://galaxy.citybreak.com/v5/api/content/product",
+var r = fetch("https://galaxy.citybreak.com/v5/api/content/attributes/{PointOfSalesId}",
 {
   headers: {
     "ApiKey": "APIKEY132456789EWOK",
@@ -447,13 +449,14 @@ Get localised Attribute information.
 
 ### HTTP Request
 
-`GET https://galaxy.citybreak.com/v5/api/content/attribute`
+`GET https://galaxy.citybreak.com/v5/api/content/attribute/{pointOfSaleId}`
 
 ### Query Parameters
 
 Parameter | Description
 --------- | -----------
-pointOfSalesId | The point of sales identifier.
+pointOfSalesId  |  The point of sales identifier.
+Accept-Language | The language culture (e.g en-us)
 
 ## GeoNodes
 
@@ -517,13 +520,14 @@ Get the GeoNode tree. This is a nested list of client-defined geo-locations that
 
 ### HTTP Request
 
-`GET https://galaxy.citybreak.com/v5/api/content/geo`
+`GET https://galaxy.citybreak.com/v5/api/content/geo/{pointOfSaleId}`
 
 ### Query Parameters
 
 Parameter | Description
 --------- | -----------
-pointOfSalesId | The point of sales identifier.
+pointOfSalesId  |  The point of sales identifier.
+Accept-Language | The language culture (e.g en-us)
 
 ## Category
 
@@ -587,13 +591,14 @@ Get the Category tree. This is a nested list of client-defined categories that c
 
 ### HTTP Request
 
-`GET https://galaxy.citybreak.com/v5/api/content/category`
+`GET https://galaxy.citybreak.com/v5/api/content/category/{pointOfSaleId}`
 
 ### Query Parameters
 
 Parameter | Description
 --------- | -----------
-pointOfSalesId | The point of sales identifier.
+pointOfSalesId  |  The point of sales identifier.
+Accept-Language | The language culture (e.g en-us)
 
 ## Point Of Interest
 
@@ -659,13 +664,14 @@ Get a list of Points of Interest. This is a mixed list of system and client-defi
 
 ### HTTP Request
 
-`GET https://galaxy.citybreak.com/v5/api/content/poi`
+`GET https://galaxy.citybreak.com/v5/api/content/poi/{pointOfSalesId}`
 
 ### Query Parameters
 
 Parameter | Description
 --------- | -----------
-pointOfSalesId | The point of sales identifier.
+pointOfSalesId  |  The point of sales identifier.
+Accept-Language | The language culture (e.g en-us)
 
 ## Languages
 
@@ -700,10 +706,10 @@ Get a list of languages available for a given point of sales.
 
 ### HTTP Request
 
-`GET https://galaxy.citybreak.com/v5/api/content/language`
+`GET https://galaxy.citybreak.com/v5/api/content/language/{pointOfSaleId}`
 
 ### Query Parameters
 
 Parameter | Description
 --------- | -----------
-pointOfSalesId | The point of sales identifier.
+pointOfSalesId  |  The point of sales identifier.

@@ -795,7 +795,8 @@ curl -X POST
      "City": "Gothenburg",
      "CountryCode": "SE"
    },
-   "Email": "testuser%40visit.com",
+   "Email": "testuser@visit.com",
+   "SendEmailConfirmation": true,
    "PhoneMobile": { 
      "CountryCode": "46",
      "AreaCode": "07",
@@ -826,6 +827,7 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/basket/customer/{basketId}",
       "CountryCode": "SE"
     },
     "Email": "testuser@visit.com",
+    "SendEmailConfirmation": true,
     "PhoneMobile": {
       "CountryCode": "46",
       "AreaCode": "07",
@@ -842,7 +844,8 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/basket/customer/{basketId}",
 no content
 ```
 
-To commit a Basket you will need to provide customer information. This is fairly standard: name, address, email. phone, etc. for the person conducting the booking (not necessarily the Guests)
+To commit a Basket you will need to provide customer information. This is fairly standard: name, address, email. phone, etc. for the person conducting the booking (not necessarily the Guests).
+The SendEmailConfirmation field is used to trigger whether to send an email with the changes to the customer.
 
 ### HTTP Request
 
@@ -852,7 +855,7 @@ To commit a Basket you will need to provide customer information. This is fairly
 
 Parameter | Description
 --------- | -----------
-basketId | The Id of the basket.
+basketId  | The Id of the basket.
 
 
 
@@ -1049,13 +1052,13 @@ Gets the `ResvversionId` (reservation version id) and `BookingCode`, important f
 
 ### HTTP Request
 
-`GET https://galaxy.citybreak.com/v5/api/basket/commit/status`
+`GET https://galaxy.citybreak.com/v5/api/basket/commit/status/id`
 
 ### Query Parameters
 
 Parameter | Description
 --------- | -----------
-commitJobId | The Id of the commit job returned from <a href="#commit-basket">Commit Basket</a> 
+id | The Id of the commit job returned from <a href="#commit-basket">Commit Basket</a> 
 
 
 
