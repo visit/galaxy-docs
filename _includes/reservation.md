@@ -245,7 +245,7 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/reservation/latest/{bookingCo
           "Id": 3,
           "Name": "Dubbelrum",
           "Price": 350,
-	  "ProductVat": 18.11,
+	      "ProductVat": 18.11,
           "ExternalBookingCode": "16215808"
         }
       ],
