@@ -192,6 +192,7 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/accommodation",
             "Terms": null
           },
           "PromoCodeDescription": null,
+          "PriorityAgreement": false,
           "BookingKey": "18-A"
         },
         {
@@ -268,6 +269,7 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/accommodation",
             "Terms": null
           },
           "PromoCodeDescription": null,
+          "PriorityAgreement": false,
           "BookingKey": "19-A"
         }
       ],
@@ -335,6 +337,23 @@ Accept-Language | The language culture (e.g en-us)
   "PromoCode": "string" // string - Optional
 }
 </code>
+
+### Sort definition
+The sort definition is used to order the paged results you get. 
+
+|Order|Meaning|
+|------|------|
+Asc|Ascending - The item with the lowest field value first.
+Desc|Descending - The item the highest field value first.
+
+|Field|Meaning|
+|------|------|
+Name|Sort by name.
+Price|Sort by price.
+Random|Sort by a random order.
+
+<aside class="notice">Please note that when sorting by Price, there may be results out of order due to prioritized agreements. This is indicated by the `PriorityAgreement` bool on the Accommodation product.</aside>
+By default, results are sorted by ascending price.
 
 ## Get Previous Search
 
@@ -498,6 +517,7 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/accommodation/ge
             "Terms": null
           },
           "PromoCodeDescription": null,
+          "PriorityAgreement": false,
           "BookingKey": "18-A"
         },
         {
@@ -574,6 +594,7 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/accommodation/ge
             "Terms": null
           },
           "PromoCodeDescription": null,
+          "PriorityAgreement": false,
           "BookingKey": "19-A"
         }
       ],
