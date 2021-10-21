@@ -326,7 +326,7 @@ Accept-Language | The language culture (e.g en-us)
   "PageSize": 0, //int - Mandatory
   "Sort": { // Optional - defaults to Price Ascending
     "Order": "Asc", //string - Mandatory if parent included
-    "Field": "string" //string - Mandatory if parent included - Priority Agreement, Price, Name, Random
+    "Field": "string" //string - Mandatory if parent included - PriorityAgreement, Price, Name, Random
   },
   //List of configurations for guest numbers. Each item represents a "room". 
   //Cannot be empty, must represent at least one guest
