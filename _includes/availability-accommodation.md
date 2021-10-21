@@ -326,7 +326,7 @@ Accept-Language | The language culture (e.g en-us)
   "PageSize": 0, //int - Mandatory
   "Sort": { // Optional - defaults to Price Ascending
     "Order": "Asc", //string - Mandatory if parent included
-    "Field": "string" //string - Mandatory if parent included - Price, Name, Random
+    "Field": "string" //string - Mandatory if parent included - Priority Agreement, Price, Name, Random
   },
   //List of configurations for guest numbers. Each item represents a "room". 
   //Cannot be empty, must represent at least one guest
@@ -356,12 +356,10 @@ Desc|Descending - The item the highest field value first.
 
 |Field|Meaning|
 |------|------|
+PriorityAgreement|Sort by priority agreement.
 Name|Sort by name.
 Price|Sort by price.
 Random|Sort by a random order.
-
-<aside class="notice">Please note that when sorting by Price, there may be results out of order due to prioritized agreements. This is indicated by the `PriorityAgreement` bool on the Accommodation placement.</aside>
-By default, results are sorted by ascending price.
 
 ## Get Previous Search
 
