@@ -938,3 +938,160 @@ Get a list of languages available for a given point of sales.
 Parameter | Description
 --------- | -----------
 pointOfSalesId  |  The point of sales identifier.
+
+## Offers
+
+```shell
+curl -X POST
+--header 'Content-Type: application/json' 
+--header 'Accept: application/json' 
+--header 'Accept-Language: en-us' 
+--header 'apiKey: APIKEY132456789EWOK' 
+-d 
+'{
+  "PointOfSalesId": 16697,
+  "ContentFilter": {
+    "Ids": [
+      "cbis:1374301"
+    ]
+  }
+}' 
+'https://galaxy.citybreak.com/v5/api/content/offer'
+```
+
+```javascript
+var r = fetch("https://galaxy.citybreak.com/v5/api/content/offer",
+{
+	method: "POST",
+	headers: {
+	   "ApiKey": "APIKEY132456789EWOK",
+	   "Accept": "application/json",
+		 "Accept-Language": "en-US"
+	},
+	body: JSON.Stringify({
+    "PointOfSalesId": 16697,
+    "ContentFilter": {
+      "Ids": [
+        "cbis:1374301"
+      ]
+    }
+  })  
+});
+```
+
+> Example of response:
+
+```json
+[
+  {
+    "Id": "rc:197335",
+    "Name": "Hiking in the mountains",
+    "Content": {
+      "Id": "rc:197335",
+      "Images": [
+        {
+          "Uri": "//images.test.citybreak.com/Image.aspx?imageid=6883588",
+          "IsMain": true,
+          "Name": null,
+          "Copyright": null,
+          "Description": null
+        }
+      ],
+      "Information": [
+        {
+          "Id": 99,
+          "Name": "Name",
+          "Value": "Hiking in the mountains"
+        },
+        {
+          "Id": 101,
+          "Name": "Introduction",
+          "Value": "Test introduction."
+        },
+        {
+          "Id": 102,
+          "Name": "Description",
+          "Value": null
+        }
+      ],
+      "Categories": null,
+      "Geos": null,
+      "Pois": null,
+      "Position": null
+    },
+    "Products": [
+      {
+        "Id": "cbis:1374301",
+        "Name": "STF Nora/Åkerby Herrgård Hotel"
+      }
+    ]
+  },
+  {
+    "Id": "rc:215603",
+    "Name": "Berglagen in the nature",
+    "Content": {
+      "Id": "rc:215603",
+      "Images": [
+        {
+          "Uri": "//images.test.citybreak.com/Image.aspx?imageid=6888284",
+          "IsMain": true,
+          "Name": null,
+          "Copyright": null,
+          "Description": null
+        }
+      ],
+      "Information": [
+        {
+          "Id": 99,
+          "Name": "Name",
+          "Value": "Berglagen in the nature"
+        },
+        {
+          "Id": 101,
+          "Name": "Introduction",
+          "Value": "Test introduction."
+        },
+        {
+          "Id": 102,
+          "Name": "Description",
+          "Value": null
+        }
+      ],
+      "Categories": null,
+      "Geos": null,
+      "Pois": null,
+      "Position": null
+    },
+    "Products": [
+      {
+        "Id": "cbis:1374301",
+        "Name": "STF Nora/Åkerby Herrgård Hotel"
+      }
+    ]
+  }
+]
+```
+
+This is a POST request that requires a mandatory PointOfSalesId filter and returns all available offers.
+The filter can also include content filtering, such as only including those products associated with a particular CBIS category. Content filtering possibilities can be found in the <a href="#content-filter">Content Section</a>.
+You can see a bare minimum version of this search in the examples.
+Each offer returned contains a list of product references that is part of the offer.
+
+### HTTP Request
+
+`GET https://galaxy.citybreak.com/v5/api/content/offer`
+
+### Query Parameters
+
+Parameter | Description
+--------- | -----------
+filter | the POST filter
+Accept-Language | The language culture (e.g en-us)
+
+<code class="center-column">
+{
+  "PointOfSalesId": 0,  => int - Mandatory 
+  "ContentFilter": { // Optional - See <a href="#content-filter">ContentFilter</a> for more info.
+  }
+}
+</code>

@@ -86,7 +86,9 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/accommodation/pl
     ],
     "ContentFilter": null,
     "OutputFilter": null,
-    "PromoCode": null
+    "PromoCode": null,
+    "OffersOnly": false,
+    "OfferIds": []
   },
   "Accommodations": [
     {
@@ -194,7 +196,8 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/accommodation/pl
                 "Terms": null
               },
               "PromoCodeDescription": null,
-              "PriorityAgreement": false
+              "PriorityAgreement": false,
+              "Offer": null
             }
           ],
           "BookingKey": "18-A"
@@ -275,7 +278,8 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/accommodation/pl
                 "Terms": null
               },
               "PromoCodeDescription": null,
-              "PriorityAgreement": false
+              "PriorityAgreement": false,
+              "Offer": null
             }
           ],
           "BookingKey": "19-A"
@@ -342,7 +346,11 @@ Accept-Language | The language culture (e.g en-us)
   },
   "OutputFilter": { // Optional -  See <a href="#output-filter">OutputFilter</a>
   },
-  "PromoCode": "string" // string - Optional
+  "PromoCode": "string", // string - Optional
+  "OffersOnly": true, // bool - Optional - whether to return results with offers only
+  "OfferIds": [ // Optional - list of offers to filter results with
+    "string" // string - Mandatory if parent included
+  ]
 }
 </code>
 
@@ -417,7 +425,10 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/accommodation/pl
       }
     ],
     "ContentFilter": null,
-    "OutputFilter": null
+    "OutputFilter": null,
+    "PromoCode": null,
+    "OffersOnly": false,
+    "OfferIds": []
   },
   "Accommodations": [
     {
@@ -525,7 +536,8 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/accommodation/pl
                 "Terms": null
               },
               "PromoCodeDescription": null,
-              "PriorityAgreement": false
+              "PriorityAgreement": false,
+              "Offer": null
             }
           ],
           "BookingKey": "18-A"
@@ -606,7 +618,8 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/accommodation/pl
                 "Terms": null
               },
               "PromoCodeDescription": null,
-              "PriorityAgreement": false
+              "PriorityAgreement": false,
+              "Offer": null
             }
           ],
           "BookingKey": "19-A"
@@ -794,6 +807,10 @@ Accept-Language | The language culture (e.g en-us)
   "Currency": "string", //string - Mandatory e.g SEK or EUR
   "ContentFilter": { // Optional - See <a href="#content-filter">ContentFilter</a>
   },
-  "PromoCode": "string" // string - Optional
+  "PromoCode": "string", // string - Optional
+  "OffersOnly": true, // bool - Optional - whether to return results with offers only
+  "OfferIds": [ // Optional - list of offers to filter results with
+    "string" // string - Mandatory if parent included
+  ]
 }
 </code>

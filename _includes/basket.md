@@ -340,7 +340,43 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/basket/{basketId}",
         "Price": 500,
         "Currency": "SEK"
       },
-      "Position": null
+      "Position": null,
+      "Offer": {
+        "Id": "rc:215603",
+        "Name": "Hiking in the mountains",
+        "Content": {
+          "Id": "rc:215603",
+          "Images": [
+            {
+              "Uri": "//images.test.citybreak.com/Image.aspx?imageid=6888284",
+              "IsMain": true,
+              "Name": null,
+              "Copyright": null,
+              "Description": null
+            }
+          ],
+          "Information": [
+            {
+              "Id": 99,
+              "Name": "Name",
+              "Value": "Hiking in the mountains"
+            },
+            {
+              "Id": 101,
+              "Name": "Introduction",
+              "Value": "Test introduction."
+            },
+            {
+              "Id": 102,
+              "Name": "Description",
+              "Value": null
+            }
+          ],
+          "Categories": null,
+          "Geos": null,
+          "Pois": null,
+          "Position": null
+        }
     }
   ],
   "OkToBook": true,
