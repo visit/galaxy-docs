@@ -1079,7 +1079,7 @@ Each offer returned contains a list of product references that is part of the of
 
 ### HTTP Request
 
-`GET https://galaxy.citybreak.com/v5/api/content/offer`
+`POST https://galaxy.citybreak.com/v5/api/content/offer`
 
 ### Query Parameters
 
