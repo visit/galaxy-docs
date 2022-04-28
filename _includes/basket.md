@@ -56,7 +56,7 @@ Parameter | Description
 --------- | -----------
 PointOfSalesId | The point of sales identifier.
 Currency | The currency of the basket
-
+Accept-Language | The language culture (e.g en-us)
 
 
 
@@ -118,7 +118,7 @@ Parameter | Description
 PointOfSalesId | The point of sales identifier.
 Currency | The currency of the basket.
 Online3Session.OnlineId | The online3 identifier.
-
+Accept-Language | The language culture (e.g en-us)
 
 
 
