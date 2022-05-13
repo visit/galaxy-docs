@@ -337,20 +337,30 @@ curl -X POST
         "Operator": "AND",
         "Queries": [
           {
-          "Id": 0,
-          "Type": "Value",
-          "Value": "string",
-          "SubQuery": {
-            "Operator": "OR",
-            "Queries": [
-              {
-                "Id": 100059,
-                "Type": "Value",
-                "Value": "true"
-              },
-            "SubQuery": {}
-            }
-          }
+		"Id": 110,
+		"Type": "Has",
+		"Value": null
+	      },
+	      {
+		"Id": 100651,
+		"Type": "Value",
+		"Value": "false",
+		"SubQuery":{
+		  "Operator": "AND",
+		  "Queries": [
+		    {
+		      "Id": 100666,
+		      "Type": "Value",
+		      "Value": "false"
+		    },
+		    {
+		      "Id": 100670,
+		      "Type": "Value",
+		      "Value": "true"
+		    }
+		  ]
+		}
+	      }
         ]
       }
   }
