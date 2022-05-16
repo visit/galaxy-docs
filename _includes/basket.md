@@ -1790,3 +1790,121 @@ Parameter | Description
 --------- | -----------
 basketId | The Id of the basket.
 list of updates | the POST body with updates
+
+## Get payment methods
+
+```shell
+curl -X GET 
+--header 'apiKey: APIKEY132456789EWOK'
+--header 'Accept: application/json' 
+--header 'Accept-Language: en-us' 
+'https://galaxy.citybreak.com/v5/api/basket/payment/{basketId}'
+```
+
+```javascript
+var r = fetch("https://galaxy.citybreak.com/v5/api/basket/payment/{basketId}",
+{
+  headers: {
+    "ApiKey": "APIKEY132456789EWOK",
+    "Accept": "application/json"
+    "Accept-Language": "en-US"
+  }  
+});
+```
+
+
+> Example of Response
+
+```json
+{
+  "PaymentMethods": [
+    {
+      "Id": 1234,
+      "Cost": 1050,
+      "Currency": "EUR",
+      "Name": "Pay later"
+    },
+    {
+      "Id": 1235,
+      "Cost": 1050,
+      "Currency": "EUR",
+      "Name": "Virtual Credit Card"
+    }
+  ]
+}
+```
+
+Returns a list of configured payment methods, available to this basket.
+
+### HTTP Request
+
+`GET https://galaxy.citybreak.com/v5/api/basket/payment/{basketId}`
+
+### Query Parameters
+
+Parameter | Description
+--------- | -----------
+basketId | The Id of the basket.
+
+## Set payment method "Pay Later"
+
+```shell
+curl -X POST 
+--header 'Content-Type: application/json' 
+--header 'Accept: application/json' 
+--header 'Accept-Language: en-us' 
+--header 'apiKey: APIKEY132456789EWOK' 'https://galaxy.citybreak.com/v5/api/basket/payment/{basketId}/paylater/{paymentMethodId}/{cost}'
+```
+
+```javascript
+var r = fetch("https://galaxy.citybreak.com/v5/api/basket/payment/{basketId}/paylater/{paymentMethodId}/{cost}",
+{
+  method:"POST"
+  headers: {
+    "ApiKey": "APIKEY132456789EWOK",
+    "Accept": "application/json",
+    "Accept-Language": "en-US"
+  }
+);
+```
+
+Selects "Pay Later" as the basket payment method. This is the default payment method and does not have to be explicitly set, unless you need to switch from a previously selected payment method.
+
+## Set payment method "Virtual Credit Card"
+
+```shell
+curl -X POST 
+--header 'Content-Type: application/json' 
+--header 'Accept: application/json' 
+--header 'Accept-Language: en-us' 
+--header 'apiKey: APIKEY132456789EWOK' -d '{
+  "CardType": "VISA",
+  "CardNumber": "4111111111111111",
+  "SecurityCode": "123",
+  "ExpirationYear": 2030,
+  "ExpirationMonth": 1,
+  "CardHolder": "Test Testperson"
+}' 'https://galaxy.citybreak.com/v5/api/basket/payment/{basketId}/virtualcreditcard/{paymentMethodId}/{cost}'
+```
+
+```javascript
+var r = fetch("https://galaxy.citybreak.com/v5/api/basket/payment/{basketId}/virtualcreditcard/{paymentMethodId}/{cost}",
+{
+  method:"POST"
+  headers: {
+    "ApiKey": "APIKEY132456789EWOK",
+    "Accept": "application/json",
+    "Accept-Language": "en-US"
+  }  
+  body: JSON.Stringify({
+    "CardType": "VISA",
+    "CardNumber": "4111111111111111",
+    "SecurityCode": "123",
+    "ExpirationYear": 2030,
+    "ExpirationMonth": 1,
+    "CardHolder": "Test Testperson"
+  }
+);
+```
+
+Selects "Virtual Credit Card" as the basket payment method. This is a credit card guarantee method sent as-is to the external systems involved in a reservation.
