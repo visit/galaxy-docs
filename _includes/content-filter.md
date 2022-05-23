@@ -342,11 +342,8 @@ curl -X POST
 		"Value": null
 	      },
 	      {
-		"Id": 100651,
-		"Type": "Value",
-		"Value": "false",
 		"SubQuery":{
-		  "Operator": "AND",
+		  "Operator": "OR",
 		  "Queries": [
 		    {
 		      "Id": 100666,
@@ -400,11 +397,8 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/accommodation",
         "Value": null
       },
       {
-        "Id": 100651,
-        "Type": "Value",
-        "Value": "false",
         "SubQuery":{
-          "Operator": "AND",
+          "Operator": "OR",
           "Queries": [
             {
               "Id": 100666,
@@ -426,7 +420,7 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/accommodation",
 });
 ```
 
-Filter products by the content of the Information they carry. You can filter on the existence of an attribute or on its content. Subqueries are a bit tricky but essentially allow you to mix AND and OR operators. For example the sample query asks for products where the following boolean logic is met `Has attribute 110 **OR** Attribute 100651 is false **OR** (100666 is false **AND** 100666 is true)`
+Filter products by the content of the Information they carry. You can filter on the existence of an attribute or on its content. Subqueries are a bit tricky but essentially allow you to mix AND and OR operators. For example the sample query asks for products where the following boolean logic is met `Has attribute 110 **AND** (100666 is false **OR** 100670 is true)`
 
 ### Operator
 
