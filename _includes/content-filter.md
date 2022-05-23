@@ -338,8 +338,7 @@ curl -X POST
         "Queries": [
           {
 		"Id": 110,
-		"Type": "Has",
-		"Value": null
+		"Type": "Has"
 	      },
 	      {
 		"SubQuery":{
@@ -393,8 +392,7 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/accommodation",
     "Queries": [
       {
         "Id": 110,
-        "Type": "Has",
-        "Value": null
+        "Type": "Has"
       },
       {
         "SubQuery":{
