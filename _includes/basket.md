@@ -1908,3 +1908,16 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/basket/payment/{basketId}/vir
 ```
 
 Selects "Virtual Credit Card" as the basket payment method. This is a credit card guarantee method sent as-is to the external systems involved in a reservation.
+
+### Supported Card Types
+
+Use abbreviation for `CardType` field.
+
+
+Name | Abbreviation
+---- | ------------
+American Express | AMEX
+Visa | VISA
+Mastercard | MAST
+Diners Club | DINE
+JCB | JCB
