@@ -721,13 +721,15 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/accommodation/ca
           "Products": [
             {
               "Id": "pt:54321",
-              "Name": "Double room",
-              "Nights": 1
+              "Name": "Single room",
+	      "PriceFrom": 100,
+              "StayLenghts": [1, 2]
             },
             {
-              "Id": "pt:54321",
+              "Id": "pt:54322",
               "Name": "Double room",
-              "Nights": 2
+	      "PriceFrom": 100,
+              "StayLenghts": [1, 2]
             }
           ]
         },
@@ -738,7 +740,8 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/accommodation/ca
             {
               "Id": "pt:65432",
               "Name": "Double room",
-              "Nights": 1
+	      "PriceFrom": null,
+              "StayLenghts": [7, 14]
             }
           ]
         }
@@ -754,7 +757,8 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/accommodation/ca
             {
               "Id": "pt:54321",
               "Name": "Double room",
-              "Nights": 1
+	      "PriceFrom": 100,
+              "StayLenghts": [1, 2]
             }
           ]
         }
@@ -786,11 +790,11 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/accommodation/ca
 This is a **POST** request that requires a filter with some mandatory properties, such as the start and end dates of the calendar, the pointOfSalesId and the currency. 
 As in other availability queries, the filter can also include a content filter, such as only those hotels associated with a particular CBIS category or that have 24 hr reception. 
 Content possibilities can be found in the <a href="#content-filter">Content Section</a> You can see a bare minimum version of this search in the examples.
-The return of this call is a set of availble dates (if there is availability) an entity called Groups which shows accommodation options available on that day with the nested sub-products (think hotels with sub-products being hotel rooms) in the search period and the possible lengths of stay. This is useful for, say, quickly displaying days on which you can begin a stay and, once clicked, the minimum and maximum number of days you may stay within the search period.
+The return of this call is a set of availble dates (if there is availability) an entity called Groups which shows accommodation options available on that day with the nested sub-products (think hotels with sub-products being hotel rooms) in the search period and the possible lengths of stay. This is useful for, say, quickly displaying days on which you can begin a stay and, once clicked, the minimum and maximum number of days you may stay within the search period. There can also be a from price available, if supported by the external system.
  
 ### HTTP Request
 
-`POST https://galaxy.citybreak.com/v5/api/availability/accommodation/placement/calendar`
+`POST https://galaxy.citybreak.com/v5/api/availability/accommodation/calendar`
 
 ### Query Parameters
 
