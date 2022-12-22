@@ -564,6 +564,7 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/content/product",
 
 This is a POST request that requires a filter with some mandatory properties, such as PointOfSalesId, PageSize and Page.
 The filter can also include content filtering, such as only including those products associated with a particular CBIS category. Content filtering possibilities can be found in the <a href="#content-filter">Content Section</a>. 
+You can sort the result by specifying the `SortFilter` property, see <a href="#sort-filter">Sort Filter</a> for more info.
 The filter can also include the list of specific product types which can be searched for, such as "Accommodation, "Transport" or "Activity".
 You can see a bare minimum version of this search in the examples.
 The most important return value in this response is the `ProductType` that suggests the user which endpoints to use for a specific product. 
@@ -588,7 +589,8 @@ Accept-Language | The language culture (e.g en-us)
     "Accommodation"     => Allowed values: "Accommodation", "Activity" and "Transport"
   ],
   "ContentFilter": { // Optional - See <a href="#content-filter">ContentFilter</a> for more info.
-  }
+  },
+  "SortFilter": [] // Optional - See <a href="#sort-filter">SortFilter</a> for more info.
 }
 </code>
 
@@ -1095,3 +1097,68 @@ Accept-Language | The language culture (e.g en-us)
   }
 }
 </code>
+
+## Sort Filter
+
+```shell
+curl -X POST
+--header 'Content-Type: application/json' 
+--header 'Accept: application/json' 
+--header 'Accept-Language: en-us' 
+--header 'apiKey: APIKEY132456789EWOK' 
+-d 
+'{
+  "PointOfSalesId": 16697,
+  "PageSize": 50,
+  "Page": 0,
+  "SortFilter": [{
+    "Field": "Name",
+		"Order": "Asc"
+  }]
+}' 
+'https://galaxy.citybreak.com/v5/api/content/product'
+```
+
+```javascript
+var r = fetch("https://galaxy.citybreak.com/v5/api/content/product",
+{
+	method: "POST",
+	headers: {
+	   "ApiKey": "APIKEY132456789EWOK",
+	   "Accept": "application/json",
+		 "Accept-Language": "en-US"
+	},
+	body: JSON.Stringify({
+    "PointOfSalesId": 16697,
+    "PageSize": 50,
+    "Page": 0,
+    "SortFilter": [{
+      "Field": "Name",
+  		"Order": "Asc"
+    }]
+  })  
+});
+```
+
+Order products by the supplied fields. Optionally, you can provide multiple sorting objects to sort by multiple levels in decreasing order of importance.
+Supported fields are:
+
+* Name 
+* Id 
+* ExpiresAt 
+* PublishAt
+* Occasions
+* Information (need to supply AttributeId)
+* Position (need to supply Latitude & Longitude)
+* Random (provide a RandomSeed to ensure consistent results & paging)
+
+### Parameters
+
+Parameter | Type | Description
+--------- | ---- | -----------
+Field | string | Name of the field you want to order by.
+Order | Order | Either `Asc` or `Desc`
+AttributeId | int | The attribute id of the information field you want to sort on
+Latitude | double | The latitude of the reference point to sort on position
+Longitude | double | The longitude of the reference point to sort on position
+RandomSeed | string | The seed to use for Random sorting to ensure consistent results & paging
