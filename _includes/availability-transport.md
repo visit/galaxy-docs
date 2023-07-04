@@ -602,7 +602,8 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/transport",
           }
         ],
         "FareCode": "20GCF",
-        "IncludedAddons": []
+        "IncludedAddons": [],
+        "AvailableCapacity": 50
       },
       "PromoCodeDescription": null,
       "HomeboundJourney": {
@@ -622,7 +623,8 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/transport",
           }
         ],
         "FareCode": "20GCFR",
-        "IncludedAddons": []
+        "IncludedAddons": [],
+        "AvailableCapacity": 40
       }
     },
     {
@@ -648,7 +650,8 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/transport",
           }
         ],
         "FareCode": "20GCF",
-        "IncludedAddons": []
+        "IncludedAddons": [],
+        "AvailableCapacity": 60
       },
       "PromoCodeDescription": null,
       "HomeboundJourney": {
@@ -668,7 +671,8 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/transport",
           }
         ],
         "FareCode": "20GCFR",
-        "IncludedAddons": []
+        "IncludedAddons": [],
+        "AvailableCapacity": 0
       }
     },
     {
@@ -694,7 +698,8 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/transport",
           }
         ],
         "FareCode": "20GCF",
-        "IncludedAddons": []
+        "IncludedAddons": [],
+        "AvailableCapacity": 30
       },
       "PromoCodeDescription": null,
       "HomeboundJourney": {
@@ -714,7 +719,8 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/transport",
           }
         ],
         "FareCode": "20GCFR",
-        "IncludedAddons": []
+        "IncludedAddons": [],
+        "AvailableCapacity": 50
       }
     },
     {
@@ -740,7 +746,8 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/transport",
           }
         ],
         "FareCode": "20GCF",
-        "IncludedAddons": []
+        "IncludedAddons": [],
+        "AvailableCapacity": 25
       },
       "PromoCodeDescription": null,
       "HomeboundJourney": {
@@ -760,7 +767,8 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/transport",
           }
         ],
         "FareCode": "20GCFR",
-        "IncludedAddons": []
+        "IncludedAddons": [],
+        "AvailableCapacity": 35
       }
     },
     {
@@ -786,7 +794,8 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/transport",
           }
         ],
         "FareCode": "20GCF",
-        "IncludedAddons": []
+        "IncludedAddons": [],
+        "AvailableCapacity": 55
       },
       "PromoCodeDescription": null,
       "HomeboundJourney": {
@@ -806,7 +815,8 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/transport",
           }
         ],
         "FareCode": "20GCFR",
-        "IncludedAddons": []
+        "IncludedAddons": [],
+        "AvailableCapacity": 75
       }
     },
     {
@@ -832,7 +842,8 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/transport",
           }
         ],
         "FareCode": "20GCF",
-        "IncludedAddons": []
+        "IncludedAddons": [],
+        "AvailableCapacity": 85
       },
       "PromoCodeDescription": null,
       "HomeboundJourney": {
@@ -852,7 +863,8 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/transport",
           }
         ],
         "FareCode": "20GCFR",
-        "IncludedAddons": []
+        "IncludedAddons": [],
+        "AvailableCapacity": 95
       }
     }
   ],
@@ -1203,7 +1215,8 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/transport/get",
             "Currency": "EUR",
             "PriceIncluded": true
           }
-        ]
+        ],
+        "AvailableCapacity": 50
       },
       "PromoCodeDescription": null,
       "HomeboundJourney": null
@@ -1237,7 +1250,8 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/transport/get",
             "Currency": "EUR",
             "PriceIncluded": true
           }
-        ]
+        ],
+        "AvailableCapacity": 60
       },
       "PromoCodeDescription": null,
       "HomeboundJourney": null
@@ -1273,7 +1287,8 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/transport/get",
             "Currency": "EUR",
             "PriceIncluded": true
           }
-        ]
+        ],
+        "AvailableCapacity": 75
       }
     },
     {
@@ -1307,7 +1322,8 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/transport/get",
             "Currency": "EUR",
             "PriceIncluded": true
           }
-        ]
+        ],
+        "AvailableCapacity": 85
       }
     }
   ],
