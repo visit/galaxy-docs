@@ -26,9 +26,7 @@ curl -X POST
    "PersonConfigurations": [
      {
        "Adults": 1,
-       "ChildrenAges": [
-         0
-       ] 
+       "ChildrenAges": [] 
      }
    ]
  }' 'https://galaxy.citybreak.com/v5/api/availability/accommodation/placement'
@@ -52,9 +50,7 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/accommodation/pl
 	   "PersonConfigurations": [
 	     {
 	       "Adults": 1,
-	       "ChildrenAges": [
-	         0
-	       ] 
+	       "ChildrenAges": [] 
 	     }
 	   ]
 	})  
@@ -79,9 +75,7 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/accommodation/pl
     "PersonConfigurations": [
       {
         "Adults": 1,
-        "ChildrenAges": [
-          0
-        ]
+        "ChildrenAges": []
       }
     ],
     "ContentFilter": null,
@@ -177,9 +171,7 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/accommodation/pl
               "ExtraBeds": 1,
               "PersonConfiguration": {
                 "Adults": 1,
-                "ChildrenAges": [
-                  0
-                ]
+                "ChildrenAges": []
               },
               "PricePeriods": [
                 {
@@ -259,9 +251,7 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/accommodation/pl
               "ExtraBeds": 1,
               "PersonConfiguration": {
                 "Adults": 1,
-                "ChildrenAges": [
-                  0
-                ]
+                "ChildrenAges": []
               },
               "PricePeriods": [
                 {
@@ -338,7 +328,6 @@ Accept-Language | The language culture (e.g en-us)
     {
       "Adults": 0, //int - represents number of adults
       "ChildrenAges": [ //List of ints - each int represents the age of a child guest
-        0
       ]
     }
   ],
@@ -419,9 +408,7 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/accommodation/pl
     "PersonConfigurations": [
       {
         "Adults": 1,
-        "ChildrenAges": [
-          0
-        ]
+        "ChildrenAges": []
       }
     ],
     "ContentFilter": null,
