@@ -26,9 +26,7 @@ curl -X POST
    "PersonConfigurations": [
      {
        "Adults": 1,
-       "ChildrenAges": [
-         0
-       ] 
+       "ChildrenAges": [] 
      }
    ]
  }' 'https://galaxy.citybreak.com/v5/api/availability/accommodation'
@@ -52,9 +50,7 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/accommodation",
 	   "PersonConfigurations": [
 	     {
 	       "Adults": 1,
-	       "ChildrenAges": [
-	         0
-	       ] 
+	       "ChildrenAges": [] 
 	     }
 	   ]
 	})  
@@ -79,9 +75,7 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/accommodation",
     "PersonConfigurations": [
       {
         "Adults": 1,
-        "ChildrenAges": [
-          0
-        ]
+        "ChildrenAges": []
       }
     ],
     "ContentFilter": null,
@@ -175,9 +169,7 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/accommodation",
           "ExtraBeds": 1,
           "PersonConfiguration": {
             "Adults": 1,
-            "ChildrenAges": [
-              0
-            ]
+            "ChildrenAges": []
           },
           "PricePeriods": [
             {
@@ -253,9 +245,7 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/accommodation",
           "ExtraBeds": 1,
           "PersonConfiguration": {
             "Adults": 1,
-            "ChildrenAges": [
-              0
-            ]
+            "ChildrenAges": []
           },
           "PricePeriods": [
             {
@@ -330,7 +320,6 @@ Accept-Language | The language culture (e.g en-us)
     {
       "Adults": 0, //int - represents number of adults
       "ChildrenAges": [ //List of ints - each int represents the age of a child guest
-        0
       ]
     }
   ],
@@ -411,9 +400,7 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/accommodation/ge
     "PersonConfigurations": [
       {
         "Adults": 1,
-        "ChildrenAges": [
-          0
-        ]
+        "ChildrenAges": []
       }
     ],
     "ContentFilter": null,
