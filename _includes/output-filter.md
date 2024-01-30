@@ -27,7 +27,8 @@ curl -X POST
       "Categories": true,
       "Geos": true,
       "Pois": true,
-      "Position": true
+      "Position": true,
+      "Images": true
     }
  }' 'https://galaxy.citybreak.com/v5/api/availability/accommodation'
 ```
@@ -62,7 +63,8 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/accommodation",
       "Categories": false,
       "Geos": true,
       "Pois": false,
-      "Position": true
+      "Position": true,
+      "Images": true
     }
 	})  
 });
@@ -221,7 +223,8 @@ Output filters used in Availability queries. All the properties in the filter re
     "Categories": true, // bool - Optional, defaults to false if not included
     "Geos": true, // bool - Optional, defaults to false if not included
     "Pois": true, // bool - Optional, defaults to false if not included
-    "Position": true // bool - Optional, defaults to false if not included
+    "Position": true, // bool - Optional, defaults to false if not included
+    "Images": true // bool - Optional, defaults to true if not included, for backward compatibility
   }
 }
 </code>
@@ -235,3 +238,4 @@ Categories | bool | If true display product Category content
 Geos | bool | If true display product Geonode content
 Pois | bool | If true display Position of Interest content
 Position | bool | If true display product Position lat and long
+Images | bool | If true display product Image content
