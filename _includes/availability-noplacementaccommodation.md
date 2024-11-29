@@ -331,7 +331,9 @@ Accept-Language | The language culture (e.g en-us)
   "OffersOnly": true, // bool - Optional - whether to return results with offers only
   "OfferIds": [ // Optional - list of offers to filter results with
     "string" // string - Mandatory if parent included
-  ]
+  ],
+  "BasketId": null // int. Mandatory only for search with reuse capacity. Represents basket id for loaded reservation -  See <a href="#load-reservation-to-basketfor-edit">Load Reservation to Basket for Edit</a>
+  "BasketProductId": null // int. Mandatory only for search with reuse capacity. Represents basket product id in basket which should be replaced using reuse capacity.
 }
 </code>
 
