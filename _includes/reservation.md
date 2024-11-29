@@ -339,6 +339,10 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/reservation/edit/{bookingCode
 > Example of response: int32
 
 Loads reservation to basket and returns basket id. Use this basket id to add or remove products.
+Most amendments scenarios require a new booking version. This means that you need to delete the product and add a new product to the booking to get a new booking version.
+If you want to replace product with reusing capacity you can add basket id and basket product id to the search query.
+If you have loaded a basket/reservation and don’t close it by doing a new commit you need to delete the basket to open it again.
+
 
 ### HTTP Request
 
