@@ -310,3 +310,47 @@ Parameter | Description
 --------- | -----------
 BookingCode | The code representing the reservation returned from <a href="#commit-status">Commit Status</a> 
 Accept-Language |	The language culture (e.g en-us)
+
+
+
+
+
+
+## Load Reservation to Basket for Edit
+
+```shell
+curl -X POST 
+--header 'Accept: application/json' 
+--header 'apiKey: APIKEY132456789EWOK' 
+'https://galaxy.citybreak.com/v5/api/reservation/edit/{bookingCode}'
+```
+
+```javascript
+var r = fetch("https://galaxy.citybreak.com/v5/api/reservation/edit/{bookingCode}",
+{
+  headers: {
+    "ApiKey": "APIKEY132456789EWOK",
+    "Accept": "application/json",
+	"Accept-Language": "en-US"
+  }  
+});
+```
+
+> Example of response: int32
+
+Loads reservation to basket and returns basket id. Use this basket id to add or remove products.
+Most amendments scenarios require a new booking version. This means that you need to delete the product and add a new product to the booking to get a new booking version.
+If you want to replace product with reusing capacity you can add basket id and basket product id to the search query.
+If you have loaded a basket/reservation and don’t close it by doing a new commit you need to delete the basket to open it again.
+
+
+### HTTP Request
+
+`POST https://galaxy.citybreak.com/v5/api/reservation/edit/{bookingCode}`
+
+### Query Parameters
+
+Parameter | Description
+--------- | -----------
+BookingCode | The code representing the reservation returned from <a href="#commit-status">Commit Status</a> 
+Accept-Language |	The language culture (e.g en-us)

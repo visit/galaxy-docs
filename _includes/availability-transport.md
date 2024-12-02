@@ -929,7 +929,9 @@ Accept-Language | The language culture (e.g en-us)
       "ArrivalLocationCode": "string"   //string - Mandatory
     }
   ],
-  "PromoCode": "string" // string - Optional
+  "PromoCode": "string", // string - Optional
+  "BasketId": null // int. Mandatory only for search with reuse capacity. Represents basket id for loaded reservation -  See <a href="#load-reservation-to-basket-for-edit">Load Reservation to Basket for Edit</a>
+  "BookItemId": null // int. Mandatory only for search with reuse capacity. Represents basket product id in basket which should be replaced using reuse capacity.
 }
 </code>
 
