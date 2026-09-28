@@ -274,14 +274,88 @@ BookingCode | The code representing the reservation returned from <a href="#comm
 
 
 
+## Get Cancellation Cost
+
+```shell
+curl -X GET
+--header 'Accept: application/json'
+--header 'apiKey: APIKEY132456789EWOK'
+--header 'Accept-Language: en-US'
+'https://galaxy.citybreak.com/v5/api/reservation/cancel/{bookingCode}'
+```
+
+```javascript
+var r = fetch("https://galaxy.citybreak.com/v5/api/reservation/cancel/{bookingCode}",
+{
+  headers: {
+    "ApiKey": "APIKEY132456789EWOK",
+    "Accept": "application/json",
+    "Accept-Language": "en-US"
+  }
+});
+```
+
+> Example of response:
+
+```json
+{
+  "BookingCode": "EWOK12",
+  "Currency": "SEK",
+  "MayRemoveCancellationFees": true,
+  "TotalCancellationCost": 1255.0,
+  "TotalIfCancellationFeesRemoved": 105.0,
+  "Fees": [
+    {
+      "Name": "Service fee",
+      "Type": "BookingFee",
+      "Amount": 105.0
+    },
+    {
+      "Name": "Cancellation fee",
+      "Type": "CancellationFee",
+      "Amount": 1150.0
+    }
+  ]
+}
+```
+
+Shows what cancelling the latest version of a reservation would charge if you cancelled it now, and whether you may waive the cancellation fees. Nothing is cancelled, locked or charged, so you can call this before you <a href="#cancel-reservation">Cancel Reservation</a>.
+
+`TotalCancellationCost` is the sum of `Fees`. Fees of type `CancellationFee` come from the cancellation rules, and they are the fees that `RemoveCancellationFees` waives. Fees of any other type are charged either way, for example a `BookingFee` that the operator keeps after a cancellation. `TotalIfCancellationFeesRemoved` is what you would still be charged with the cancellation fees waived.
+
+`MayRemoveCancellationFees` is always `true` when your organization is the operator that sold the reservation. When you book as an agent, it is `true` only if the operator has allowed you to waive cancellation fees on your agent business relationship in Citybreak.
+
+<aside class="notice">The amounts apply at the moment of the call and are not a quote. The cancellation rules are matched against the time you cancel, so cancelling later, or after the reservation has been changed, can charge something else.</aside>
+
+If there is no reservation with that booking code that your API key can see, the call returns 404.
+
+### HTTP Request
+
+`GET https://galaxy.citybreak.com/v5/api/reservation/cancel/{bookingCode}`
+
+### Query Parameters
+
+Parameter | Description
+--------- | -----------
+BookingCode | The code representing the reservation returned from <a href="#commit-status">Commit Status</a>
+Accept-Language | The language culture (e.g en-us)
+
+
+
+
+
+
 ## Cancel Reservation
 
 ```shell
-curl -X POST 
---header 'Accept: application/json' 
---header 'apiKey: APIKEY132456789EWOK' 
---header 'Accept-Language: en-US' 
-'https://galaxy.citybreak.com/v5/api/reservation/cancel/{bookingCode}'
+curl -X POST
+--header 'Accept: application/json'
+--header 'Content-Type: application/json'
+--header 'apiKey: APIKEY132456789EWOK'
+--header 'Accept-Language: en-US' -d '{
+  "RemoveCancellationFees": true,
+  "CancellationReason": "Waived as agreed with the operator"
+}' 'https://galaxy.citybreak.com/v5/api/reservation/cancel/{bookingCode}'
 ```
 
 ```javascript
@@ -291,14 +365,21 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/reservation/cancel/{bookingCo
   headers: {
     "ApiKey": "APIKEY132456789EWOK",
     "Accept": "application/json",
-    "Accept-Language": "en-US"
-  }  
+    "Accept-Language": "en-US",
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+    "RemoveCancellationFees": true,
+    "CancellationReason": "Waived as agreed with the operator"
+  })
 });
 ```
 
 > Example of response: int32
 
 This will cancel a reservation. Similarly to committing a Basket, it returns an integer. Use this value in <a href="#commit-status">Commit Status</a> to see the status of your cancel job
+
+The body is optional. Without it the reservation is cancelled and the fees shown by <a href="#get-cancellation-cost">Get Cancellation Cost</a> are charged. Set `RemoveCancellationFees` to cancel without charging the cancellation fees. This needs `MayRemoveCancellationFees` to be `true`; otherwise the call returns 403 and nothing is cancelled.
 
 ### HTTP Request
 
@@ -310,6 +391,13 @@ Parameter | Description
 --------- | -----------
 BookingCode | The code representing the reservation returned from <a href="#commit-status">Commit Status</a> 
 Accept-Language |	The language culture (e.g en-us)
+
+### Body Parameters
+
+Parameter | Description
+--------- | -----------
+RemoveCancellationFees | Optional. `true` cancels without charging the fees of type `CancellationFee`. Fees of other types are still charged.
+CancellationReason | Optional. A note for the operator, saved on the reservation as its internal comment.
 
 
 
