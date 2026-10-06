@@ -323,6 +323,8 @@ Shows what cancelling the latest version of a reservation would charge if you ca
 
 `TotalCancellationCost` is the sum of `Fees`. Fees of type `CancellationFee` come from the cancellation rules, and they are the fees that `RemoveCancellationFees` waives. Fees of any other type are charged either way, for example a `BookingFee` that the operator keeps after a cancellation. `TotalIfCancellationFeesRemoved` is what you would still be charged with the cancellation fees waived.
 
+Cancellation insurance on the reservation is listed in `Fees` as well, with type `CancellationInsurance` or `ExternalCancellationInsurance`. It is charged either way, like the other fees that are not of type `CancellationFee`.
+
 `MayRemoveCancellationFees` is always `true` when your organization is the operator that sold the reservation. When you book as an agent, it is `true` only if the operator has allowed you to waive cancellation fees on your agent business relationship in Citybreak.
 
 <aside class="notice">The amounts apply at the moment of the call and are not a quote. The cancellation rules are matched against the time you cancel, so cancelling later, or after the reservation has been changed, can charge something else.</aside>
