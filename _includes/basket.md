@@ -105,7 +105,7 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/basket/create",
 
 This alternative way to create a basket is used when you intend to link the customer basket to a Citybreak Online3 guide for customer details & payments.
 
-By supplying the Online3 identifier, you'll be able to transfer the Galaxy basket to an Online3 session using the `HybridCheckoutUrl` present in the <a href="#get-basket">Get Basket</a> call. HTTP Post the user's browser to the endpoint and it will redirect the user to the Online3 basket page. To send the user somewhere else on the guide instead, use <a href="#connect-a-basket-for-hybrid-checkout-in-citybreak-online3">Connect a basket</a>.
+By supplying the Online3 identifier, you'll be able to transfer the Galaxy basket to an Online3 session using the `HybridCheckoutUrl` present in the <a href="#get-basket">Get Basket</a> call. HTTP Post the user's browser to the endpoint and it will redirect the user to the Online3 basket page. To send the user to another page of the guide instead, append a `returnUrl` query parameter with a URL-encoded path on the same site, for example `&returnUrl=%2Fen%2Fto-do`.
 
 ### HTTP Request
 
@@ -122,43 +122,6 @@ Accept-Language | The language culture (e.g en-us)
 
 
 
-## Connect a basket for hybrid checkout in Citybreak Online3
-
-```shell
-# Open in the user's browser
-https://book.youronlineguide.com/en/basket/connect?basketId=48869100&sourceSessionId=688fc85e-f57f-447d-8ceb-2b548455735f&returnUrl=%2Fen%2Fto-do
-```
-
-```javascript
-var guide = new URL(basket.HybridCheckoutUrl.split("/basket/galaxy/")[0]);
-window.location.href = guide.origin + guide.pathname + "/basket/connect"
-  + "?basketId=" + basket.BasketId
-  + "&sourceSessionId=" + encodeURIComponent(basket.SessionId)
-  + "&returnUrl=" + encodeURIComponent(guide.pathname + "/to-do");
-```
-
-Like the `HybridCheckoutUrl`, this transfers the Galaxy basket to the user's Online3 session, but it takes the basket id and can send the user on to any page of the guide afterwards.
-
-Build it from the <a href="#get-basket">Get Basket</a> response: the guide address is the part of the `HybridCheckoutUrl` before `/basket/galaxy/`, and `BasketId` and `SessionId` go into the query. Use the same language as the booking widgets on your page. The basket's session changes once the user has connected, so take `SessionId` from a fresh Get Basket every time you build the link.
-
-The basket must have been created by Galaxy, with the guide's Online3 identifier, on the guide's point of sales.
-
-### HTTP Request
-
-`GET https://book.youronlineguide.com/en/basket/connect?basketId={basketId}&sourceSessionId={sessionId}&returnUrl={returnUrl}`
-
-A `POST` with the same parameters works too.
-
-### Query Parameters
-
-Parameter | Description
---------- | -----------
-basketId | The `BasketId` of the Galaxy basket.
-sourceSessionId | The `SessionId` from Get Basket.
-returnUrl | Optional. A path on the same site, starting with `/`, to send the user to after connecting, URL-encoded. Without it, or when it is not a local path, the user lands on the Online3 basket page.
-
-
-
 ## Add-ons page for hybrid checkout in Citybreak Online3
 
 ```shell
@@ -167,28 +130,25 @@ https://book.youronlineguide.com/en/basket/galaxyaddons?basketProductsIds=8
 ```
 
 ```javascript
-var guideUrl = basket.HybridCheckoutUrl.split("/basket/galaxy/")[0];
+var guideUrl = basket.HybridCheckoutUrl.split("/basket/connect")[0];
 window.location.href = guideUrl + "/basket/galaxyaddons?basketProductsIds=" + bookItemId;
 ```
 
-> Connect the basket and open the add-ons page in the same call:
+> Hand the basket over and open the add-ons page in the same call:
 
 ```shell
 https://book.youronlineguide.com/en/basket/connect?basketId=48869100&sourceSessionId=688fc85e-f57f-447d-8ceb-2b548455735f&returnUrl=%2Fen%2Fbasket%2Fgalaxyaddons%3FbasketProductsIds%3D8
 ```
 
 ```javascript
-var guide = new URL(basket.HybridCheckoutUrl.split("/basket/galaxy/")[0]);
-var addonsPath = guide.pathname + "/basket/galaxyaddons?basketProductsIds=" + bookItemId;
-window.location.href = guide.origin + guide.pathname + "/basket/connect"
-  + "?basketId=" + basket.BasketId
-  + "&sourceSessionId=" + encodeURIComponent(basket.SessionId)
-  + "&returnUrl=" + encodeURIComponent(addonsPath);
+var guidePath = new URL(basket.HybridCheckoutUrl.split("/basket/connect")[0]).pathname;
+var addonsPath = guidePath + "/basket/galaxyaddons?basketProductsIds=" + bookItemId;
+window.location.href = basket.HybridCheckoutUrl + "&returnUrl=" + encodeURIComponent(addonsPath);
 ```
 
-Once the user's browser has been sent to the `HybridCheckoutUrl`, the basket belongs to the user's Online3 session. To let the user choose add-ons for one of the booked products, send the browser to `basket/galaxyaddons` on the same guide and in the same language, with the product's `BookItemId` from <a href="#get-basket">Get Basket</a>. Online3 then redirects to the add-ons page for that product. The guide address is the part of the `HybridCheckoutUrl` before `/basket/galaxy/`.
+Once the user's browser has been sent to the `HybridCheckoutUrl`, the basket belongs to the user's Online3 session. To let the user choose add-ons for one of the booked products, send the browser to `basket/galaxyaddons` on the same guide and in the same language, with the product's `BookItemId` from <a href="#get-basket">Get Basket</a>. Online3 then redirects to the add-ons page for that product. The guide address is the part of the `HybridCheckoutUrl` before `/basket/connect`.
 
-If the basket hasn't been handed over yet, do both in one call: <a href="#connect-a-basket-for-hybrid-checkout-in-citybreak-online3">connect</a> the basket with `returnUrl` set to the add-ons path, URL-encoded.
+If the basket hasn't been handed over yet, do both in one call: append `returnUrl` with the URL-encoded add-ons path to the `HybridCheckoutUrl`.
 
 It works for accommodation, activity, event and ferry products.
 
@@ -470,7 +430,7 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/basket/{basketId}",
   "AutoCancellationDate": "9999-12-31T23:59:59.9999999",
   "SessionId": "688fc85e-f57f-447d-8ceb-2b548455735f",
   "CancellationInsurrances": [],
-  "HybridCheckoutUrl": "https://book.youronlineguide.com/en/basket/galaxy/688fc85e-f57f-447d-8ceb-2b548455735f"
+  "HybridCheckoutUrl": "https://book.youronlineguide.com/en/basket/connect?basketId=48869100&sourceSessionId=688fc85e-f57f-447d-8ceb-2b548455735f"
 }
 ```
 
