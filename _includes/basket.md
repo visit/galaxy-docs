@@ -122,6 +122,34 @@ Accept-Language | The language culture (e.g en-us)
 
 
 
+## Add-ons page for hybrid checkout in Citybreak Online3
+
+```shell
+# Open in the user's browser, which holds the Online3 session cookie
+https://book.youronlineguide.com/en/basket/galaxyaddons?basketProductsIds=8
+```
+
+```javascript
+var guideUrl = basket.HybridCheckoutUrl.split("/basket/galaxy/")[0];
+window.location.href = guideUrl + "/basket/galaxyaddons?basketProductsIds=" + bookItemId;
+```
+
+Once the user's browser has been sent to the `HybridCheckoutUrl`, the basket belongs to the user's Online3 session. To let the user choose add-ons for one of the booked products, send the browser to `basket/galaxyaddons` on the same guide and in the same language, with the product's `BookItemId` from <a href="#get-basket">Get Basket</a>. Online3 then redirects to the add-ons page for that product. The guide address is the part of the `HybridCheckoutUrl` before `/basket/galaxy/`.
+
+It works for accommodation, activity, event and ferry products.
+
+### HTTP Request
+
+`GET https://book.youronlineguide.com/en/basket/galaxyaddons?basketProductsIds={bookItemId}`
+
+### Query Parameters
+
+Parameter | Description
+--------- | -----------
+basketProductsIds | The `BookItemId` of the product in the basket. If several are given, only the first is used.
+
+
+
 ## Delete Basket
 
 ```shell
