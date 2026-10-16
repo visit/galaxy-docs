@@ -274,26 +274,27 @@ function openWidget(cbisProductId) {
   script.src = url;
   script.onload = () => {
     show('loaded');
-    // The script has replaced the div with the widget element, which keeps the token as its id.
-    listenForBookings(document.getElementById(token));
+    listenForBookings();
   };
   script.onerror = () => show('failed to load', true);
   document.body.appendChild(script);
 }
 
-// The widget announces basket changes on a BroadcastChannel named after the visitor's session id,
-// which its element carries in session-id.
-function listenForBookings(widget) {
-  const sessionId = widget && widget.getAttribute('session-id');
-  if (!bookings && sessionId) {
-    bookings = new BroadcastChannel(sessionId);
-    bookings.onmessage = message => {
-      if (message.data && message.data.key === 'cb-basket-update') {
-        listStep(3);
-        listCall('Online3', 'event', 'cb-basket-update', "BroadcastChannel named after the visitor's session id")('from the widget');
-        readBasketId();
-      }
-    };
+// The widget announces basket changes on a BroadcastChannel named after the visitor's session key,
+// which the session API returns (Booking events in the Citybreak Online docs).
+async function listenForBookings() {
+  if (!bookings) {
+    const session = await online3('session');
+    if (session.ok) {
+      bookings = new BroadcastChannel(JSON.parse(session.text));
+      bookings.onmessage = message => {
+        if (message.data && message.data.key === 'cb-basket-update') {
+          listStep(3);
+          listCall('Online3', 'event', 'cb-basket-update', "BroadcastChannel named after the visitor's session key")('from the widget');
+          readBasketId();
+        }
+      };
+    }
   }
   readBasketId();
 }
