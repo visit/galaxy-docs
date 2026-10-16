@@ -9,7 +9,8 @@
   /* The docs layout without its navigation column: controls on the left, the calls in the dark column. */
   .page-wrapper { margin-left: 0; }
   .content > h2 { clear: both; }
-  .content > .left { margin-right: 50%; padding: 0 28px; box-sizing: border-box; }
+  /* Slate clears every div in .content, which would push the controls below their step's calls. */
+  .content > .left { margin-right: 50%; padding: 0 28px; box-sizing: border-box; clear: none; }
   .left label { display: block; margin: .5em 0; }
   .left label span { display: inline-block; min-width: 13em; }
   .left input, .left select { font: inherit; padding: .2em .4em; width: 20em; max-width: 100%; box-sizing: border-box; }
@@ -257,9 +258,8 @@ async function readBasketId() {
 async function showGalaxyBasket() {
   const basket = await galaxy('cells3', 'GET', `basket/${basketId}`);
   const products = (basket.Groups || []).flatMap(g => g.Products || []);
-  el('galaxyBasket').textContent = `Galaxy: ${products.length} products listed` +
-    (products.length ? ` (${products.map(p => p.Name).join(', ')})` : '') +
-    `, total ${basket.TotalPrice.Price} ${basket.TotalPrice.Currency}.`;
+  el('galaxyBasket').textContent = `Galaxy: total ${basket.TotalPrice.Price} ${basket.TotalPrice.Currency}` +
+    (products.length ? ` for ${products.map(p => p.Name).join(', ')}.` : '.');
 }
 
 // Polls in a single block that is updated in place.
@@ -286,7 +286,7 @@ el('loadPos').onclick = async () => {
   try {
     showPointsOfSale(await galaxy('cells2', 'GET', 'pointofsales'));
     await loadPointOfSaleOptions();
-    showCountries(await galaxy('cells2', 'GET', 'countrycode'));
+    showCountries(await galaxy('cells4', 'GET', 'countrycode'));
   } catch (e) {
     // The failing call's block shows the error.
   }
