@@ -6,22 +6,31 @@
 <title>Hybrid checkout demo - Visit Galaxy API Documentation</title>
 <link href="stylesheets/screen.css" media="screen" rel="stylesheet" type="text/css">
 <style>
-  /* The docs layout without its navigation column: controls on the left, the calls in the dark column. */
+  /* The docs layout without its navigation column: the steps on the left, the call list in the dark column. */
   .page-wrapper { margin-left: 0; }
-  .content > h2 { clear: both; }
-  /* Slate clears every div in .content, which would push the controls below their step's calls. */
-  .content > .left { margin-right: 50%; padding: 0 28px; box-sizing: border-box; clear: none; }
+  .content > .left { margin-right: 50%; padding: 0 28px; box-sizing: border-box; }
   .left label { display: block; margin: .5em 0; }
   .left label span { display: inline-block; min-width: 13em; }
   .left input, .left select { font: inherit; padding: .2em .4em; width: 20em; max-width: 100%; box-sizing: border-box; }
   .left input[type=checkbox] { width: auto; }
   .left button { font: inherit; padding: .3em .8em; margin: .3em .3em .3em 0; cursor: pointer; }
-  .content pre.cell { max-height: 26em; overflow: auto; white-space: pre-wrap; overflow-wrap: anywhere; }
-  .cell .sys { font-weight: bold; color: #9fd0ff; }
-  .cell .sys.online3 { color: #9fe0b5; }
-  .cell .failed { color: #ff9c9c; }
   .msg { color: #b00; }
-  @media (max-width: 700px) { .content > .left { margin-right: 0; } }
+  /* The call list stays in view, so a new call never moves the steps. */
+  #calls { position: fixed; top: 0; right: 0; width: 50%; height: 100vh; overflow-y: auto; z-index: 40;
+    box-sizing: border-box; padding: 2em 28px; color: #eee; font: 12px/1.6 Consolas, Menlo, Courier, monospace; }
+  #calls h2 { margin: 0 0 .3em; font: bold 15px/1.4 "Helvetica Neue", Helvetica, Arial, sans-serif; color: #fff; }
+  #calls p { margin: 0 0 1em; color: #aaa; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
+  #calls ol { list-style: none; margin: 0; padding: 0; }
+  #calls .step { margin-top: 1em; color: #aaa; }
+  #calls .call { display: grid; grid-template-columns: 4.5em 3.5em minmax(0, 1fr) minmax(0, 14em); gap: .8em; }
+  #calls .call > span { overflow-wrap: anywhere; }
+  #calls .galaxy { color: #9fd0ff; font-weight: bold; }
+  #calls .online3 { color: #9fe0b5; font-weight: bold; }
+  #calls .failed { color: #ff9c9c; }
+  @media (max-width: 700px) {
+    .content > .left { margin-right: 0; }
+    #calls { position: static; width: auto; height: auto; max-height: 50vh; background: #393939; }
+  }
 </style>
 </head>
 <body>
@@ -32,7 +41,7 @@
 <h1>Hybrid checkout demo</h1>
 <p>Find booking flow activities through the Galaxy API, book one in the Citybreak Online3 booking flow widget,
 read the visitor's basket id from Online3, then add the customer and commit the basket through Galaxy.
-Each call appears on the right as it runs. Everything runs in your browser, and what you enter is only sent to Galaxy and Online3.</p>
+The API calls list shows each call as it runs. Everything runs in your browser, and what you enter is only sent to Galaxy and Online3.</p>
 <aside class="warning">Use Chrome or Edge, since the widget's Online3 session cookie is a third-party cookie on this page.
 Committing creates a real booking in the environment you pick, so cancel it afterwards.</aside>
 
@@ -46,7 +55,6 @@ Committing creates a real booking in the environment you pick, so cancel it afte
 </div>
 
 <h2>2. Pick an activity</h2>
-<div id="cells2"></div>
 <div class="left">
   <button id="loadPos">Load points of sale</button>
   <label><span>Point of sale</span> <select id="pos" disabled></select></label>
@@ -59,7 +67,6 @@ Committing creates a real booking in the environment you pick, so cancel it afte
 </div>
 
 <h2>3. Book in the widget</h2>
-<div id="cells3"></div>
 <div class="left">
   <div id="widget"><p>Pick an activity above to open it here.</p></div>
   <p>Basket id: <strong id="basketId">none yet</strong></p>
@@ -67,7 +74,6 @@ Committing creates a real booking in the environment you pick, so cancel it afte
 </div>
 
 <h2>4. Customer and commit</h2>
-<div id="cells4"></div>
 <div class="left">
   <label><span>First name</span> <input id="firstName"></label>
   <label><span>Last name (required)</span> <input id="lastName"></label>
@@ -79,6 +85,13 @@ Committing creates a real booking in the environment you pick, so cancel it afte
   <p id="result"></p>
 </div>
 
+</div>
+
+<div id="calls">
+  <h2>API calls</h2>
+  <p>Galaxy paths are under the Galaxy API's /v5/api, and {guide} is the Online3 guide's URL. The widget's own calls
+  to Online3 aren't listed. Hover a call for its full URL.</p>
+  <ol id="callList"></ol>
 </div>
 </div>
 
@@ -105,33 +118,55 @@ const culture = () => el('language').value || 'en-US';
 // Online3 paths carry the language and culture, e.g. /123456789/en/en-us.
 const guideUrl = () => `${env().online3}/${el('onlineId').value.trim()}/${culture().split('-')[0]}/${culture().toLowerCase()}`;
 const isoDate = date => date.toISOString().slice(0, 10);
-const pretty = text => { try { return JSON.stringify(JSON.parse(text), null, 2); } catch { return text; } };
+const count = (n, one, many) => `${n} ${n === 1 ? one : many}`;
 
 let basketId = null;
 let bookingCode = null;
 let listening = false;
+let listedStep = 0;
 
-// One dark block per call, like a notebook cell: the system, the request, then the response once it arrives.
-function cell(cellsId, system, request, requestBody) {
-  const box = document.createElement('pre');
-  box.className = 'cell';
-  const badge = document.createElement('span');
-  badge.className = `sys ${system.toLowerCase()}`;
-  badge.textContent = system;
-  const response = document.createElement('span');
-  response.textContent = '\n…';
-  box.append(badge, `  ${request}`);
-  if (requestBody !== undefined) box.append(`\n${JSON.stringify(requestBody, null, 2)}`);
-  box.append('\n', response);
-  el(cellsId).append(box);
-  return (text, failed) => {
-    response.textContent = `\n${text}`;
-    response.className = failed ? 'failed' : '';
+// Errors come as a JSON string, an object with a message, or plain text.
+function shortError(text) {
+  let message = text;
+  try {
+    const parsed = JSON.parse(text);
+    message = typeof parsed === 'string' ? parsed : parsed.Message || parsed.message || parsed.title || text;
+  } catch { }
+  return message.length > 100 ? `${message.slice(0, 100)}…` : message;
+}
+
+// Heads the calls of a step with the step's own heading.
+function listStep(step) {
+  if (step === listedStep) return;
+  listedStep = step;
+  const item = document.createElement('li');
+  item.className = 'step';
+  item.textContent = document.querySelectorAll('.content > h2')[step - 1].textContent;
+  el('callList').append(item);
+}
+
+// One line per call: the API, the method and path, then the outcome once it arrives.
+function listCall(api, method, path, url) {
+  const item = document.createElement('li');
+  item.className = 'call';
+  item.title = url;
+  const cells = [api, method, path, '…'].map(text => {
+    const span = document.createElement('span');
+    span.textContent = text;
+    return span;
+  });
+  cells[0].className = api.toLowerCase();
+  item.append(...cells);
+  el('callList').append(item);
+  el('calls').scrollTop = el('calls').scrollHeight;
+  return (outcome, failed) => {
+    cells[3].textContent = outcome;
+    cells[3].className = failed ? 'failed' : '';
   };
 }
 
-async function galaxy(cellsId, method, path, body) {
-  const show = cell(cellsId, 'Galaxy', `${method} ${env().galaxy}/${path}\napiKey: ••••`, body);
+async function galaxy(method, path, body, describe) {
+  const show = listCall('Galaxy', method, `/${path}`, `${env().galaxy}/${path}`);
   try {
     const res = await fetch(`${env().galaxy}/${path}`, {
       method,
@@ -139,21 +174,31 @@ async function galaxy(cellsId, method, path, body) {
       body: body === undefined ? undefined : JSON.stringify(body)
     });
     const text = await res.text();
-    show(`${res.status}${text ? '\n' + pretty(text) : ''}`, !res.ok);
-    if (!res.ok) throw new Error(`Galaxy ${method} ${path} returned ${res.status}.`);
-    return text ? JSON.parse(text) : null;
+    if (!res.ok) {
+      show(`${res.status} ${shortError(text)}`, true);
+      throw new Error(`Galaxy ${method} ${path} returned ${res.status}.`);
+    }
+    const data = text ? JSON.parse(text) : null;
+    show(describe ? `${res.status} · ${describe(data)}` : `${res.status}`);
+    return data;
   } catch (e) {
     if (!(e.message || '').startsWith('Galaxy ')) show(e.message, true);
     throw e;
   }
 }
 
-async function online3(cellsId, path) {
-  const show = cell(cellsId, 'Online3', `GET ${guideUrl()}/${path}\ncredentials: include (session cookie)`);
-  const res = await fetch(`${guideUrl()}/${path}`, { credentials: 'include' });
-  const text = await res.text();
-  show(`${res.status}${text ? '\n' + pretty(text) : ''}`, !res.ok);
-  return { ok: res.ok, text };
+async function online3(path, describe) {
+  const show = listCall('Online3', 'GET', `{guide}/${path}`, `${guideUrl()}/${path}`);
+  try {
+    const res = await fetch(`${guideUrl()}/${path}`, { credentials: 'include' });
+    const text = await res.text();
+    if (!res.ok) show(`${res.status} ${shortError(text)}`, true);
+    else show(describe ? `${res.status} · ${describe(text)}` : `${res.status}`);
+    return { ok: res.ok, text };
+  } catch (e) {
+    show(e.message, true);
+    return { ok: false, text: '' };
+  }
 }
 
 function fillSelect(id, values, preferred) {
@@ -180,18 +225,19 @@ function showCountries(codes) {
 async function loadPointOfSaleOptions() {
   const pointOfSalesId = el('pos').value;
   const [currencies, languages] = await Promise.all([
-    galaxy('cells2', 'GET', `pointofsales/currencies/${pointOfSalesId}`),
-    galaxy('cells2', 'GET', `content/language/${pointOfSalesId}`)
+    galaxy('GET', `pointofsales/currencies/${pointOfSalesId}`, undefined, data => data.join(', ')),
+    galaxy('GET', `content/language/${pointOfSalesId}`, undefined, data => count(data.length, 'language', 'languages'))
   ]);
   fillSelect('currency', currencies, el('currency').value);
   fillSelect('language', languages, el('language').value || 'en-US');
 }
 
 // Only booking flow products (references starting with "bfpkg:") open in the booking flow widget.
+const isBookingFlow = group => (group.References || []).some(r => r.startsWith('bfpkg:'));
+
 function showActivities(groups) {
-  const flows = groups.filter(g => (g.References || []).some(r => r.startsWith('bfpkg:')));
+  const flows = groups.filter(isBookingFlow);
   const others = groups.length - flows.length;
-  const count = (n, one, many) => `${n} ${n === 1 ? one : many}`;
   el('activitySummary').textContent =
     `${count(flows.length, 'booking flow activity', 'booking flow activities')} with dates in the next 30 days` +
     (others ? `, plus ${count(others, 'other activity', 'other activities')} that this widget can't open.` : '.');
@@ -220,26 +266,29 @@ function openWidget(cbisProductId) {
 
   // proceedToBasket=false keeps the visitor on this page after booking.
   const url = `${guideUrl()}/widget?token=${encodeURIComponent(token)}&cbisProductId=${cbisProductId}&proceedToBasket=false`;
-  const show = cell('cells3', 'Online3', `GET ${url}\n(script tag)`);
+  listStep(3);
+  const show = listCall('Online3', 'GET', `{guide}/widget?token=…&cbisProductId=${cbisProductId}`, url);
   const script = document.createElement('script');
   script.async = true;
   script.src = url;
   script.onload = () => {
-    show('loaded; the widget makes its own to-do/… calls from here');
+    show('loaded');
     if (!listening) listenForBookings();
   };
-  script.onerror = () => show('the widget script failed to load', true);
+  script.onerror = () => show('failed to load', true);
   document.body.appendChild(script);
 }
 
 // The widget announces basket changes on a BroadcastChannel named after the visitor's session key.
 async function listenForBookings() {
   listening = true;
-  const session = await online3('cells3', 'session');
+  const session = await online3('session');
+  if (!session.ok) return;
   const sessionKey = JSON.parse(session.text);
   new BroadcastChannel(sessionKey).onmessage = message => {
     if (message.data && message.data.key === 'cb-basket-update') {
-      cell('cells3', 'Online3', `BroadcastChannel "${sessionKey}"`)('message from the widget: cb-basket-update');
+      listStep(3);
+      listCall('Online3', 'event', 'cb-basket-update', `BroadcastChannel "${sessionKey}"`)('from the widget');
       readBasketId();
     }
   };
@@ -247,7 +296,7 @@ async function listenForBookings() {
 }
 
 async function readBasketId() {
-  const res = await online3('cells3', 'basket/id');
+  const res = await online3('basket/id', text => text.trim() || 'no basket yet');
   basketId = res.ok && res.text.trim() ? parseInt(res.text, 10) : null;
   el('basketId').textContent = basketId || 'none yet';
   el('commit').disabled = !basketId;
@@ -256,53 +305,65 @@ async function readBasketId() {
 
 // Galaxy's view of the same basket, by id.
 async function showGalaxyBasket() {
-  const basket = await galaxy('cells3', 'GET', `basket/${basketId}`);
+  const total = basket => `${basket.TotalPrice.Price} ${basket.TotalPrice.Currency}`;
+  const basket = await galaxy('GET', `basket/${basketId}`, undefined, total);
   const products = (basket.Groups || []).flatMap(g => g.Products || []);
-  el('galaxyBasket').textContent = `Galaxy: total ${basket.TotalPrice.Price} ${basket.TotalPrice.Currency}` +
+  el('galaxyBasket').textContent = `Galaxy: total ${total(basket)}` +
     (products.length ? ` for ${products.map(p => p.Name).join(', ')}.` : '.');
 }
 
-// Polls in a single block that is updated in place.
+// Polls on a single line that is updated in place.
 async function waitForCommit(commitId) {
-  const url = `${env().galaxy}/basket/commit/status/${commitId}`;
-  const show = cell('cells4', 'Galaxy', `GET ${url}\napiKey: ••••`);
+  const path = `basket/commit/status/${commitId}`;
+  const show = listCall('Galaxy', 'GET', `/${path}`, `${env().galaxy}/${path}`);
   for (let i = 1; i <= 180; i++) {
-    const res = await fetch(url, { headers: { 'apiKey': apiKey(), 'Accept-Language': culture() } });
+    const res = await fetch(`${env().galaxy}/${path}`, { headers: { 'apiKey': apiKey(), 'Accept-Language': culture() } });
     const text = await res.text();
     if (!res.ok) {
-      show(`${res.status}\n${pretty(text)}`, true);
+      show(`${res.status} ${shortError(text)}`, true);
       throw new Error(`Galaxy commit status returned ${res.status}.`);
     }
     const status = JSON.parse(text);
     const done = status.Status === 'CompletedOk' || status.Status === 'CompletedFailed';
-    show(`${res.status}, polled ${i} times\n${pretty(text)}`, status.Status === 'CompletedFailed');
+    show(`${res.status} · ${status.Status}${i > 1 ? `, polled ${i} times` : ''}`, status.Status === 'CompletedFailed');
     if (done) return status;
     await new Promise(resolve => setTimeout(resolve, 1000));
   }
   throw new Error(`Commit ${commitId} is still running after 3 minutes.`);
 }
 
+// Names the subtask that failed, e.g. "FinishingTransaction".
+function failedTask(status) {
+  const task = (status.Subtasks || []).find(s => s.Status === 'CompletedFailed');
+  return task ? ` at ${task.Task}` : '';
+}
+
 el('loadPos').onclick = async () => {
+  listStep(2);
   try {
-    showPointsOfSale(await galaxy('cells2', 'GET', 'pointofsales'));
+    showPointsOfSale(await galaxy('GET', 'pointofsales', undefined, data => count(data.length, 'point of sale', 'points of sale')));
     await loadPointOfSaleOptions();
-    showCountries(await galaxy('cells4', 'GET', 'countrycode'));
+    showCountries(await galaxy('GET', 'countrycode', undefined, data => count(data.length, 'country', 'countries')));
   } catch (e) {
-    // The failing call's block shows the error.
+    // The failing call's line shows the error.
   }
 };
 
-el('pos').onchange = () => loadPointOfSaleOptions().catch(() => {});
+el('pos').onchange = () => {
+  listStep(2);
+  loadPointOfSaleOptions().catch(() => {});
+};
 
 el('loadActivities').onclick = async () => {
+  listStep(2);
   el('activitySummary').textContent = 'Searching...';
   try {
-    const result = await galaxy('cells2', 'POST', 'availability/activity/calendar/byproduct', {
+    const result = await galaxy('POST', 'availability/activity/calendar/byproduct', {
       PointOfSalesId: parseInt(el('pos').value, 10),
       Start: isoDate(new Date()),
       End: isoDate(new Date(Date.now() + 30 * 24 * 3600 * 1000)),
       Currency: el('currency').value
-    });
+    }, data => count((data.ActivityGroups || []).filter(isBookingFlow).length, 'booking flow activity', 'booking flow activities'));
     showActivities(result.ActivityGroups || []);
   } catch (e) {
     el('activitySummary').textContent = '';
@@ -315,10 +376,11 @@ el('commit').onclick = async () => {
     el('msg4').textContent = 'Enter at least a last name and a country.';
     return;
   }
+  listStep(4);
   el('commit').disabled = true;
   try {
     // Last name, customer type, culture and country are the fields Galaxy requires.
-    await galaxy('cells4', 'POST', `basket/customer/${basketId}`, {
+    await galaxy('POST', `basket/customer/${basketId}`, {
       NameFirst: el('firstName').value.trim(),
       NameLast: el('lastName').value.trim(),
       Email: el('email').value.trim(),
@@ -328,10 +390,11 @@ el('commit').onclick = async () => {
       Address: { CountryCode: el('country').value }
     });
 
-    const commitId = await galaxy('cells4', 'POST', `basket/commit/${basketId}`);
+    const commitId = await galaxy('POST', `basket/commit/${basketId}`, undefined, id => `commit ${id}`);
     const status = await waitForCommit(commitId);
     bookingCode = status.BookingCode;
-    el('result').textContent = status.Status === 'CompletedOk' ? `Booked: ${bookingCode}` : 'The commit failed.';
+    el('result').textContent = status.Status === 'CompletedOk' ? `Booked: ${bookingCode}` : `The commit failed${failedTask(status)}.`;
+    el('commit').disabled = status.Status === 'CompletedOk';
     el('cancel').disabled = !bookingCode;
   } catch (e) {
     el('commit').disabled = false;
@@ -339,11 +402,12 @@ el('commit').onclick = async () => {
 };
 
 el('cancel').onclick = async () => {
+  listStep(4);
   el('cancel').disabled = true;
   try {
-    const commitId = await galaxy('cells4', 'POST', `reservation/cancel/${bookingCode}`);
+    const commitId = await galaxy('POST', `reservation/cancel/${bookingCode}`, undefined, id => `commit ${id}`);
     const status = await waitForCommit(commitId);
-    el('result').textContent = status.Status === 'CompletedOk' ? `Cancelled: ${bookingCode}` : 'The cancellation failed.';
+    el('result').textContent = status.Status === 'CompletedOk' ? `Cancelled: ${bookingCode}` : `The cancellation failed${failedTask(status)}.`;
   } catch (e) {
     el('cancel').disabled = false;
   }
