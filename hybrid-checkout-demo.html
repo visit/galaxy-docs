@@ -69,6 +69,7 @@ Committing creates a real booking in the environment you pick, so cancel it afte
 <h2>3. Book in the widget</h2>
 <div class="left">
   <div id="widget"><p>Pick an activity above to open it here.</p></div>
+  <p>Once you have booked in the widget: <button id="getBasket" disabled>Get the basket</button></p>
   <p>Basket id: <strong id="basketId">none yet</strong></p>
   <p id="galaxyBasket"></p>
 </div>
@@ -122,11 +123,11 @@ const count = (n, one, many) => `${n} ${n === 1 ? one : many}`;
 
 let basketId = null;
 let bookingCode = null;
-let listening = false;
 let listedStep = 0;
 
-// Errors come as a JSON string, an object with a message, or plain text.
+// Errors come as a JSON string, an object with a message, plain text, or an HTML error page, which says nothing short.
 function shortError(text) {
+  if (/^\s*</.test(text)) return '';
   let message = text;
   try {
     const parsed = JSON.parse(text);
@@ -273,26 +274,10 @@ function openWidget(cbisProductId) {
   script.src = url;
   script.onload = () => {
     show('loaded');
-    if (!listening) listenForBookings();
+    el('getBasket').disabled = false;
   };
   script.onerror = () => show('failed to load', true);
   document.body.appendChild(script);
-}
-
-// The widget announces basket changes on a BroadcastChannel named after the visitor's session key.
-async function listenForBookings() {
-  listening = true;
-  const session = await online3('session');
-  if (!session.ok) return;
-  const sessionKey = JSON.parse(session.text);
-  new BroadcastChannel(sessionKey).onmessage = message => {
-    if (message.data && message.data.key === 'cb-basket-update') {
-      listStep(3);
-      listCall('Online3', 'event', 'cb-basket-update', `BroadcastChannel "${sessionKey}"`)('from the widget');
-      readBasketId();
-    }
-  };
-  readBasketId();
 }
 
 async function readBasketId() {
@@ -347,6 +332,11 @@ el('loadPos').onclick = async () => {
   } catch (e) {
     // The failing call's line shows the error.
   }
+};
+
+el('getBasket').onclick = () => {
+  listStep(3);
+  readBasketId();
 };
 
 el('pos').onchange = () => {
