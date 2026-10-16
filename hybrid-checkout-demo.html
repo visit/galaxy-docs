@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hybrid checkout demo - Visit Galaxy API Documentation</title>
+<link href="stylesheets/screen.css" media="screen" rel="stylesheet" type="text/css">
+<style>
+  /* The docs layout without its navigation column: the steps on the left, the call list in the dark column. */
+  .page-wrapper { margin-left: 0; }
+  .content > .left { margin-right: 50%; padding: 0 28px; box-sizing: border-box; }
+  .left label { display: block; margin: .5em 0; }
+  .left label span { display: inline-block; min-width: 13em; }
+  .left input, .left select { font: inherit; padding: .2em .4em; width: 20em; max-width: 100%; box-sizing: border-box; }
+  .left input[type=checkbox] { width: auto; }
+  .left button { font: inherit; padding: .3em .8em; margin: .3em .3em .3em 0; cursor: pointer; }
+  .msg { color: #b00; }
+  /* The call list stays in view, so a new call never moves the steps. */
+  #calls { position: fixed; top: 0; right: 0; width: 50%; height: 100vh; overflow-y: auto; z-index: 40;
+    box-sizing: border-box; padding: 2em 28px; color: #eee; font: 12px/1.6 Consolas, Menlo, Courier, monospace; }
+  #calls h2 { margin: 0 0 .3em; font: bold 15px/1.4 "Helvetica Neue", Helvetica, Arial, sans-serif; color: #fff; }
+  #calls p { margin: 0 0 1em; color: #aaa; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
+  #calls ol { list-style: none; margin: 0; padding: 0; }
+  #calls .step { margin-top: 1em; color: #aaa; }
+  #calls .call { display: grid; grid-template-columns: 4.5em 3.5em minmax(0, 1fr) minmax(0, 14em); gap: .8em; }
+  #calls .call > span { overflow-wrap: anywhere; }
+  #calls .galaxy { color: #9fd0ff; font-weight: bold; }
+  #calls .online3 { color: #9fe0b5; font-weight: bold; }
+  #calls .failed { color: #ff9c9c; }
+  @media (max-width: 700px) {
+    .content > .left { margin-right: 0; }
+    #calls { position: static; width: auto; height: auto; max-height: 50vh; background: #393939; }
+  }
+</style>
+</head>
+<body>
+<div class="page-wrapper">
+<div class="dark-box"></div>
+<div class="content">
+
+<h1>Hybrid checkout demo</h1>
+<p>Find booking flow activities through the Galaxy API, book one in the Citybreak Online3 booking flow widget,
+read the visitor's basket id from Online3, then add the customer and commit the basket through Galaxy.
+The API calls list shows each call as it runs. Everything runs in your browser, and what you enter is only sent to Galaxy and Online3.</p>
+<aside class="warning">Use Chrome or Edge, since the widget's Online3 session cookie is a third-party cookie on this page.
+Committing creates a real booking in the environment you pick, so cancel it afterwards.</aside>
+
+<h2>1. Settings</h2>
+<div class="left">
+  <label><span>Environment</span>
+    <select id="env"><option value="test">Test</option><option value="production">Production</option></select></label>
+  <label><span>Galaxy API key</span> <input id="apiKey" autocomplete="off" spellcheck="false"></label>
+  <label><span>Online3 online id</span> <input id="onlineId" placeholder="the onlineId of your Online3 guide"></label>
+  <label><span>Booking flow widget token</span> <input id="token" placeholder="a token that allows URL overrides" spellcheck="false"></label>
+</div>
+
+<h2>2. Pick an activity</h2>
+<div class="left">
+  <button id="loadPos">Load points of sale</button>
+  <label><span>Point of sale</span> <select id="pos" disabled></select></label>
+  <label><span>Currency</span> <select id="currency" disabled></select></label>
+  <label><span>Language</span> <select id="language" disabled></select></label>
+  <button id="loadActivities" disabled>Find booking flow activities</button>
+  <p id="activitySummary"></p>
+  <ul id="activities"></ul>
+  <p class="msg" id="msg2"></p>
+</div>
+
+<h2>3. Book in the widget</h2>
+<div class="left">
+  <div id="widget"><p>Pick an activity above to open it here.</p></div>
+  <p>Basket id: <strong id="basketId">none yet</strong></p>
+  <p id="galaxyBasket"></p>
+</div>
+
+<h2>4. Customer and commit</h2>
+<div class="left">
+  <label><span>First name</span> <input id="firstName"></label>
+  <label><span>Last name (required)</span> <input id="lastName"></label>
+  <label><span>Email</span> <input id="email" type="email"></label>
+  <label><span>Country (required)</span> <select id="country" disabled></select></label>
+  <label><input id="sendConfirmation" type="checkbox"> Send the booking confirmation to this email</label>
+  <button id="commit" disabled>Commit basket</button> <button id="cancel" disabled>Cancel booking</button>
+  <p class="msg" id="msg4"></p>
+  <p id="result"></p>
+</div>
+
+</div>
+
+<div id="calls">
+  <h2>API calls</h2>
+  <p>Galaxy paths are under the Galaxy API's /v5/api, and {guide} is the Online3 guide's URL. The widget's own calls
+  to Online3 aren't listed. Hover a call for its full URL.</p>
+  <ol id="callList"></ol>
+</div>
+</div>
+
+<script>
+// Opened outside the built docs site, the relative stylesheet is missing, so use the published one.
+// It goes before the page's own style, which overrides it.
+if (getComputedStyle(document.querySelector('.dark-box')).position !== 'absolute') {
+  const css = document.createElement('link');
+  css.rel = 'stylesheet';
+  css.href = 'https://visit.github.io/galaxy-docs/stylesheets/screen.css';
+  document.querySelector('head > style').before(css);
+}
+
+const hosts = {
+  test: { galaxy: 'https://galaxy.test.citybreak.com/v5/api', online3: 'https://online3.test.citybreak.com' },
+  production: { galaxy: 'https://galaxy.citybreak.com/v5/api', online3: 'https://online3.citybreak.com' }
+};
+
+const el = id => document.getElementById(id);
+const env = () => hosts[el('env').value];
+// Picks the key out of what was pasted, so quotes or a trailing comma copied from a script don't matter.
+const apiKey = () => (el('apiKey').value.match(/[A-Za-z0-9]{16,}/) || [''])[0];
+const culture = () => el('language').value || 'en-US';
+// Online3 paths carry the language and culture, e.g. /123456789/en/en-us.
+const guideUrl = () => `${env().online3}/${el('onlineId').value.trim()}/${culture().split('-')[0]}/${culture().toLowerCase()}`;
+const isoDate = date => date.toISOString().slice(0, 10);
+const count = (n, one, many) => `${n} ${n === 1 ? one : many}`;
+
+let basketId = null;
+let bookingCode = null;
+let listedStep = 0;
+let bookings = null;
+
+// Errors come as a JSON string, an object with a message, plain text, or an HTML error page, which says nothing short.
+function shortError(text) {
+  if (/^\s*</.test(text)) return '';
+  let message = text;
+  try {
+    const parsed = JSON.parse(text);
+    message = typeof parsed === 'string' ? parsed : parsed.Message || parsed.message || parsed.title || text;
+  } catch { }
+  return message.length > 100 ? `${message.slice(0, 100)}…` : message;
+}
+
+// Heads the calls of a step with the step's own heading.
+function listStep(step) {
+  if (step === listedStep) return;
+  listedStep = step;
+  const item = document.createElement('li');
+  item.className = 'step';
+  item.textContent = document.querySelectorAll('.content > h2')[step - 1].textContent;
+  el('callList').append(item);
+}
+
+// One line per call: the API, the method and path, then the outcome once it arrives.
+function listCall(api, method, path, url) {
+  const item = document.createElement('li');
+  item.className = 'call';
+  item.title = url;
+  const cells = [api, method, path, '…'].map(text => {
+    const span = document.createElement('span');
+    span.textContent = text;
+    return span;
+  });
+  cells[0].className = api.toLowerCase();
+  item.append(...cells);
+  el('callList').append(item);
+  el('calls').scrollTop = el('calls').scrollHeight;
+  return (outcome, failed) => {
+    cells[3].textContent = outcome;
+    cells[3].className = failed ? 'failed' : '';
+  };
+}
+
+async function galaxy(method, path, body, describe) {
+  const show = listCall('Galaxy', method, `/${path}`, `${env().galaxy}/${path}`);
+  try {
+    const res = await fetch(`${env().galaxy}/${path}`, {
+      method,
+      headers: { 'apiKey': apiKey(), 'Accept-Language': culture(), 'Content-Type': 'application/json' },
+      body: body === undefined ? undefined : JSON.stringify(body)
+    });
+    const text = await res.text();
+    if (!res.ok) {
+      show(`${res.status} ${shortError(text)}`, true);
+      throw new Error(`Galaxy ${method} ${path} returned ${res.status}.`);
+    }
+    const data = text ? JSON.parse(text) : null;
+    show(describe ? `${res.status} · ${describe(data)}` : `${res.status}`);
+    return data;
+  } catch (e) {
+    if (!(e.message || '').startsWith('Galaxy ')) show(e.message, true);
+    throw e;
+  }
+}
+
+async function online3(path, describe) {
+  const show = listCall('Online3', 'GET', `{guide}/${path}`, `${guideUrl()}/${path}`);
+  try {
+    const res = await fetch(`${guideUrl()}/${path}`, { credentials: 'include' });
+    const text = await res.text();
+    if (!res.ok) show(`${res.status} ${shortError(text)}`, true);
+    else show(describe ? `${res.status} · ${describe(text)}` : `${res.status}`);
+    return { ok: res.ok, text };
+  } catch (e) {
+    show(e.message, true);
+    return { ok: false, text: '' };
+  }
+}
+
+function fillSelect(id, values, preferred) {
+  el(id).replaceChildren(...values.map(v => new Option(v, v, false, v === preferred)));
+  el(id).disabled = values.length === 0;
+}
+
+function showPointsOfSale(pointsOfSale) {
+  el('pos').replaceChildren(...pointsOfSale.map(p => new Option(`${p.Id} ${p.Name}`, p.Id)));
+  el('pos').disabled = el('loadActivities').disabled = pointsOfSale.length === 0;
+}
+
+// Galaxy lists country codes; the browser supplies their names.
+function showCountries(codes) {
+  const names = new Intl.DisplayNames(['en'], { type: 'region' });
+  const name = code => { try { return names.of(code) || code; } catch { return code; } };
+  el('country').replaceChildren(new Option('Choose a country', ''), ...codes
+    .map(code => [code, name(code)])
+    .sort((a, b) => a[1].localeCompare(b[1]))
+    .map(([code, label]) => new Option(`${label} (${code})`, code)));
+  el('country').disabled = codes.length === 0;
+}
+
+async function loadPointOfSaleOptions() {
+  const pointOfSalesId = el('pos').value;
+  const [currencies, languages] = await Promise.all([
+    galaxy('GET', `pointofsales/currencies/${pointOfSalesId}`, undefined, data => data.join(', ')),
+    galaxy('GET', `content/language/${pointOfSalesId}`, undefined, data => count(data.length, 'language', 'languages'))
+  ]);
+  fillSelect('currency', currencies, el('currency').value);
+  fillSelect('language', languages, el('language').value || 'en-US');
+}
+
+// Only booking flow products (references starting with "bfpkg:") open in the booking flow widget.
+const isBookingFlow = group => (group.References || []).some(r => r.startsWith('bfpkg:'));
+
+function showActivities(groups) {
+  const flows = groups.filter(isBookingFlow);
+  const others = groups.length - flows.length;
+  el('activitySummary').textContent =
+    `${count(flows.length, 'booking flow activity', 'booking flow activities')} with dates in the next 30 days` +
+    (others ? `, plus ${count(others, 'other activity', 'other activities')} that this widget can't open.` : '.');
+  el('activities').replaceChildren(...flows.map(g => {
+    const item = document.createElement('li');
+    const button = document.createElement('button');
+    button.textContent = g.Name;
+    button.onclick = () => openWidget(g.Id.replace('cbis:', ''));
+    const dates = new Set((g.Activities || []).flatMap(a => a.AvailableDates || []));
+    item.append(button, ` ${g.Id}, ${dates.size} dates`);
+    return item;
+  }));
+}
+
+// The widget script replaces a div that has the token as its id, so each activity gets a fresh div.
+function openWidget(cbisProductId) {
+  const token = el('token').value.trim();
+  el('msg2').textContent = '';
+  if (!el('onlineId').value.trim() || !token) {
+    el('msg2').textContent = 'Enter the Online3 online id and the booking flow widget token first.';
+    return;
+  }
+  const target = document.createElement('div');
+  target.id = token;
+  el('widget').replaceChildren(target);
+
+  // proceedToBasket=false keeps the visitor on this page after booking.
+  const url = `${guideUrl()}/widget?token=${encodeURIComponent(token)}&cbisProductId=${cbisProductId}&proceedToBasket=false`;
+  listStep(3);
+  const show = listCall('Online3', 'GET', `{guide}/widget?token=…&cbisProductId=${cbisProductId}`, url);
+  const script = document.createElement('script');
+  script.async = true;
+  script.src = url;
+  script.onload = () => {
+    show('loaded');
+    listenForBookings();
+  };
+  script.onerror = () => show('failed to load', true);
+  document.body.appendChild(script);
+}
+
+// The widget announces basket changes on a BroadcastChannel named after the visitor's session key,
+// which the session API returns (Booking events in the Citybreak Online docs).
+async function listenForBookings() {
+  if (!bookings) {
+    const session = await online3('session');
+    if (session.ok) {
+      bookings = new BroadcastChannel(JSON.parse(session.text));
+      bookings.onmessage = message => {
+        if (message.data && message.data.key === 'cb-basket-update') {
+          listStep(3);
+          listCall('Online3', 'event', 'cb-basket-update', "BroadcastChannel named after the visitor's session key")('from the widget');
+          readBasketId();
+        }
+      };
+    }
+  }
+  readBasketId();
+}
+
+async function readBasketId() {
+  const res = await online3('basket/id', text => text.trim() || 'no basket yet');
+  basketId = res.ok && res.text.trim() ? parseInt(res.text, 10) : null;
+  el('basketId').textContent = basketId || 'none yet';
+  el('commit').disabled = !basketId;
+  if (basketId && apiKey()) showGalaxyBasket().catch(() => {});
+}
+
+// Galaxy's view of the same basket, by id.
+async function showGalaxyBasket() {
+  const total = basket => `${basket.TotalPrice.Price} ${basket.TotalPrice.Currency}`;
+  const basket = await galaxy('GET', `basket/${basketId}`, undefined, total);
+  const products = (basket.Groups || []).flatMap(g => g.Products || []);
+  el('galaxyBasket').textContent = `Galaxy: total ${total(basket)}` +
+    (products.length ? ` for ${products.map(p => p.Name).join(', ')}.` : '.');
+}
+
+// Polls on a single line that is updated in place.
+async function waitForCommit(commitId) {
+  const path = `basket/commit/status/${commitId}`;
+  const show = listCall('Galaxy', 'GET', `/${path}`, `${env().galaxy}/${path}`);
+  for (let i = 1; i <= 180; i++) {
+    const res = await fetch(`${env().galaxy}/${path}`, { headers: { 'apiKey': apiKey(), 'Accept-Language': culture() } });
+    const text = await res.text();
+    if (!res.ok) {
+      show(`${res.status} ${shortError(text)}`, true);
+      throw new Error(`Galaxy commit status returned ${res.status}.`);
+    }
+    const status = JSON.parse(text);
+    const done = status.Status === 'CompletedOk' || status.Status === 'CompletedFailed';
+    show(`${res.status} · ${status.Status}${i > 1 ? `, polled ${i} times` : ''}`, status.Status === 'CompletedFailed');
+    if (done) return status;
+    await new Promise(resolve => setTimeout(resolve, 1000));
+  }
+  throw new Error(`Commit ${commitId} is still running after 3 minutes.`);
+}
+
+// Names the subtask that failed, e.g. "FinishingTransaction".
+function failedTask(status) {
+  const task = (status.Subtasks || []).find(s => s.Status === 'CompletedFailed');
+  return task ? ` at ${task.Task}` : '';
+}
+
+el('loadPos').onclick = async () => {
+  listStep(2);
+  try {
+    showPointsOfSale(await galaxy('GET', 'pointofsales', undefined, data => count(data.length, 'point of sale', 'points of sale')));
+    await loadPointOfSaleOptions();
+    showCountries(await galaxy('GET', 'countrycode', undefined, data => count(data.length, 'country', 'countries')));
+  } catch (e) {
+    // The failing call's line shows the error.
+  }
+};
+
+el('pos').onchange = () => {
+  listStep(2);
+  loadPointOfSaleOptions().catch(() => {});
+};
+
+el('loadActivities').onclick = async () => {
+  listStep(2);
+  el('activitySummary').textContent = 'Searching...';
+  try {
+    const result = await galaxy('POST', 'availability/activity/calendar/byproduct', {
+      PointOfSalesId: parseInt(el('pos').value, 10),
+      Start: isoDate(new Date()),
+      End: isoDate(new Date(Date.now() + 30 * 24 * 3600 * 1000)),
+      Currency: el('currency').value
+    }, data => count((data.ActivityGroups || []).filter(isBookingFlow).length, 'booking flow activity', 'booking flow activities'));
+    showActivities(result.ActivityGroups || []);
+  } catch (e) {
+    el('activitySummary').textContent = '';
+  }
+};
+
+el('commit').onclick = async () => {
+  el('msg4').textContent = '';
+  if (!el('lastName').value.trim() || !el('country').value) {
+    el('msg4').textContent = 'Enter at least a last name and a country.';
+    return;
+  }
+  listStep(4);
+  el('commit').disabled = true;
+  try {
+    // Last name, customer type, culture and country are the fields Galaxy requires.
+    await galaxy('POST', `basket/customer/${basketId}`, {
+      NameFirst: el('firstName').value.trim(),
+      NameLast: el('lastName').value.trim(),
+      Email: el('email').value.trim(),
+      SendEmailConfirmation: el('sendConfirmation').checked,
+      CustomerType: 'Private',
+      Culture: culture(),
+      Address: { CountryCode: el('country').value }
+    });
+
+    const commitId = await galaxy('POST', `basket/commit/${basketId}`, undefined, id => `commit ${id}`);
+    const status = await waitForCommit(commitId);
+    bookingCode = status.BookingCode;
+    el('result').textContent = status.Status === 'CompletedOk' ? `Booked: ${bookingCode}` : `The commit failed${failedTask(status)}.`;
+    el('commit').disabled = status.Status === 'CompletedOk';
+    el('cancel').disabled = !bookingCode;
+  } catch (e) {
+    el('commit').disabled = false;
+  }
+};
+
+el('cancel').onclick = async () => {
+  listStep(4);
+  el('cancel').disabled = true;
+  try {
+    const commitId = await galaxy('POST', `reservation/cancel/${bookingCode}`, undefined, id => `commit ${id}`);
+    const status = await waitForCommit(commitId);
+    el('result').textContent = status.Status === 'CompletedOk' ? `Cancelled: ${bookingCode}` : `The cancellation failed${failedTask(status)}.`;
+  } catch (e) {
+    el('cancel').disabled = false;
+  }
+};
+</script>
+</body>
+</html>
