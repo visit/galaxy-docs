@@ -107,6 +107,8 @@ This alternative way to create a basket is used when you intend to link the cust
 
 By supplying the Online3 identifier, you'll be able to transfer the Galaxy basket to an Online3 session using the `HybridCheckoutUrl` present in the <a href="#get-basket">Get Basket</a> call. HTTP Post the user's browser to the endpoint and it will redirect the user to the Online3 basket page. To send the user to another page of the guide instead, append a `returnUrl` query parameter with a URL-encoded path on the same site, for example `?returnUrl=%2Fen%2Fto-do`.
 
+The [hybrid checkout demo](hybrid-checkout-demo.html) runs a hybrid flow in your browser and shows each API call as it runs: it finds booking flow activities through Galaxy, books one in the Citybreak Online3 booking flow widget, reads the basket id from Online3, then adds the customer and commits the basket through Galaxy.
+
 ### HTTP Request
 
 `POST https://galaxy.citybreak.com/v5/api/basket/create`

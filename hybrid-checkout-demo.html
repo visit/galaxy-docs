@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hybrid checkout demo - Visit Galaxy API Documentation</title>
+<link href="stylesheets/screen.css" media="screen" rel="stylesheet" type="text/css">
+<style>
+  /* The docs layout without its navigation column: controls on the left, the calls in the dark column. */
+  .page-wrapper { margin-left: 0; }
+  .content > h2 { clear: both; }
+  .content > .left { margin-right: 50%; padding: 0 28px; box-sizing: border-box; }
+  .left label { display: block; margin: .5em 0; }
+  .left label span { display: inline-block; min-width: 13em; }
+  .left input, .left select { font: inherit; padding: .2em .4em; width: 20em; max-width: 100%; box-sizing: border-box; }
+  .left input[type=checkbox] { width: auto; }
+  .left button { font: inherit; padding: .3em .8em; margin: .3em .3em .3em 0; cursor: pointer; }
+  .content pre.cell { max-height: 26em; overflow: auto; white-space: pre-wrap; overflow-wrap: anywhere; }
+  .cell .sys { font-weight: bold; color: #9fd0ff; }
+  .cell .sys.online3 { color: #9fe0b5; }
+  .cell .failed { color: #ff9c9c; }
+  .msg { color: #b00; }
+  @media (max-width: 700px) { .content > .left { margin-right: 0; } }
+</style>
+</head>
+<body>
+<div class="page-wrapper">
+<div class="dark-box"></div>
+<div class="content">
+
+<h1>Hybrid checkout demo</h1>
+<p>Find booking flow activities through the Galaxy API, book one in the Citybreak Online3 booking flow widget,
+read the visitor's basket id from Online3, then add the customer and commit the basket through Galaxy.
+Each call appears on the right as it runs. Everything runs in your browser, and what you enter is only sent to Galaxy and Online3.</p>
+<aside class="warning">Use Chrome or Edge, since the widget's Online3 session cookie is a third-party cookie on this page.
+Committing creates a real booking in the environment you pick, so cancel it afterwards.</aside>
+
+<h2>1. Settings</h2>
+<div class="left">
+  <label><span>Environment</span>
+    <select id="env"><option value="test">Test</option><option value="production">Production</option></select></label>
+  <label><span>Galaxy API key</span> <input id="apiKey" autocomplete="off" spellcheck="false"></label>
+  <label><span>Online3 online id</span> <input id="onlineId" placeholder="the onlineId of your Online3 guide"></label>
+  <label><span>Booking flow widget token</span> <input id="token" placeholder="a token that allows URL overrides" spellcheck="false"></label>
+</div>
+
+<h2>2. Pick an activity</h2>
+<div id="cells2"></div>
+<div class="left">
+  <button id="loadPos">Load points of sale</button>
+  <label><span>Point of sale</span> <select id="pos" disabled></select></label>
+  <label><span>Currency</span> <select id="currency" disabled></select></label>
+  <label><span>Language</span> <select id="language" disabled></select></label>
+  <button id="loadActivities" disabled>Find booking flow activities</button>
+  <p id="activitySummary"></p>
+  <ul id="activities"></ul>
+  <p class="msg" id="msg2"></p>
+</div>
+
+<h2>3. Book in the widget</h2>
+<div id="cells3"></div>
+<div class="left">
+  <div id="widget"><p>Pick an activity above to open it here.</p></div>
+  <p>Basket id: <strong id="basketId">none yet</strong></p>
+  <p id="galaxyBasket"></p>
+</div>
+
+<h2>4. Customer and commit</h2>
+<div id="cells4"></div>
+<div class="left">
+  <label><span>First name</span> <input id="firstName"></label>
+  <label><span>Last name (required)</span> <input id="lastName"></label>
+  <label><span>Email</span> <input id="email" type="email"></label>
+  <label><span>Country (required)</span> <select id="country" disabled></select></label>
+  <label><input id="sendConfirmation" type="checkbox"> Send the booking confirmation to this email</label>
+  <button id="commit" disabled>Commit basket</button> <button id="cancel" disabled>Cancel booking</button>
+  <p class="msg" id="msg4"></p>
+  <p id="result"></p>
+</div>
+
+</div>
+</div>
+
+<script>
+// Opened outside the built docs site, the relative stylesheet is missing, so use the published one.
+// It goes before the page's own style, which overrides it.
+if (getComputedStyle(document.querySelector('.dark-box')).position !== 'absolute') {
+  const css = document.createElement('link');
+  css.rel = 'stylesheet';
+  css.href = 'https://visit.github.io/galaxy-docs/stylesheets/screen.css';
+  document.querySelector('head > style').before(css);
+}
+
+const hosts = {
+  test: { galaxy: 'https://galaxy.test.citybreak.com/v5/api', online3: 'https://online3.test.citybreak.com' },
+  production: { galaxy: 'https://galaxy.citybreak.com/v5/api', online3: 'https://online3.citybreak.com' }
+};
+
+const el = id => document.getElementById(id);
+const env = () => hosts[el('env').value];
+// Picks the key out of what was pasted, so quotes or a trailing comma copied from a script don't matter.
+const apiKey = () => (el('apiKey').value.match(/[A-Za-z0-9]{16,}/) || [''])[0];
+const culture = () => el('language').value || 'en-US';
+// Online3 paths carry the language and culture, e.g. /123456789/en/en-us.
+const guideUrl = () => `${env().online3}/${el('onlineId').value.trim()}/${culture().split('-')[0]}/${culture().toLowerCase()}`;
+const isoDate = date => date.toISOString().slice(0, 10);
+const pretty = text => { try { return JSON.stringify(JSON.parse(text), null, 2); } catch { return text; } };
+
+let basketId = null;
+let bookingCode = null;
+let listening = false;
+
+// One dark block per call, like a notebook cell: the system, the request, then the response once it arrives.
+function cell(cellsId, system, request, requestBody) {
+  const box = document.createElement('pre');
+  box.className = 'cell';
+  const badge = document.createElement('span');
+  badge.className = `sys ${system.toLowerCase()}`;
+  badge.textContent = system;
+  const response = document.createElement('span');
+  response.textContent = '\n…';
+  box.append(badge, `  ${request}`);
+  if (requestBody !== undefined) box.append(`\n${JSON.stringify(requestBody, null, 2)}`);
+  box.append('\n', response);
+  el(cellsId).append(box);
+  return (text, failed) => {
+    response.textContent = `\n${text}`;
+    response.className = failed ? 'failed' : '';
+  };
+}
+
+async function galaxy(cellsId, method, path, body) {
+  const show = cell(cellsId, 'Galaxy', `${method} ${env().galaxy}/${path}\napiKey: ••••`, body);
+  try {
+    const res = await fetch(`${env().galaxy}/${path}`, {
+      method,
+      headers: { 'apiKey': apiKey(), 'Accept-Language': culture(), 'Content-Type': 'application/json' },
+      body: body === undefined ? undefined : JSON.stringify(body)
+    });
+    const text = await res.text();
+    show(`${res.status}${text ? '\n' + pretty(text) : ''}`, !res.ok);
+    if (!res.ok) throw new Error(`Galaxy ${method} ${path} returned ${res.status}.`);
+    return text ? JSON.parse(text) : null;
+  } catch (e) {
+    if (!(e.message || '').startsWith('Galaxy ')) show(e.message, true);
+    throw e;
+  }
+}
+
+async function online3(cellsId, path) {
+  const show = cell(cellsId, 'Online3', `GET ${guideUrl()}/${path}\ncredentials: include (session cookie)`);
+  const res = await fetch(`${guideUrl()}/${path}`, { credentials: 'include' });
+  const text = await res.text();
+  show(`${res.status}${text ? '\n' + pretty(text) : ''}`, !res.ok);
+  return { ok: res.ok, text };
+}
+
+function fillSelect(id, values, preferred) {
+  el(id).replaceChildren(...values.map(v => new Option(v, v, false, v === preferred)));
+  el(id).disabled = values.length === 0;
+}
+
+function showPointsOfSale(pointsOfSale) {
+  el('pos').replaceChildren(...pointsOfSale.map(p => new Option(`${p.Id} ${p.Name}`, p.Id)));
+  el('pos').disabled = el('loadActivities').disabled = pointsOfSale.length === 0;
+}
+
+// Galaxy lists country codes; the browser supplies their names.
+function showCountries(codes) {
+  const names = new Intl.DisplayNames(['en'], { type: 'region' });
+  const name = code => { try { return names.of(code) || code; } catch { return code; } };
+  el('country').replaceChildren(new Option('Choose a country', ''), ...codes
+    .map(code => [code, name(code)])
+    .sort((a, b) => a[1].localeCompare(b[1]))
+    .map(([code, label]) => new Option(`${label} (${code})`, code)));
+  el('country').disabled = codes.length === 0;
+}
+
+async function loadPointOfSaleOptions() {
+  const pointOfSalesId = el('pos').value;
+  const [currencies, languages] = await Promise.all([
+    galaxy('cells2', 'GET', `pointofsales/currencies/${pointOfSalesId}`),
+    galaxy('cells2', 'GET', `content/language/${pointOfSalesId}`)
+  ]);
+  fillSelect('currency', currencies, el('currency').value);
+  fillSelect('language', languages, el('language').value || 'en-US');
+}
+
+// Only booking flow products (references starting with "bfpkg:") open in the booking flow widget.
+function showActivities(groups) {
+  const flows = groups.filter(g => (g.References || []).some(r => r.startsWith('bfpkg:')));
+  const others = groups.length - flows.length;
+  const count = (n, one, many) => `${n} ${n === 1 ? one : many}`;
+  el('activitySummary').textContent =
+    `${count(flows.length, 'booking flow activity', 'booking flow activities')} with dates in the next 30 days` +
+    (others ? `, plus ${count(others, 'other activity', 'other activities')} that this widget can't open.` : '.');
+  el('activities').replaceChildren(...flows.map(g => {
+    const item = document.createElement('li');
+    const button = document.createElement('button');
+    button.textContent = g.Name;
+    button.onclick = () => openWidget(g.Id.replace('cbis:', ''));
+    const dates = new Set((g.Activities || []).flatMap(a => a.AvailableDates || []));
+    item.append(button, ` ${g.Id}, ${dates.size} dates`);
+    return item;
+  }));
+}
+
+// The widget script replaces a div that has the token as its id, so each activity gets a fresh div.
+function openWidget(cbisProductId) {
+  const token = el('token').value.trim();
+  el('msg2').textContent = '';
+  if (!el('onlineId').value.trim() || !token) {
+    el('msg2').textContent = 'Enter the Online3 online id and the booking flow widget token first.';
+    return;
+  }
+  const target = document.createElement('div');
+  target.id = token;
+  el('widget').replaceChildren(target);
+
+  // proceedToBasket=false keeps the visitor on this page after booking.
+  const url = `${guideUrl()}/widget?token=${encodeURIComponent(token)}&cbisProductId=${cbisProductId}&proceedToBasket=false`;
+  const show = cell('cells3', 'Online3', `GET ${url}\n(script tag)`);
+  const script = document.createElement('script');
+  script.async = true;
+  script.src = url;
+  script.onload = () => {
+    show('loaded; the widget makes its own to-do/… calls from here');
+    if (!listening) listenForBookings();
+  };
+  script.onerror = () => show('the widget script failed to load', true);
+  document.body.appendChild(script);
+}
+
+// The widget announces basket changes on a BroadcastChannel named after the visitor's session key.
+async function listenForBookings() {
+  listening = true;
+  const session = await online3('cells3', 'session');
+  const sessionKey = JSON.parse(session.text);
+  new BroadcastChannel(sessionKey).onmessage = message => {
+    if (message.data && message.data.key === 'cb-basket-update') {
+      cell('cells3', 'Online3', `BroadcastChannel "${sessionKey}"`)('message from the widget: cb-basket-update');
+      readBasketId();
+    }
+  };
+  readBasketId();
+}
+
+async function readBasketId() {
+  const res = await online3('cells3', 'basket/id');
+  basketId = res.ok && res.text.trim() ? parseInt(res.text, 10) : null;
+  el('basketId').textContent = basketId || 'none yet';
+  el('commit').disabled = !basketId;
+  if (basketId && apiKey()) showGalaxyBasket().catch(() => {});
+}
+
+// Galaxy's view of the same basket, by id.
+async function showGalaxyBasket() {
+  const basket = await galaxy('cells3', 'GET', `basket/${basketId}`);
+  const products = (basket.Groups || []).flatMap(g => g.Products || []);
+  el('galaxyBasket').textContent = `Galaxy: ${products.length} products listed` +
+    (products.length ? ` (${products.map(p => p.Name).join(', ')})` : '') +
+    `, total ${basket.TotalPrice.Price} ${basket.TotalPrice.Currency}.`;
+}
+
+// Polls in a single block that is updated in place.
+async function waitForCommit(commitId) {
+  const url = `${env().galaxy}/basket/commit/status/${commitId}`;
+  const show = cell('cells4', 'Galaxy', `GET ${url}\napiKey: ••••`);
+  for (let i = 1; i <= 180; i++) {
+    const res = await fetch(url, { headers: { 'apiKey': apiKey(), 'Accept-Language': culture() } });
+    const text = await res.text();
+    if (!res.ok) {
+      show(`${res.status}\n${pretty(text)}`, true);
+      throw new Error(`Galaxy commit status returned ${res.status}.`);
+    }
+    const status = JSON.parse(text);
+    const done = status.Status === 'CompletedOk' || status.Status === 'CompletedFailed';
+    show(`${res.status}, polled ${i} times\n${pretty(text)}`, status.Status === 'CompletedFailed');
+    if (done) return status;
+    await new Promise(resolve => setTimeout(resolve, 1000));
+  }
+  throw new Error(`Commit ${commitId} is still running after 3 minutes.`);
+}
+
+el('loadPos').onclick = async () => {
+  try {
+    showPointsOfSale(await galaxy('cells2', 'GET', 'pointofsales'));
+    await loadPointOfSaleOptions();
+    showCountries(await galaxy('cells2', 'GET', 'countrycode'));
+  } catch (e) {
+    // The failing call's block shows the error.
+  }
+};
+
+el('pos').onchange = () => loadPointOfSaleOptions().catch(() => {});
+
+el('loadActivities').onclick = async () => {
+  el('activitySummary').textContent = 'Searching...';
+  try {
+    const result = await galaxy('cells2', 'POST', 'availability/activity/calendar/byproduct', {
+      PointOfSalesId: parseInt(el('pos').value, 10),
+      Start: isoDate(new Date()),
+      End: isoDate(new Date(Date.now() + 30 * 24 * 3600 * 1000)),
+      Currency: el('currency').value
+    });
+    showActivities(result.ActivityGroups || []);
+  } catch (e) {
+    el('activitySummary').textContent = '';
+  }
+};
+
+el('commit').onclick = async () => {
+  el('msg4').textContent = '';
+  if (!el('lastName').value.trim() || !el('country').value) {
+    el('msg4').textContent = 'Enter at least a last name and a country.';
+    return;
+  }
+  el('commit').disabled = true;
+  try {
+    // Last name, customer type, culture and country are the fields Galaxy requires.
+    await galaxy('cells4', 'POST', `basket/customer/${basketId}`, {
+      NameFirst: el('firstName').value.trim(),
+      NameLast: el('lastName').value.trim(),
+      Email: el('email').value.trim(),
+      SendEmailConfirmation: el('sendConfirmation').checked,
+      CustomerType: 'Private',
+      Culture: culture(),
+      Address: { CountryCode: el('country').value }
+    });
+
+    const commitId = await galaxy('cells4', 'POST', `basket/commit/${basketId}`);
+    const status = await waitForCommit(commitId);
+    bookingCode = status.BookingCode;
+    el('result').textContent = status.Status === 'CompletedOk' ? `Booked: ${bookingCode}` : 'The commit failed.';
+    el('cancel').disabled = !bookingCode;
+  } catch (e) {
+    el('commit').disabled = false;
+  }
+};
+
+el('cancel').onclick = async () => {
+  el('cancel').disabled = true;
+  try {
+    const commitId = await galaxy('cells4', 'POST', `reservation/cancel/${bookingCode}`);
+    const status = await waitForCommit(commitId);
+    el('result').textContent = status.Status === 'CompletedOk' ? `Cancelled: ${bookingCode}` : 'The cancellation failed.';
+  } catch (e) {
+    el('cancel').disabled = false;
+  }
+};
+</script>
+</body>
+</html>
