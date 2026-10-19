@@ -124,6 +124,31 @@ Accept-Language | The language culture (e.g en-us)
 
 
 
+## Hand over a basket in the background
+
+```javascript
+// basket is the Get Basket response. The guide is on the same site as your page.
+var r = fetch(basket.HybridCheckoutUrl,
+{
+  method: "POST",
+  credentials: "include",
+  redirect: "manual" // no need to load the basket page
+});
+```
+
+If your page also uses the Citybreak Online3 booking flow widget, the widget books into the visitor's own Online3 basket. A basket you create through Galaxy becomes that basket when it is handed over, so hand it over before the visitor's first widget booking. A background request from the visitor's browser to the `HybridCheckoutUrl` does this without leaving your page. The widget then books into your basket, and you keep adding items through Galaxy. At checkout, send the browser to the `HybridCheckoutUrl` as usual.
+
+- First read the visitor's basket id with the [Online3 Basket API](https://visit.github.io/citybreak-online-doc/#basket-api). If the visitor already has a basket, add your items to that one instead, as a visitor can only have one Online3 basket.
+- The guide must be on the same site as your page, for example `book.example.com` for `www.example.com`. Otherwise browsers that block third-party cookies drop the visitor's Online3 session.
+- Create the basket with the `Accept-Language` of the widget's culture, so that the hand-over and the widget use the same Online3 session.
+- If the visitor has no Online3 session yet, the hand-over starts one.
+
+### HTTP Request
+
+`POST {HybridCheckoutUrl}`, from the visitor's browser with credentials.
+
+
+
 ## Add-ons page for hybrid checkout in Citybreak Online3
 
 ```shell
