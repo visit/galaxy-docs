@@ -136,7 +136,7 @@ var r = fetch(basket.HybridCheckoutUrl,
 });
 ```
 
-If your page also uses the Citybreak Online3 booking flow widget, the widget books into the visitor's own Online3 basket. A basket you create through Galaxy becomes that basket when it is handed over, so hand it over before the visitor's first widget booking. A background request from the visitor's browser to the `HybridCheckoutUrl` does this without leaving your page. The widget then books into your basket, and you keep adding items through Galaxy. At checkout, send the browser to the `HybridCheckoutUrl` as usual.
+If your page also uses the Citybreak Online3 booking flow widget, the widget books into the visitor's own Online3 basket. A basket you create through Galaxy becomes that basket when it is handed over, so hand it over before the visitor's first widget booking. A background request from the visitor's browser to the `HybridCheckoutUrl` does this without leaving your page. The widget then books into your basket, and you keep adding items through Galaxy. At checkout, read the basket again with <a href="#get-basket">Get Basket</a> and send the browser to its `HybridCheckoutUrl`: the hand-over moved the basket to the visitor's Online3 session, so the earlier URL no longer works.
 
 - First read the visitor's basket id with the [Online3 Basket API](https://visit.github.io/citybreak-online-doc/#basket-api). If the visitor already has a basket, add your items to that one instead, as a visitor can only have one Online3 basket.
 - The guide must be on the same site as your page, for example `book.example.com` for `www.example.com`. Otherwise browsers that block third-party cookies drop the visitor's Online3 session.
