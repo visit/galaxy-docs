@@ -86,7 +86,17 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/reservation/version/{reservat
   "Version": 1,
   "BookingDate": "2017-09-27T13:12:54.1938577Z",
   "AutoCancellation": "9999-12-31T23:59:59.9999999",
-  "Fees": [],
+  "Fees": [
+    {
+      "Currency": "SEK",
+      "Price": 50.0,
+      "Vat": 10.0,
+      "Terms": null,
+      "Name": "Service fee",
+      "Date": "2017-09-27T13:12:54.1938577Z",
+      "Status": "New"
+    }
+  ],
   "BookingUser": {
     "Id": 113685,
     "NameFirst": "Galaxy",
@@ -137,19 +147,76 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/reservation/version/{reservat
         {
           "Id": 3,
           "Name": "Dubbelrum",
-          "Price": 350,
-          "ProductVat": 18.11,
-          "ExternalBookingCode": "16215808"
+          "Price": 1200.0,
+          "ProductVat": 128.57,
+          "ExternalBookingCode": "16215808",
+          "Addons": [
+            {
+              "Id": 4,
+              "Name": "Frukost",
+              "Price": 0.0,
+              "PriceIncluded": true,
+              "ProductVat": 0.0,
+              "CBISProductId": null,
+              "ProductTypeId": 1192890,
+              "LineType": "Included",
+              "Quantity": 2,
+              "Currency": "SEK",
+              "GrossAmount": 200.00,
+              "NetAmount": 178.57,
+              "VatAmount": 21.43,
+              "VatPercent": 12.0,
+              "VatBreakdown": [
+                {
+                  "VatPercent": 12.0,
+                  "GrossAmount": 200.00,
+                  "NetAmount": 178.57,
+                  "VatAmount": 21.43,
+                  "DiscountedGrossAmount": 180.00,
+                  "DiscountedNetAmount": 160.71,
+                  "DiscountedVatAmount": 19.29
+                }
+              ],
+              "DiscountedGrossAmount": 180.00,
+              "DiscountedNetAmount": 160.71,
+              "DiscountedVatAmount": 19.29
+            }
+          ],
+          "CBISProductId": "cbis:123456",
+          "GrossAmountExcludingAddons": 1000.00,
+          "NetAmountExcludingAddons": 892.86,
+          "VatAmountExcludingAddons": 107.14,
+          "VatPercent": 12.0,
+          "VatBreakdown": [
+            {
+              "VatPercent": 12.0,
+              "GrossAmount": 1000.00,
+              "NetAmount": 892.86,
+              "VatAmount": 107.14,
+              "DiscountedGrossAmount": 900.00,
+              "DiscountedNetAmount": 803.57,
+              "DiscountedVatAmount": 96.43
+            }
+          ],
+          "DiscountedGrossAmountExcludingAddons": 900.00,
+          "DiscountedNetAmountExcludingAddons": 803.57,
+          "DiscountedVatAmountExcludingAddons": 96.43
         }
       ],
       "Id": 153663,
-      "Name": "BookVisit Hotel"
+      "Name": "BookVisit Hotel",
+      "CBISProductId": null
     }
-  ]
+  ],
+  "Currency": "SEK",
+  "PointOfSalesId": 1234,
+  "TotalGrossAmount": 1130.00,
+  "TotalNetAmount": 1004.28,
+  "TotalVatAmount": 125.72
 }
 ```
 
-Gets all the information about a booking by version
+Gets all the information about a booking by version. The example is a double room with an included breakfast, booked with a 10% discount, plus a service fee.
 
 
 ### HTTP Request
@@ -161,6 +228,32 @@ Gets all the information about a booking by version
 Parameter | Description
 --------- | -----------
 reservationVersionId | The Id for the specific version of the Reservation
+
+### Amounts and VAT
+
+Every product and addon has its own amount, VAT and VAT rate, so each line can be booked on its own in your accounting. `Price` and `ProductVat` are unchanged: a product's `Price` also holds its included addons, and an included addon's `Price` is 0.
+
+Field | Description
+--------- | -----------
+GrossAmountExcludingAddons | The product's own amount including VAT, without its addons, before the booking's discount. This plus the `GrossAmount` of every included addon is the product's `Price`
+NetAmountExcludingAddons | `GrossAmountExcludingAddons` minus `VatAmountExcludingAddons`
+VatAmountExcludingAddons | The VAT of `GrossAmountExcludingAddons`
+Addons.GrossAmount | The addon's own amount including VAT, before the booking's discount. Set for an included addon too. For any other addon it is the addon's `Price`
+Addons.NetAmount | `GrossAmount` minus `VatAmount`
+Addons.VatAmount | The VAT of `GrossAmount`
+VatPercent | The VAT rate in percent (25 is 25%). Null when the line has several rates or the rate is unknown
+VatBreakdown | The line's amounts per VAT rate, for lines with several rates such as a ticket bundle with 6% and 25%
+Discounted... | The same amounts after the booking's discount, as the invoice charges them. The same as the amounts before the discount when the booking has none
+Addons.LineType | `Included`, `Mandatory`, `Optional`, `ExtraBed` or `Unknown`
+Addons.Quantity | The number of units booked
+Addons.ProductTypeId | The Citybreak product type of the addon, set even when it has no CBIS product
+TotalGrossAmount | What the booking costs after its discount: every line's discounted gross amount plus the fees that are not removed
+TotalNetAmount | `TotalGrossAmount` minus `TotalVatAmount`
+TotalVatAmount | The booking's VAT after its discount: every line's discounted VAT plus the VAT of the same fees
+
+All amounts are rounded to 2 decimals before they are added up, so each total is exactly the sum of the returned values. `Fees` lists the booking fees and cancellation insurance with their price and VAT; fees are never discounted.
+
+<aside class="notice">The amounts are those of your own organization: what it sells each line for, or when it sells nothing on the line, what it buys it for. When those amounts do not add up to the booking's prices, for example when the customer pays the supplier directly and your organization only earns a commission, all the amounts and totals are null rather than contradicting the prices.</aside>
 
 
 
@@ -193,7 +286,17 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/reservation/latest/{bookingCo
   "Version": 1,
   "BookingDate": "2017-09-27T13:12:54.1938577Z",
   "AutoCancellation": "9999-12-31T23:59:59.9999999",
-  "Fees": [],
+  "Fees": [
+    {
+      "Currency": "SEK",
+      "Price": 50.0,
+      "Vat": 10.0,
+      "Terms": null,
+      "Name": "Service fee",
+      "Date": "2017-09-27T13:12:54.1938577Z",
+      "Status": "New"
+    }
+  ],
   "BookingUser": {
     "Id": 113685,
     "NameFirst": "Galaxy",
@@ -244,19 +347,76 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/reservation/latest/{bookingCo
         {
           "Id": 3,
           "Name": "Dubbelrum",
-          "Price": 350,
-	      "ProductVat": 18.11,
-          "ExternalBookingCode": "16215808"
+          "Price": 1200.0,
+          "ProductVat": 128.57,
+          "ExternalBookingCode": "16215808",
+          "Addons": [
+            {
+              "Id": 4,
+              "Name": "Frukost",
+              "Price": 0.0,
+              "PriceIncluded": true,
+              "ProductVat": 0.0,
+              "CBISProductId": null,
+              "ProductTypeId": 1192890,
+              "LineType": "Included",
+              "Quantity": 2,
+              "Currency": "SEK",
+              "GrossAmount": 200.00,
+              "NetAmount": 178.57,
+              "VatAmount": 21.43,
+              "VatPercent": 12.0,
+              "VatBreakdown": [
+                {
+                  "VatPercent": 12.0,
+                  "GrossAmount": 200.00,
+                  "NetAmount": 178.57,
+                  "VatAmount": 21.43,
+                  "DiscountedGrossAmount": 180.00,
+                  "DiscountedNetAmount": 160.71,
+                  "DiscountedVatAmount": 19.29
+                }
+              ],
+              "DiscountedGrossAmount": 180.00,
+              "DiscountedNetAmount": 160.71,
+              "DiscountedVatAmount": 19.29
+            }
+          ],
+          "CBISProductId": "cbis:123456",
+          "GrossAmountExcludingAddons": 1000.00,
+          "NetAmountExcludingAddons": 892.86,
+          "VatAmountExcludingAddons": 107.14,
+          "VatPercent": 12.0,
+          "VatBreakdown": [
+            {
+              "VatPercent": 12.0,
+              "GrossAmount": 1000.00,
+              "NetAmount": 892.86,
+              "VatAmount": 107.14,
+              "DiscountedGrossAmount": 900.00,
+              "DiscountedNetAmount": 803.57,
+              "DiscountedVatAmount": 96.43
+            }
+          ],
+          "DiscountedGrossAmountExcludingAddons": 900.00,
+          "DiscountedNetAmountExcludingAddons": 803.57,
+          "DiscountedVatAmountExcludingAddons": 96.43
         }
       ],
       "Id": 153663,
-      "Name": "BookVisit Hotel"
+      "Name": "BookVisit Hotel",
+      "CBISProductId": null
     }
-  ]
+  ],
+  "Currency": "SEK",
+  "PointOfSalesId": 1234,
+  "TotalGrossAmount": 1130.00,
+  "TotalNetAmount": 1004.28,
+  "TotalVatAmount": 125.72
 }
 ```
 
-Gets all the information about a booking by version
+Gets all the information about the latest version of a booking. The amounts are described under <a href="#amounts-and-vat">Amounts and VAT</a>.
 
 
 ### HTTP Request
