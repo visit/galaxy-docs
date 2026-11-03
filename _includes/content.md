@@ -1082,6 +1082,7 @@ This is a POST request that requires a mandatory PointOfSalesId filter and retur
 The filter can also include content filtering, such as only including those products associated with a particular CBIS category. Content filtering possibilities can be found in the <a href="#content-filter">Content Section</a>.
 You can see a bare minimum version of this search in the examples.
 Each offer returned contains a list of product references that is part of the offer.
+Only offers set up in Citybreak are listed. Packages from external suppliers, such as BookVisit, are not listed here, but they can still appear as `Offer` in accommodation availability results (see <a href="#availability---accommodation">Availability - Accommodation</a>).
 
 ### HTTP Request
 

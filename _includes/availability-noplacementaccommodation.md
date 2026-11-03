@@ -187,7 +187,19 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/accommodation",
           },
           "PromoCodeDescription": null,
           "PriorityAgreement": false,
-          "Offer": null,
+          "Offer": {
+            "Id": "rc:215603",
+            "Name": "Bed & breakfast package",
+            "Content": {
+              "Id": "rc:215603",
+              "Images": [],
+              "Information": [
+                { "Id": 99, "Name": "Name", "Value": "Bed & breakfast package" },
+                { "Id": 101, "Name": "Introduction", "Value": null },
+                { "Id": 102, "Name": "Description", "Value": "Includes breakfast and late check-out." }
+              ]
+            }
+          },
           "BookingKey": "18-A"
         },
         {
@@ -351,6 +363,21 @@ PriorityAgreement|Sort by priority agreement.
 Name|Sort by name.
 Price|Sort by price.
 Random|Sort by a random order.
+
+### Offer
+
+`Offer` is set when the rate is sold as an offer (a package), and is `null` otherwise.
+
+Field | Type | Description
+----- | ---- | -----------
+Id | string | The offer id, `rc:{ratecodeId}`.
+Name | string | The offer name.
+Content | object | The offer content. `Information` holds the name (99), introduction (101) and description (102).
+
+Offers come from two places:
+
+* **Citybreak offers.** These are ratecodes set up as offers in Citybreak. `Content` holds the offer content from Citybreak: images, name, introduction and description. The <a href="#offers">Offers</a> endpoint lists these offers.
+* **Supplier packages**, such as BookVisit packages. If Citybreak has no offer content for the ratecode, `Content` holds the package name and the description entered in the supplier's own system. `Images` is empty and the introduction is `null`. The <a href="#offers">Offers</a> endpoint does not list these packages.
 
 ## Get Previous Search
 
