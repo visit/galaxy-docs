@@ -243,17 +243,17 @@ Addons.NetAmount | `GrossAmount` minus `VatAmount`
 Addons.VatAmount | The VAT of `GrossAmount`
 VatPercent | The VAT rate in percent (25 is 25%). Null when the line has several rates or the rate is unknown
 VatBreakdown | The line's amounts per VAT rate, for lines with several rates such as a ticket bundle with 6% and 25%
-Discounted... | The same amounts after the booking's discount, as the invoice charges them. The same as the amounts before the discount when the booking has none
+Discounted... | The same amounts after the booking's discount, as the invoice charges them. Null when the line has no discount
 Addons.LineType | `Included`, `Mandatory`, `Optional`, `ExtraBed` or `Unknown`
 Addons.Quantity | The number of units booked
 Addons.ProductTypeId | The Citybreak product type of the addon, set even when it has no CBIS product
-TotalGrossAmount | What the booking costs after its discount: every line's discounted gross amount plus the fees that are not removed
+TotalGrossAmount | What the booking costs after its discount: every line's discounted gross amount (its gross amount when the line has no discount) plus the fees that are not removed
 TotalNetAmount | `TotalGrossAmount` minus `TotalVatAmount`
-TotalVatAmount | The booking's VAT after its discount: every line's discounted VAT plus the VAT of the same fees
+TotalVatAmount | The booking's VAT after its discount: every line's discounted VAT (its VAT when the line has no discount) plus the VAT of the same fees
 
-All amounts are rounded to 2 decimals before they are added up, so each total is exactly the sum of the returned values. `Fees` lists the booking fees and cancellation insurance with their price and VAT; fees are never discounted.
+To add up the lines yourself, take each line's `Discounted...` amount when it is set, and its amount before the discount when it is null. All amounts are rounded to 2 decimals before they are added up, so each total is exactly the sum of the returned values. `Fees` lists the booking fees and cancellation insurance with their price and VAT; fees are never discounted.
 
-<aside class="notice">The amounts are those of your own organization: what it sells each line for, or when it sells nothing on the line, what it buys it for. When those amounts do not add up to the booking's prices, for example when the customer pays the supplier directly and your organization only earns a commission, all the amounts and totals are null rather than contradicting the prices.</aside>
+<aside class="notice">The amounts are those of your own organization: what it sells each line for, or when it sells nothing on the line, what it buys it for. When the customer pays the supplier directly and your organization only earns a commission, they are what the customer pays. When the amounts do not add up to the booking's prices, that product's amounts and the booking's totals are null rather than contradicting the prices.</aside>
 
 
 
