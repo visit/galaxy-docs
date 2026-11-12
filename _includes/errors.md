@@ -6,6 +6,7 @@ Error Code | Meaning
 ---------- | -------
 400 | Bad Request -- Could not understand your request
 401 | Unauthorized -- Your API key is not valid for this call
+403 | Forbidden -- Your API key is valid but not allowed to do this, for example waiving cancellation fees without the operator's permission
 404 | Not Found -- Could not find what you are looking for
 405 | Method Not Allowed -- Method not supported for this request
 500 | Internal Server Error -- Server trouble, try again later. If recurring, <a href="https://help.citybreak.com/">contact us</a>.
