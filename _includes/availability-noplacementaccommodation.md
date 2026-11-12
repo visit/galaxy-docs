@@ -185,6 +185,10 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/accommodation",
             "Name": null,
             "Terms": null
           },
+          "RateCode": {
+            "Id": "rc:123456",
+            "Name": "Standard rate"
+          },
           "PromoCodeDescription": null,
           "PriorityAgreement": false,
           "Offer": null,
@@ -260,6 +264,10 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/accommodation",
           "BookingConditions": {
             "Name": null,
             "Terms": null
+          },
+          "RateCode": {
+            "Id": "rc:123456",
+            "Name": "Standard rate"
           },
           "PromoCodeDescription": null,
           "PriorityAgreement": false,
@@ -351,6 +359,16 @@ PriorityAgreement|Sort by priority agreement.
 Name|Sort by name.
 Price|Sort by price.
 Random|Sort by a random order.
+
+### Rate code
+Every product in the response has a `RateCode`: the rate code the product is sold under. Use it to tell rate plans apart, for example the same room sold as both a flexible and a non-refundable rate.
+
+|Field|Meaning|
+|------|------|
+Id|The rate code id: `rc:` followed by the Citybreak rate code id, the same format as offer ids. Stable between searches, so it can be mapped to the rate plans you sell.
+Name|The rate code name in the requested language, or its default name when it has no translation.
+
+`RateCode` is null when the rate code cannot be determined.
 
 ## Get Previous Search
 
@@ -514,6 +532,10 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/accommodation/ge
             "Name": null,
             "Terms": null
           },
+          "RateCode": {
+            "Id": "rc:123456",
+            "Name": "Standard rate"
+          },
           "PromoCodeDescription": null,
           "PriorityAgreement": false,
           "Offer": null,
@@ -591,6 +613,10 @@ var r = fetch("https://galaxy.citybreak.com/v5/api/availability/accommodation/ge
           "BookingConditions": {
             "Name": null,
             "Terms": null
+          },
+          "RateCode": {
+            "Id": "rc:123456",
+            "Name": "Standard rate"
           },
           "PromoCodeDescription": null,
           "PriorityAgreement": false,
